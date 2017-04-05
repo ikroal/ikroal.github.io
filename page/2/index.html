@@ -260,6 +260,174 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/21/Android视图设计用户界面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/21/Android视图设计用户界面/" itemprop="url">
+                  Android视图设计用户界面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-21T19:20:19+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Android学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/21/Android视图设计用户界面/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/04/21/Android视图设计用户界面/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="基本视图"><a href="#基本视图" class="headerlink" title="基本视图"></a>基本视图</h2><ol>
+<li>ToggleButton,RadioButton,RadioGroup,AutoCompleteTextView</li>
+<li>ToggleButton———–用一个灯光指示器来显示选中/未选中状态<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ToggleButton</span></div><div class="line">	<span class="attr">android:id</span>=<span class="string">"@+id/toggle1"</span></div><div class="line">	<span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">	<span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	<span class="attr">android:layout_below</span>=<span class="string">"@id/rdbGp1"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="RadioButton和RaidoGroup"><a href="#RadioButton和RaidoGroup" class="headerlink" title="RadioButton和RaidoGroup"></a>RadioButton和RaidoGroup</h3><hr>
+<ul>
+<li>RadioButton有两个状态：选中或未选中。</li>
+<li>RaidoGroup用来把一个或多个RaidoButton视图组合在一起，从而只允许一个RaidoButton被选中。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">RadioGroup</span></div><div class="line">	<span class="attr">android:id</span>=<span class="string">"@+id/rdbGp1"</span></div><div class="line">	<span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	<span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	<span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">	<span class="attr">android:layout_below</span>=<span class="string">"@id/star"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">RadioButton</span></div><div class="line">		<span class="attr">android:id</span>=<span class="string">"@+id/rdb1"</span></div><div class="line">		<span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">		<span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">		<span class="attr">android:text</span>=<span class="string">"Option 1"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">RadioButton</span></div><div class="line">		<span class="attr">android:id</span>=<span class="string">"@+id/rdb2"</span></div><div class="line">		<span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">		<span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">		<span class="attr">android:text</span>=<span class="string">"Option 2"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">RadioGroup</span>&gt;</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/21/Android视图设计用户界面/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/21/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -440,7 +608,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -451,7 +619,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -462,7 +630,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
