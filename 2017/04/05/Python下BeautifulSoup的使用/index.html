@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/05/Python下BeautifulSoup的使用/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="BeautifulSoup 简介Beautiful Soup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库. 库的安装库的安装参考此篇文章requests库的使用">
-<meta property="og:updated_time" content="2017-04-05T10:53:18.000Z">
+<meta property="og:updated_time" content="2017-04-05T11:03:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python下BeautifulSoup的基本使用">
 <meta name="twitter:description" content="BeautifulSoup 简介Beautiful Soup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库. 库的安装库的安装参考此篇文章requests库的使用">
@@ -370,14 +370,12 @@
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ol>
 <li>导入 BeautifulSoup<br><code>from bs4 import BeautifulSoup</code></li>
 <li>创建文档对象<br><code>soup = BeautifulSoup(html文档, &#39;html.parser&#39;)</code><br>配合 Python 内置的 html 解析器，将 html 文档传入 BeautifulSoup 构造方法。</li>
-<li><p>获取数据<br>BeautifulSoup提供了如下几种方式搜索文档获取数据：</p>
-<ul>
+<li>获取数据<br>BeautifulSoup提供了如下几种方式搜索文档获取数据： <ul>
 <li><code>find_all()</code> 全文搜索<br>返回文档中所有符合要求的数据。</li>
 <li><code>find()</code> 单次搜索<br>返回文档中第一个符合要求的数据。</li>
-<li><code>select()</code> CSS选择器查找<br><code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code></li>
-</ul>
-<p><code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如：<br><code>soup.find_all(&quot;a&quot;, limit=2)</code><br>同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如：<br> <code>titleList = soup.find_all(&quot;a&quot;, {&quot;class&quot;: &quot;fz14&quot;})</code></p>
-</li>
+<li><code>select()</code> CSS选择器查找<br><code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code><br></li></ul><code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如：<br><code>soup.find_all(&quot;a&quot;, limit=2)</code><br>同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如：<br><code>titleList = soup.find_all(&quot;a&quot;, {&quot;class&quot;: &quot;fz14&quot;})</code></li>
+
+
 </ol>
 <h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">BeautifulSoup 文档</a></p>
 
