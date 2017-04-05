@@ -1,0 +1,805 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,语法,基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="2016.9.26   近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;,">
+<meta name="keywords" content="Python,语法,基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python语法基础">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/Python语法基础/index.html">
+<meta property="og:site_name" content="知北游的博客">
+<meta property="og:description" content="2016.9.26   近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;,">
+<meta property="og:updated_time" content="2016-10-15T09:45:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python语法基础">
+<meta name="twitter:description" content="2016.9.26   近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/26/Python语法基础/"/>
+
+
+
+
+
+  <title> Python语法基础 | 知北游的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知北游的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">千里之行，始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Python语法基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rookieyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北游的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python语法基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T21:37:03+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/26/Python语法基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/26/Python语法基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2016.9.26 </p>
+<hr>
+<p>近段时间学习了下Python，于是大略总结了下所学的语法知识：</p>
+<ul>
+<li>列表的创建:<br><code>movies = [&quot;The Holy Grail&quot;, 1975, &quot;Terry Jones &amp; Terry Gilliam&quot;, 91,[&quot;Graham Chapman&quot;, [&quot;Michael Palin&quot;, &quot;John Cleese&quot;, &quot;Terry Gilliam&quot;, &quot;Eric Idle&quot;, &quot;Terry Jones&quot;]]]</code><br>　这里是一个嵌套列表的创建，其中的中括号也可以换成大括号，双引号可以用单引号代替，列表里面可以是混合的数据。常用的方法有<code>append()</code>：在列表末尾增加一个数据项，<code>pop()</code>：在列表的末尾删除数据，<code>extend(数据项集合)</code>：在列表的末尾添加一个数据项集合，<code>remove(项)</code>：删除一个特定数据的项，<code>insert(序号, 数据项)</code>：在指定序号的前面插入数据项。</li>
+<li>列表的遍历之for循环:<br>　列表的遍历需要用到for循环，其基本语法是：<code>for 变量 in 列表项：</code>，由此可以将列表中的每一项（只会遍历一级列表）通过print()函数输出。</li>
+<li>嵌套列表的遍历之if判断:<br>　对于嵌套列表的遍历，需要判断for循环时每一项是否是列表项，因此需要用到if判断语句和isinstance，isinstance(变量, list)用于判断是否是列表，if的语法是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">　if 某个条件满足:</div><div class="line">　　　True组</div><div class="line">　else:</div><div class="line">　　　False组</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>嵌套列表的遍历之定义函数：<br>　上述最多只能够处理一层嵌套的列表，如果希望处理多层嵌套的列表则需要定义函数并去递归调用，其基本语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　def 函数名(参数):</div><div class="line">　　代码块</div></pre></td></tr></table></figure>
+</li>
+<li><p>转换为模块：<br>　代码块保存为.py文件，创建setup.py的文件，包含如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">　from distutils.core import setup</div><div class="line"></div><div class="line">　setup(</div><div class="line">    　name=&apos;HelloWorld&apos;,</div><div class="line">    　version=&apos;1.0.0&apos;,</div><div class="line">    　py_modules=[&apos;nester&apos;],</div><div class="line">    　url=&apos;http://www.headfirstlabs&apos;,</div><div class="line">    　author=&apos;firstdream&apos;,</div><div class="line">    　author_email=&apos;firstdream10@icloud.com&apos;,</div><div class="line">    　description=&apos;A simple printer of nested lists&apos;</div><div class="line">　)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>　构建发布文件(windows下):<br>　python setup.py sdist<br>　安装Python副本到本地：<br>　python setup.py install<br>　导入模块：<br>　import 模块名<br>　向PyPl上传代码：<br>　python setup.py register(第一次上传)<br>　python setup.py sdist upload</p>
+<ul>
+<li><p>常用BIF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　#创建一个空的列表</div><div class="line">　　list()</div><div class="line">　　#返回一个迭代器，根据需要生成一个指定范围的数字，常配合for循环使用</div><div class="line">　　range()</div><div class="line">　　for num in range(4):</div><div class="line">　　　　print(num)</div><div class="line">　　＃创建成对数据的一个编号列表，从0开始</div><div class="line">　　enumerate()</div><div class="line">　　#将一个字符串或另一个数转换为一个整数(如果可行)</div><div class="line">　　int()</div><div class="line">　　#返回一个Python数据对象的唯一标识</div><div class="line">　　id()</div><div class="line">　　#返回一个可迭代数据结构中的下一项</div><div class="line">　　next()</div></pre></td></tr></table></figure>
+</li>
+<li><p>为函数提供默认参数<br><br>　　def 函数名(参数=缺省值):<br></p>
+</li>
+</ul>
+<hr>
+<p>2016.10.7<br></p>
+<ul>
+<li><p>文件操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">　　#以默认的r模式打开文件</div><div class="line">　　the_file = open(&quot;文件名&quot;)</div><div class="line">　　#以w模式打开文件</div><div class="line">　　out = open(&quot;文件名&quot;, &quot;w&quot;)</div><div class="line">　　#关闭文件</div><div class="line">　　the_file.close()</div><div class="line">　　#读取文件数据行</div><div class="line">　　the_file.readline()</div><div class="line">　　#返回文件起始位置</div><div class="line">　　the_file.seek(0)</div><div class="line">　　#写入数据到文件</div><div class="line">　　print(&quot;内容&quot;, file=文件对象名)</div></pre></td></tr></table></figure>
+</li>
+<li><p>异常处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　try:</div><div class="line">　　　　可能发生错误的代码</div><div class="line">　　except:</div><div class="line">　　　　错误恢复代码</div><div class="line">　　finally:</div><div class="line">　　　　最后的执行代码</div><div class="line">　　#数据不符合期望的格式时会出现ValueError</div><div class="line">　　#数据无法正常访问时会出现IOError</div><div class="line">　　#用with处理文件，可不需要finally模块</div><div class="line">　　try:</div><div class="line">　　　　with open() as data:</div><div class="line">　　　　　　代码</div><div class="line">　　except 异常：</div><div class="line">　　　　代码</div></pre></td></tr></table></figure>
+</li>
+<li><p>其余方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">　　#显示当前目录及更改当前目录</div><div class="line">　　import os</div><div class="line">　　os.getcwd()</div><div class="line">　　os.chdir(&quot;路径&quot;)</div><div class="line">　　#split()分割字符串，返回一个字符串列表</div><div class="line">　　(role, line_spoken) = each_line.split(&quot;:&quot;)</div><div class="line">　　#利用split的可选参数指定为两部分</div><div class="line">　　split(&quot;:&quot;, 1)</div><div class="line">　　#find()查找字符串</div><div class="line">　　each_line.find(&quot;:&quot;)</div><div class="line">　　#not取反判断条件</div><div class="line">　　if not each_line.find(&apos;:&apos;) == -1:</div><div class="line">　　#pass作为Python的空语句或null语句</div><div class="line">　　#strip()方法从字符串中去除不想要的空白符</div><div class="line">　　line_spoken.strip()</div><div class="line">　　#str()可以用来访问任何数据对象的字符串表示</div><div class="line">　　#locals()返回当前作用域中的变量集合</div><div class="line">　　if &apos;man_file&apos; in locals():</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>2016.10.15<br></p>
+<ul>
+<li><p>pickle”腌制”数据和恢复数据<br><br>　Python提供了一个标准库pickle用于保存和加载Python的数据对象，使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">　　import pickle</div><div class="line">　　...</div><div class="line">　　#pickle处理文件数据时必须以二进制访问</div><div class="line">　　with open(&apos;mydata.pickle&apos;, &apos;wb&apos;) as mysavedata:</div><div class="line">　　　　　pickle.dump([1, 2, &apos;&apos;three], mysavedata)</div><div class="line">　　　　　...</div><div class="line">　　with open(&apos;mydata.pickle&apos;, &apos;rb&apos;) as myrestoredata:</div><div class="line">　　　　　a_list = pickle.load(myrestoredata)</div></pre></td></tr></table></figure>
+</li>
+<li><p>列表推导<br><br>　列表推导用于减少转换列表时的代码量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　新列表 = [转换函数(t) for t in 原列表]</div><div class="line">　　new_l = []</div><div class="line">　　for t in old_l:</div><div class="line">　　　　new_l.append(len(t))</div><div class="line">　　new_l = [len(t) for t in old_l]</div></pre></td></tr></table></figure>
+</li>
+<li><p>集合set<br><br>　Python提供一种名为集合的数据结构，集合中的数据是无序的，而且不允许重复<br><br>　创建集合：<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　#set() -&gt; new empty set object</div><div class="line">　　#set(iterable) -&gt; new set object</div><div class="line">　　集合名 = set(object)</div></pre></td></tr></table></figure>
+</li>
+<li><p>字典<br>　字典将value和key关联，使用字典:<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　#创建字典</div><div class="line">　　字典名 = &#123;&#125;</div><div class="line">　　字典名 = dict()</div><div class="line">　　#增加数据</div><div class="line">　　字典名[key] = value #vlaue可以为任意数据类型</div><div class="line">　　字典名 = &#123;’key‘:value, &apos;key&apos;:value&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　#定义类</div><div class="line">　　class 类名:</div><div class="line">　　　　def _init_(self):</div><div class="line">　　　　　　　#初始化对象的代码</div><div class="line">　　#创建对象实例</div><div class="line">　　对象 = 类名()</div></pre></td></tr></table></figure>
+</li>
+<li><p>继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　class 类名(继承的类名):</div><div class="line">　　　　def _init_(self, 参数):</div><div class="line">　　　　　　　#初始化对象的代码</div></pre></td></tr></table></figure>
+</li>
+<li><p>其它<br><br>　print(列表[-1])输出最后一个数据项<br><br>　strip()方法可以从字符串中去除不想要的空白符<br><br>　in操作符用于检查成员关系<br><br>　原地排序–sort(),原列表顺序改变<br><br>　复制排序–sorted()，返回一个排序过的原列表副本<br><br>　分片访问列表<code>列表[起始值：结束值]</code>可以访问起始到结束(不包括结束值)的列表项
+　</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/语法/" rel="tag"># 语法</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/" rel="next" title="HorizontalScrollView和ViewPager触控冲突解决">
+                <i class="fa fa-chevron-left"></i> HorizontalScrollView和ViewPager触控冲突解决
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/22/Android下获取当前XML的根View/" rel="prev" title="Android下获取当前XML的根View">
+                Android下获取当前XML的根View <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460"
+               alt="rookieyang" />
+          <p class="site-author-name" itemprop="name">rookieyang</p>
+           
+              <p class="site-description motion-element" itemprop="description">千里之行，始于足下</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/firstdream10" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2219331925/home?wvr=5" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rookieyang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://firstdream1010.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/09/26/Python语法基础/';
+          this.page.identifier = '2016/09/26/Python语法基础/';
+          this.page.title = 'Python语法基础';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://firstdream1010.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
