@@ -87,19 +87,19 @@
 
 
 
-<meta name="description" content="基本视图 ToggleButton，RadioButton，RadioGroup，AutoCompleteTextView ToggleButton 用一个灯光指示器来显示选中/未选中状态 12345&amp;lt;ToggleButton    android:id=&quot;@+id/toggle1&quot;    android:layout_width=&quot;wrap_content&quot;    android:layo">
+<meta name="description" content="基本视图 ToggleButton，RadioButton，RadioGroup，AutoCompleteTextView ToggleButton 用一个灯光指示器来显示选中/未选中状态">
 <meta name="keywords" content="Android,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 视图设计用户界面">
 <meta property="og:url" content="http://yoursite.com/2016/04/21/Android视图设计用户界面/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="基本视图 ToggleButton，RadioButton，RadioGroup，AutoCompleteTextView ToggleButton 用一个灯光指示器来显示选中/未选中状态 12345&amp;lt;ToggleButton    android:id=&quot;@+id/toggle1&quot;    android:layout_width=&quot;wrap_content&quot;    android:layo">
+<meta property="og:description" content="基本视图 ToggleButton，RadioButton，RadioGroup，AutoCompleteTextView ToggleButton 用一个灯光指示器来显示选中/未选中状态">
 <meta property="og:image" content="http://i.imgur.com/DymvRLO.png">
 <meta property="og:image" content="http://i.imgur.com/QVPfnAW.png">
-<meta property="og:updated_time" content="2017-04-06T09:17:25.000Z">
+<meta property="og:updated_time" content="2017-04-06T09:41:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 视图设计用户界面">
-<meta name="twitter:description" content="基本视图 ToggleButton，RadioButton，RadioGroup，AutoCompleteTextView ToggleButton 用一个灯光指示器来显示选中/未选中状态 12345&amp;lt;ToggleButton    android:id=&quot;@+id/toggle1&quot;    android:layout_width=&quot;wrap_content&quot;    android:layo">
+<meta name="twitter:description" content="基本视图 ToggleButton，RadioButton，RadioGroup，AutoCompleteTextView ToggleButton 用一个灯光指示器来显示选中/未选中状态">
 <meta name="twitter:image" content="http://i.imgur.com/DymvRLO.png">
 
 
@@ -371,6 +371,7 @@
         <h4 id="基本视图"><a href="#基本视图" class="headerlink" title="基本视图"></a>基本视图</h4><ol>
 <li><code>ToggleButton</code>，<code>RadioButton</code>，<code>RadioGroup</code>，<code>AutoCompleteTextView</code></li>
 <li><p><code>ToggleButton</code> 用一个灯光指示器来显示选中/未选中状态</p>
+<a id="more"></a>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ToggleButton</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/toggle1"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_below</span>=<span class="string">"@id/rdbGp1"</span>/&gt;</div></pre></td></tr></table></figure>
 </li>
 <li><p><code>RadioButton</code> 和 <code>RaidoGroup</code></p>
@@ -378,9 +379,7 @@
 <li><code>RadioButton</code> 有两个状态：选中或未选中。</li>
 <li><p><code>RaidoGroup</code> 用来把一个或多个 <code>RaidoButton</code> 视图组合在一起，从而只允许一个 <code>RaidoButton</code> 被选中。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">RadioGroup</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/rdbGp1"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">    <span class="attr">android:layout_below</span>=<span class="string">"@id/star"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/rdb1"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Option 1"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/rdb2"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Option 2"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">RadioGroup</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>视图效果如下：</p>
-<a id="more"></a>
-<p><img src="http://i.imgur.com/DymvRLO.png" alt=""> </p>
+<p>视图效果如下：<br><img src="http://i.imgur.com/DymvRLO.png" alt=""> </p>
 </li>
 </ul>
 </li>

@@ -369,15 +369,7 @@
 
       
         
-          <h4 id="库的导入"><a href="#库的导入" class="headerlink" title="库的导入"></a>库的导入</h4><p><code>import pymysql</code></p>
-<h4 id="连接-MySql"><a href="#连接-MySql" class="headerlink" title="连接 MySql"></a>连接 MySql</h4><ol>
-<li><p>连接配置</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MYSQL_HOST = &apos;localhost&apos;</div><div class="line">MYSQL_DBNAME = &apos;cnkiQuote&apos;</div><div class="line">MYSQL_USER = &apos;root&apos;</div><div class="line">MYSQL_PASSWD = &apos;123456&apos;</div></pre></td></tr></table></figure>
-<p> 从上往下依次是主机 ip，数据库名，用户名及密码。</p>
-</li>
-<li>连接<br> 指定编码为 utf8 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection=pymysql.connect(</div><div class="line">        host=MYSQL_HOST,</div><div class="line">        db=MYSQL_DBNAME,</div><div class="line">        user=MYSQL_USER,</div><div class="line">        passwd=MYSQL_PASSWD,</div><div class="line">        charset=<span class="string">'utf8'</span>,</div><div class="line">        use_unicode=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-</li>
-</ol>
+          <h4 id="库的导入"><a href="#库的导入" class="headerlink" title="库的导入"></a>库的导入</h4><p><code>import pymysql</code>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/06/Python下pymsql库的基本使用/#more" rel="contents">
@@ -693,11 +685,7 @@
 
       
         
-          <h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><p>正则表达式主要用于字符串匹配，使用正则表达式之前需要了解各个符号的含义，这里推荐 <a href="http://www.runoob.com/regexp/regexp-syntax.html">菜鸟教程</a>，在了解语法之后我们可以通过 <a href="https://regex101.com/">regex101</a> 进行正则表达式的测试。</p>
-<h4 id="CSS-选择器"><a href="#CSS-选择器" class="headerlink" title="CSS 选择器"></a>CSS 选择器</h4><p>CSS 选择器用于筛选 HTML 文档中的元素，可以通过元素的标签及元素的属性进行筛选，这里介绍使用过的一些小例子：</p>
-<ol>
-<li><code>span[class=KnowledgeNetcont] &gt; a::text</code></br>筛选出  <code>class</code> 属性为 KnowledgeNetcont 的 <code>span</code> 标签下的 <code>a</code> 标签的文本内容。</li>
-<li><code>a[href*=image]::attr(href)</code></br>筛选出 <code>a</code> 标签的 <code>href</code> 属性值包含 image 的属性值。
+          <h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><p>正则表达式主要用于字符串匹配，使用正则表达式之前需要了解各个符号的含义，这里推荐 <a href="http://www.runoob.com/regexp/regexp-syntax.html">菜鸟教程</a>，在了解语法之后我们可以通过 <a href="https://regex101.com/">regex101</a> 进行正则表达式的测试。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/05/正则表达式和css选择器以及xpath/#more" rel="contents">
@@ -855,8 +843,7 @@
 
       
         
-          <h4 id="BeautifulSoup-简介"><a href="#BeautifulSoup-简介" class="headerlink" title="BeautifulSoup 简介"></a>BeautifulSoup 简介</h4><p>BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.</p>
-<h4 id="库的安装"><a href="#库的安装" class="headerlink" title="库的安装"></a>库的安装</h4><p>库的安装参考此篇文章<br><a href="/2017/04/04/requests库的使用/" title="requests库的使用">requests库的使用</a><br>
+          <h4 id="BeautifulSoup-简介"><a href="#BeautifulSoup-简介" class="headerlink" title="BeautifulSoup 简介"></a>BeautifulSoup 简介</h4><p>BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/05/Python下BeautifulSoup的使用/#more" rel="contents">
@@ -1014,7 +1001,7 @@
 
       
         
-          <h4 id="requests-库的安装"><a href="#requests-库的安装" class="headerlink" title="requests 库的安装"></a>requests 库的安装</h4><p>Mac 下使用 Pycharm 时只需按住快捷键 <code>Command + ,</code> 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：<br><img src="https://lh3.googleusercontent.com/-HvXBSgFbekM/WOSh3nGtDLI/AAAAAAAAAIg/HjQ-CbJ6phY/I/1.png" alt="1"><br>
+          <h4 id="requests-库的安装"><a href="#requests-库的安装" class="headerlink" title="requests 库的安装"></a>requests 库的安装</h4><p>Mac 下使用 Pycharm 时只需按住快捷键 <code>Command + ,</code> 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/04/requests库的使用/#more" rel="contents">
@@ -1172,7 +1159,7 @@
 
       
         
-          <p>　　要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalScrollView 可以正常滑动，但是 ViewPager 却不能正常滑动，而这个时候我们期望的是边缘滑动时，HorizontalScrollView 响应事件，非边缘滑动时，ViewPager 响应事件，为了达到这一目的我们需要重写 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 函数，具体代码如下：<br>
+          <p>要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/#more" rel="contents">
@@ -1330,13 +1317,7 @@
 
       
         
-          <p>近段时间学习了下Python，于是大略总结了下所学的语法知识：</p>
-<ul>
-<li>列表的创建:<br><code>movies = [&quot;The Holy Grail&quot;, 1975, &quot;Terry Jones &amp; Terry Gilliam&quot;, 91,[&quot;Graham Chapman&quot;, [&quot;Michael Palin&quot;, &quot;John Cleese&quot;, &quot;Terry Gilliam&quot;, &quot;Eric Idle&quot;, &quot;Terry Jones&quot;]]]</code><br>　这里是一个嵌套列表的创建，其中的中括号也可以换成大括号，双引号可以用单引号代替，列表里面可以是混合的数据。常用的方法有 <code>append()</code>：在列表末尾增加一个数据项，<code>pop()</code>：在列表的末尾删除数据， <code>extend(数据项集合)</code>：在列表的末尾添加一个数据项集合，<code>remove(项)</code>：删除一个特定数据的项，<code>insert(序号, 数据项)</code>：在指定序号的前面插入数据项。</li>
-<li>列表的遍历之 <code>for</code> 循环:<br>　列表的遍历需要用到 <code>for</code> 循环，其基本语法是：<code>for 变量 in 列表项：</code>，由此可以将列表中的每一项（只会遍历一级列表）通过 <code>print()</code> 函数输出。</li>
-<li>嵌套列表的遍历之 <code>if</code> 判断:<br>　对于嵌套列表的遍历，需要判断 <code>for</code> 循环时每一项是否是列表项，因此需要用到 <code>if</code> 判断语句和 <code>isinstance</code>，<code>isinstance(变量, list)</code> 用于判断是否是列表，<code>if</code> 的语法是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if 某个条件满足:</div><div class="line">　　True组</div><div class="line">else:</div><div class="line">　　False组</div></pre></td></tr></table></figure>
-</li>
-</ul>
+          <p>近段时间学习了下Python，于是大略总结了下所学的语法知识：
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/09/26/Python语法基础/#more" rel="contents">
@@ -1494,8 +1475,7 @@
 
       
         
-          <p> 最近做测试的时候需要获取当前 XML 的根视图进行操作，查询后发现网上提到了 <code>getDecorView()</code>，<code>getRootView()</code>，参照别人的测试自己也做了一个小的测试，首先是一个 View 层次结构图，方便理解测试，原文地址在文章最后：<br><img src="http://i.imgur.com/WrbG9q2.jpg" alt="视图层次"></p>
-<p>activity_main 和 btn_lay 布局如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">  <span class="attr">tools:context</span>=<span class="string">"com.rookieyang.test.MainActivity"</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">Button</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/btn"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">"hello"</span> /&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/btn_lay"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">android.support.constraint.ConstraintLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+          <p> 最近做测试的时候需要获取当前 XML 的根视图进行操作，查询后发现网上提到了 <code>getDecorView()</code>，<code>getRootView()</code>，参照别人的测试自己也做了一个小的测试，首先是一个 View 层次结构图，方便理解测试，原文地址在文章最后：<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/09/22/Android下获取当前XML的根View/#more" rel="contents">
@@ -1653,15 +1633,7 @@
 
       
         
-          <p>　　最近在实现便签滑动页的时候突然发现 ActionBar 已经不被官方推荐使用，比较好的一个方法就是利用 ToolBar 和 TabLayout 来实现，以下是实现步骤：</p>
-<ul>
-<li>TalLayout 是 Android Support Design 中的一个控件，在使用之前需要在 build.gradle 文件中添加<code>compile&#39;com.android.support:design:23.2.0&#39;</code><br>才能够正常使用。</li>
-<li><p>对 values 中的 style 文件进行设置以屏蔽 Activity 的 ActionBar，让主题继承于 NoActionBar，如果需要改变 Acitivity 的背景颜色设置 <code>windowBackground</code> 即可：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Base application theme. --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme"</span> <span class="attr">parent</span>=<span class="string">"Theme.AppCompat.NoActionBar"</span>&gt;</span><span class="xml"></div><div class="line">    <span class="comment">&lt;!-- Customize your theme here. --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>@color/material_blue_grey_800<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--Status bar color--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>@color/accent_material_light<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--Window color--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>由于需要实现标签页的滑动效果所以需要用到 ViewPager ，加上 TabLayout 和 TooBar 基本的布局如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/topToolBar"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:paddingTop</span>=<span class="string">"@dimen/bar_top_padding"</span>&gt;</span><span class="tag">&lt;/<span class="name">android.support.v7.widget.Toolbar</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.TabLayout</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/tabLayout"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_below</span>=<span class="string">"@id/topToolBar"</span></div><div class="line">    <span class="attr">app:tabSelectedTextColor</span>=<span class="string">"#3da6a2"</span></div><div class="line">    <span class="attr">app:tabTextColor</span>=<span class="string">"#817f7f"</span>&gt;</span><span class="tag">&lt;/<span class="name">android.support.design.widget.TabLayout</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">android.support.v4.view.ViewPager</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/viewPager"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_below</span>=<span class="string">"@id/tabLayout"</span>&gt;</span><span class="tag">&lt;/<span class="name">android.support.v4.view.ViewPager</span>&gt;</span></div></pre></td></tr></table></figure>
-<p> 其中 TabLayout 中<code>tabSelectedTextColor</code> 用于设置选中Tab的字体颜色，<code>tabTextColor</code> 用于设置未选中的Tab字体的颜色，Toolbar 中设置 <code>paddingTop</code> 主要用于4.4中沉浸式状态栏的适配，防止 ToolBar 和状态栏重合。</p>
+          <p>最近在实现便签滑动页的时候突然发现 ActionBar 已经不被官方推荐使用，比较好的一个方法就是利用 ToolBar 和 TabLayout 来实现，以下是实现步骤：
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/09/08/利用TabLayout和ToolBar实现滑动标签页/#more" rel="contents">
@@ -1820,11 +1792,7 @@
       
         
           <h4 id="显示图片的视图控件"><a href="#显示图片的视图控件" class="headerlink" title="显示图片的视图控件"></a>显示图片的视图控件</h4><ul>
-<li><p>GridView<br>添加方式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">GridView</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/gridview"</span></div><div class="line">    <span class="attr">android:numColumns</span>=<span class="string">"auto_fit"</span></div><div class="line">    <span class="attr">android:verticalSpacing</span>=<span class="string">"10dp"</span></div><div class="line">    <span class="attr">android:horizontalSpacing</span>=<span class="string">"10dp"</span></div><div class="line">    <span class="attr">android:columnWidth</span>=<span class="string">"90dp"</span></div><div class="line">    <span class="attr">android:stretchMode</span>=<span class="string">"columnWidth"</span>/&gt;</span>//缩放与列宽同步</div></pre></td></tr></table></figure>
-<p>  其中 <code>verticalSpacing</code> 表示 grid 元素之间的竖直距离，<code>horizontalSpacing</code> 表示 grid 元素之间的水平距离。<br>  常用方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gridView.setAdapter(<span class="keyword">new</span> ImageAdapter(<span class="keyword">this</span>));</div><div class="line">gridView.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">        Toast.makeText(getBaseContext(), <span class="string">"pic"</span> + (position + <span class="number">1</span>) + <span class="string">"selected"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>  显示效果:</p>
+<li><p>GridView<br>添加方式：
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/05/27/使用视图显示图片和菜单/#more" rel="contents">

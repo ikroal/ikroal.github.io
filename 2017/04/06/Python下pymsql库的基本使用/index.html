@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="库的导入import pymysql 连接 MySql 连接配置  1234MYSQL_HOST = &amp;apos;localhost&amp;apos;MYSQL_DBNAME = &amp;apos;cnkiQuote&amp;apos;MYSQL_USER = &amp;apos;root&amp;apos;MYSQL_PASSWD = &amp;apos;123456&amp;apos;  从上往下依次是主机 ip，数据库名，用户名及密码。  连">
+<meta name="description" content="库的导入import pymysql">
 <meta name="keywords" content="Python,MySql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 下 pymsql 库的基本使用">
 <meta property="og:url" content="http://yoursite.com/2017/04/06/Python下pymsql库的基本使用/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="库的导入import pymysql 连接 MySql 连接配置  1234MYSQL_HOST = &amp;apos;localhost&amp;apos;MYSQL_DBNAME = &amp;apos;cnkiQuote&amp;apos;MYSQL_USER = &amp;apos;root&amp;apos;MYSQL_PASSWD = &amp;apos;123456&amp;apos;  从上往下依次是主机 ip，数据库名，用户名及密码。  连">
-<meta property="og:updated_time" content="2017-04-06T09:21:43.000Z">
+<meta property="og:description" content="库的导入import pymysql">
+<meta property="og:updated_time" content="2017-04-06T09:41:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 pymsql 库的基本使用">
-<meta name="twitter:description" content="库的导入import pymysql 连接 MySql 连接配置  1234MYSQL_HOST = &amp;apos;localhost&amp;apos;MYSQL_DBNAME = &amp;apos;cnkiQuote&amp;apos;MYSQL_USER = &amp;apos;root&amp;apos;MYSQL_PASSWD = &amp;apos;123456&amp;apos;  从上往下依次是主机 ip，数据库名，用户名及密码。  连">
+<meta name="twitter:description" content="库的导入import pymysql">
 
 
 
@@ -365,7 +365,7 @@
       
 
       
-        <h4 id="库的导入"><a href="#库的导入" class="headerlink" title="库的导入"></a>库的导入</h4><p><code>import pymysql</code></p>
+        <h4 id="库的导入"><a href="#库的导入" class="headerlink" title="库的导入"></a>库的导入</h4><p><code>import pymysql</code><a id="more"></a></p>
 <h4 id="连接-MySql"><a href="#连接-MySql" class="headerlink" title="连接 MySql"></a>连接 MySql</h4><ol>
 <li><p>连接配置</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MYSQL_HOST = &apos;localhost&apos;</div><div class="line">MYSQL_DBNAME = &apos;cnkiQuote&apos;</div><div class="line">MYSQL_USER = &apos;root&apos;</div><div class="line">MYSQL_PASSWD = &apos;123456&apos;</div></pre></td></tr></table></figure>
@@ -374,7 +374,6 @@
 <li>连接<br> 指定编码为 utf8 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection=pymysql.connect(</div><div class="line">        host=MYSQL_HOST,</div><div class="line">        db=MYSQL_DBNAME,</div><div class="line">        user=MYSQL_USER,</div><div class="line">        passwd=MYSQL_PASSWD,</div><div class="line">        charset=<span class="string">'utf8'</span>,</div><div class="line">        use_unicode=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<a id="more"></a>
 <h4 id="Sql-操作"><a href="#Sql-操作" class="headerlink" title="Sql 操作"></a>Sql 操作</h4><ol>
 <li><p>查询</p>
  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""select * from periodical_data where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">    (item[<span class="string">"title"</span>],</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
