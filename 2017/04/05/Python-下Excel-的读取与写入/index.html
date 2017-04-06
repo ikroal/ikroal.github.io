@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="前言前段时间需要将 Mysql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
+<meta name="description" content="前言前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 下 Excel 的读取与写入">
 <meta property="og:url" content="http://yoursite.com/2017/04/05/Python-下Excel-的读取与写入/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="前言前段时间需要将 Mysql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
-<meta property="og:updated_time" content="2017-04-06T08:34:11.000Z">
+<meta property="og:description" content="前言前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
+<meta property="og:updated_time" content="2017-04-06T08:45:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 Excel 的读取与写入">
-<meta name="twitter:description" content="前言前段时间需要将 Mysql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
+<meta name="twitter:description" content="前言前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
 
 
 
@@ -365,7 +365,7 @@
       
 
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>前段时间需要将 Mysql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 <code>xlrd</code> 库来进行 Excel 的读取操作，写入操作则由 <code>xlsxwriter</code> 和 <code>xlutils</code> 库来进行，其中 <code>xlutils</code> 用于对 Excel 文件的追加。<br><a id="more"></a></p>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 <code>xlrd</code> 库来进行 Excel 的读取操作，写入操作则由 <code>xlsxwriter</code> 和 <code>xlutils</code> 库来进行，其中 <code>xlutils</code> 用于对 Excel 文件的追加。<br><a id="more"></a></p>
 <h4 id="Excel-文件的读取"><a href="#Excel-文件的读取" class="headerlink" title="Excel 文件的读取"></a>Excel 文件的读取</h4><ol>
 <li>打开 Excel 文件<br>                         <code>workbook = xlrd.open_workbook(r&#39;查询条件.xlsx&#39;)</code></li>
 <li>获取所有 sheet<br>               <code>workbook.sheet_names()</code></li>
