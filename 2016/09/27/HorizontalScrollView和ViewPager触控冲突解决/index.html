@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="要了解HorizontalScrollView和ViewPager触控冲突的原因，首先需要了解Android触摸事件处理的的机制，在了解后可以知道，当HorizontalScrollView内层嵌套使用ViewPager时，由于触摸事件被HorizontalScrollView的onInterceptTouchEvent()拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalSc">
+<meta name="description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 onInterceptTouchEvent() 拦截导致事件不能向下层传递，所以当滑动屏幕时">
 <meta name="keywords" content="Android,Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HorizontalScrollView和ViewPager触控冲突解决">
+<meta property="og:title" content="HorizontalScrollView 和 ViewPager 触控冲突解决">
 <meta property="og:url" content="http://yoursite.com/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="要了解HorizontalScrollView和ViewPager触控冲突的原因，首先需要了解Android触摸事件处理的的机制，在了解后可以知道，当HorizontalScrollView内层嵌套使用ViewPager时，由于触摸事件被HorizontalScrollView的onInterceptTouchEvent()拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalSc">
+<meta property="og:description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 onInterceptTouchEvent() 拦截导致事件不能向下层传递，所以当滑动屏幕时">
 <meta property="og:image" content="http://i.imgur.com/Dz86zGW.gif">
-<meta property="og:updated_time" content="2017-04-05T12:31:46.000Z">
+<meta property="og:updated_time" content="2017-04-06T08:33:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HorizontalScrollView和ViewPager触控冲突解决">
-<meta name="twitter:description" content="要了解HorizontalScrollView和ViewPager触控冲突的原因，首先需要了解Android触摸事件处理的的机制，在了解后可以知道，当HorizontalScrollView内层嵌套使用ViewPager时，由于触摸事件被HorizontalScrollView的onInterceptTouchEvent()拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalSc">
+<meta name="twitter:title" content="HorizontalScrollView 和 ViewPager 触控冲突解决">
+<meta name="twitter:description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 onInterceptTouchEvent() 拦截导致事件不能向下层传递，所以当滑动屏幕时">
 <meta name="twitter:image" content="http://i.imgur.com/Dz86zGW.gif">
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title> HorizontalScrollView和ViewPager触控冲突解决 | 知北遊的博客 </title>
+  <title> HorizontalScrollView 和 ViewPager 触控冲突解决 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
             
             
               
-                HorizontalScrollView和ViewPager触控冲突解决
+                HorizontalScrollView 和 ViewPager 触控冲突解决
               
             
           </h1>
@@ -367,12 +367,15 @@
       
 
       
-        <p>　　要了解HorizontalScrollView和ViewPager触控冲突的原因，首先需要了解Android触摸事件处理的的机制，在了解后可以知道，当HorizontalScrollView内层嵌套使用ViewPager时，由于触摸事件被HorizontalScrollView的onInterceptTouchEvent()拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalScrollView可以正常滑动，但是ViewPager却不能正常滑动，而这个时候我们期望的是边缘滑动时，HorizontalScrollView响应事件，非边缘滑动时，ViewPager响应事件，为了达到这一目的我们需要重写HorizontalScrollView的onInterceptTouchEvent()函数，具体代码如下：<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    mXPoint = ev.getRawX();</div><div class="line">    <span class="keyword">if</span> (mXPoint &gt; <span class="number">100</span> &amp;&amp; mXPoint &lt; mMenuWidth) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(ev);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>　通过限定滑动的屏幕范围决定是否事件在这一层被处理，在这样处理之后HorizontalScrollView和ViewPager都能正确响应了，但是再次发现当HorizontalScrollView滑动到另一没有ViewPager的页面，中间的部分却不能够正确响应HorizontalScrollView的滑动事件，所以我们需要做进一步处理，判断HorizontalScrollView是否滑动至另一页面，所以在onTouchEvent事件中利用一个flag的标志位用于判断，具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">　<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        　<span class="keyword">int</span> action = ev.getAction();</div><div class="line">        　<span class="keyword">switch</span> (action) &#123;</div><div class="line">            　<span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">                　<span class="keyword">int</span> scollX = getScrollX();</div><div class="line">                　<span class="keyword">if</span> (scollX &gt; mMenuHaltWidth) &#123;</div><div class="line">                    　<span class="keyword">this</span>.scrollTo(mMenuWidth, <span class="number">0</span>);</div><div class="line">                    　sMenuFlag = <span class="keyword">false</span>;</div><div class="line">                　&#125;</div><div class="line">                　<span class="keyword">else</span> &#123;</div><div class="line">                    　<span class="keyword">this</span>.scrollTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">                    　sMenuFlag = <span class="keyword">true</span>;</div><div class="line">                　&#125;</div><div class="line">                　<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        　&#125;</div><div class="line">        　<span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(ev);</div><div class="line">    　&#125;</div></pre></td></tr></table></figure></p>
+        <p>　　要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalScrollView 可以正常滑动，但是 ViewPager 却不能正常滑动，而这个时候我们期望的是边缘滑动时，HorizontalScrollView 响应事件，非边缘滑动时，ViewPager 响应事件，为了达到这一目的我们需要重写 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 函数，具体代码如下：<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    mXPoint = ev.getRawX();</div><div class="line">    <span class="keyword">if</span> (mXPoint &gt; <span class="number">100</span> &amp;&amp; mXPoint &lt; mMenuWidth) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(ev);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　通过限定滑动的屏幕范围决定是否事件在这一层被处理，在这样处理之后 HorizontalScrollView 和 ViewPager 都能正确响应了，但是再次发现当 HorizontalScrollView 滑动到另一没有ViewPager的页面，中间的部分却不能够正确响应 HorizontalScrollView 的滑动事件，所以我们需要做进一步处理，判断 HorizontalScrollView 是否滑动至另一页面，所以在 <code>onTouchEvent</code> 事件中利用一个 <code>flag</code> 的标志位用于判断，具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">　<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        　<span class="keyword">int</span> action = ev.getAction();</div><div class="line">        　<span class="keyword">switch</span> (action) &#123;</div><div class="line">            　<span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">                　<span class="keyword">int</span> scollX = getScrollX();</div><div class="line">                　<span class="keyword">if</span> (scollX &gt; mMenuHaltWidth) &#123;</div><div class="line">                    　<span class="keyword">this</span>.scrollTo(mMenuWidth, <span class="number">0</span>);</div><div class="line">                    　sMenuFlag = <span class="keyword">false</span>;</div><div class="line">                　&#125;</div><div class="line">                　<span class="keyword">else</span> &#123;</div><div class="line">                    　<span class="keyword">this</span>.scrollTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">                    　sMenuFlag = <span class="keyword">true</span>;</div><div class="line">                　&#125;</div><div class="line">                　<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        　&#125;</div><div class="line">        　<span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(ev);</div><div class="line">    　&#125;</div></pre></td></tr></table></figure></p>
 <p>　onInterceptTouchEvent()函数判断条件变为：<br>　<code>if (mXPoint &gt; 100 &amp;&amp; mXPoint &lt; mMenuWidth &amp;&amp; sMenuFlag == false)</code></p>
 <hr>
 <h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p><img src="http://i.imgur.com/Dz86zGW.gif" alt=""></p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://www.2cto.com/kf/201412/363128.html" title="Android 控件的触摸事件传递与处理" target="_blank" rel="external">http://www.2cto.com/kf/201412/363128.html</a><br><a href="http://www.cnblogs.com/zhuyp1015/p/4579374.html" title="Android 触摸事件处理机制" target="_blank" rel="external">http://www.cnblogs.com/zhuyp1015/p/4579374.html</a></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
+<li><a href="http://www.2cto.com/kf/201412/363128.html" title="Android 控件的触摸事件传递与处理" target="_blank" rel="external">Android 控件的触摸事件传递与处理</a></li>
+<li><a href="http://www.cnblogs.com/zhuyp1015/p/4579374.html" title="Android 触摸事件处理机制" target="_blank" rel="external">Android 触摸事件处理机制</a></li>
+</ol>
 
       
     </div>
@@ -417,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/requests库的使用/" rel="next" title="使用requests获取Discuz论坛验证码">
-                <i class="fa fa-chevron-left"></i> 使用requests获取Discuz论坛验证码
+              <a href="/2017/04/04/requests库的使用/" rel="next" title="使用 requests 获取 Discuz 论坛验证码">
+                <i class="fa fa-chevron-left"></i> 使用 requests 获取 Discuz 论坛验证码
               </a>
             
           </div>
@@ -427,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/26/Python语法基础/" rel="prev" title="Python语法基础">
-                Python语法基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/26/Python语法基础/" rel="prev" title="Python 语法基础">
+                Python 语法基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -731,7 +734,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/';
           this.page.identifier = '2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/';
-          this.page.title = 'HorizontalScrollView和ViewPager触控冲突解决';
+          this.page.title = 'HorizontalScrollView 和 ViewPager 触控冲突解决';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';

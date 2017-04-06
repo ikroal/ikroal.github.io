@@ -96,7 +96,7 @@
 <meta property="og:description" content="显示图片的视图控件 GridView添加方式： 123456789&amp;lt;GridView    android:layout_width=&quot;wrap_content&quot;    android:layout_height=&quot;wrap_content&quot;    android:id=&quot;@+id/gridview&quot;    android:numColumns=&quot;auto_fit&quot;    android:v">
 <meta property="og:image" content="http://i.imgur.com/LDQw3gn.png">
 <meta property="og:image" content="http://i.imgur.com/SzABy68.png">
-<meta property="og:updated_time" content="2017-04-06T03:24:15.000Z">
+<meta property="og:updated_time" content="2017-04-06T08:27:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用视图显示图片和菜单">
 <meta name="twitter:description" content="显示图片的视图控件 GridView添加方式： 123456789&amp;lt;GridView    android:layout_width=&quot;wrap_content&quot;    android:layout_height=&quot;wrap_content&quot;    android:id=&quot;@+id/gridview&quot;    android:numColumns=&quot;auto_fit&quot;    android:v">
@@ -381,7 +381,7 @@
 <hr>
 <h4 id="菜单和视图一起显示"><a href="#菜单和视图一起显示" class="headerlink" title="菜单和视图一起显示"></a>菜单和视图一起显示</h4><p>常用方法：</p>
 <ul>
-<li><p>CreateMenu(Menu menu)创建菜单项</p>
+<li><p><code>CreateMenu(Menu menu)</code> 创建菜单项</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateMenu</span><span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">    MenuItem mnu1 = menu.add(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"Item 1"</span>);</div><div class="line">    &#123;</div><div class="line">        mnu1.setAlphabeticShortcut(<span class="string">'a'</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    MenuItem mnu2 = menu.add(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">"Item 2"</span>);</div><div class="line">    &#123;</div><div class="line">        mnu2.setAlphabeticShortcut(<span class="string">'a'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>  <code>add()</code> 方法中4个参数：</p>
 <ol>
@@ -407,10 +407,10 @@
 <p>　　实现效果如图：<br><img src="http://i.imgur.com/SzABy68.png" alt=""></p>
 <hr>
 <h4 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h4><ul>
-<li><p>添加 <code>WebView</code></p>
+<li><p>添加 WebView</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">WebView</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/webview"</span>/&gt;</div></pre></td></tr></table></figure>
 </li>
-<li><p>避免启动设备的 Web 浏览器<br>  实现 <code>WebViewClient</code> 类重写 <code>shouldOverrideUrlLoading</code></p>
+<li><p>避免启动设备的 Web 浏览器<br>  实现 WebViewClient 类重写 <code>shouldOverrideUrlLoading</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">webView.setWebViewClient(<span class="keyword">new</span> CallBack());</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallBack</span> <span class="keyword">extends</span> <span class="title">WebViewClient</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">false</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
