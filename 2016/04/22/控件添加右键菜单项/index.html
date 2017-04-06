@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/22/控件添加右键菜单项/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
-<meta property="og:updated_time" content="2017-04-06T03:05:09.000Z">
+<meta property="og:updated_time" content="2017-04-06T09:17:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="控件添加右键菜单项">
 <meta name="twitter:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
@@ -369,6 +369,7 @@
 <a id="more"></a>
 <p><code>showPopup()</code> 显示菜单的功能<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPopup</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.isPopupTrigger() &amp;&amp; mUserList.getSelectedIndex() != -<span class="number">1</span></div><div class="line">            &amp;&amp; !mUserList.getSelectedValue().equals(<span class="string">"管理员"</span>)) &#123;</div><div class="line">        Object selected = mUserName.getElementAt(mUserList.getSelectedIndex());</div><div class="line">        popupMenu.show(e.getComponent(), e.getX(), e.getY());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>e.isPopupTrigger()</code> 检测是否是右键，<code>mUserList.getSelectedIndex()</code> 防止在列表空白处点击</p>
+<hr>
 
       
     </div>
@@ -502,7 +503,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -524,7 +525,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

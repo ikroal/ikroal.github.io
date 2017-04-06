@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 onInterceptTouchEvent() 拦截导致事件不能向下层传递，所以当滑动屏幕时">
 <meta property="og:image" content="http://i.imgur.com/Dz86zGW.gif">
-<meta property="og:updated_time" content="2017-04-06T08:44:54.000Z">
+<meta property="og:updated_time" content="2017-04-06T09:17:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HorizontalScrollView 和 ViewPager 触控冲突解决">
 <meta name="twitter:description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 onInterceptTouchEvent() 拦截导致事件不能向下层传递，所以当滑动屏幕时">
@@ -372,6 +372,7 @@
 <p>　<code>onInterceptTouchEvent()</code> 函数判断条件变为：<br>　<code>if (mXPoint &gt; 100 &amp;&amp; mXPoint &lt; mMenuWidth &amp;&amp; sMenuFlag == false)</code></p>
 <hr>
 <h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p><img src="http://i.imgur.com/Dz86zGW.gif" alt=""></p>
+<hr>
 <h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
 <li><a href="http://www.2cto.com/kf/201412/363128.html" title="Android 控件的触摸事件传递与处理" target="_blank" rel="external">Android 控件的触摸事件传递与处理</a></li>
 <li><a href="http://www.cnblogs.com/zhuyp1015/p/4579374.html" title="Android 触摸事件处理机制" target="_blank" rel="external">Android 触摸事件处理机制</a></li>
@@ -511,7 +512,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -533,7 +534,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
