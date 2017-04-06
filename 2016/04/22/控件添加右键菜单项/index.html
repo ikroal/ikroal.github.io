@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="以JList控件为例 首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e)">
+<meta name="description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="控件添加右键菜单项">
 <meta property="og:url" content="http://yoursite.com/2016/04/22/控件添加右键菜单项/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="以JList控件为例 首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e)">
-<meta property="og:updated_time" content="2017-04-05T12:32:01.000Z">
+<meta property="og:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
+<meta property="og:updated_time" content="2017-04-06T03:05:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="控件添加右键菜单项">
-<meta name="twitter:description" content="以JList控件为例 首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e)">
+<meta name="twitter:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
 
 
 
@@ -365,13 +365,10 @@
       
 
       
-        <h2 id="以JList控件为例"><a href="#以JList控件为例" class="headerlink" title="以JList控件为例"></a>以JList控件为例</h2><ol>
-<li>首先控件需要添加鼠标的监听事件<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mUserList.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.mouseReleased(e);</div><div class="line">        showPopup(e);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-</ol>
+        <h2 id="以-JList-控件为例"><a href="#以-JList-控件为例" class="headerlink" title="以 JList 控件为例"></a>以 JList 控件为例</h2><p>首先控件需要添加鼠标的监听事件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mUserList.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.mouseReleased(e);</div><div class="line">        showPopup(e);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>　　showPopup()显示菜单的功能<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPopup</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.isPopupTrigger() &amp;&amp; mUserList.getSelectedIndex() != -<span class="number">1</span></div><div class="line">            &amp;&amp; !mUserList.getSelectedValue().equals(<span class="string">"管理员"</span>)) &#123;</div><div class="line">        Object selected = mUserName.getElementAt(mUserList.getSelectedIndex());</div><div class="line">        popupMenu.show(e.getComponent(), e.getX(), e.getY());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>　　e.isPopupTrigger()检测是否是右键,mUserList.getSelectedIndex()防止在列表空白处点击</p>
+<p><code>showPopup()</code> 显示菜单的功能<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPopup</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.isPopupTrigger() &amp;&amp; mUserList.getSelectedIndex() != -<span class="number">1</span></div><div class="line">            &amp;&amp; !mUserList.getSelectedValue().equals(<span class="string">"管理员"</span>)) &#123;</div><div class="line">        Object selected = mUserName.getElementAt(mUserList.getSelectedIndex());</div><div class="line">        popupMenu.show(e.getComponent(), e.getX(), e.getY());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>e.isPopupTrigger()</code> 检测是否是右键，<code>mUserList.getSelectedIndex()</code> 防止在列表空白处点击</p>
 
       
     </div>
@@ -582,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#以JList控件为例"><span class="nav-number">1.</span> <span class="nav-text">以JList控件为例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#以-JList-控件为例"><span class="nav-number">1.</span> <span class="nav-text">以 JList 控件为例</span></a></li></ol></div>
             
 
           </div>
