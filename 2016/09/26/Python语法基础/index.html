@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="2016.9.26   近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;,">
+<meta name="description" content="近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;, &amp;quot;John C">
 <meta name="keywords" content="Python,语法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python语法基础">
 <meta property="og:url" content="http://yoursite.com/2016/09/26/Python语法基础/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="2016.9.26   近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;,">
-<meta property="og:updated_time" content="2017-04-05T12:32:20.000Z">
+<meta property="og:description" content="近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;, &amp;quot;John C">
+<meta property="og:updated_time" content="2017-04-06T01:53:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python语法基础">
-<meta name="twitter:description" content="2016.9.26   近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;,">
+<meta name="twitter:description" content="近段时间学习了下Python，于是大略总结了下所学的语法知识：  列表的创建:movies = [&amp;quot;The Holy Grail&amp;quot;, 1975, &amp;quot;Terry Jones &amp;amp; Terry Gilliam&amp;quot;, 91,[&amp;quot;Graham Chapman&amp;quot;, [&amp;quot;Michael Palin&amp;quot;, &amp;quot;John C">
 
 
 
@@ -365,9 +365,7 @@
       
 
       
-        <p>2016.9.26 </p>
-<hr>
-<p>近段时间学习了下Python，于是大略总结了下所学的语法知识：</p>
+        <p>近段时间学习了下Python，于是大略总结了下所学的语法知识：</p>
 <ul>
 <li>列表的创建:<br><code>movies = [&quot;The Holy Grail&quot;, 1975, &quot;Terry Jones &amp; Terry Gilliam&quot;, 91,[&quot;Graham Chapman&quot;, [&quot;Michael Palin&quot;, &quot;John Cleese&quot;, &quot;Terry Gilliam&quot;, &quot;Eric Idle&quot;, &quot;Terry Jones&quot;]]]</code><br>　这里是一个嵌套列表的创建，其中的中括号也可以换成大括号，双引号可以用单引号代替，列表里面可以是混合的数据。常用的方法有<code>append()</code>：在列表末尾增加一个数据项，<code>pop()</code>：在列表的末尾删除数据，<code>extend(数据项集合)</code>：在列表的末尾添加一个数据项集合，<code>remove(项)</code>：删除一个特定数据的项，<code>insert(序号, 数据项)</code>：在指定序号的前面插入数据项。</li>
 <li>列表的遍历之for循环:<br>　列表的遍历需要用到for循环，其基本语法是：<code>for 变量 in 列表项：</code>，由此可以将列表中的每一项（只会遍历一级列表）通过print()函数输出。</li>
@@ -425,7 +423,7 @@
 <li><p>继承</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　class 类名(继承的类名):</div><div class="line">　　　　def _init_(self, 参数):</div><div class="line">　　　　　　　#初始化对象的代码</div></pre></td></tr></table></figure>
 </li>
-<li><p>其它<br><br>　print(列表[-1])输出最后一个数据项<br><br>　strip()方法可以从字符串中去除不想要的空白符<br><br>　in操作符用于检查成员关系<br><br>　原地排序–sort(),原列表顺序改变<br><br>　复制排序–sorted()，返回一个排序过的原列表副本<br><br>　分片访问列表<code>列表[起始值：结束值]</code>可以访问起始到结束(不包括结束值)的列表项
+<li><p>其它<br>　<code>print(列表[-1])</code> 输出最后一个数据项<br>　<code>strip()</code> 方法可以从字符串中去除不想要的空白符<br>　<code>in</code> 操作符用于检查成员关系<br>　原地排序 <code>sort()</code>，原列表顺序改变<br>　复制排序 <code>sorted()</code>，返回一个排序过的原列表副本<br>　分片访问列表<code>列表[起始值：结束值]</code>可以访问起始到结束(不包括结束值)的列表项
 　</p>
 </li>
 </ul>
