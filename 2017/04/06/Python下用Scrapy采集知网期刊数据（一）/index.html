@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,html解析," />
+  <meta name="keywords" content="Python,Scrapy," />
 
 
 
@@ -87,17 +87,20 @@
 
 
 
-<meta name="description" content="BeautifulSoup 简介BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.">
-<meta name="keywords" content="Python,html解析">
+<meta name="description" content="简介 Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。  安装 Pycharm 安装  Mac 下按住快捷键 Command + , 选择 Project→Project Interpreter 点击 + 号后搜索 Scrapy 进行安装即可：">
+<meta name="keywords" content="Python,Scrapy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 下 BeautifulSoup 的基本使用">
-<meta property="og:url" content="http://yoursite.com/2017/04/05/Python下BeautifulSoup的使用/index.html">
+<meta property="og:title" content="Python 下用 Scrapy 采集知网期刊数据（一）">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/Python下用Scrapy采集知网期刊数据（一）/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="BeautifulSoup 简介BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.">
-<meta property="og:updated_time" content="2017-04-06T12:52:29.000Z">
+<meta property="og:description" content="简介 Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。  安装 Pycharm 安装  Mac 下按住快捷键 Command + , 选择 Project→Project Interpreter 点击 + 号后搜索 Scrapy 进行安装即可：">
+<meta property="og:image" content="https://lh3.googleusercontent.com/--viTMYxz-DA/WOYjckFJzAI/AAAAAAAAAJA/6mgZ819jSao/I/%25255BUNSET%25255D.png">
+<meta property="og:image" content="http://i.imgur.com/T29yM73.png">
+<meta property="og:updated_time" content="2017-04-06T12:39:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 下 BeautifulSoup 的基本使用">
-<meta name="twitter:description" content="BeautifulSoup 简介BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.">
+<meta name="twitter:title" content="Python 下用 Scrapy 采集知网期刊数据（一）">
+<meta name="twitter:description" content="简介 Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。  安装 Pycharm 安装  Mac 下按住快捷键 Command + , 选择 Project→Project Interpreter 点击 + 号后搜索 Scrapy 进行安装即可：">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/--viTMYxz-DA/WOYjckFJzAI/AAAAAAAAAJA/6mgZ819jSao/I/%25255BUNSET%25255D.png">
 
 
 
@@ -125,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/05/Python下BeautifulSoup的使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/06/Python下用Scrapy采集知网期刊数据（一）/"/>
 
 
 
 
 
-  <title> Python 下 BeautifulSoup 的基本使用 | 知北遊的博客 </title>
+  <title> Python 下用 Scrapy 采集知网期刊数据（一） | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/05/Python下BeautifulSoup的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/Python下用Scrapy采集知网期刊数据（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -281,7 +284,7 @@
             
             
               
-                Python 下 BeautifulSoup 的基本使用
+                Python 下用 Scrapy 采集知网期刊数据（一）
               
             
           </h1>
@@ -296,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-05T16:44:47+08:00">
-                2017-04-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T18:29:07+08:00">
+                2017-04-06
               </time>
             
 
@@ -337,9 +340,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/05/Python下BeautifulSoup的使用/#comments" itemprop="discussionUrl">
+                <a href="/2017/04/06/Python下用Scrapy采集知网期刊数据（一）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/05/Python下BeautifulSoup的使用/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/06/Python下用Scrapy采集知网期刊数据（一）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,20 +368,37 @@
       
 
       
-        <h4 id="BeautifulSoup-简介"><a href="#BeautifulSoup-简介" class="headerlink" title="BeautifulSoup 简介"></a>BeautifulSoup 简介</h4><p>BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.<a id="more"></a></p>
-<h4 id="库的安装"><a href="#库的安装" class="headerlink" title="库的安装"></a>库的安装</h4><p>库的安装参考此篇文章<br><a href="/2017/04/04/requests库的使用/" title="requests 库的使用">requests 库的使用</a></p>
-<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ol>
-<li>导入 BeautifulSoup<br><code>from bs4 import BeautifulSoup</code></li>
-<li>创建文档对象<br><code>soup = BeautifulSoup(html文档, &#39;html.parser&#39;)</code><br>配合 Python 内置的 html 解析器，将 html 文档传入 BeautifulSoup 构造方法。</li>
-<li>获取数据<br>BeautifulSoup提供了如下几种方式搜索文档获取数据： <ul>
-<li><code>find_all()</code> 全文搜索<br>返回文档中所有符合要求的数据。</li>
-<li><code>find()</code> 单次搜索<br>返回文档中第一个符合要求的数据。</li>
-<li><code>select()</code> CSS选择器查找<br><code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code><br></li></ul><code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如：<br><code>soup.find_all(&quot;a&quot;, limit=2)</code><br>同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如：<br><code>titleList = soup.find_all(&quot;a&quot;, {&quot;class&quot;: &quot;fz14&quot;})</code></li>
-
-
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>Scrapy 是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
+<li>Pycharm 安装<br>  Mac 下按住快捷键 <code>Command + ,</code> 选择 Project→Project Interpreter 点击 + 号后搜索 Scrapy 进行安装即可：<a id="more"></a><br>  <img src="https://lh3.googleusercontent.com/--viTMYxz-DA/WOYjckFJzAI/AAAAAAAAAJA/6mgZ819jSao/I/%25255BUNSET%25255D.png" alt="安装过程">    </li>
+<li>pip安装<br>  <code>pip install Scrapy</code></li>
+</ul>
+<h4 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h4><p>在终端中进入需要创建工程的目录，输入命令：<br><code>scrapy startproject tutorial</code><br>将会创建一个 tutorial 的目录，目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">tutorial/</div><div class="line">    scrapy.cfg            # 部署配置文件</div><div class="line"></div><div class="line">    tutorial/             # 项目的 Python 模块，在这里加入代码</div><div class="line">        __init__.py</div><div class="line"></div><div class="line">        items.py          # 项目的 items 定义文件</div><div class="line"></div><div class="line">        pipelines.py      # 项目的 pipelines 文件，用于处理 items</div><div class="line"></div><div class="line">        settings.py       # 项目的设置文件</div><div class="line"></div><div class="line">        spiders/          # Spider 目录所在地</div><div class="line">            __init__.py</div></pre></td></tr></table></figure>
+<h4 id="创建-Spider"><a href="#创建-Spider" class="headerlink" title="创建 Spider"></a>创建 Spider</h4><p>在 <code>tutorial/spiders</code> 目录下新建一个名为 <code>quotes_spider.py</code> 的文件，输入如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuotesSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">    name = <span class="string">"quotes"</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">        urls = [</div><div class="line">            <span class="string">'http://quotes.toscrape.com/page/1/'</span>,</div><div class="line">            <span class="string">'http://quotes.toscrape.com/page/2/'</span>,</div><div class="line">        ]</div><div class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">            <span class="keyword">yield</span> scrapy.Request(url=url, callback=self.parse)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">        page = response.url.split(<span class="string">"/"</span>)[<span class="number">-2</span>]</div><div class="line">        filename = <span class="string">'quotes-%s.html'</span> % page</div><div class="line">        <span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(response.body)</div><div class="line">        self.log(<span class="string">'Saved file %s'</span> % filename)</div></pre></td></tr></table></figure>
+<p><code>QuotesSpider</code> 继承 <code>scrapy.Spider</code>，同时定义了一些属性和方法：</p>
+<ul>
+<li><code>name</code>：作为爬虫的唯一标识，对于在同一工程中的爬虫，不能够设置相同的名称。</li>
+<li><code>start_requests()</code>：返回一个可迭代的请求，然后 Spider 将爬取这些请求</li>
+<li><code>parse()</code>：用于处理请求的结果。</li>
+</ul>
+<h4 id="运行-Sprider"><a href="#运行-Sprider" class="headerlink" title="运行 Sprider"></a>运行 Sprider</h4><ul>
+<li>终端命令运行<br> 在创建的项目目录下，输入：<br> <code>scrapy crawl quotes</code><br> quotes 为 Sprider 的标识。</li>
+<li><p>Pycharm 下运行</p>
+<ol>
+<li><p>在 <code>tutorial</code> 目录下创建名为 <code>entrypoint.py</code> 的文件，输入如下代码：</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="keyword">from</span> scrapy.cmdline <span class="keyword">import</span> execute</div><div class="line"><span class="comment"># quotes 为刚刚创建的 Spider 的 name，可以在这里切换不同的 Spider</span></div><div class="line">execute([<span class="string">'scrapy'</span>, <span class="string">'crawl'</span>, <span class="string">'quotes'</span>])</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置<br> 在 <code>Run</code> 中选择 <code>Edit Configurations</code>，做如下修改：<br> <img src="http://i.imgur.com/T29yM73.png" alt="配置"></p>
+</li>
 </ol>
+</li>
+</ul>
 <hr>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">BeautifulSoup 文档</a></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://doc.scrapy.org/en/master/intro/tutorial.html" target="_blank" rel="external">Scrapy 文档</a></p>
 
       
     </div>
@@ -410,7 +430,7 @@
           
             <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/html解析/" rel="tag"># html解析</a>
+            <a href="/tags/Scrapy/" rel="tag"># Scrapy</a>
           
         </div>
       
@@ -423,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/05/正则表达式和css选择器以及xpath/" rel="next" title="正则表达式和 CSS 选择器以及 XPath">
-                <i class="fa fa-chevron-left"></i> 正则表达式和 CSS 选择器以及 XPath
+              <a href="/2017/04/06/Python下用Scrapy采集知网期刊数据（二）/" rel="next" title="Python 下用 Scrapy 采集知网期刊数据（二）">
+                <i class="fa fa-chevron-left"></i> Python 下用 Scrapy 采集知网期刊数据（二）
               </a>
             
           </div>
@@ -433,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/04/requests库的使用/" rel="prev" title="使用 requests 获取 Discuz 论坛验证码">
-                使用 requests 获取 Discuz 论坛验证码 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/06/Python下pymsql库的基本使用/" rel="prev" title="Python 下 pymsql 库的基本使用">
+                Python 下 pymsql 库的基本使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -591,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#BeautifulSoup-简介"><span class="nav-number">1.</span> <span class="nav-text">BeautifulSoup 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#库的安装"><span class="nav-number">2.</span> <span class="nav-text">库的安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本使用"><span class="nav-number">3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建工程"><span class="nav-number">3.</span> <span class="nav-text">创建工程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Spider"><span class="nav-number">4.</span> <span class="nav-text">创建 Spider</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行-Sprider"><span class="nav-number">5.</span> <span class="nav-text">运行 Sprider</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -735,9 +755,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/04/05/Python下BeautifulSoup的使用/';
-          this.page.identifier = '2017/04/05/Python下BeautifulSoup的使用/';
-          this.page.title = 'Python 下 BeautifulSoup 的基本使用';
+          this.page.url = 'http://yoursite.com/2017/04/06/Python下用Scrapy采集知网期刊数据（一）/';
+          this.page.identifier = '2017/04/06/Python下用Scrapy采集知网期刊数据（一）/';
+          this.page.title = 'Python 下用 Scrapy 采集知网期刊数据（一）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
