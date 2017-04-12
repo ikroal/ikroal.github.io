@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Python,Neo4j," />
 
 
 
@@ -87,17 +87,24 @@
 
 
 
-<meta name="description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
-<meta name="keywords" content="Java">
+<meta name="description" content="Neo4j 简介 Neo4j是一个高性能的,NOSQL图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的Java持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。">
+<meta name="keywords" content="Python,Neo4j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="控件添加右键菜单项">
-<meta property="og:url" content="http://yoursite.com/2016/04/22/控件添加右键菜单项/index.html">
+<meta property="og:title" content="Python下Flask结合Neo4j构建管理系统（二）">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
-<meta property="og:updated_time" content="2017-04-06T09:41:37.000Z">
+<meta property="og:description" content="Neo4j 简介 Neo4j是一个高性能的,NOSQL图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的Java持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-so2pSsowOT0/WO3po5DA8aI/AAAAAAAAAL0/L7VMQY4n1co/I/%25255BUNSET%25255D.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-dXvr4E1z9oc/WO3tVuy8EpI/AAAAAAAAAMI/ssK8RCaVfvw/I/Neo4j.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-fwxoipgtmSk/WO3tWGAMtEI/AAAAAAAAAMM/8robCpSMV3s/I/%25255BUNSET%25255D.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-WTQX3ubZ_ck/WO3wlZltR8I/AAAAAAAAAMY/jCkGXWHrdEg/I/%25255BUNSET%25255D.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-WMpmBZB9Te8/WO3wloFpI1I/AAAAAAAAAMc/vdEu688RneM/I/%25255BUNSET%25255D.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-3k-Bn2cKTWE/WO3zAkAsEzI/AAAAAAAAAMw/ZtGQhPDzj_Q/I/%25255BUNSET%25255D.png">
+<meta property="og:updated_time" content="2017-04-12T09:34:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="控件添加右键菜单项">
-<meta name="twitter:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
+<meta name="twitter:title" content="Python下Flask结合Neo4j构建管理系统（二）">
+<meta name="twitter:description" content="Neo4j 简介 Neo4j是一个高性能的,NOSQL图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的Java持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-so2pSsowOT0/WO3po5DA8aI/AAAAAAAAAL0/L7VMQY4n1co/I/%25255BUNSET%25255D.png">
 
 
 
@@ -125,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/22/控件添加右键菜单项/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/"/>
 
 
 
 
 
-  <title> 控件添加右键菜单项 | 知北遊的博客 </title>
+  <title> Python下Flask结合Neo4j构建管理系统（二） | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/22/控件添加右键菜单项/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -281,7 +288,7 @@
             
             
               
-                控件添加右键菜单项
+                Python下Flask结合Neo4j构建管理系统（二）
               
             
           </h1>
@@ -296,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-22T22:39:59+08:00">
-                2016-04-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T14:34:52+08:00">
+                2017-04-12
               </time>
             
 
@@ -319,8 +326,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Java 学习</span>
+                  <a href="/categories/Python-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Python 学习</span>
                   </a>
                 </span>
 
@@ -337,9 +344,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/04/22/控件添加右键菜单项/#comments" itemprop="discussionUrl">
+                <a href="/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/04/22/控件添加右键菜单项/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,10 +372,24 @@
       
 
       
-        <h2 id="以-JList-控件为例"><a href="#以-JList-控件为例" class="headerlink" title="以 JList 控件为例"></a>以 JList 控件为例</h2><p>首先控件需要添加鼠标的监听事件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mUserList.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.mouseReleased(e);</div><div class="line">        showPopup(e);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+        <h4 id="Neo4j-简介"><a href="#Neo4j-简介" class="headerlink" title="Neo4j 简介"></a>Neo4j 简介</h4><blockquote>
+<p>Neo4j是一个高性能的,NOSQL图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的Java持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。</p>
+</blockquote>
 <a id="more"></a>
-<p><code>showPopup()</code> 显示菜单的功能<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPopup</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.isPopupTrigger() &amp;&amp; mUserList.getSelectedIndex() != -<span class="number">1</span></div><div class="line">            &amp;&amp; !mUserList.getSelectedValue().equals(<span class="string">"管理员"</span>)) &#123;</div><div class="line">        Object selected = mUserName.getElementAt(mUserList.getSelectedIndex());</div><div class="line">        popupMenu.show(e.getComponent(), e.getX(), e.getY());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>e.isPopupTrigger()</code> 检测是否是右键，<code>mUserList.getSelectedIndex()</code> 防止在列表空白处点击</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>进入<a href="https://neo4j.com/download/" target="_blank" rel="external"> Neo4j 下载地址</a>选择社区版进行下载安装。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>Neo4j 提供了 Cypher 查询语言对数据库数据进行操作，在使用 Neo4j 之前必须先了解 Cypher，可以参考官方提供了一些例程和开发文档：<br><a href="https://neo4j.com/developer/cypher-query-language/" target="_blank" rel="external">Intro to Cypher</a><br><a href="https://neo4j.com/docs/developer-manual/3.1/" target="_blank" rel="external">The Neo4j Developer Manual v3.1</a><br>第一个介绍了 Cypher 的一些基本概念方便去理解 Cypher 语言，第二个则是一份开发者文档，详细介绍了各操作的含义以及一些示例语句。<br>在了解 Cypher 后，就可以利用 Neo4j 控制台做一些基本的查询测试：</p>
+<ul>
+<li>首先需要开启服务器：<br>  <img src="https://lh3.googleusercontent.com/-so2pSsowOT0/WO3po5DA8aI/AAAAAAAAAL0/L7VMQY4n1co/I/%25255BUNSET%25255D.png" alt="开启服务器"></li>
+<li>在开启服务器后进入 <code>http://localhost:7474</code> 第一次进入需要设置密码</li>
+<li><p>在主界面中选择 <code>Jump into code</code>，之后选择 <code>Movie Graph</code> 中的 Create a graph，则可以看到一个 Neo4j 官方提供的构造数据图的代码，点击之后运行即可。<br><img src="https://lh3.googleusercontent.com/-dXvr4E1z9oc/WO3tVuy8EpI/AAAAAAAAAMI/ssK8RCaVfvw/I/Neo4j.png" alt="Neo4j界面"><br><img src="https://lh3.googleusercontent.com/-fwxoipgtmSk/WO3tWGAMtEI/AAAAAAAAAMM/8robCpSMV3s/I/%25255BUNSET%25255D.png" alt="代码"><br><img src="https://lh3.googleusercontent.com/-WTQX3ubZ_ck/WO3wlZltR8I/AAAAAAAAAMY/jCkGXWHrdEg/I/%25255BUNSET%25255D.png" alt="创建结果"></p>
+</li>
+<li><p>在创建了数据图之后，点击左侧的第一个导航栏，可以看见数据图的各项信息。<br><img src="https://lh3.googleusercontent.com/-WMpmBZB9Te8/WO3wloFpI1I/AAAAAAAAAMc/vdEu688RneM/I/%25255BUNSET%25255D.png" alt="信息"></p>
+</li>
+<li><p>查询<br>  这里以查询节点 <code>name</code> 属性为 Audrey Tautou 到节点 <code>title</code> 属性为 As Good as It Gets 且节点关系为 <code>ACTED_IN</code> 间隔不超过 5 的最短路径为例，在输入框中输入如下代码：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MATCH (you &#123;name:&quot;Audrey Tautou&quot;&#125;)</div><div class="line">MATCH (expert &#123;title:&quot;As Good as It Gets&quot;&#125;)</div><div class="line">MATCH path = shortestPath( (you)-[:ACTED_IN*..5]-(expert) )</div><div class="line">RETURN path</div></pre></td></tr></table></figure>
+<p>  运行之后结果如下：<br>  <img src="https://lh3.googleusercontent.com/-3k-Bn2cKTWE/WO3zAkAsEzI/AAAAAAAAAMw/ZtGQhPDzj_Q/I/%25255BUNSET%25255D.png" alt="最短路径"></p>
+</li>
+</ul>
 <hr>
 
       
@@ -399,7 +420,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Neo4j/" rel="tag"># Neo4j</a>
           
         </div>
       
@@ -412,18 +435,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/27/使用视图显示图片和菜单/" rel="next" title="使用视图显示图片和菜单">
-                <i class="fa fa-chevron-left"></i> 使用视图显示图片和菜单
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/22/DialogFragment实现TimePickerDialog/" rel="prev" title="DialogFragment 实现TimePickerDialog">
-                DialogFragment 实现TimePickerDialog <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/" rel="prev" title="Python 下 Flask 结合 Neo4j 构建管理系统（一）">
+                Python 下 Flask 结合 Neo4j 构建管理系统（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -580,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#以-JList-控件为例"><span class="nav-number">1.</span> <span class="nav-text">以 JList 控件为例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Neo4j-简介"><span class="nav-number">1.</span> <span class="nav-text">Neo4j 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
 
           </div>
@@ -724,9 +743,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2016/04/22/控件添加右键菜单项/';
-          this.page.identifier = '2016/04/22/控件添加右键菜单项/';
-          this.page.title = '控件添加右键菜单项';
+          this.page.url = 'http://yoursite.com/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/';
+          this.page.identifier = '2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/';
+          this.page.title = 'Python下Flask结合Neo4j构建管理系统（二）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
