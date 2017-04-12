@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,requests," />
+  <meta name="keywords" content="Python,Flask,Neo4j," />
 
 
 
@@ -87,19 +87,19 @@
 
 
 
-<meta name="description" content="requests 库的安装Mac 下使用 Pycharm 时只需按住快捷键 Command + , 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：">
-<meta name="keywords" content="Python,requests">
+<meta name="description" content="简介 Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
+<meta name="keywords" content="Python,Flask,Neo4j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 requests 获取 Discuz 论坛验证码">
-<meta property="og:url" content="http://yoursite.com/2017/04/04/requests库的使用/index.html">
+<meta property="og:title" content="Python 下 Flask 结合 Neo4j 构建管理系统（一）">
+<meta property="og:url" content="http://yoursite.com/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="requests 库的安装Mac 下使用 Pycharm 时只需按住快捷键 Command + , 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-HvXBSgFbekM/WOSh3nGtDLI/AAAAAAAAAIg/HjQ-CbJ6phY/I/1.png">
-<meta property="og:updated_time" content="2017-04-06T09:41:42.000Z">
+<meta property="og:description" content="简介 Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-_sGJoF6cnik/WO2ey0xoCLI/AAAAAAAAALY/t1d9E__vrXE/I/%25255BUNSET%25255D.png">
+<meta property="og:updated_time" content="2017-04-12T03:31:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 requests 获取 Discuz 论坛验证码">
-<meta name="twitter:description" content="requests 库的安装Mac 下使用 Pycharm 时只需按住快捷键 Command + , 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/-HvXBSgFbekM/WOSh3nGtDLI/AAAAAAAAAIg/HjQ-CbJ6phY/I/1.png">
+<meta name="twitter:title" content="Python 下 Flask 结合 Neo4j 构建管理系统（一）">
+<meta name="twitter:description" content="简介 Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-_sGJoF6cnik/WO2ey0xoCLI/AAAAAAAAALY/t1d9E__vrXE/I/%25255BUNSET%25255D.png">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/04/requests库的使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/"/>
 
 
 
 
 
-  <title> 使用 requests 获取 Discuz 论坛验证码 | 知北遊的博客 </title>
+  <title> Python 下 Flask 结合 Neo4j 构建管理系统（一） | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/04/requests库的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -283,7 +283,7 @@
             
             
               
-                使用 requests 获取 Discuz 论坛验证码
+                Python 下 Flask 结合 Neo4j 构建管理系统（一）
               
             
           </h1>
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T15:18:27+08:00">
-                2017-04-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T11:09:28+08:00">
+                2017-04-09
               </time>
             
 
@@ -339,9 +339,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/04/requests库的使用/#comments" itemprop="discussionUrl">
+                <a href="/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/04/requests库的使用/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,15 +367,27 @@
       
 
       
-        <h4 id="requests-库的安装"><a href="#requests-库的安装" class="headerlink" title="requests 库的安装"></a>requests 库的安装</h4><p>Mac 下使用 Pycharm 时只需按住快捷键 <code>Command + ,</code> 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：<a id="more"></a><br><img src="https://lh3.googleusercontent.com/-HvXBSgFbekM/WOSh3nGtDLI/AAAAAAAAAIg/HjQ-CbJ6phY/I/1.png" alt="1"></p>
-<h4 id="获取过程使用的方法"><a href="#获取过程使用的方法" class="headerlink" title="获取过程使用的方法"></a>获取过程使用的方法</h4><ul>
-<li><code>requests.get(url, params=None, **kwargs)</code><br><code>url</code> 是请求的链接，<code>params</code> 是发送请求时参数，<code>kwargs</code> 是可选参数。</li>
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>在终端中输入 <code>sudo pip install Flask</code> 即可进行安装（如果不想进行全局安装，请参考官方文档）。<a id="more"></a></p>
+<h4 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h4><p>首先需要创建如下结构的文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/flaskr</div><div class="line">    /static</div><div class="line">    /templates</div></pre></td></tr></table></figure>
+<ul>
+<li>flaskr 是工程文件夹名</li>
+<li>static 是用于放置 css 和 javascript 文件的文件夹</li>
+<li>templates 是放置网页模板的文件夹</li>
+<li>如果用 PyCharm 开发，在创建 templates 文件夹后需要按住快捷键 <code>Command + ,</code> 在 Project→Project Structure，选择 templates 文件夹后点击 <code>Mark as</code> 中的 <code>Templates</code></li>
 </ul>
-<h4 id="获取过程"><a href="#获取过程" class="headerlink" title="获取过程"></a>获取过程</h4><p>为了保持连接的持久性不能直接使用 requests 发送请求，而需要利用 Session 对象。具体获取代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">session = requests.session()</div><div class="line">ss = session.get(<span class="string">"http://www.zhuixinfan.com/member.php?mod=register"</span>)</div><div class="line">result = ss.text</div><div class="line"><span class="comment">#获取参数</span></div><div class="line">params = re.findall(<span class="string">"&lt;input.*(?:name=\"formhash\"|name=\"sechash\").*\&gt;"</span>, result)</div><div class="line">params = list(set(params))</div><div class="line">sechash = re.sub(<span class="string">".*value=\""</span>, <span class="string">""</span>, params[<span class="number">1</span>])</div><div class="line">sechash = re.sub(<span class="string">"\".*"</span>, <span class="string">""</span>, sechash)</div><div class="line"><span class="comment">#更新验证码</span></div><div class="line">actually_url = <span class="string">"http://www.zhuixinfan.com/misc.php?mod=seccode&amp;action=update&amp;idhash="</span> + sechash</div><div class="line">htm = session.get(actually_url)</div><div class="line"><span class="comment">#获取图片链接</span></div><div class="line">update_url = re.findall(<span class="string">r"\bsrc=\S*"</span>, htm.text)</div><div class="line">update = re.sub(<span class="string">"src=\""</span>, <span class="string">""</span>, update_url[<span class="number">0</span>])</div><div class="line">update = re.sub(<span class="string">"\""</span>, <span class="string">""</span>, update)</div><div class="line"><span class="comment">#下载图片</span></div><div class="line">headers = &#123;</div><div class="line">            <span class="string">'Host'</span>: <span class="string">'www.zhuixinfan.com'</span>,</div><div class="line">            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'</span>,</div><div class="line">            <span class="string">'Referer'</span>: <span class="string">'http://www.zhuixinfan.com/member.php?mod=register'</span></div><div class="line">           &#125;</div><div class="line">url = <span class="string">"http://www.zhuixinfan.com/"</span> + update</div><div class="line">result = session.get(url, headers=headers)</div><div class="line">im = Image.open(BytesIO(result.content))</div><div class="line">im.show()</div></pre></td></tr></table></figure>
-<p>获取过程中首先向站点发送请求，从返回的网页信息中利用正则表达式获取 <code>sechash</code> 参数，之后利用所得到的 <code>sechash</code> 向站点发送更新验证码的请求并从返回的信息中获取验证码图片的 url，最后从站点下载图片利用 <code>Image.open()</code> 显示图片。</p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>在 flaskr 目录下创建 <code>app.py</code> 的文件，输入如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"><span class="meta">@app.route('/')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Hello World!'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    app.run()</div></pre></td></tr></table></figure>
+<ul>
+<li><code>__name__</code> 指当前的模块名，当模块直接运行时，<code>__name__</code> 为 <code>__main__</code>，当模块被导入运行时，<code>__name__</code> 为模块名字。</li>
+<li>route() 装饰器告诉 Flask 什么样的URL 能触发我们的函数，函数的名字也在生成 URL 时被特定的函数采用，这个函数返回我们想要显示在用户浏览器中的信息。</li>
+</ul>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><p>运行之后进入 <code>http://localhost:5000</code> 可以看到如下结果：<br><img src="https://lh3.googleusercontent.com/-_sGJoF6cnik/WO2ey0xoCLI/AAAAAAAAALY/t1d9E__vrXE/I/%25255BUNSET%25255D.png" alt="结果"></p>
 <hr>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://docs.python-requests.org/zh_CN/latest/index.html" target="_blank" rel="external">Requests: 让 HTTP 服务人类</a></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://docs.jinkan.org/docs/flask/index.html" target="_blank" rel="external">Flask 文档</a></p>
 
       
     </div>
@@ -407,7 +419,9 @@
           
             <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/requests/" rel="tag"># requests</a>
+            <a href="/tags/Flask/" rel="tag"># Flask</a>
+          
+            <a href="/tags/Neo4j/" rel="tag"># Neo4j</a>
           
         </div>
       
@@ -420,18 +434,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/05/Python下BeautifulSoup的使用/" rel="next" title="Python 下 BeautifulSoup 的基本使用">
-                <i class="fa fa-chevron-left"></i> Python 下 BeautifulSoup 的基本使用
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/" rel="prev" title="HorizontalScrollView 和 ViewPager 触控冲突解决">
-                HorizontalScrollView 和 ViewPager 触控冲突解决 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/08/Python下用Scrapy采集知网期刊数据（四）/" rel="prev" title="Python 下用 Scrapy 采集知网期刊数据（四）">
+                Python 下用 Scrapy 采集知网期刊数据（四） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -588,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#requests-库的安装"><span class="nav-number">1.</span> <span class="nav-text">requests 库的安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取过程使用的方法"><span class="nav-number">2.</span> <span class="nav-text">获取过程使用的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取过程"><span class="nav-number">3.</span> <span class="nav-text">获取过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建文件夹"><span class="nav-number">3.</span> <span class="nav-text">创建文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">5.</span> <span class="nav-text">运行结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -732,9 +742,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/04/04/requests库的使用/';
-          this.page.identifier = '2017/04/04/requests库的使用/';
-          this.page.title = '使用 requests 获取 Discuz 论坛验证码';
+          this.page.url = 'http://yoursite.com/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/';
+          this.page.identifier = '2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/';
+          this.page.title = 'Python 下 Flask 结合 Neo4j 构建管理系统（一）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
