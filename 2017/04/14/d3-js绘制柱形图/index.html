@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="d3.js," />
 
 
 
@@ -87,17 +87,20 @@
 
 
 
-<meta name="description" content="时间能写出未来的结局">
-<meta name="keywords">
+<meta name="description" content="在d3.js 绘制力导向图中已经说明了如何绘制力导向图以及数据更新。本次将说明如何绘制带坐标轴的柱形图。">
+<meta name="keywords" content="d3.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="d3.js 绘制柱形图">
 <meta property="og:url" content="http://yoursite.com/2017/04/14/d3-js绘制柱形图/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="时间能写出未来的结局">
-<meta property="og:updated_time" content="2017-04-14T15:35:42.000Z">
+<meta property="og:description" content="在d3.js 绘制力导向图中已经说明了如何绘制力导向图以及数据更新。本次将说明如何绘制带坐标轴的柱形图。">
+<meta property="og:image" content="http://i.imgur.com/4WazYv3.png">
+<meta property="og:image" content="http://i.imgur.com/7fT9upS.png">
+<meta property="og:updated_time" content="2017-04-15T07:13:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="d3.js 绘制柱形图">
-<meta name="twitter:description" content="时间能写出未来的结局">
+<meta name="twitter:description" content="在d3.js 绘制力导向图中已经说明了如何绘制力导向图以及数据更新。本次将说明如何绘制带坐标轴的柱形图。">
+<meta name="twitter:image" content="http://i.imgur.com/4WazYv3.png">
 
 
 
@@ -307,6 +310,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -343,7 +368,54 @@
       
 
       
-        
+        <p>在<a href="/2017/04/13/d3-js绘制力导向图/" title="d3.js 绘制力导向图">d3.js 绘制力导向图</a>中已经说明了如何绘制力导向图以及数据更新。本次将说明如何绘制带坐标轴的柱形图。<a id="more"></a></p>
+<h4 id="确定初始数据"><a href="#确定初始数据" class="headerlink" title="确定初始数据"></a>确定初始数据</h4><p>初始数据如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nodes = [&#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'lslamic'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'GOODS'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'VINTAGE OLD HAND MADE BEAUTY SILVER BROOCH PIN RED ENAMEL LEAF SIAM STERLING'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Website'</span>, <span class="string">'title'</span>: <span class="string">'ebay'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Antiques'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Baby'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Books'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Business &amp; Industrial'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Cameras &amp; Photo'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Cell Phones &amp; Accessories'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Clothing, Shoes &amp; Accessories'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Coins &amp; Paper Money'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Collectibles'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Computers Tablets &amp; Networking'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Consumer Electronics'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Crafts'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'eBay Motors'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Everything Else'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Health &amp; Beauty'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Home &amp; Garden'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Jewelry &amp; Watches'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Musical Instruments &amp; Gear'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Sporting Goods'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Antiquities'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Architectural &amp; Garden'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Asian Antiques'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Decorative Arts'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Linens &amp; Textiles (Pre-1930)'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Maritime'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Periods &amp; Styles'</span>&#125;, &#123;</div><div class="line">        <span class="string">'label'</span>: <span class="string">'Sort'</span>,</div><div class="line">        <span class="string">'title'</span>: <span class="string">'Primitives'</span></div><div class="line">    &#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Science &amp; Medicine (Pre-1930)'</span>&#125;, &#123;<span class="string">'label'</span>: <span class="string">'Sort'</span>, <span class="string">'title'</span>: <span class="string">'Silver'</span>&#125;];</div></pre></td></tr></table></figure>
+<p>初始数据中每个数据具有不同的类别，本次的目的是统计不同类别的数据出现次数并进行绘制，数据处理代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dataset = &#123;&#125;;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) &#123;</div><div class="line">  <span class="keyword">var</span> node = nodes[i];</div><div class="line">  dataset[node[<span class="string">'label'</span>]] = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; nodes.length; j++) &#123;</div><div class="line">      <span class="keyword">if</span> (nodes[j][<span class="string">'label'</span>] == node[<span class="string">'label'</span>])</div><div class="line">          dataset[node[<span class="string">'label'</span>]] += <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> data = [];</div><div class="line"><span class="keyword">var</span> labels = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> dataset) &#123;</div><div class="line">  data.push(dataset[key]);</div><div class="line">  labels.push(key);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>dataset</code> 用于将数据进行分类统计。</li>
+<li><code>data</code> 保存每个分类出现次数。</li>
+<li><code>labels</code> 保存分类名称，作为 x 轴的刻度。</li>
+</ul>
+<h4 id="创建-SVG"><a href="#创建-SVG" class="headerlink" title="创建 SVG"></a>创建 SVG</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> width = <span class="number">420</span>, height = <span class="number">420</span>;</div><div class="line"><span class="keyword">var</span> svg = d3.select(<span class="string">"#graph"</span>).append(<span class="string">"svg"</span>)</div><div class="line">        .attr(<span class="string">"width"</span>, width)</div><div class="line">        .attr(<span class="string">"height"</span>, height);</div></pre></td></tr></table></figure>
+<h4 id="绘制坐标轴"><a href="#绘制坐标轴" class="headerlink" title="绘制坐标轴"></a>绘制坐标轴</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> padding = &#123;<span class="attr">top</span>: <span class="number">20</span>, <span class="attr">right</span>: <span class="number">20</span>, <span class="attr">bottom</span>: <span class="number">20</span>, <span class="attr">left</span>: <span class="number">30</span>&#125;;</div><div class="line"><span class="keyword">var</span> xAxisWidth = width - <span class="number">2</span> * padding.left;</div><div class="line"><span class="keyword">var</span> yAxiWidth = height - <span class="number">2</span> * padding.bottom;</div><div class="line"><span class="keyword">var</span> xAxisScale = d3.scale.ordinal()</div><div class="line">            .domain(d3.range(labels.length))</div><div class="line">            .rangeRoundBands([<span class="number">0</span>, xAxisWidth]);</div><div class="line"></div><div class="line"><span class="keyword">var</span> yAxisScale = d3.scale.linear()</div><div class="line">    .domain([<span class="number">0</span>, d3.max(data)])</div><div class="line">    .range([yAxiWidth, <span class="number">0</span>]);</div><div class="line"></div><div class="line"><span class="keyword">var</span> xAxis = d3.svg.axis()</div><div class="line">    .scale(xAxisScale)</div><div class="line">    .orient(<span class="string">"bottom"</span>)</div><div class="line">    .tickFormat(<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> labels[d];</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> yAxis = d3.svg.axis()</div><div class="line">    .scale(yAxisScale)</div><div class="line">    .orient(<span class="string">"left"</span>);</div><div class="line"></div><div class="line">svg.append(<span class="string">"g"</span>)</div><div class="line">    .attr(<span class="string">"class"</span>, <span class="string">"axis"</span>)</div><div class="line">    .attr(<span class="string">"transform"</span>, <span class="string">"translate("</span> + padding.left + <span class="string">","</span> +</div><div class="line">        (height - padding.bottom) + <span class="string">")"</span>)</div><div class="line">    .call(xAxis);</div><div class="line"></div><div class="line">svg.append(<span class="string">"g"</span>)</div><div class="line">    .attr(<span class="string">"class"</span>, <span class="string">"axis"</span>)</div><div class="line">    .attr(<span class="string">"transform"</span>, <span class="string">"translate("</span> + padding.left + <span class="string">","</span> +</div><div class="line">        (height - yAxiWidth - padding.bottom) + <span class="string">")"</span>)</div><div class="line">    .call(yAxis);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>xAxisWidth，yAxiWidth</code> 代表 x 轴和 y 轴的长度。</li>
+<li><code>padding</code> x 轴和 y 轴的外边距。</li>
+<li><code>xAxisScale，yAxisScale</code> x 轴和 y 轴的比例尺。</li>
+<li><code>ordinal().domain()</code> 设定或获取定义域。</li>
+<li><code>ordinal.rangeRoundBands(interval[, padding[, outerPadding]])</code> 接收一个连续的区间，然后根据定义域中离散值的数量将其分段，分段结果会取整。</li>
+<li><code>tickFormat()</code> 用于设定文字格式的刻度。</li>
+</ul>
+<p>这样添加之后的坐标轴，样式会比较丑，所以还需要给坐标轴增加如下样式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    .axis path,</div><div class="line">    .axis line &#123;</div><div class="line">        fill: none;</div><div class="line">        stroke: black;</div><div class="line">        shape-rendering: crispEdges;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    .axis text &#123;</div><div class="line">        font-family: sans-serif;</div><div class="line">        font-size: 11px;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<h4 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//0.05 用于设置矩形之间的间隔，由于 rangeRoundBands 选取的范围远小于 xAxisWidth，所以矩形之间的间隔远大于 0.05，该参数未起作用。</span></div><div class="line"><span class="keyword">var</span> xScale = d3.scale.ordinal()</div><div class="line">            .domain(d3.range(labels.length))</div><div class="line">            .rangeRoundBands([<span class="number">0</span>, <span class="number">100</span>], <span class="number">0.05</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> yScale = d3.scale.linear()</div><div class="line">    .domain([<span class="number">0</span>, d3.max(data)])</div><div class="line">    .range([<span class="number">0</span>, yAxiWidth]);</div><div class="line"></div><div class="line"><span class="keyword">var</span> rect = svg.selectAll(<span class="string">"rect"</span>)</div><div class="line">    .data(data);</div><div class="line"></div><div class="line">rect.enter()</div><div class="line">    .append(<span class="string">"rect"</span>)</div><div class="line">    .attr(<span class="string">"x"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        x = xAxisWidth / (<span class="number">2</span> * labels.length) * (<span class="number">2</span> * i + <span class="number">1</span>)</div><div class="line">            - xScale.rangeBand() / <span class="number">2</span> + padding.left;</div><div class="line">        <span class="keyword">return</span> x;</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"y"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> height - padding.bottom - yScale(d);</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"width"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> xScale.rangeBand();</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"height"</span>, yScale)</div><div class="line">    .attr(<span class="string">"fill"</span>, <span class="string">"steelblue"</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>xScale</code> 用于控制矩形宽度， <code>yScale</code> 用于控制矩形高度。这样做可以使得矩形的宽度和高度自由伸缩。</li>
+</ul>
+<h4 id="给矩形增加文字描述"><a href="#给矩形增加文字描述" class="headerlink" title="给矩形增加文字描述"></a>给矩形增加文字描述</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> text = svg.selectAll(<span class="string">"text"</span>)</div><div class="line">            .data(data);</div><div class="line">text.enter().append(<span class="string">"text"</span>)</div><div class="line">            .attr(<span class="string">"x"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">                x = xAxisWidth / (<span class="number">2</span> * labels.length) * (<span class="number">2</span> * i + <span class="number">1</span>)</div><div class="line">                    - xScale.rangeBand() / <span class="number">2</span> + padding.left;</div><div class="line">                <span class="keyword">return</span> x;</div><div class="line">            &#125;)</div><div class="line">            .attr(<span class="string">"y"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> height - padding.bottom - yScale(d);</div><div class="line">            &#125;)</div><div class="line">            .attr(<span class="string">"dx"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> xScale.rangeBand() / <span class="number">4</span>;</div><div class="line">            &#125;)</div><div class="line">            .attr(<span class="string">"dy"</span>, <span class="number">-2</span>)</div><div class="line">            .attr(<span class="string">"text-anchor"</span>, <span class="string">"begin"</span>)</div><div class="line">            .attr(<span class="string">"font-size"</span>, <span class="number">14</span>)</div><div class="line">            .attr(<span class="string">"fill"</span>, <span class="string">"#000000"</span>)</div><div class="line">            .text(<span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> d;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>text</code> 元素的坐标是矩形的坐标，<code>dx，dy</code> 设定了方向上的偏移量。所以最终文字位于矩形正上方。</li>
+</ul>
+<h4 id="柱形图动画"><a href="#柱形图动画" class="headerlink" title="柱形图动画"></a>柱形图动画</h4><p>给柱形图增加动画，需要将代码修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> rect = svg.selectAll(<span class="string">"rect"</span>)</div><div class="line">    .data(data);</div><div class="line">rect.enter()</div><div class="line">    .append(<span class="string">"rect"</span>)</div><div class="line">    .attr(<span class="string">"y"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> height - padding.bottom;</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"height"</span>, <span class="number">0</span>)</div><div class="line">    .attr(<span class="string">"fill"</span>, <span class="string">"red"</span>)</div><div class="line">    .transition()</div><div class="line">    .duration(<span class="number">3000</span>)</div><div class="line">    .ease(<span class="string">"bounce"</span>)</div><div class="line">    .delay(<span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">200</span> * i;</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"x"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        x = xAxisWidth / (<span class="number">2</span> * labels.length) * (<span class="number">2</span> * i + <span class="number">1</span>)</div><div class="line">            - xScale.rangeBand() / <span class="number">2</span> + padding.left;</div><div class="line">        <span class="keyword">return</span> x;</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"y"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> height - padding.bottom - yScale(d);</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"width"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> xScale.rangeBand();</div><div class="line">    &#125;)</div><div class="line">    .attr(<span class="string">"height"</span>, yScale)</div><div class="line">    .attr(<span class="string">"fill"</span>, <span class="string">"steelblue"</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>上述代码设置了两个 <code>fill</code> 属性，在添加了 <code>transition()</code> 之后，D3 会自动对颜色之间的值进行线性插值，最终在动画中会看到平滑的颜色变化。</li>
+<li><code>duration()</code> 动画持续时间。</li>
+<li><code>ease()</code> 指定转变方式，常用的转变方式有：<ul>
+<li>linear  普通的线性变化。</li>
+<li>circle  慢慢地到达变换的最终状态。  </li>
+<li>elastic  带有弹跳的到达最终状态。</li>
+<li>bounce  在最终状态处弹跳几次。</li>
+</ul>
+</li>
+<li><code>delay()</code> 指定延时。</li>
+</ul>
+<h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p><img src="http://i.imgur.com/4WazYv3.png" alt="柱形图效果"><br><img src="http://i.imgur.com/7fT9upS.png" alt="坐标轴"></p>
+<hr>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://blog.csdn.net/lzhlzz/article/details/35985907" target="_blank" rel="external">如何让图表动起来</a><br><a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md" target="_blank" rel="external">d3-3.x-api-reference</a></p>
+
       
     </div>
 
@@ -369,6 +441,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/d3-js/" rel="tag"># d3.js</a>
+          
+        </div>
       
 
       
@@ -441,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460"
@@ -524,6 +611,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#确定初始数据"><span class="nav-number">1.</span> <span class="nav-text">确定初始数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-SVG"><span class="nav-number">2.</span> <span class="nav-text">创建 SVG</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘制坐标轴"><span class="nav-number">3.</span> <span class="nav-text">绘制坐标轴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘制矩形"><span class="nav-number">4.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给矩形增加文字描述"><span class="nav-number">5.</span> <span class="nav-text">给矩形增加文字描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#柱形图动画"><span class="nav-number">6.</span> <span class="nav-text">柱形图动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最终效果"><span class="nav-number">7.</span> <span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
