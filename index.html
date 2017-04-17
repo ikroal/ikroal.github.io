@@ -260,6 +260,193 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/17/Android自定义View和ViewGroup简要总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/17/Android自定义View和ViewGroup简要总结/" itemprop="url">
+                  Android自定义 View 和 ViewGroup 简要总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T19:47:43+08:00">
+                2017-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/17/Android自定义View和ViewGroup简要总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/17/Android自定义View和ViewGroup简要总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="主要方法及作用"><a href="#主要方法及作用" class="headerlink" title="主要方法及作用"></a>主要方法及作用</h4><ol>
+<li>自定义 ViewGroup 主要涉及的方法如下：<ul>
+<li><code>onMeasure()</code> 计算 childView 的测量值以及模式，以及设置自己的宽和高。</li>
+<li><code>onLayout()</code> 对所有 childView 进行定位。</li>
+</ul>
+</li>
+<li>自定义 View 主要涉及的方法如下：<ul>
+<li><code>onMeasure()</code> 测量 View 的宽和高。</li>
+<li><code>onDraw()</code> 将 View 绘制到屏幕上。</li>
+</ul>
+</li>
+</ol>
+<h4 id="测量模式"><a href="#测量模式" class="headerlink" title="测量模式"></a>测量模式</h4><p><code>onMeasure()</code> 过程和测量模式相关，而测量模式分为三种：</p>
+<ol>
+<li>UNSPECIFIED：父容器不对 View 有任何限制，要多大给多大。这种情况一般用于系统内部。</li>
+<li>EXACTLY：父容器已经检测出 View 所需要的精确大小，这个时候 View 的最终大小就是 SpecSize 所指定的值。它对应 LayoutParams 中的 mactch_parent 和具体数值这两种模式。</li>
+<li>AT_MOST 父容器指定了一个可用大小即 SpecSize，View 的大小不能大于这个值，具体值看不同 View 的具体实现。它对应于 LayoutParams 中的 wrap_content。</li>
+</ol>
+<h4 id="LayoutParams-和-generateLayoutParams"><a href="#LayoutParams-和-generateLayoutParams" class="headerlink" title="LayoutParams 和 generateLayoutParams"></a>LayoutParams 和 generateLayoutParams</h4><p>LayoutParams的官方文档解释如下：</p>
+<blockquote>
+<p>1.LayoutParams are used by views to tell their parents how they want to be laid out.<br>– LayoutParams 是 View 用来告诉它的父控件如何放置自己的。</p>
+<p>2.The base LayoutParams class just describes how big the view wants to be for both width and height.<br>– 基类 LayoutParams（也就是 ViewGroup.LayoutParams）仅仅描述了这个 View 想要的宽度和高度。</p>
+<p>3.There are subclasses of LayoutParams for different subclasses of ViewGroup.<br>– 不同 ViewGroup 的继承类对应着不同的 ViewGroup.LayoutParams 的子类。</p>
+</blockquote>
+<p>generateLayoutParams官方文档解释如下：</p>
+<blockquote>
+<p>Returns a new set of layout parameters based on the supplied attributes set.<br>– 根据提供的属性集返回一组新的布局参数。</p>
+</blockquote>
+<p>在 <code>addView()</code> 执行的过程中，如果 <code>checkLayoutParams()</code> 检测到传递过来的 <code>LayoutParams</code> 不是对应布局的 LayoutParam，则会通过 <code>generateLayoutParams()</code> 根据你传递的 LayoutParams 的属性构造一个对应布局的 LayoutParams。</p>
+<hr>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
+<li><a href="http://blog.csdn.net/lmj623565791/article/details/38339817/" target="_blank" rel="external"> Android 手把手教您自定义ViewGroup（一）</a></li>
+<li><a href="http://www.jianshu.com/p/2a938e598ec8" target="_blank" rel="external">自定义控件知识储备-LayoutParams的那些事</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/17/Android中View的构造函数浅解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1688,169 +1875,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/Python下用Scrapy采集知网期刊数据（三）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知北遊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/08/Python下用Scrapy采集知网期刊数据（三）/" itemprop="url">
-                  Python 下用 Scrapy 采集知网期刊数据（三）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T10:29:56+08:00">
-                2017-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/08/Python下用Scrapy采集知网期刊数据（三）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/08/Python下用Scrapy采集知网期刊数据（三）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在<a href="/2017/04/06/Python下用Scrapy采集知网期刊数据（二）/" title="Python 下用 Scrapy 采集知网期刊数据（二）">Python 下用 Scrapy 采集知网期刊数据（二）</a>中已经获取了期刊的搜索结果，接下来就可以开始采集文献数据了。</p>
-<h4 id="采集期刊文献数据"><a href="#采集期刊文献数据" class="headerlink" title="采集期刊文献数据"></a>采集期刊文献数据</h4><ol>
-<li><p>定义 Items</p>
-<blockquote>
-<p>为了定义常用的输出数据，Scrapy提供了 Item 类。 Item 对象是种简单的容器，保存了爬取到得数据。 其提供了 类似于词典(dictionary-like) 的API以及用于声明可用字段的简单语法。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/08/Python下用Scrapy采集知网期刊数据（三）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1900,7 +1924,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
