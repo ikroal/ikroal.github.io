@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,MySql," />
+  <meta name="keywords" content="Android,问题记录," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="库的导入import pymysql">
-<meta name="keywords" content="Python,MySql">
+<meta name="description" content="首先 getMeasureWidth() 方法在 measure() 过程结束后就可以获取到了，而 getWidth() 方法要在 layout() 过程结束后才能获取到。另外  getMeasureWidth() 方法中的值是通过 setMeasuredDimension() 方法来进行设置的，而 getWidth() 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。">
+<meta name="keywords" content="Android,问题记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 下 pymsql 库的基本使用">
-<meta property="og:url" content="http://yoursite.com/2017/04/06/Python下pymsql库的基本使用/index.html">
+<meta property="og:title" content="getWidth() 方法和 getMeasureWidth() 方法的区别">
+<meta property="og:url" content="http://yoursite.com/2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="库的导入import pymysql">
-<meta property="og:updated_time" content="2017-04-06T09:41:47.000Z">
+<meta property="og:description" content="首先 getMeasureWidth() 方法在 measure() 过程结束后就可以获取到了，而 getWidth() 方法要在 layout() 过程结束后才能获取到。另外  getMeasureWidth() 方法中的值是通过 setMeasuredDimension() 方法来进行设置的，而 getWidth() 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。">
+<meta property="og:updated_time" content="2017-04-16T02:20:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 下 pymsql 库的基本使用">
-<meta name="twitter:description" content="库的导入import pymysql">
+<meta name="twitter:title" content="getWidth() 方法和 getMeasureWidth() 方法的区别">
+<meta name="twitter:description" content="首先 getMeasureWidth() 方法在 measure() 过程结束后就可以获取到了，而 getWidth() 方法要在 layout() 过程结束后才能获取到。另外  getMeasureWidth() 方法中的值是通过 setMeasuredDimension() 方法来进行设置的，而 getWidth() 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/06/Python下pymsql库的基本使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/"/>
 
 
 
 
 
-  <title> Python 下 pymsql 库的基本使用 | 知北遊的博客 </title>
+  <title> getWidth() 方法和 getMeasureWidth() 方法的区别 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +260,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/Python下pymsql库的基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -281,7 +281,7 @@
             
             
               
-                Python 下 pymsql 库的基本使用
+                getWidth() 方法和 getMeasureWidth() 方法的区别
               
             
           </h1>
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T16:48:11+08:00">
-                2017-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T10:05:07+08:00">
+                2017-04-16
               </time>
             
 
@@ -319,8 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 学习</span>
+                  <a href="/categories/Android-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 学习</span>
                   </a>
                 </span>
 
@@ -337,9 +337,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/06/Python下pymsql库的基本使用/#comments" itemprop="discussionUrl">
+                <a href="/2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/06/Python下pymsql库的基本使用/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,29 +365,14 @@
       
 
       
-        <h4 id="库的导入"><a href="#库的导入" class="headerlink" title="库的导入"></a>库的导入</h4><p><code>import pymysql</code><a id="more"></a></p>
-<h4 id="连接-MySql"><a href="#连接-MySql" class="headerlink" title="连接 MySql"></a>连接 MySql</h4><ol>
-<li><p>连接配置</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MYSQL_HOST = &apos;localhost&apos;</div><div class="line">MYSQL_DBNAME = &apos;cnkiQuote&apos;</div><div class="line">MYSQL_USER = &apos;root&apos;</div><div class="line">MYSQL_PASSWD = &apos;123456&apos;</div></pre></td></tr></table></figure>
-<p> 从上往下依次是主机 ip，数据库名，用户名及密码。</p>
-</li>
-<li>连接<br> 指定编码为 utf8 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection=pymysql.connect(</div><div class="line">        host=MYSQL_HOST,</div><div class="line">        db=MYSQL_DBNAME,</div><div class="line">        user=MYSQL_USER,</div><div class="line">        passwd=MYSQL_PASSWD,</div><div class="line">        charset=<span class="string">'utf8'</span>,</div><div class="line">        use_unicode=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="Sql-操作"><a href="#Sql-操作" class="headerlink" title="Sql 操作"></a>Sql 操作</h4><ol>
-<li><p>查询</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""select * from periodical_data where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">    (item[<span class="string">"title"</span>],</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
-</li>
-<li><p>插入</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""insert into periodical_data(title,author,journalName,publicationDate,referenceNum, downloadNum) value (%s,%s,%s,%s,%s,%s)"""</span>,</div><div class="line">    (item[<span class="string">'title'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>]),</div><div class="line">    item[<span class="string">'journalName'</span>],</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    item[<span class="string">'referenceNum'</span>],</div><div class="line">    item[<span class="string">'downloadNum'</span>]))</div></pre></td></tr></table></figure>
-</li>
-<li><p>更新</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""update periodical_data set title = %s,author = %s,journalName = %s, publicationDate = %s,referenceNum = %s,downloadNum = %s where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">    (str(item[<span class="string">'title'</span>]),</div><div class="line">    str(item[<span class="string">'author'</span>]),</div><div class="line">    str(item[<span class="string">'journalName'</span>]),</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    item[<span class="string">'referenceNum'</span>],</div><div class="line">    item[<span class="string">'downloadNum'</span>],</div><div class="line">    str(item[<span class="string">'title'</span>]),</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
-</li>
-<li><p>提交更改<br> <code>connection.commit()</code></p>
-</li>
-</ol>
+        <p>首先 <code>getMeasureWidth()</code> 方法在 <code>measure()</code> 过程结束后就可以获取到了，而 <code>getWidth()</code> 方法要在 <code>layout()</code> 过程结束后才能获取到。另外  <code>getMeasureWidth()</code> 方法中的值是通过 <code>setMeasuredDimension()</code> 方法来进行设置的，而 <code>getWidth()</code> 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。<a id="more"></a></p>
+<p>观察 SimpleLayout 中 <code>onLayout()</code> 方法的代码，这里给子视图的 <code>layout()</code> 方法传入的四个参数分别是 0，0，childView.getMeasuredWidth() 和 childView.getMeasuredHeight() ，因此 <code>getWidth()</code> 方法得到的值就是 childView.getMeasuredWidth() - 0 = childView.getMeasuredWidth()，所以此时 <code>getWidth()</code> 方法和 <code>getMeasuredWidth()</code> 得到的值就是相同的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span>  </div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;  </div><div class="line">   <span class="keyword">if</span> (getChildCount() &gt; <span class="number">0</span>) &#123;  </div><div class="line">       View childView = getChildAt(<span class="number">0</span>);  </div><div class="line">       childView.layout(<span class="number">0</span>, <span class="number">0</span>, childView.getMeasuredWidth(), childView.getMeasuredHeight());  </div><div class="line">   &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但如果你将 <code>onLayout()</code> 方法中的代码进行如下修改：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span>  </div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;  </div><div class="line">    <span class="keyword">if</span> (getChildCount() &gt; <span class="number">0</span>) &#123;  </div><div class="line">        View childView = getChildAt(<span class="number">0</span>);  </div><div class="line">        childView.layout(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样 <code>getWidth()</code> 方法得到的值就是 200 - 0 = 200，不会再和 <code>getMeasuredWidth()</code> 的值相同了。当然这种做法充分不尊重 <code>measure()</code> 过程计算出的结果，通常情况下是不推荐这么写的。 <code>getHeight()</code> 与 <code>getMeasureHeight()</code> 方法之间的关系同上，就不再重复分析了。</p>
 <hr>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://blog.csdn.net/guolin_blog/article/details/16330267" target="_blank" rel="external">Android视图绘制流程完全解析，带你一步步深入了解View(二)</a></p>
 
       
     </div>
@@ -417,9 +402,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/MySql/" rel="tag"># MySql</a>
+            <a href="/tags/问题记录/" rel="tag"># 问题记录</a>
           
         </div>
       
@@ -432,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/06/Python下用Scrapy采集知网期刊数据（一）/" rel="next" title="Python 下用 Scrapy 采集知网期刊数据（一）">
-                <i class="fa fa-chevron-left"></i> Python 下用 Scrapy 采集知网期刊数据（一）
+              <a href="/2017/04/17/Android中View的构造函数浅解/" rel="next" title="Android 中 View 的构造函数浅解">
+                <i class="fa fa-chevron-left"></i> Android 中 View 的构造函数浅解
               </a>
             
           </div>
@@ -442,8 +427,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/05/Python-下Excel-的读取与写入/" rel="prev" title="Python 下 Excel 的读取与写入">
-                Python 下 Excel 的读取与写入 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/14/d3-js绘制柱形图/" rel="prev" title="d3.js 绘制柱形图">
+                d3.js 绘制柱形图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -600,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#库的导入"><span class="nav-number">1.</span> <span class="nav-text">库的导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接-MySql"><span class="nav-number">2.</span> <span class="nav-text">连接 MySql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sql-操作"><span class="nav-number">3.</span> <span class="nav-text">Sql 操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -744,9 +729,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/04/06/Python下pymsql库的基本使用/';
-          this.page.identifier = '2017/04/06/Python下pymsql库的基本使用/';
-          this.page.title = 'Python 下 pymsql 库的基本使用';
+          this.page.url = 'http://yoursite.com/2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/';
+          this.page.identifier = '2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/';
+          this.page.title = 'getWidth() 方法和 getMeasureWidth() 方法的区别';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
