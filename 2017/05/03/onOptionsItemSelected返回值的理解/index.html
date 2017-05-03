@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Android,问题记录," />
 
 
 
@@ -91,17 +91,17 @@
 
 
 
-<meta name="description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
-<meta name="keywords" content="Java">
+<meta name="description" content="首先查看官方 API 的解释：  This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item’s Runnabl">
+<meta name="keywords" content="Android,问题记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="控件添加右键菜单项">
-<meta property="og:url" content="http://www.rookieyang.cn/2016/04/22/控件添加右键菜单项/index.html">
+<meta property="og:title" content="onOptionsItemSelected() 返回值的理解">
+<meta property="og:url" content="http://www.rookieyang.cn/2017/05/03/onOptionsItemSelected返回值的理解/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
-<meta property="og:updated_time" content="2017-04-06T09:41:37.000Z">
+<meta property="og:description" content="首先查看官方 API 的解释：  This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item’s Runnabl">
+<meta property="og:updated_time" content="2017-05-03T13:42:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="控件添加右键菜单项">
-<meta name="twitter:description" content="以 JList 控件为例首先控件需要添加鼠标的监听事件12345678mUserList.addMouseListener(new MouseAdapter() &amp;#123;    @Override    public void mouseReleased(MouseEvent e) &amp;#123;        super.mouseReleased(e);        showPopup(e">
+<meta name="twitter:title" content="onOptionsItemSelected() 返回值的理解">
+<meta name="twitter:description" content="首先查看官方 API 的解释：  This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item’s Runnabl">
 
 
 
@@ -129,12 +129,12 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2016/04/22/控件添加右键菜单项/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/05/03/onOptionsItemSelected返回值的理解/"/>
 
 
 
 
-  <title> 控件添加右键菜单项 | 知北遊的博客 </title>
+  <title> onOptionsItemSelected() 返回值的理解 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -311,7 +311,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2016/04/22/控件添加右键菜单项/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/05/03/onOptionsItemSelected返回值的理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -332,7 +332,7 @@
             
             
               
-                控件添加右键菜单项
+                onOptionsItemSelected() 返回值的理解
               
             
           </h1>
@@ -347,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-22T22:39:59+08:00">
-                2016-04-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T20:21:57+08:00">
+                2017-05-03
               </time>
             
 
@@ -370,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Java 学习</span>
+                  <a href="/categories/Android-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 学习</span>
                   </a>
                 </span>
 
@@ -388,9 +388,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/04/22/控件添加右键菜单项/#comments" itemprop="discussionUrl">
+                <a href="/2017/05/03/onOptionsItemSelected返回值的理解/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/04/22/控件添加右键菜单项/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/05/03/onOptionsItemSelected返回值的理解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -398,7 +398,7 @@
 
           
           
-             <span id="/2016/04/22/控件添加右键菜单项/" class="leancloud_visitors" data-flag-title="控件添加右键菜单项">
+             <span id="/2017/05/03/onOptionsItemSelected返回值的理解/" class="leancloud_visitors" data-flag-title="onOptionsItemSelected() 返回值的理解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -427,10 +427,36 @@
       
 
       
-        <h2 id="以-JList-控件为例"><a href="#以-JList-控件为例" class="headerlink" title="以 JList 控件为例"></a>以 JList 控件为例</h2><p>首先控件需要添加鼠标的监听事件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mUserList.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.mouseReleased(e);</div><div class="line">        showPopup(e);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+        <p>首先查看官方 API 的解释：</p>
+<blockquote>
+<p>This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item’s Runnable or sending a message to its Handler as appropriate). You can use this method for any items for which you would like to do processing without those other facilities.</p>
+</blockquote>
 <a id="more"></a>
-<p><code>showPopup()</code> 显示菜单的功能<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPopup</span><span class="params">(MouseEvent e)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.isPopupTrigger() &amp;&amp; mUserList.getSelectedIndex() != -<span class="number">1</span></div><div class="line">            &amp;&amp; !mUserList.getSelectedValue().equals(<span class="string">"管理员"</span>)) &#123;</div><div class="line">        Object selected = mUserName.getElementAt(mUserList.getSelectedIndex());</div><div class="line">        popupMenu.show(e.getComponent(), e.getX(), e.getY());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>e.isPopupTrigger()</code> 检测是否是右键，<code>mUserList.getSelectedIndex()</code> 防止在列表空白处点击</p>
+<p>也就是说当点击 OptionsMenu 中的 Item 时，默认会返回 false，这个时候将会处理 item 关联的 Runnable 或发送一条 message 给它的 Handler。<br>为了弄清楚返回 false 时可能会发生什么做了如下测试：</p>
+<ol>
+<li><p>测试一</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">        <span class="keyword">case</span> R.id.add_item:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Add"</span>, Toast.LENGTH_LONG).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.remove_item:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Remove"</span>, Toast.LENGTH_LONG).show();</div><div class="line">            item.setActionView(R.layout.progress);</div><div class="line">            Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">            item.setIntent(intent);</div><div class="line">            Log.i(TAG, <span class="string">"onOptionsItemSelected: Remove"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"re"</span>, Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上述代码中给 item 关联了一个 Intent 用于跳转到 SecondActivity，如果返回为 true 则点击 item 时不会跳转到 SecondActivity，如果返回 false 则会跳转到 SecondActivity。</p>
+</blockquote>
+</li>
+<li><p>测试二</p>
+<ul>
+<li><p>创建一个 Fragment</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu, MenuInflater inflater)</span> </span>&#123;</div><div class="line">    inflater.inflate(R.menu.main, menu);</div><div class="line">    <span class="keyword">super</span>.onCreateOptionsMenu(menu, inflater);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">      <span class="keyword">case</span> R.id.remove_item:</div><div class="line">        Toast.makeText(getContext(), <span class="string">"Fragment Remove"</span>, Toast.LENGTH_LONG).show();</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">        Toast.makeText(getContext(), <span class="string">"Fragment"</span>, Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line">      Bundle savedInstanceState) &#123;</div><div class="line">    setHasOptionsMenu(<span class="keyword">true</span>);</div><div class="line">    <span class="keyword">return</span> inflater.inflate(fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述创建了一个自定义的 Fragment 类，并添加了 OptionMenu 的点击事件。</p>
+</li>
+<li><p>在之前的 Activity 的布局文件中添加 Fragment</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">  <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">  <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">fragment</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/fragment"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"com.rookieyang.demo.MyFragment"</span></div><div class="line">    <span class="attr">tools:layout</span>=<span class="string">"@layout/fragment_layout"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p></p></li></ul><p></p>
+<blockquote>
+<p>在完成上述步骤之后点击 remove 的 item，由于 Activity 中的 onOptionsItemSelected() 返回了false，导致事件没有被消费就会向下传递给 Fragment，进而执行 Fragment 中的 item 的点击事件，所以能够看到屏幕上将会显示 <code>Fragment Remove</code> 而不是 <code>Remove</code>。</p>
+</blockquote>
+</li>
+
+
+</ol>
+<p>补：OptionMenu 的 Item 自定义的点击事件优先级要高于 onOptionsItemSelected()。</p>
 <hr>
 
       
@@ -461,7 +487,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/问题记录/" rel="tag"># 问题记录</a>
           
         </div>
       
@@ -474,18 +502,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/27/使用视图显示图片和菜单/" rel="next" title="使用视图显示图片和菜单">
-                <i class="fa fa-chevron-left"></i> 使用视图显示图片和菜单
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/22/DialogFragment实现TimePickerDialog/" rel="prev" title="DialogFragment 实现TimePickerDialog">
-                DialogFragment 实现TimePickerDialog <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/02/一周总结-4-24～4-30/" rel="prev" title="一周总结（4.24～4.30）">
+                一周总结（4.24～4.30） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -540,17 +564,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460"
@@ -639,22 +654,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#以-JList-控件为例"><span class="nav-number">1.</span> <span class="nav-text">以 JList 控件为例</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -793,9 +792,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.rookieyang.cn/2016/04/22/控件添加右键菜单项/';
-          this.page.identifier = '2016/04/22/控件添加右键菜单项/';
-          this.page.title = '控件添加右键菜单项';
+          this.page.url = 'http://www.rookieyang.cn/2017/05/03/onOptionsItemSelected返回值的理解/';
+          this.page.identifier = '2017/05/03/onOptionsItemSelected返回值的理解/';
+          this.page.title = 'onOptionsItemSelected() 返回值的理解';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
