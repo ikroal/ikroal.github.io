@@ -100,7 +100,7 @@
 <meta property="og:description" content="Activity主要内容：">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity">
 <meta property="og:image" content="http://i.imgur.com/J27l7mI.png">
-<meta property="og:updated_time" content="2017-05-03T12:20:21.000Z">
+<meta property="og:updated_time" content="2017-05-08T03:23:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一周总结（4.24～4.30）">
 <meta name="twitter:description" content="Activity主要内容：">
@@ -561,7 +561,7 @@
 <li><code>FLAG_ACTIVITY_LAUNCH_ADJACENT</code>：测试发现在分屏模式下在启动目标 Activity 时，如果没有设置 <code>FLAG_ACTIVITY_MULTIPLE_TASK</code> ，那么当目标 Activity 已经存在于任务栈中，将不会进入分屏模式。</li>
 <li><code>FLAG_ACTIVITY_NEW_DOCUMENT</code>： 当单独使用时，它相当于指定 <code>documentLaunchMode =“intoExisting”</code>。当与 <code>FLAG_ACTIVITY_MULTIPLE_TASK</code> 一起使用时，它等同于指定 <code>documentLaunchMode =“always”</code>。</li>
 </ul>
-<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>Intent 的 <code>putExtra()</code> 方法中国年所支持的数据类型是有限的，当需要传递一些自定义对象的时候，就需要用到序列化了。</p>
+<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>Intent 的 <code>putExtra()</code> 方法中所支持的数据类型是有限的，当需要传递一些自定义对象的时候，就需要用到序列化了。</p>
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>使用 Intent 来传递对象通常有两种实现方式：</p>
 <ol>
 <li><p>Serializable</p>
