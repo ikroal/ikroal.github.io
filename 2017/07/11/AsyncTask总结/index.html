@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,Neo4j," />
+  <meta name="keywords" content="Android,AsyncTask," />
 
 
 
@@ -91,24 +91,19 @@
 
 
 
-<meta name="description" content="Neo4j 简介 Neo4j 是一个高性能的，NOSQL 图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的 Java 持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。">
-<meta name="keywords" content="Python,Neo4j">
+<meta name="description" content="AsyncTask 的作用 AsyncTask 允许对用户界面执行异步操作。 它会先阻塞工作线程中的操作，然后在 UI 线程中发布结果，而无需您亲自处理线程和/或处理程序。  AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。">
+<meta name="keywords" content="Android,AsyncTask">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 下 Flask 结合 Neo4j 构建管理系统（二）">
-<meta property="og:url" content="http://www.rookieyang.cn/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/index.html">
+<meta property="og:title" content="AsyncTask 总结">
+<meta property="og:url" content="http://www.rookieyang.cn/2017/07/11/AsyncTask总结/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="Neo4j 简介 Neo4j 是一个高性能的，NOSQL 图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的 Java 持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-so2pSsowOT0/WO3po5DA8aI/AAAAAAAAAL0/L7VMQY4n1co/I/%25255BUNSET%25255D.png">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-dXvr4E1z9oc/WO3tVuy8EpI/AAAAAAAAAMI/ssK8RCaVfvw/I/Neo4j.png">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-fwxoipgtmSk/WO3tWGAMtEI/AAAAAAAAAMM/8robCpSMV3s/I/%25255BUNSET%25255D.png">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-WTQX3ubZ_ck/WO3wlZltR8I/AAAAAAAAAMY/jCkGXWHrdEg/I/%25255BUNSET%25255D.png">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-WMpmBZB9Te8/WO3wloFpI1I/AAAAAAAAAMc/vdEu688RneM/I/%25255BUNSET%25255D.png">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-3k-Bn2cKTWE/WO3zAkAsEzI/AAAAAAAAAMw/ZtGQhPDzj_Q/I/%25255BUNSET%25255D.png">
-<meta property="og:updated_time" content="2017-04-12T12:44:05.000Z">
+<meta property="og:description" content="AsyncTask 的作用 AsyncTask 允许对用户界面执行异步操作。 它会先阻塞工作线程中的操作，然后在 UI 线程中发布结果，而无需您亲自处理线程和/或处理程序。  AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-MmpRFoM9LfE/WWR_EqDwUYI/AAAAAAAAAW4/IY7xCH9t700PzA5Mo7eOxRVrtme6-RifACHMYCw/I/AsyncTask.png">
+<meta property="og:updated_time" content="2017-07-11T08:25:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 下 Flask 结合 Neo4j 构建管理系统（二）">
-<meta name="twitter:description" content="Neo4j 简介 Neo4j 是一个高性能的，NOSQL 图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的 Java 持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/-so2pSsowOT0/WO3po5DA8aI/AAAAAAAAAL0/L7VMQY4n1co/I/%25255BUNSET%25255D.png">
+<meta name="twitter:title" content="AsyncTask 总结">
+<meta name="twitter:description" content="AsyncTask 的作用 AsyncTask 允许对用户界面执行异步操作。 它会先阻塞工作线程中的操作，然后在 UI 线程中发布结果，而无需您亲自处理线程和/或处理程序。  AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-MmpRFoM9LfE/WWR_EqDwUYI/AAAAAAAAAW4/IY7xCH9t700PzA5Mo7eOxRVrtme6-RifACHMYCw/I/AsyncTask.png">
 
 
 
@@ -136,12 +131,12 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/07/11/AsyncTask总结/"/>
 
 
 
 
-  <title> Python 下 Flask 结合 Neo4j 构建管理系统（二） | 知北遊的博客 </title>
+  <title> AsyncTask 总结 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -318,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/07/11/AsyncTask总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -339,7 +334,7 @@
             
             
               
-                Python 下 Flask 结合 Neo4j 构建管理系统（二）
+                AsyncTask 总结
               
             
           </h1>
@@ -354,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T14:34:52+08:00">
-                2017-04-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T12:49:39+08:00">
+                2017-07-11
               </time>
             
 
@@ -377,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 学习</span>
+                  <a href="/categories/Android-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 学习</span>
                   </a>
                 </span>
 
@@ -395,9 +390,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/11/AsyncTask总结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/11/AsyncTask总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,7 +400,7 @@
 
           
           
-             <span id="/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/" class="leancloud_visitors" data-flag-title="Python 下 Flask 结合 Neo4j 构建管理系统（二）">
+             <span id="/2017/07/11/AsyncTask总结/" class="leancloud_visitors" data-flag-title="AsyncTask 总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -434,25 +429,39 @@
       
 
       
-        <h4 id="Neo4j-简介"><a href="#Neo4j-简介" class="headerlink" title="Neo4j 简介"></a>Neo4j 简介</h4><blockquote>
-<p>Neo4j 是一个高性能的，NOSQL 图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的 Java 持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。</p>
+        <h4 id="AsyncTask-的作用"><a href="#AsyncTask-的作用" class="headerlink" title="AsyncTask 的作用"></a>AsyncTask 的作用</h4><blockquote>
+<p>AsyncTask 允许对用户界面执行异步操作。 它会先阻塞工作线程中的操作，然后在 UI 线程中发布结果，而无需您亲自处理线程和/或处理程序。</p>
 </blockquote>
-<a id="more"></a>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>进入<a href="https://neo4j.com/download/" target="_blank" rel="external"> Neo4j 下载地址</a>选择社区版进行下载安装。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>Neo4j 提供了 Cypher 查询语言对数据库数据进行操作，在使用 Neo4j 之前必须先了解 Cypher，可以参考官方提供了一些例程和开发文档：<br><a href="https://neo4j.com/developer/cypher-query-language/" target="_blank" rel="external">Intro to Cypher</a><br><a href="https://neo4j.com/docs/developer-manual/3.1/" target="_blank" rel="external">The Neo4j Developer Manual v3.1</a><br>第一个介绍了 Cypher 的一些基本概念方便去理解 Cypher 语言，第二个则是一份开发者文档，详细介绍了各操作的含义以及一些示例语句。<br>在了解 Cypher 后，就可以利用 Neo4j 控制台做一些基本的查询测试：</p>
+<p>AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。<br><a id="more"></a></p>
+<h4 id="AsyncTask-的基本使用"><a href="#AsyncTask-的基本使用" class="headerlink" title="AsyncTask 的基本使用"></a>AsyncTask 的基本使用</h4><ol>
+<li><p>由于 AsyncTask 是抽象类，所以首先需要创建一个继承它的子类。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAsyncTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">Void</span>, <span class="title">Integer</span>, <span class="title">Boolean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> 其中可以为 AsyncTask 指定三个泛型参数</p>
 <ul>
-<li>首先需要开启服务器：<br>  <img src="https://lh3.googleusercontent.com/-so2pSsowOT0/WO3po5DA8aI/AAAAAAAAAL0/L7VMQY4n1co/I/%25255BUNSET%25255D.png" alt="开启服务器"></li>
-<li>在开启服务器后进入 <code>http://localhost:7474</code> 第一次进入需要设置密码</li>
-<li><p>在主界面中选择 <code>Jump into code</code>，之后选择 <code>Movie Graph</code> 中的 Create a graph，则可以看到一个 Neo4j 官方提供的构造数据图的代码，点击之后运行即可。<br><img src="https://lh3.googleusercontent.com/-dXvr4E1z9oc/WO3tVuy8EpI/AAAAAAAAAMI/ssK8RCaVfvw/I/Neo4j.png" alt="Neo4j界面"><br><img src="https://lh3.googleusercontent.com/-fwxoipgtmSk/WO3tWGAMtEI/AAAAAAAAAMM/8robCpSMV3s/I/%25255BUNSET%25255D.png" alt="代码"><br><img src="https://lh3.googleusercontent.com/-WTQX3ubZ_ck/WO3wlZltR8I/AAAAAAAAAMY/jCkGXWHrdEg/I/%25255BUNSET%25255D.png" alt="创建结果"></p>
-</li>
-<li><p>在创建了数据图之后，点击左侧的第一个导航栏，可以看见数据图的各项信息。<br><img src="https://lh3.googleusercontent.com/-WMpmBZB9Te8/WO3wloFpI1I/AAAAAAAAAMc/vdEu688RneM/I/%25255BUNSET%25255D.png" alt="信息"></p>
-</li>
-<li><p>查询<br>  这里以查询节点 <code>name</code> 属性为 Audrey Tautou 到节点 <code>title</code> 属性为 As Good as It Gets 且节点关系为 <code>ACTED_IN</code> 间隔不超过 5 的最短路径为例，在输入框中输入如下代码：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MATCH (you &#123;name:&quot;Audrey Tautou&quot;&#125;)</div><div class="line">MATCH (expert &#123;title:&quot;As Good as It Gets&quot;&#125;)</div><div class="line">MATCH path = shortestPath( (you)-[:ACTED_IN*..5]-(expert) )</div><div class="line">RETURN path</div></pre></td></tr></table></figure>
-<p>  运行之后结果如下：<br>  <img src="https://lh3.googleusercontent.com/-3k-Bn2cKTWE/WO3zAkAsEzI/AAAAAAAAAMw/ZtGQhPDzj_Q/I/%25255BUNSET%25255D.png" alt="最短路径"></p>
-</li>
+<li>Params：执行 Task 时传递的参数，在后台任务中使用，这里指定为 Void</li>
+<li>Progress：指定进度单位，这里指定为 Integer</li>
+<li>Result：执行完任务后返回的类型，这里指定为 Boolean</li>
 </ul>
-<hr>
+</li>
+<li><p>重写 AsyncTask 的一些方法，主要是下面四个：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPreExecute</span><span class="params">()</span> </span>&#123;</div><div class="line">    progressDialog.show();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> Boolean <span class="title">doInBackground</span><span class="params">(Void... voids)</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> percent = doDownload();</div><div class="line">        publishProgress(percent);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Thread.sleep(<span class="number">1000</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (percent &gt;= <span class="number">100</span>) &#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span><span class="params">(Integer... values)</span> </span>&#123;</div><div class="line">    progressDialog.setMessage(<span class="string">"Downloaded "</span> + values[<span class="number">0</span>] + <span class="string">"%"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Boolean result)</span> </span>&#123;</div><div class="line">    progressDialog.dismiss();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (result) &#123;</div><div class="line">        Toast.makeText(MainActivity.getCurrentContext(),</div><div class="line">            <span class="string">"Download Succeeded"</span>, Toast.LENGTH_LONG).show();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        Toast.makeText(MainActivity.getCurrentContext(),</div><div class="line">            <span class="string">"Download Failed"</span>, Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>onPreExecute()：任务执行之前在 UI 线程当中进行调用，通常用于进行一些界面的初始化工作，譬如显示一个进度条。</li>
+<li>doInBackground(Params…)：必须实现的方法，在 onPreExecute() 方法执行完毕之后运行在子线程上，通常用于执行耗时任务，Params 参数将会传递至该方法。执行完任务之后将会通过 return 语句返回执行结果，如果 Result 设定为 Void 则可以不进行返回。同时在该方法中可以通过 publishProgress(Progress…) 方法对任务执行进度进行反馈。</li>
+<li>onProgressUpdate(Progress…)：publishProgress(Progress…) 被调用之后执行在 UI 线程当中，在该方法中可以展示任务执行的进度及对进度进行更新，譬如可以对进度条进行动画处理。</li>
+<li>onPostExecute(Result)：任务执行完之后的返回结果将会传递至该方法，可以利用返回的结果进行一些 UI 操作，譬如提醒任务执行的结果，该方法运行在 UI 线程中。</li>
+</ul>
+</li>
+</ol>
+<h4 id="AsyncTask-源码浅解"><a href="#AsyncTask-源码浅解" class="headerlink" title="AsyncTask 源码浅解"></a>AsyncTask 源码浅解</h4><h5 id="执行过程图"><a href="#执行过程图" class="headerlink" title="执行过程图"></a>执行过程图</h5><p><img src="https://lh3.googleusercontent.com/-MmpRFoM9LfE/WWR_EqDwUYI/AAAAAAAAAW4/IY7xCH9t700PzA5Mo7eOxRVrtme6-RifACHMYCw/I/AsyncTask.png" alt="AsyncTask"></p>
+<h5 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h5><ol>
+<li>首先通过调用 execute(Params… params) 方法执行任务<br> 内部执行了 executeOnExecutor(sDefaultExecutor, params)，sDefaultExecutor 是内部定义的 SerialExecutor 类的对象，主要的方法是 execute(final Runnable r) 用于启动一个线程。</li>
+<li><p>executeOnExecutor(Executor exec, Params… params)<br> 作为第一步中执行的方法，首先会判断任务的运行状态，如果是 PENDING 则表明没有运行，然后便会执行 onPreExecute() 方法，之后将 params 传递给 mWorker 对象，mWorker 是一个实现了 Callable 接口的 WorkerRunnable 对象，最后调用 exec.execute(mFuture) 去启动线程。其中 mWorker 和 mFuture 对象在构造函数中完成了初始化过程。mFuture 是一个实现了 RunnableFuture 接口的 FutureTask 对象，FutureTask 的 run() 方法将会调用 Callable 接口的 call() 方法。也即是说 exec.execute(mFuture) 调用了 mFuture 的 run() 方法从而调用了 mWorker 的 call() 方法。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//execute 的执行过程</span></div><div class="line">exec.execute(mFuture);</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(<span class="keyword">final</span> Runnable r)</span> </span>&#123;</div><div class="line">    mTasks.offer(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                r.run();</div><div class="line">            &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                scheduleNext();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">if</span> (mActive == <span class="keyword">null</span>) &#123;</div><div class="line">        scheduleNext();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//mFuture 调用 mWorker.call() 的过程</span></div><div class="line">mFuture = <span class="keyword">new</span> FutureTask&lt;Result&gt;(mWorker)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">FutureTask</span><span class="params">(Callable&lt;V&gt; callable)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (callable == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">    <span class="keyword">this</span>.callable = callable;</div><div class="line">    <span class="keyword">this</span>.state = NEW;       <span class="comment">// ensure visibility of callable</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (state != NEW ||</div><div class="line">        !U.compareAndSwapObject(<span class="keyword">this</span>, RUNNER, <span class="keyword">null</span>, Thread.currentThread()))</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        Callable&lt;V&gt; c = callable;</div><div class="line">        <span class="keyword">if</span> (c != <span class="keyword">null</span> &amp;&amp; state == NEW) &#123;</div><div class="line">            V result;</div><div class="line">            <span class="keyword">boolean</span> ran;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                result = c.call();</div><div class="line">                ran = <span class="keyword">true</span>;</div><div class="line">            &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</div><div class="line">                result = <span class="keyword">null</span>;</div><div class="line">                ran = <span class="keyword">false</span>;</div><div class="line">                setException(ex);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (ran)</div><div class="line">                set(result);</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">        <span class="comment">// runner must be non-null until state is settled to</span></div><div class="line">        <span class="comment">// prevent concurrent calls to run()</span></div><div class="line">        runner = <span class="keyword">null</span>;</div><div class="line">        <span class="comment">// state must be re-read after nulling runner to prevent</span></div><div class="line">        <span class="comment">// leaked interrupts</span></div><div class="line">        <span class="keyword">int</span> s = state;</div><div class="line">        <span class="keyword">if</span> (s &gt;= INTERRUPTING)</div><div class="line">            handlePossibleCancellationInterrupt(s);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行完上述两步之后 mWorker.call() 得到了调用，任务开始启动。<br> 在 call() 方法中调用了 doInBackground(mParams) 并将结果保存在 result 变量当中，然后在 postResult(result) 中通过 getHandler() 获取到 InternalHandler 对象，通过 obtainMessage() 方法将结果发送出去，之后在 handleMessage(Message msg) 中调用了 finish() 方法。finish() 方法中最终调用了 onPostExecute(result) 方法。<br> 如果在 doInBackground(mParams) 调用了 publishProgress(Progress… values)，则在 publishProgress(Progress… values) 中也会通过 getHandler() 发送 Message，然后在 handleMessage(Message msg) 中调用 onProgressUpdate(Progress… values) 方法。</p>
+</li>
+</ol>
 
       
     </div>
@@ -482,9 +491,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/Neo4j/" rel="tag"># Neo4j</a>
+            <a href="/tags/AsyncTask/" rel="tag"># AsyncTask</a>
           
         </div>
       
@@ -497,18 +506,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/13/Python下Flask结合Neo4j构建管理系统（三）/" rel="next" title="Python 下 Flask 结合 Neo4j 构建管理系统（三）">
-                <i class="fa fa-chevron-left"></i> Python 下 Flask 结合 Neo4j 构建管理系统（三）
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/" rel="prev" title="Python 下 Flask 结合 Neo4j 构建管理系统（一）">
-                Python 下 Flask 结合 Neo4j 构建管理系统（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/08/Gallery的三种实现方式/" rel="prev" title="Gallery 的三种实现方式">
+                Gallery 的三种实现方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -681,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Neo4j-简介"><span class="nav-number">1.</span> <span class="nav-text">Neo4j 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#AsyncTask-的作用"><span class="nav-number">1.</span> <span class="nav-text">AsyncTask 的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AsyncTask-的基本使用"><span class="nav-number">2.</span> <span class="nav-text">AsyncTask 的基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AsyncTask-源码浅解"><span class="nav-number">3.</span> <span class="nav-text">AsyncTask 源码浅解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行过程图"><span class="nav-number">3.1.</span> <span class="nav-text">执行过程图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行过程"><span class="nav-number">3.2.</span> <span class="nav-text">执行过程</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -825,9 +830,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.rookieyang.cn/2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/';
-          this.page.identifier = '2017/04/12/Python下Flask结合Neo4j构建管理系统（二）/';
-          this.page.title = 'Python 下 Flask 结合 Neo4j 构建管理系统（二）';
+          this.page.url = 'http://www.rookieyang.cn/2017/07/11/AsyncTask总结/';
+          this.page.identifier = '2017/07/11/AsyncTask总结/';
+          this.page.title = 'AsyncTask 总结';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
