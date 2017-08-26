@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://www.rookieyang.cn/2017/08/26/Android%E4%B9%8BBroastCastReceiver/</loc>
+    <lastmod>2017-08-26T16:48:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>BroastCasts 总结</title>
+        <pubTime>2017-08-26T15:06:37.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>四大组件</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android 学习" url="http://www.rookieyang.cn/categories/Android-%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.rookieyang.cn/2017/05/02/Activity%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2017-08-26T15:07:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>Activity 学习</title>
+        <pubTime>2017-05-02T11:58:36.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>四大组件</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android 学习" url="http://www.rookieyang.cn/categories/Android-%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.rookieyang.cn/2017/08/24/14-04%E4%B8%8BAVD%E7%9A%84%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%97%AA%E9%80%80%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2017-08-25T08:02:55.000Z</lastmod>
     <data>
@@ -118,28 +162,6 @@
         <display>
         <title>Gallery 的三种实现方式</title>
         <pubTime>2017-05-08T11:17:49.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>总结</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android 学习" url="http://www.rookieyang.cn/categories/Android-%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.rookieyang.cn/2017/05/02/Activity%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2017-07-11T04:52:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>Activity 学习</title>
-        <pubTime>2017-05-02T11:58:36.000Z</pubTime>
         
         <tag>Android</tag>
          

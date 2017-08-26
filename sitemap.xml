@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.rookieyang.cn/2017/08/26/Android%E4%B9%8BBroastCastReceiver/</loc>
+    
+    <lastmod>2017-08-26T16:48:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.rookieyang.cn/2017/05/02/Activity%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2017-08-26T15:07:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.rookieyang.cn/2017/08/24/14-04%E4%B8%8BAVD%E7%9A%84%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%97%AA%E9%80%80%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2017-08-25T08:02:55.000Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>http://www.rookieyang.cn/2017/05/08/Gallery%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</loc>
     
     <lastmod>2017-07-11T04:52:11.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.rookieyang.cn/2017/05/02/Activity%E5%AD%A6%E4%B9%A0/</loc>
-    
-    <lastmod>2017-07-11T04:52:09.000Z</lastmod>
     
   </url>
   
