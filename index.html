@@ -311,6 +311,225 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/09/10/百分比圆环的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/10/百分比圆环的实现/" itemprop="url">
+                  百分比圆环的实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T09:01:22+08:00">
+                2017-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/10/百分比圆环的实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/10/百分比圆环的实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/10/百分比圆环的实现/" class="leancloud_visitors" data-flag-title="百分比圆环的实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好记得一些清理软件的存储空间都是以这种百分比圆环的方式显示出来的，所以了解了一下它的实现过程。</p>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p>最终实现的效果如下图所示：<br><img src="https://i.imgur.com/UlM8EHR.gif" alt="2017-09-10 16.01.09"></p>
+<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><p>从上图我们可以看到，绘制一个这样的百分比圆环主要有涉及到三个元素：</p>
+<ol>
+<li>背景空心圆：代表着总的进度</li>
+<li>圆弧：代表着当前进度</li>
+<li>文字：需要局中，表示具体的进度</li>
+</ol>
+<p>在了解到涉及到的元素之后，我们还需要了解绘制各个元素需要哪些参数，由于绘制都通过 onDraw 方法中的 canvas 对象，所以我们可以通过 canvas 对象的方法去确定所需要的参数。首先是绘制圆，查看 drawCircle 可以知道总共需要四个参数：<strong>圆心 X、Y 坐标、半径长度以及画笔 Paint</strong>；而圆弧所需要的参数略微会多一些，通过查看 drawArc 可以知道总共需要四个参数：<strong>Recf、圆弧的起始角度、从起始角度顺时针扫过的角度以及必须的 Paint</strong>，这里的 Recf 确定了一个矩形区域，然后确定了一个内接椭圆，而圆弧的绘制实际上是在椭圆上面进行截取；最后是文本的绘制，查看 drawText 可以知道，需要四个参数：<strong>文本内容、进行绘制的 X、Y 坐标点以及Paint</strong>。</p>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>在实现思路上我们已经弄清楚了绘制元素所需要的参数，这个时候就可以一步步进行绘制了：</p>
+<ol>
+<li><p>首先是绘制圆，这里我们定义了四个参数分别表示圆心 X，Y 的坐标、半径以及绘制所需要的画笔，然后对这些参数进行初始化，最终在 onDraw 进行绘制。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RingPercentDemo</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mCircleX;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mCircleY;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mRadius;</div><div class="line">    <span class="keyword">private</span> Paint mCirclePaint;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        mCircleX = <span class="number">300</span>;</div><div class="line">        mCircleY = <span class="number">300</span>;</div><div class="line">        mRadius = <span class="number">260</span>;</div><div class="line">        mCirclePaint = <span class="keyword">new</span> Paint();</div><div class="line">        mCirclePaint.setColor(Color.BLUE);</div><div class="line">        mCirclePaint.setStrokeWidth(<span class="number">10</span>);</div><div class="line">        mCirclePaint.setStyle(Style.STROKE); <span class="comment">//绘制空心圆所以不需要填充</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line"></div><div class="line">        canvas.drawCircle(mCircleX, mCircleY, mRadius, mCirclePaint);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>接下来是绘制圆环，从效果图上可以看出来，圆环实际上是在圆上截取一段圆弧表示，所以绘制圆环的矩形区域可以确定下来，在确定了矩形区域之后只需要自己设定起始的角度和扫过的角度即可以绘制出在圆上的圆弧。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RingPercentDemo</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="keyword">private</span> RectF mRecF;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mStartAngle;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mSweepAngle;</div><div class="line">    <span class="keyword">private</span> Paint mRingPaint;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        ...</div><div class="line"></div><div class="line">        mRecF = <span class="keyword">new</span> RectF(mCircleX - mRadius, mCircleY - mRadius,</div><div class="line">            mCircleX + mRadius, mCircleY + mRadius);</div><div class="line">        mStartAngle = -<span class="number">90f</span>;</div><div class="line">        mSweepAngle = <span class="number">120f</span>;</div><div class="line">        mRingPaint = <span class="keyword">new</span> Paint();</div><div class="line">        mRingPaint.setColor(Color.RED);</div><div class="line">        mRingPaint.setStrokeWidth(<span class="number">20</span>);</div><div class="line">        mRingPaint.setStyle(Style.STROKE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line"></div><div class="line">        ...</div><div class="line">        canvas.drawArc(mRecF, mStartAngle, mSweepAngle,</div><div class="line">            <span class="keyword">false</span>, mRingPaint); <span class="comment">//设置为 false 不与中心点进行连接</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>最后是绘制文本，由于要绘制在圆的中心，所以文本的坐标我们首先设置为圆的中心，然后绘制的风格选为 Align.CENTER，这样文本将以设定的坐标点向两边延伸保证了 X 处于中心位置。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RingPercentDemo</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextX;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextY;</div><div class="line">    <span class="keyword">private</span> Paint mTextPaint;</div><div class="line">    <span class="keyword">private</span> String mTextStr;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        ...</div><div class="line"></div><div class="line">        mTextPaint = <span class="keyword">new</span> Paint();</div><div class="line">        mTextPaint.setColor(Color.BLACK);</div><div class="line">        mTextPaint.setStyle(Style.FILL);</div><div class="line">        mTextPaint.setTextSize(<span class="number">40</span>);</div><div class="line">        mTextPaint.setTextAlign(Align.CENTER);</div><div class="line">        mTextPaint.setTextSize(mRadius / <span class="number">2</span>);</div><div class="line">        mTextX = mCircleX;</div><div class="line">        mTextY = mCircleY;</div><div class="line">        mTextStr = <span class="string">"33%"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line"></div><div class="line">        ...</div><div class="line">        canvas.drawText(mTextStr, mTextX, mTextY, mTextPaint);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>实际效果图：<br><img src="https://i.imgur.com/9ZYvei1.jpg" alt="tips1"><br>这个时候我们能够发现文本实质上不在中心位置，这是为什么呢？因为我们在设定的坐标是用于确定绘制的<strong>基准线</strong>而不是绘制的中心点，所以自然文本不可能绘制在正中心，具体可以借用下图来进行描述：<br><img src="https://i.imgur.com/vOewNzN.jpg" alt=""><br>从这就可以很明显的看到，文本的中心和设定的坐标之间是存在一个偏移量的，所以为了使文本处于真正的中心，我们需要计算得到这个偏移量，然后将之前设定的基准线下移。在计算偏移量之前首先需要了解字体是如何进行测量的，具体如下图所示：<br><img src="https://i.imgur.com/xwZqHv9.jpg" alt=""><br>其中 Top 表示基准线以上可绘制的最大距离（负数），Bottom 表示基准线以下可绘制的最大距离（正数），Ascent 表示基准线以上推荐的可绘制的距离，Descent 表示基准线以下推荐的可绘制的距离。<br>了解完这一切之后如何计算偏移量就很简单了，通过 FontMetrics 获取 Bottom 和 Top，然后通过 ((Bottom - Top) / 2) - Bottom 最终取得偏移量。代码做如下修改：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RingPercentDemo</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextX;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextY;</div><div class="line">    <span class="keyword">private</span> Paint mTextPaint;</div><div class="line">    <span class="keyword">private</span> String mTextStr;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        ...</div><div class="line">        FontMetrics fontMetrics = mTextPaint.getFontMetrics();</div><div class="line">        <span class="keyword">float</span> offsetY = ((fontMetrics.bottom - fontMetrics.top) / <span class="number">2</span>) - fontMetrics.bottom;</div><div class="line">        mTextY = (<span class="keyword">int</span>) (mCircleY + offsetY);</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改之后的效果：<br><img src="https://i.imgur.com/M9hzVs4.jpg" alt="tip2"></p>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>经过上述过程，虽然圆环百分比的效果已经实现，但是跟效果图中的还是差的很远，而且也不能够灵活，所以我们需要借助自定义属性去改进我们的圆环。</p>
+<ol>
+<li><p>首先需要在 values 文件夹下创建 attrs.xml 文件在里面声明我们需要定义的属性：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"RingPercentDemo"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"radius"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"color"</span> <span class="attr">name</span>=<span class="string">"circleColor"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"circleStrokeWidth"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"circleStyle"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"color"</span> <span class="attr">name</span>=<span class="string">"ringColor"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"ringStrokeWidth"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"startAngle"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"sweepAngle"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">format</span>=<span class="string">"integer"</span> <span class="attr">name</span>=<span class="string">"rate"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>然后在构造函数获取到自定义的属性的属性值</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line"></div><div class="line">        TypedArray typedArray = context.obtainStyledAttributes(</div><div class="line">            attrs, R.styleable.RingPercentDemo);</div><div class="line"></div><div class="line">        mRadius = typedArray.getInteger(R.styleable.RingPercentDemo_radius, <span class="number">60</span>);</div><div class="line">        mCircleColor = typedArray.getColor(</div><div class="line">            R.styleable.RingPercentDemo_circleColor, Color.GREEN);</div><div class="line">        mCircleStrokeWidth = typedArray.getInteger(</div><div class="line">            R.styleable.RingPercentDemo_circleStrokeWidth, <span class="number">5</span>);</div><div class="line">        mCircleStyle = typedArray.getInteger(</div><div class="line">            R.styleable.RingPercentDemo_circleStyle, <span class="number">0</span>);</div><div class="line">        mRingColor = typedArray.getColor(</div><div class="line">            R.styleable.RingPercentDemo_ringColor, Color.RED);</div><div class="line">        mRingStrokeWidth = typedArray.getColor(</div><div class="line">            R.styleable.RingPercentDemo_ringStrokeWidth, <span class="number">10</span>);</div><div class="line">        mStartAngle = typedArray.getInteger(</div><div class="line">            R.styleable.RingPercentDemo_startAngle, -<span class="number">90</span>);</div><div class="line">        mSweepAngle = typedArray.getInteger(</div><div class="line">            R.styleable.RingPercentDemo_sweepAngle, <span class="number">90</span>);</div><div class="line">        mRate = typedArray.getInteger(R.styleable.RingPercentDemo_rate, <span class="number">100</span>);</div><div class="line">        typedArray.recycle();</div><div class="line"></div><div class="line">        init();</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在获取到这些属性值之后只需要给对应的 Paint 和变量设置对应的值即可。</p>
+</li>
+</ol>
+<blockquote>
+<p>到这里自定义 View 的灵活性就变的较高了，但事实上还存在两个问题，一个是圆心的位置还是指定的不能够自适应，另一个是圆弧没有动画效果。所以我们需要接着改进。</p>
+</blockquote>
+<ol>
+<li><p>圆心的位置我们希望能    够一直处于 View 的中心，所以需要重写 onMeasure 方法，在 onMeasure 方法通过获取 View 的高度和宽度得到了 View 的中心点坐标，从而使得圆心一直在 View 的中心。   </p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">    setMeasuredDimension(measuse(widthMeasureSpec), measuse(heightMeasureSpec));</div><div class="line"></div><div class="line">    mCircleX = getMeasuredWidth() / <span class="number">2</span>;</div><div class="line">    mCircleY = getMeasuredHeight() / <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="comment">//判断设定的圆是否超出显示范围，如果超出需要缩小</span></div><div class="line">    <span class="keyword">if</span> (mCircleX &lt; mRadius) &#123;</div><div class="line">        mRadius = mCircleX - mCircleStrokeWidth - mRingStrokeWidth;</div><div class="line">        mTextPaint.setTextSize(mRadius / <span class="number">2</span>);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mCircleY &lt; mRadius) &#123;</div><div class="line">        mRadius = mCircleY - mCircleStrokeWidth - mRingStrokeWidth;</div><div class="line">        mTextPaint.setTextSize(mRadius / <span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    FontMetrics fontMetrics = mTextPaint.getFontMetrics();</div><div class="line">    <span class="keyword">int</span> offsetY = (<span class="keyword">int</span>) (((fontMetrics.bottom - fontMetrics.top)) / <span class="number">2</span> - fontMetrics.bottom);</div><div class="line">    mTextX = mCircleX;</div><div class="line">    mTextY = mCircleY + offsetY;</div><div class="line"></div><div class="line">    mRecF = <span class="keyword">new</span> RectF(mCircleX - mRadius, mCircleY - mRadius,</div><div class="line">        mCircleX + mRadius, mCircleY + mRadius);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在解决了圆心的问题之    后，还需要为圆弧提供动态变化的效果，这里可以通过不断重绘达成目标。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onDraw(canvas);</div><div class="line"></div><div class="line">    canvas.drawCircle(mCircleX, mCircleY, mRadius, mCirclePaint);</div><div class="line">    canvas.drawArc(mRecF, mStartAngle, mCurrentAngle, <span class="keyword">false</span>, mRingPaint);</div><div class="line">    canvas.drawText(mTextStr, mTextX, mTextY, mTextPaint);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (mCurrentAngle &lt; mSweepAngle) &#123;</div><div class="line">        mCurrentAngle += <span class="number">3.6</span>;</div><div class="line">        mTextStr = mCurrentAngle * <span class="number">100</span> / <span class="number">360</span> + <span class="string">"%"</span>;</div><div class="line">        postInvalidateDelayed(mRate);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最终的代码已经上传到Github上<a href="https://github.com/firstdream10/RingPercent" target="_blank" rel="external">源码地址</a></p>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>实际上自定义 View 过实际上自定义 View 过程需要将效果进行拆分，然后对拆分之后的每一个元素进行单独的处理，而为了让自定义的 View 可定制，还需要用到自定义属性。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><p><a href="http://www.cnblogs.com/slgkaifa/p/7101297.html" target="_blank" rel="external">android canvas drawText()文字居中</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/nugongahou110/article/details/49159189" target="_blank" rel="external">Android自定义控件之百分比圆环进度条</a></p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/09/03/Binder浅解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1848,175 +2067,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/05/02/Activity学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知北遊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/02/Activity学习/" itemprop="url">
-                  Activity 学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T19:58:36+08:00">
-                2017-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Android 学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/02/Activity学习/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/02/Activity学习/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/05/02/Activity学习/" class="leancloud_visitors" data-flag-title="Activity 学习">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>主要内容：<br><img src="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity" alt="Activity导图">
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/02/Activity学习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2066,7 +2116,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2088,7 +2138,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
