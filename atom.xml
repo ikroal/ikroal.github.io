@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.rookieyang.cn/"/>
-  <updated>2017-09-10T08:29:54.000Z</updated>
+  <updated>2017-09-10T14:30:10.000Z</updated>
   <id>http://www.rookieyang.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.rookieyang.cn/2017/09/10/%E7%99%BE%E5%88%86%E6%AF%94%E5%9C%86%E7%8E%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     <id>http://www.rookieyang.cn/2017/09/10/百分比圆环的实现/</id>
     <published>2017-09-10T01:01:22.000Z</published>
-    <updated>2017-09-10T08:29:54.000Z</updated>
+    <updated>2017-09-10T14:30:10.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好记得一些清理软件的存储空间都是以这种百分比圆环的方式显示出来的，所以了解了一下它的实现过程。</p>
 <h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p>最终实现的效果如下图所示：<br><img src="https://i.imgur.com/UlM8EHR.gif" alt="2017-09-10 16.01.09"></p>
@@ -28,7 +28,7 @@
 <ol>
 <li>背景空心圆：代表着总的进度</li>
 <li>圆弧：代表着当前进度</li>
-<li>文字：需要局中，表示具体的进度</li>
+<li>文字：需要局中，表示具体的进度<a id="more"></a></li>
 </ol>
 <p>在了解到涉及到的元素之后，我们还需要了解绘制各个元素需要哪些参数，由于绘制都通过 onDraw 方法中的 canvas 对象，所以我们可以通过 canvas 对象的方法去确定所需要的参数。首先是绘制圆，查看 drawCircle 可以知道总共需要四个参数：<strong>圆心 X、Y 坐标、半径长度以及画笔 Paint</strong>；而圆弧所需要的参数略微会多一些，通过查看 drawArc 可以知道总共需要四个参数：<strong>Recf、圆弧的起始角度、从起始角度顺时针扫过的角度以及必须的 Paint</strong>，这里的 Recf 确定了一个矩形区域，然后确定了一个内接椭圆，而圆弧的绘制实际上是在椭圆上面进行截取；最后是文本的绘制，查看 drawText 可以知道，需要四个参数：<strong>文本内容、进行绘制的 X、Y 坐标点以及Paint</strong>。</p>
 <h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>在实现思路上我们已经弄清楚了绘制元素所需要的参数，这个时候就可以一步步进行绘制了：</p>
@@ -81,7 +81,13 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好记得一些清理软件的存储空间都是以这种百分比圆环的方式显示出来的
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好记得一些清理软件的存储空间都是以这种百分比圆环的方式显示出来的，所以了解了一下它的实现过程。&lt;/p&gt;
+&lt;h3 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h3&gt;&lt;p&gt;最终实现的效果如下图所示：&lt;br&gt;&lt;img src=&quot;https://i.imgur.com/UlM8EHR.gif&quot; alt=&quot;2017-09-10 16.01.09&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;实现思路&quot;&gt;&lt;a href=&quot;#实现思路&quot; class=&quot;headerlink&quot; title=&quot;实现思路&quot;&gt;&lt;/a&gt;实现思路&lt;/h3&gt;&lt;p&gt;从上图我们可以看到，绘制一个这样的百分比圆环主要有涉及到三个元素：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;背景空心圆：代表着总的进度&lt;/li&gt;
+&lt;li&gt;圆弧：代表着当前进度&lt;/li&gt;
+&lt;li&gt;文字：需要局中，表示具体的进度
     
     </summary>
     
@@ -1402,9 +1408,9 @@
     
       <category term="Python" scheme="http://www.rookieyang.cn/tags/Python/"/>
     
-      <category term="Neo4j" scheme="http://www.rookieyang.cn/tags/Neo4j/"/>
-    
       <category term="Flask" scheme="http://www.rookieyang.cn/tags/Flask/"/>
+    
+      <category term="Neo4j" scheme="http://www.rookieyang.cn/tags/Neo4j/"/>
     
   </entry>
   
@@ -1475,9 +1481,9 @@
     
       <category term="Python" scheme="http://www.rookieyang.cn/tags/Python/"/>
     
-      <category term="Neo4j" scheme="http://www.rookieyang.cn/tags/Neo4j/"/>
-    
       <category term="Flask" scheme="http://www.rookieyang.cn/tags/Flask/"/>
+    
+      <category term="Neo4j" scheme="http://www.rookieyang.cn/tags/Neo4j/"/>
     
   </entry>
   
