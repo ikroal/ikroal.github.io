@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,Scrapy,数据处理," />
+  <meta name="keywords" content="Python,数据处理,Scrapy," />
 
 
 
@@ -92,7 +92,7 @@
 
 
 <meta name="description" content="在Python 下用 Scrapy 采集知网期刊数据（二）中已经获取了期刊的搜索结果，接下来就可以开始采集文献数据了。 采集期刊文献数据 定义 Items  为了定义常用的输出数据，Scrapy提供了 Item 类。 Item 对象是种简单的容器，保存了爬取到得数据。 其提供了 类似于词典(dictionary-like) 的API以及用于声明可用字段的简单语法。">
-<meta name="keywords" content="Python,Scrapy,数据处理">
+<meta name="keywords" content="Python,数据处理,Scrapy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 下用 Scrapy 采集知网期刊数据（三）">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/08/Python下用Scrapy采集知网期刊数据（三）/index.html">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://i.imgur.com/zMmDCQq.png">
 <meta property="og:image" content="http://i.imgur.com/vBGwbqw.png">
 <meta property="og:image" content="http://i.imgur.com/n1E6LzV.png">
-<meta property="og:updated_time" content="2017-10-28T06:03:02.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:52:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下用 Scrapy 采集知网期刊数据（三）">
 <meta name="twitter:description" content="在Python 下用 Scrapy 采集知网期刊数据（二）中已经获取了期刊的搜索结果，接下来就可以开始采集文献数据了。 采集期刊文献数据 定义 Items  为了定义常用的输出数据，Scrapy提供了 Item 类。 Item 对象是种简单的容器，保存了爬取到得数据。 其提供了 类似于词典(dictionary-like) 的API以及用于声明可用字段的简单语法。">
@@ -376,8 +376,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-实战/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 实战</span>
+                  <a href="/categories/Python实战/" itemprop="url" rel="index">
+                    <span itemprop="name">Python实战</span>
                   </a>
                 </span>
 
@@ -466,7 +466,7 @@
 <li><p>提取数据<br> 引证文献的数据提取是动态网页，所以不能够直接采集，通过抓包分析，数据主要下图的请求相关：<br> <img src="http://i.imgur.com/zMmDCQq.png" alt="请求"><br> <img src="http://i.imgur.com/vBGwbqw.png" alt="引证文献"><br> 为了对引证文献的所有类别进行翻页，参数 <code>CurDBCode</code> 必须去除，发送请求之后的页面如下图所示：<br> <img src="http://i.imgur.com/n1E6LzV.png" alt="数据"><br> 由于是纯文本页面，除了知道上图所示的参数之外，还需要知道引证文献的最大页数进行翻译，具体代码如下：</p>
 <ol>
 <li><p>发送引证文献请求</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">     requests_url = response.request</div><div class="line">     <span class="comment">#True 代表文献引证文献数大于 0，否则代表文献没有引证文献</span></div><div class="line">     flag = <span class="keyword">True</span></div><div class="line">     <span class="keyword">if</span> <span class="string">"rurl"</span> <span class="keyword">in</span> str(requests_url):</div><div class="line">         iden_code_url = str(requests_url).split(<span class="string">"GET"</span>)[<span class="number">1</span>].split(<span class="string">"&gt;"</span>)[<span class="number">0</span>].strip()</div><div class="line">         <span class="keyword">yield</span> scrapy.Request(iden_code_url, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;, callback=self.handleCode</div><div class="line">                              , dont_filter=<span class="keyword">True</span>)</div><div class="line">     <span class="comment">#quote_urls 用于保存引证文献数大于 10 的链接，代表着引证文献页数可能两页以上需要计算页数</span></div><div class="line">     quote_urls = []</div><div class="line">     <span class="comment">#quote_direct 用于保存引证文献数小于等于 10 的链接，代表着引证文献页数只有一页只用直接采集</span></div><div class="line">     quote_direct = []</div><div class="line">     <span class="keyword">for</span> result <span class="keyword">in</span> response.css(<span class="string">'tr[bgcolor]'</span>):</div><div class="line">         quote_url = result.css(<span class="string">"span[class=KnowledgeNetcont] &gt; a"</span>).xpath(<span class="string">"@onclick"</span>).extract_first()</div><div class="line">         num = result.css(<span class="string">"span[class=KnowledgeNetcont] &gt; a::text"</span>).extract_first()</div><div class="line">         <span class="keyword">if</span> quote_url <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">             <span class="keyword">if</span> int(num) &lt;= <span class="number">10</span>:</div><div class="line">                 pages = <span class="number">1</span></div><div class="line">             <span class="keyword">else</span>:</div><div class="line">                 pages = <span class="number">1000</span></div><div class="line">             title = result.css(<span class="string">"td &gt; a[class=fz14]"</span>).xpath(<span class="string">"string(.)"</span>).extract_first()</div><div class="line">             quote_code = self.get_quote_code(quote_url)</div><div class="line">             origin_quote_url = <span class="string">"http://kns.cnki.net/kcms/detail/frame/asynlist.aspx"</span></div><div class="line">             quote_parameters = &#123;<span class="string">'dbcode'</span>: <span class="string">'CJFQ'</span>, <span class="string">'search'</span>: title,</div><div class="line">                                 <span class="string">'code'</span>: quote_code, <span class="string">'ds'</span>: <span class="string">'frame/list.aspx'</span>,</div><div class="line">                                 <span class="string">'reftype'</span>: <span class="string">'18'</span>, <span class="string">'page'</span>: pages,</div><div class="line">                                 &#125;</div><div class="line">             url = self.get_url(origin_quote_url, quote_parameters)</div><div class="line">             <span class="keyword">if</span> int(num) &lt;= <span class="number">10</span>:</div><div class="line">                 quote_direct.append(url)</div><div class="line">             <span class="keyword">else</span>:</div><div class="line">                 quote_urls.append(url)</div><div class="line">         <span class="keyword">else</span>:</div><div class="line">             flag = <span class="keyword">False</span></div><div class="line"> </div><div class="line">     next_page = response.xpath(<span class="string">"//div/a[text()='下一页']/@href"</span>).extract()</div><div class="line">     <span class="keyword">if</span> next_page <span class="keyword">and</span> flag:</div><div class="line">         next_page = response.urljoin(next_page[<span class="number">0</span>])</div><div class="line">         <span class="keyword">yield</span> scrapy.Request(next_page, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;, callback=self.parse</div><div class="line">                              , dont_filter=<span class="keyword">True</span>, priority=<span class="number">100</span>)</div><div class="line">     <span class="keyword">for</span> get_quote_url <span class="keyword">in</span> quote_urls:</div><div class="line">         <span class="keyword">yield</span> scrapy.Request(get_quote_url, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;,</div><div class="line">                              callback=self.parse_first_quote)</div><div class="line">     <span class="keyword">for</span> get_quote_url <span class="keyword">in</span> quote_direct:</div><div class="line">         <span class="keyword">yield</span> scrapy.Request(get_quote_url, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;,</div><div class="line">                              callback=self.parse_quote)</div></pre></td></tr></table></figure>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line"> requests_url = response.request</div><div class="line"> <span class="comment">#True 代表文献引证文献数大于 0，否则代表文献没有引证文献</span></div><div class="line"> flag = <span class="keyword">True</span></div><div class="line"> <span class="keyword">if</span> <span class="string">"rurl"</span> <span class="keyword">in</span> str(requests_url):</div><div class="line">     iden_code_url = str(requests_url).split(<span class="string">"GET"</span>)[<span class="number">1</span>].split(<span class="string">"&gt;"</span>)[<span class="number">0</span>].strip()</div><div class="line">     <span class="keyword">yield</span> scrapy.Request(iden_code_url, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;, callback=self.handleCode</div><div class="line">                          , dont_filter=<span class="keyword">True</span>)</div><div class="line"> <span class="comment">#quote_urls 用于保存引证文献数大于 10 的链接，代表着引证文献页数可能两页以上需要计算页数</span></div><div class="line"> quote_urls = []</div><div class="line"> <span class="comment">#quote_direct 用于保存引证文献数小于等于 10 的链接，代表着引证文献页数只有一页只用直接采集</span></div><div class="line"> quote_direct = []</div><div class="line"> <span class="keyword">for</span> result <span class="keyword">in</span> response.css(<span class="string">'tr[bgcolor]'</span>):</div><div class="line">     quote_url = result.css(<span class="string">"span[class=KnowledgeNetcont] &gt; a"</span>).xpath(<span class="string">"@onclick"</span>).extract_first()</div><div class="line">     num = result.css(<span class="string">"span[class=KnowledgeNetcont] &gt; a::text"</span>).extract_first()</div><div class="line">     <span class="keyword">if</span> quote_url <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">         <span class="keyword">if</span> int(num) &lt;= <span class="number">10</span>:</div><div class="line">             pages = <span class="number">1</span></div><div class="line">         <span class="keyword">else</span>:</div><div class="line">             pages = <span class="number">1000</span></div><div class="line">         title = result.css(<span class="string">"td &gt; a[class=fz14]"</span>).xpath(<span class="string">"string(.)"</span>).extract_first()</div><div class="line">         quote_code = self.get_quote_code(quote_url)</div><div class="line">         origin_quote_url = <span class="string">"http://kns.cnki.net/kcms/detail/frame/asynlist.aspx"</span></div><div class="line">         quote_parameters = &#123;<span class="string">'dbcode'</span>: <span class="string">'CJFQ'</span>, <span class="string">'search'</span>: title,</div><div class="line">                             <span class="string">'code'</span>: quote_code, <span class="string">'ds'</span>: <span class="string">'frame/list.aspx'</span>,</div><div class="line">                             <span class="string">'reftype'</span>: <span class="string">'18'</span>, <span class="string">'page'</span>: pages,</div><div class="line">                             &#125;</div><div class="line">         url = self.get_url(origin_quote_url, quote_parameters)</div><div class="line">         <span class="keyword">if</span> int(num) &lt;= <span class="number">10</span>:</div><div class="line">             quote_direct.append(url)</div><div class="line">         <span class="keyword">else</span>:</div><div class="line">             quote_urls.append(url)</div><div class="line">     <span class="keyword">else</span>:</div><div class="line">         flag = <span class="keyword">False</span></div><div class="line"></div><div class="line"> next_page = response.xpath(<span class="string">"//div/a[text()='下一页']/@href"</span>).extract()</div><div class="line"> <span class="keyword">if</span> next_page <span class="keyword">and</span> flag:</div><div class="line">     next_page = response.urljoin(next_page[<span class="number">0</span>])</div><div class="line">     <span class="keyword">yield</span> scrapy.Request(next_page, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;, callback=self.parse</div><div class="line">                          , dont_filter=<span class="keyword">True</span>, priority=<span class="number">100</span>)</div><div class="line"> <span class="keyword">for</span> get_quote_url <span class="keyword">in</span> quote_urls:</div><div class="line">     <span class="keyword">yield</span> scrapy.Request(get_quote_url, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;,</div><div class="line">                          callback=self.parse_first_quote)</div><div class="line"> <span class="keyword">for</span> get_quote_url <span class="keyword">in</span> quote_direct:</div><div class="line">     <span class="keyword">yield</span> scrapy.Request(get_quote_url, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;,</div><div class="line">                          callback=self.parse_quote)</div></pre></td></tr></table></figure>
 <ul>
 <li><code>title</code> 文献的篇名</li>
 <li><code>quote_code</code> 文献的编码</li>
@@ -520,9 +520,9 @@
           
             <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/Scrapy/" rel="tag"># Scrapy</a>
-          
             <a href="/tags/数据处理/" rel="tag"># 数据处理</a>
+          
+            <a href="/tags/Scrapy/" rel="tag"># Scrapy</a>
           
         </div>
       
@@ -626,7 +626,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -637,7 +637,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -648,7 +648,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -742,7 +742,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

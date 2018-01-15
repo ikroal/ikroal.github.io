@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/07/22/LayoutInflater总结/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="LayoutInflater 的获取获取 LayoutInflater 的方式一般有三种：  getLayoutInflater() LayoutInflater.from(Context context) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)  这三种获取方式本质上都是一样的  getLayoutInflater()">
-<meta property="og:updated_time" content="2017-10-28T06:07:57.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:51:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LayoutInflater 总结">
 <meta name="twitter:description" content="LayoutInflater 的获取获取 LayoutInflater 的方式一般有三种：  getLayoutInflater() LayoutInflater.from(Context context) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)  这三种获取方式本质上都是一样的  getLayoutInflater()">
@@ -370,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-知识总结/" itemprop="url" rel="index">
-                    <span itemprop="name">Android 知识总结</span>
+                  <a href="/categories/Android基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Android基础</span>
                   </a>
                 </span>
 
@@ -438,9 +438,9 @@
 <li>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</li>
 <li><p>LayoutInflater.from(Context context) 内部通过以下代码获取 LayoutInflater。<a id="more"></a></p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LayoutInflater <span class="title">from</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    LayoutInflater LayoutInflater =</div><div class="line">            (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</div><div class="line">    <span class="keyword">if</span> (LayoutInflater == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError(<span class="string">"LayoutInflater not found."</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> LayoutInflater;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  <strong>结论：所以这三种方式最终都调用了 Context.getSystemService()</strong></p>
 </li>
 </ul>
-<p><strong>结论：所以这三种方式最终都调用了 Context.getSystemService()</strong></p>
 <h4 id="LayoutInflater-的-inflater-方法"><a href="#LayoutInflater-的-inflater-方法" class="headerlink" title="LayoutInflater 的 inflater 方法"></a>LayoutInflater 的 inflater 方法</h4><p>inflater 作为 LayoutInflater 中最常用的方法，用于从 xml 的布局文件得到一个 View 对象，加载到 Activity 用于动态创建布局。inflater 总共重载了 4 种调用方式：</p>
 <ol>
 <li><code>public View inflate(@LayoutRes int resource, @Nullable ViewGroup root)</code></li>
@@ -602,7 +602,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -613,7 +613,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -624,7 +624,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -718,7 +718,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

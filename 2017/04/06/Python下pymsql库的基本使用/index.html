@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/06/Python下pymsql库的基本使用/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="库的导入import pymysql">
-<meta property="og:updated_time" content="2017-10-28T06:02:20.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:52:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 pymsql 库的基本使用">
 <meta name="twitter:description" content="库的导入import pymysql">
@@ -370,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-练习/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 练习</span>
+                  <a href="/categories/Python基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python基础</span>
                   </a>
                 </span>
 
@@ -433,18 +433,18 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MYSQL_HOST = &apos;localhost&apos;</div><div class="line">MYSQL_DBNAME = &apos;cnkiQuote&apos;</div><div class="line">MYSQL_USER = &apos;root&apos;</div><div class="line">MYSQL_PASSWD = &apos;123456&apos;</div></pre></td></tr></table></figure>
 <p> 从上往下依次是主机 ip，数据库名，用户名及密码。</p>
 </li>
-<li>连接<br> 指定编码为 utf8 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection=pymysql.connect(</div><div class="line">        host=MYSQL_HOST,</div><div class="line">        db=MYSQL_DBNAME,</div><div class="line">        user=MYSQL_USER,</div><div class="line">        passwd=MYSQL_PASSWD,</div><div class="line">        charset=<span class="string">'utf8'</span>,</div><div class="line">        use_unicode=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<li>连接<br> 指定编码为 utf8 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection=pymysql.connect(</div><div class="line">    host=MYSQL_HOST,</div><div class="line">    db=MYSQL_DBNAME,</div><div class="line">    user=MYSQL_USER,</div><div class="line">    passwd=MYSQL_PASSWD,</div><div class="line">    charset=<span class="string">'utf8'</span>,</div><div class="line">    use_unicode=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h4 id="Sql-操作"><a href="#Sql-操作" class="headerlink" title="Sql 操作"></a>Sql 操作</h4><ol>
 <li><p>查询</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""select * from periodical_data where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">    (item[<span class="string">"title"</span>],</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""select * from periodical_data where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">(item[<span class="string">"title"</span>],</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
 </li>
 <li><p>插入</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""insert into periodical_data(title,author,journalName,publicationDate,referenceNum, downloadNum) value (%s,%s,%s,%s,%s,%s)"""</span>,</div><div class="line">    (item[<span class="string">'title'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>]),</div><div class="line">    item[<span class="string">'journalName'</span>],</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    item[<span class="string">'referenceNum'</span>],</div><div class="line">    item[<span class="string">'downloadNum'</span>]))</div></pre></td></tr></table></figure>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""insert into periodical_data(title,author,journalName,publicationDate,referenceNum, downloadNum) value (%s,%s,%s,%s,%s,%s)"""</span>,</div><div class="line">(item[<span class="string">'title'</span>],</div><div class="line">str(item[<span class="string">'author'</span>]),</div><div class="line">item[<span class="string">'journalName'</span>],</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">item[<span class="string">'referenceNum'</span>],</div><div class="line">item[<span class="string">'downloadNum'</span>]))</div></pre></td></tr></table></figure>
 </li>
 <li><p>更新</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""update periodical_data set title = %s,author = %s,journalName = %s, publicationDate = %s,referenceNum = %s,downloadNum = %s where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">    (str(item[<span class="string">'title'</span>]),</div><div class="line">    str(item[<span class="string">'author'</span>]),</div><div class="line">    str(item[<span class="string">'journalName'</span>]),</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    item[<span class="string">'referenceNum'</span>],</div><div class="line">    item[<span class="string">'downloadNum'</span>],</div><div class="line">    str(item[<span class="string">'title'</span>]),</div><div class="line">    item[<span class="string">'publicationDate'</span>],</div><div class="line">    str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""update periodical_data set title = %s,author = %s,journalName = %s, publicationDate = %s,referenceNum = %s,downloadNum = %s where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">(str(item[<span class="string">'title'</span>]),</div><div class="line">str(item[<span class="string">'author'</span>]),</div><div class="line">str(item[<span class="string">'journalName'</span>]),</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">item[<span class="string">'referenceNum'</span>],</div><div class="line">item[<span class="string">'downloadNum'</span>],</div><div class="line">str(item[<span class="string">'title'</span>]),</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure>
 </li>
 <li><p>提交更改<br> <code>connection.commit()</code></p>
 </li>
@@ -585,7 +585,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -596,7 +596,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -607,7 +607,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -701,7 +701,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

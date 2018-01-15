@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,Scrapy,数据处理," />
+  <meta name="keywords" content="Python,数据处理,Scrapy," />
 
 
 
@@ -92,7 +92,7 @@
 
 
 <meta name="description" content="需求本次采集需要采集期刊 2000～2010 年间的数据，相关的数据首先是期刊中各文献的数据：">
-<meta name="keywords" content="Python,Scrapy,数据处理">
+<meta name="keywords" content="Python,数据处理,Scrapy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 下用 Scrapy 采集知网期刊数据（二）">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/06/Python下用Scrapy采集知网期刊数据（二）/index.html">
@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://i.imgur.com/MEX3upo.png">
 <meta property="og:image" content="http://i.imgur.com/m1Rlxox.png">
 <meta property="og:image" content="http://i.imgur.com/z3erumM.png">
-<meta property="og:updated_time" content="2017-10-28T06:02:51.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:52:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下用 Scrapy 采集知网期刊数据（二）">
 <meta name="twitter:description" content="需求本次采集需要采集期刊 2000～2010 年间的数据，相关的数据首先是期刊中各文献的数据：">
@@ -378,8 +378,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-实战/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 实战</span>
+                  <a href="/categories/Python实战/" itemprop="url" rel="index">
+                    <span itemprop="name">Python实战</span>
                   </a>
                 </span>
 
@@ -471,8 +471,7 @@
 <ul>
 <li><p><code>meta={&#39;cookiejar&#39;: i}</code> 保存的是 cookie 用于保持持久性连接。</p>
 <blockquote>
-<p>There is support for keeping multiple cookie sessions per spider by using the cookiejar Request meta key. By default it uses a single cookie jar (session), but you can pass an identifier to use different ones.<br>For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for i, url in enumerate(urls):</div><div class="line">    yield scrapy.Request(url, meta=&#123;&apos;cookiejar&apos;: i&#125;,</div><div class="line">        callback=self.parse_page)</div></pre></td></tr></table></figure>
+<p>There is support for keeping multiple cookie sessions per spider by using the cookiejar Request meta key. By default it uses a single cookie jar (session), but you can pass an identifier to use different ones.<br>For example:<br>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for i, url in enumerate(urls):</div><div class="line">    yield scrapy.Request(url, meta=&#123;&apos;cookiejar&apos;: i&#125;,</div><div class="line">        callback=self.parse_page)</div><div class="line">​</div></pre></td></tr></table></figure></p>
 </blockquote>
 </li>
 <li><p><code>start_requests(self)</code> 在获取到搜索结果之后回调 <code>result_page(self, response)</code> 进行进一步处理。</p>
@@ -480,7 +479,7 @@
 <li><p><code>meta={&#39;cookiejar&#39;: response.meta[&#39;cookiejar&#39;]}</code> 取出 cookie 值向下传递。</p>
 <blockquote>
 <p>Keep in mind that the cookiejar meta key is not “sticky”. You need to keep passing it along on subsequent requests. For example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def parse_page(self, response):</div><div class="line">    # do some processing</div><div class="line">    return scrapy.Request(&quot;http://www.example.com/otherpage&quot;,</div><div class="line">        meta=&#123;&apos;cookiejar&apos;: response.meta[&apos;cookiejar&apos;]&#125;,</div><div class="line">        callback=self.parse_other_page)</div></pre></td></tr></table></figure>
+<p>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def parse_page(self, response):</div><div class="line">    # do some processing</div><div class="line">    return scrapy.Request(&quot;http://www.example.com/otherpage&quot;,</div><div class="line">        meta=&#123;&apos;cookiejar&apos;: response.meta[&apos;cookiejar&apos;]&#125;,</div><div class="line">        callback=self.parse_other_page)</div><div class="line">​</div></pre></td></tr></table></figure></p>
 </blockquote>
 </li>
 <li><p><code>dont_filter=True</code> 由于第二次请求的链接相同，Scrapy 默认会过滤到这些请求，所以必须设置为 True。</p>
@@ -524,9 +523,9 @@
           
             <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/Scrapy/" rel="tag"># Scrapy</a>
-          
             <a href="/tags/数据处理/" rel="tag"># 数据处理</a>
+          
+            <a href="/tags/Scrapy/" rel="tag"># Scrapy</a>
           
         </div>
       
@@ -630,7 +629,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -641,7 +640,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -652,7 +651,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -746,7 +745,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

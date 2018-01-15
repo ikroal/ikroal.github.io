@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,源码阅读,启动过程," />
+  <meta name="keywords" content="Android,源码分析," />
 
 
 
@@ -92,7 +92,7 @@
 
 
 <meta name="description" content="问题在进入到 Android 启动过程之前先让我们思考以下几个问题  Android 系统的启动过程是怎样的？ init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ AMS、PMS 等这些服务是如何被启动的？ Launcher 是如何被启动的？  此篇文章将针对 init 部分给出分析">
-<meta name="keywords" content="Android,源码阅读,启动过程">
+<meta name="keywords" content="Android,源码分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 启动过程简析（一）之 init 进程">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/10/28/Android启动过程简析（一）/index.html">
@@ -100,7 +100,7 @@
 <meta property="og:description" content="问题在进入到 Android 启动过程之前先让我们思考以下几个问题  Android 系统的启动过程是怎样的？ init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ AMS、PMS 等这些服务是如何被启动的？ Launcher 是如何被启动的？  此篇文章将针对 init 部分给出分析">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-e2Cr_h19sKk/WfQwoTGcmCI/AAAAAAAAApY/udev7M2sMboatGQE4Q0Nz9UxnNUQsSynQCHMYCw/I/zygote">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-wlIkoaKOx7c/WfQxKU3M1JI/AAAAAAAAApg/_xLtrOG4nwQCQoTlPbFcaxG0t2CSQVsyQCHMYCw/I/zygote">
-<meta property="og:updated_time" content="2017-10-28T10:10:33.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:47:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 启动过程简析（一）之 init 进程">
 <meta name="twitter:description" content="问题在进入到 Android 启动过程之前先让我们思考以下几个问题  Android 系统的启动过程是怎样的？ init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ AMS、PMS 等这些服务是如何被启动的？ Launcher 是如何被启动的？  此篇文章将针对 init 部分给出分析">
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-知识总结/" itemprop="url" rel="index">
-                    <span itemprop="name">Android 知识总结</span>
+                  <a href="/categories/Android进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">Android进阶</span>
                   </a>
                 </span>
 
@@ -563,9 +563,7 @@
           
             <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/源码阅读/" rel="tag"># 源码阅读</a>
-          
-            <a href="/tags/启动过程/" rel="tag"># 启动过程</a>
+            <a href="/tags/源码分析/" rel="tag"># 源码分析</a>
           
         </div>
       
@@ -577,6 +575,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/05/Android启动过程简析（二）/" rel="next" title="Android 启动过程简析（二）之 zygote 进程">
+                <i class="fa fa-chevron-left"></i> Android 启动过程简析（二）之 zygote 进程
+              </a>
             
           </div>
 
@@ -665,7 +667,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -676,7 +678,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -687,7 +689,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -781,7 +783,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://i.imgur.com/vOewNzN.jpg">
 <meta property="og:image" content="https://i.imgur.com/xwZqHv9.jpg">
 <meta property="og:image" content="https://i.imgur.com/M9hzVs4.jpg">
-<meta property="og:updated_time" content="2017-10-28T06:09:23.000Z">
+<meta property="og:updated_time" content="2018-01-15T15:06:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百分比圆环的实现">
 <meta name="twitter:description" content="前言最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好记得一些清理软件的存储空间都是以这种百分比圆环的方式显示出来的，所以了解了一下它的实现过程。 效果图最终实现的效果如下图所示： 实现思路从上图我们可以看到，绘制一个这样的百分比圆环主要有涉及到三个元素：  背景空心圆：代表着总的进度 圆弧：代表着当前进度 文字：需要局中，表示具体的进度">
@@ -376,8 +376,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-练习/" itemprop="url" rel="index">
-                    <span itemprop="name">Android 练习</span>
+                  <a href="/categories/Android基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Android基础</span>
                   </a>
                 </span>
 
@@ -452,9 +452,9 @@
 </li>
 <li><p>最后是绘制文本，由于要绘制在圆的中心，所以文本的坐标我们首先设置为圆的中心，然后绘制的风格选为 Align.CENTER，这样文本将以设定的坐标点向两边延伸保证了 X 处于中心位置。</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RingPercentDemo</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextX;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextY;</div><div class="line">    <span class="keyword">private</span> Paint mTextPaint;</div><div class="line">    <span class="keyword">private</span> String mTextStr;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        ...</div><div class="line"></div><div class="line">        mTextPaint = <span class="keyword">new</span> Paint();</div><div class="line">        mTextPaint.setColor(Color.BLACK);</div><div class="line">        mTextPaint.setStyle(Style.FILL);</div><div class="line">        mTextPaint.setTextSize(<span class="number">40</span>);</div><div class="line">        mTextPaint.setTextAlign(Align.CENTER);</div><div class="line">        mTextPaint.setTextSize(mRadius / <span class="number">2</span>);</div><div class="line">        mTextX = mCircleX;</div><div class="line">        mTextY = mCircleY;</div><div class="line">        mTextStr = <span class="string">"33%"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line"></div><div class="line">        ...</div><div class="line">        canvas.drawText(mTextStr, mTextX, mTextY, mTextPaint);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 实际效果图：<br> <img src="https://i.imgur.com/9ZYvei1.jpg" alt="tips1"><br> 这个时候我们能够发现文本实质上不在中心位置，这是为什么呢？因为我们在设定的坐标是用于确定绘制的<strong>基准线</strong>而不是绘制的中心点，所以自然文本不可能绘制在正中心，具体可以借用下图来进行描述：<br> <img src="https://i.imgur.com/vOewNzN.jpg" alt=""><br> 从这就可以很明显的看到，文本的中心和设定的坐标之间是存在一个偏移量的，所以为了使文本处于真正的中心，我们需要计算得到这个偏移量，然后将之前设定的基准线下移。在计算偏移量之前首先需要了解字体是如何进行测量的，具体如下图所示：<br> <img src="https://i.imgur.com/xwZqHv9.jpg" alt=""><br> 其中 Top 表示基准线以上可绘制的最大距离（负数），Bottom 表示基准线以下可绘制的最大距离（正数），Ascent 表示基准线以上推荐的可绘制的距离，Descent 表示基准线以下推荐的可绘制的距离。<br> 了解完这一切之后如何计算偏移量就很简单了，通过 FontMetrics 获取 Bottom 和 Top，然后通过 ((Bottom - Top) / 2) - Bottom 最终取得偏移量。代码做如下修改：</p>
 </li>
 </ol>
-<p>实际效果图：<br><img src="https://i.imgur.com/9ZYvei1.jpg" alt="tips1"><br>这个时候我们能够发现文本实质上不在中心位置，这是为什么呢？因为我们在设定的坐标是用于确定绘制的<strong>基准线</strong>而不是绘制的中心点，所以自然文本不可能绘制在正中心，具体可以借用下图来进行描述：<br><img src="https://i.imgur.com/vOewNzN.jpg" alt=""><br>从这就可以很明显的看到，文本的中心和设定的坐标之间是存在一个偏移量的，所以为了使文本处于真正的中心，我们需要计算得到这个偏移量，然后将之前设定的基准线下移。在计算偏移量之前首先需要了解字体是如何进行测量的，具体如下图所示：<br><img src="https://i.imgur.com/xwZqHv9.jpg" alt=""><br>其中 Top 表示基准线以上可绘制的最大距离（负数），Bottom 表示基准线以下可绘制的最大距离（正数），Ascent 表示基准线以上推荐的可绘制的距离，Descent 表示基准线以下推荐的可绘制的距离。<br>了解完这一切之后如何计算偏移量就很简单了，通过 FontMetrics 获取 Bottom 和 Top，然后通过 ((Bottom - Top) / 2) - Bottom 最终取得偏移量。代码做如下修改：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RingPercentDemo</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextX;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextY;</div><div class="line">    <span class="keyword">private</span> Paint mTextPaint;</div><div class="line">    <span class="keyword">private</span> String mTextStr;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RingPercentDemo</span><span class="params">(Context context,</span></span></div><div class="line">        @Nullable AttributeSet attrs) &#123;</div><div class="line">        ...</div><div class="line">        FontMetrics fontMetrics = mTextPaint.getFontMetrics();</div><div class="line">        <span class="keyword">float</span> offsetY = ((fontMetrics.bottom - fontMetrics.top) / <span class="number">2</span>) - fontMetrics.bottom;</div><div class="line">        mTextY = (<span class="keyword">int</span>) (mCircleY + offsetY);</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>修改之后的效果：<br><img src="https://i.imgur.com/M9hzVs4.jpg" alt="tip2"></p>
 <h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>经过上述过程，虽然圆环百分比的效果已经实现，但是跟效果图中的还是差的很远，而且也不能够灵活，所以我们需要借助自定义属性去改进我们的圆环。</p>
@@ -623,7 +623,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -634,7 +634,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -645,7 +645,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -739,7 +739,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

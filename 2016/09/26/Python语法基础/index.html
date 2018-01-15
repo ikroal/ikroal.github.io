@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2016/09/26/Python语法基础/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="近段时间学习了下Python，于是大略总结了下所学的语法知识：">
-<meta property="og:updated_time" content="2017-10-28T05:59:40.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:52:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 语法基础">
 <meta name="twitter:description" content="近段时间学习了下Python，于是大略总结了下所学的语法知识：">
@@ -370,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-知识总结/" itemprop="url" rel="index">
-                    <span itemprop="name">Python 知识总结</span>
+                  <a href="/categories/Python基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python基础</span>
                   </a>
                 </span>
 
@@ -429,23 +429,22 @@
       
         <p>近段时间学习了下Python，于是大略总结了下所学的语法知识：<a id="more"></a></p>
 <ul>
-<li>列表的创建:<br><code>movies = [&quot;The Holy Grail&quot;, 1975, &quot;Terry Jones &amp; Terry Gilliam&quot;, 91,[&quot;Graham Chapman&quot;, [&quot;Michael Palin&quot;, &quot;John Cleese&quot;, &quot;Terry Gilliam&quot;, &quot;Eric Idle&quot;, &quot;Terry Jones&quot;]]]</code><br>　这里是一个嵌套列表的创建，其中的中括号也可以换成大括号，双引号可以用单引号代替，列表里面可以是混合的数据。常用的方法有 <code>append()</code>：在列表末尾增加一个数据项，<code>pop()</code>：在列表的末尾删除数据， <code>extend(数据项集合)</code>：在列表的末尾添加一个数据项集合，<code>remove(项)</code>：删除一个特定数据的项，<code>insert(序号, 数据项)</code>：在指定序号的前面插入数据项。</li>
-<li>列表的遍历之 <code>for</code> 循环:<br>　列表的遍历需要用到 <code>for</code> 循环，其基本语法是：<code>for 变量 in 列表项：</code>，由此可以将列表中的每一项（只会遍历一级列表）通过 <code>print()</code> 函数输出。</li>
-<li><p>嵌套列表的遍历之 <code>if</code> 判断:<br>　对于嵌套列表的遍历，需要判断 <code>for</code> 循环时每一项是否是列表项，因此需要用到 <code>if</code> 判断语句和 <code>isinstance</code>，<code>isinstance(变量, list)</code> 用于判断是否是列表，<code>if</code> 的语法是：</p>
+<li>列表的创建:<br> <code>movies = [&quot;The Holy Grail&quot;, 1975, &quot;Terry Jones &amp; Terry Gilliam&quot;, 91,[&quot;Graham Chapman&quot;, [&quot;Michael Palin&quot;, &quot;John Cleese&quot;, &quot;Terry Gilliam&quot;, &quot;Eric Idle&quot;, &quot;Terry Jones&quot;]]]</code><br> 　这里是一个嵌套列表的创建，其中的中括号也可以换成大括号，双引号可以用单引号代替，列表里面可以是混合的数据。常用的方法有 <code>append()</code>：在列表末尾增加一个数据项，<code>pop()</code>：在列表的末尾删除数据， <code>extend(数据项集合)</code>：在列表的末尾添加一个数据项集合，<code>remove(项)</code>：删除一个特定数据的项，<code>insert(序号, 数据项)</code>：在指定序号的前面插入数据项。</li>
+<li>列表的遍历之 <code>for</code> 循环:<br> 列表的遍历需要用到 <code>for</code> 循环，其基本语法是：<code>for 变量 in 列表项：</code>，由此可以将列表中的每一项（只会遍历一级列表）通过 <code>print()</code> 函数输出。</li>
+<li><p>嵌套列表的遍历之 <code>if</code> 判断:<br> 对于嵌套列表的遍历，需要判断 <code>for</code> 循环时每一项是否是列表项，因此需要用到 <code>if</code> 判断语句和 <code>isinstance</code>，<code>isinstance(变量, list)</code> 用于判断是否是列表，<code>if</code> 的语法是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if 某个条件满足:</div><div class="line">　　True组</div><div class="line">else:</div><div class="line">　　False组</div></pre></td></tr></table></figure>
 </li>
-<li><p>嵌套列表的遍历之定义函数：<br>　上述最多只能够处理一层嵌套的列表，如果希望处理多层嵌套的列表则需要定义函数并去递归调用，其基本语法是：</p>
+<li><p>嵌套列表的遍历之定义函数：<br> 上述最多只能够处理一层嵌套的列表，如果希望处理多层嵌套的列表则需要定义函数并去递归调用，其基本语法是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def 函数名(参数):</div><div class="line">　代码块</div></pre></td></tr></table></figure>
 </li>
 <li><p>转换为模块：<br>代码块保存为 .py 文件，创建 setup.py 的文件，包含如下内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">from distutils.core import setup</div><div class="line">setup(</div><div class="line">    　name=&apos;HelloWorld&apos;,</div><div class="line">    　version=&apos;1.0.0&apos;,</div><div class="line">    　py_modules=[&apos;nester&apos;],</div><div class="line">    　url=&apos;http://www.headfirstlabs&apos;,</div><div class="line">    　author=&apos;firstdream&apos;,</div><div class="line">    　author_email=&apos;firstdream10@icloud.com&apos;,</div><div class="line">    　description=&apos;A simple printer of nested lists&apos;</div><div class="line">)</div></pre></td></tr></table></figure>
-<p>  构建发布文件 (windows 下):<br>  <code>python setup.py sdist</code><br>  安装 Python 副本到本地：<br>  <code>python setup.py install</code><br>  导入模块：<br>  <code>import 模块名</code><br>  向 PyPl 上传代码：<br>  <code>python setup.py register(第一次上传)</code><br>  <code>python setup.py sdist upload</code>
-　   </p>
+<p>  构建发布文件 (windows 下):<br>  <code>python setup.py sdist</code><br>  安装 Python 副本到本地：<br>  <code>python setup.py install</code><br>  导入模块：<br>  <code>import 模块名</code><br>  向 PyPl 上传代码：<br>  <code>python setup.py register(第一次上传)</code><br>  <code>python setup.py sdist upload</code></p>
 </li>
 <li><p>常用 BIF</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#创建一个空的列表</div><div class="line">list()</div><div class="line">#返回一个迭代器，根据需要生成一个指定范围的数字，常配合 for 循环使用</div><div class="line">range()</div><div class="line">for num in range(4):</div><div class="line">　　print(num)</div><div class="line">＃创建成对数据的一个编号列表，从 0 开始</div><div class="line">enumerate()</div><div class="line">#将一个字符串或另一个数转换为一个整数(如果可行)</div><div class="line">int()</div><div class="line">#返回一个 Python 数据对象的唯一标识</div><div class="line">id()</div><div class="line">#返回一个可迭代数据结构中的下一项</div><div class="line">next()</div></pre></td></tr></table></figure>
 </li>
-<li><p>为函数提供默认参数<br>　　def 函数名(参数=缺省值):<br></p>
+<li><p>为函数提供默认参数<br>  def 函数名(参数=缺省值):<br></p>
 </li>
 </ul>
 <hr>
@@ -464,16 +463,16 @@
 <hr>
 <p>2016.10.15<br></p>
 <ul>
-<li><p>pickle “腌制”数据和恢复数据<br>　Python 提供了一个标准库 pickle 用于保存和加载 Python 的数据对象，使用方法：</p>
+<li><p>pickle “腌制”数据和恢复数据<br> Python 提供了一个标准库 pickle 用于保存和加载 Python 的数据对象，使用方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import pickle</div><div class="line">...</div><div class="line">#pickle 处理文件数据时必须以二进制访问</div><div class="line">with open(&apos;mydata.pickle&apos;, &apos;wb&apos;) as mysavedata:</div><div class="line">　　　pickle.dump([1, 2, &apos;&apos;three], mysavedata)</div><div class="line">　　　...</div><div class="line">with open(&apos;mydata.pickle&apos;, &apos;rb&apos;) as myrestoredata:</div><div class="line">　　　a_list = pickle.load(myrestoredata)</div></pre></td></tr></table></figure>
 </li>
-<li><p>列表推导<br>　列表推导用于减少转换列表时的代码量</p>
+<li><p>列表推导<br> 列表推导用于减少转换列表时的代码量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">新列表 = [转换函数(t) for t in 原列表]</div><div class="line">new_l = []</div><div class="line">for t in old_l:</div><div class="line">　　new_l.append(len(t))</div><div class="line">new_l = [len(t) for t in old_l]</div></pre></td></tr></table></figure>
 </li>
-<li><p>集合 set<br>　Python 提供一种名为集合的数据结构，集合中的数据是无序的，而且不允许重复<br>　创建集合：</p>
+<li><p>集合 set<br> Python 提供一种名为集合的数据结构，集合中的数据是无序的，而且不允许重复<br> 　创建集合：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#set() -&gt; new empty set object</div><div class="line">#set(iterable) -&gt; new set object</div><div class="line">集合名 = set(object)</div></pre></td></tr></table></figure>
 </li>
-<li><p>字典<br>　字典将 value 和 key 关联，使用字典:</p>
+<li><p>字典<br> 字典将 value 和 key 关联，使用字典:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#创建字典</div><div class="line">字典名 = &#123;&#125;</div><div class="line">字典名 = dict()</div><div class="line">#增加数据</div><div class="line">字典名[key] = value #vlaue可以为任意数据类型</div><div class="line">字典名 = &#123;’key‘:value, &apos;key&apos;:value&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>类</p>
@@ -482,7 +481,7 @@
 <li><p>继承</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class 类名(继承的类名):</div><div class="line">　　def _init_(self, 参数):</div><div class="line">　　　　　#初始化对象的代码</div></pre></td></tr></table></figure>
 </li>
-<li><p>其它<br>　<code>print(列表[-1])</code> 输出最后一个数据项<br>　<code>strip()</code> 方法可以从字符串中去除不想要的空白符<br>　<code>in</code> 操作符用于检查成员关系<br>　原地排序 <code>sort()</code>，原列表顺序改变<br>　复制排序 <code>sorted()</code>，返回一个排序过的原列表副本<br>　分片访问列表<code>列表[起始值：结束值]</code>可以访问起始到结束(不包括结束值)的列表项</p>
+<li><p>其它<br> <code>print(列表[-1])</code> 输出最后一个数据项<br> 　<code>strip()</code> 方法可以从字符串中去除不想要的空白符<br> 　<code>in</code> 操作符用于检查成员关系<br> 　原地排序 <code>sort()</code>，原列表顺序改变<br> 　复制排序 <code>sorted()</code>，返回一个排序过的原列表副本<br> 　分片访问列表<code>列表[起始值：结束值]</code>可以访问起始到结束(不包括结束值)的列表项</p>
 </li>
 </ul>
 <hr>
@@ -612,7 +611,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +622,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -634,7 +633,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -712,7 +711,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

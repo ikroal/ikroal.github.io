@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,四大组件," />
+  <meta name="keywords" content="Android,Activity," />
 
 
 
@@ -92,7 +92,7 @@
 
 
 <meta name="description" content="Activity主要内容：">
-<meta name="keywords" content="Android,四大组件">
+<meta name="keywords" content="Android,Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Activity 学习">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/05/02/Activity学习/index.html">
@@ -100,7 +100,7 @@
 <meta property="og:description" content="Activity主要内容：">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity">
 <meta property="og:image" content="http://i.imgur.com/J27l7mI.png">
-<meta property="og:updated_time" content="2017-10-28T06:07:04.000Z">
+<meta property="og:updated_time" content="2018-01-15T14:47:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity 学习">
 <meta name="twitter:description" content="Activity主要内容：">
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-知识总结/" itemprop="url" rel="index">
-                    <span itemprop="name">Android 知识总结</span>
+                  <a href="/categories/Android基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Android基础</span>
                   </a>
                 </span>
 
@@ -441,14 +441,14 @@
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Intent(Context packageContext, Class&lt;?&gt; cls)</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
 <p> 这种指定上下文和目标活动类名的 Intent 称之为显式 Intent。</p>
 </li>
-<li><p>隐式 Intent</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   &lt;activity android:name=&quot;.SecondActivity&quot;&gt;</div><div class="line">     &lt;intent-filter&gt;</div><div class="line">       &lt;action android:name=&quot;com.rookieyang.demo.ACTION_START&quot; /&gt;</div><div class="line">    </div><div class="line">       &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</div><div class="line">       &lt;category android:name=&quot;com.rookieyang.demo.MY_CATEGORY&quot; /&gt;</div><div class="line">     &lt;/intent-filter&gt;</div><div class="line">&lt;/activity&gt;</div><div class="line"></div><div class="line">    Intent implieIntent = new Intent(&quot;com.rookieyang.demo.ACTION_START&quot;);</div><div class="line">    implieIntent.addCategory(&quot;com.rookieyang.demo.MY_CATEGORY&quot;);</div><div class="line">    startActivity(implieIntent);</div></pre></td></tr></table></figure>
+<li><p>隐式 Intent<br> ​     </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   &lt;activity android:name=&quot;.SecondActivity&quot;&gt;</div><div class="line"> &lt;intent-filter&gt;</div><div class="line">   &lt;action android:name=&quot;com.rookieyang.demo.ACTION_START&quot; /&gt;</div><div class="line"></div><div class="line">   &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</div><div class="line">   &lt;category android:name=&quot;com.rookieyang.demo.MY_CATEGORY&quot; /&gt;</div><div class="line"> &lt;/intent-filter&gt;</div><div class="line">&lt;/activity&gt;</div><div class="line"></div><div class="line">Intent implieIntent = new Intent(&quot;com.rookieyang.demo.ACTION_START&quot;);</div><div class="line">implieIntent.addCategory(&quot;com.rookieyang.demo.MY_CATEGORY&quot;);</div><div class="line">startActivity(implieIntent);</div></pre></td></tr></table></figure>
 <p> 隐式 Intent 通过指定一系列更为抽象的 action 和 category 等信息，然后交由系统去分析这个 Intent，并帮我们找出合适的活动去启动。只有活动中的 <code>&lt;action&gt;</code> 和 <code>&lt;category&gt;</code> 标签完全匹配 Intent 中的 action 和 category 时，活动才能响应 Intent。</p>
 <blockquote>
 <p>在调用 <code>startActivity()</code> 方法时会自动将 <code>android.intent.category.DEFAULT</code> 加入到 Intent 中，所以在给 Activity 指定 category 的时候不能够去掉默认的 <code>android.intent.category.DEFAULT</code>，去掉之后通过隐式 Intent 将无法匹配到该 Activity。</p>
 </blockquote>
 <p> 隐式 Intent 除了可以启动自己程序内的活动，还可以启动其他程序的活动：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setData(Uri.parse(<span class="string">"http://www.baidu.com"</span>));</div><div class="line">        startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p> ​<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setData(Uri.parse(<span class="string">"http://www.baidu.com"</span>));</div><div class="line">        startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">​</div></pre></td></tr></table></figure></p>
 <p> 隐式 Intent 指定了一个系统内置的 action，通过 <code>setData()</code> 设置 Intent 操作的数据用以调用系统浏览器，其中 <code>setData()</code> 对应 <code>&lt;intent-filter&gt;</code> 标签内的 <code>&lt;data&gt;</code> 标签，用于指定当前活动能够响应什么类型的数据。<code>&lt;data&gt;</code> 标签中主要可以配置以下内容：</p>
 <ul>
 <li><code>android:scheme</code>：用于指定数据的协议部分，如上例的 http 部分。</li>
@@ -629,7 +629,7 @@
           
             <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/四大组件/" rel="tag"># 四大组件</a>
+            <a href="/tags/Activity/" rel="tag"># Activity</a>
           
         </div>
       
@@ -733,7 +733,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -744,7 +744,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -755,7 +755,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -849,7 +849,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
