@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="Activity主要内容：">
+<meta name="description" content="Activity 主要内容：">
 <meta name="keywords" content="Android,Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Activity 学习">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/05/02/Activity学习/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="Activity主要内容：">
+<meta property="og:description" content="Activity 主要内容：">
 <meta property="og:image" content="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity">
 <meta property="og:image" content="http://i.imgur.com/J27l7mI.png">
 <meta property="og:updated_time" content="2018-01-15T14:47:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity 学习">
-<meta name="twitter:description" content="Activity主要内容：">
+<meta name="twitter:description" content="Activity 主要内容：">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity">
 
 
@@ -430,127 +430,120 @@
       
 
       
-        <h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>主要内容：<br><img src="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity" alt="Activity导图"><a id="more"></a></p>
-<h4 id="Activity-基本使用"><a href="#Activity-基本使用" class="headerlink" title="Activity 基本使用"></a>Activity 基本使用</h4><ol>
+        <h3 id="activity">Activity</h3>
+<p>主要内容： <img src="https://lh3.googleusercontent.com/-u4OYyZZzSb8/WQh2MXvWjiI/AAAAAAAAAOA/NifbHzkgMfc5NvV-goL-QS_dR3Jt2qgLACHM/I/Activity" alt="Activity导图"><a id="more"></a></p>
+<h4 id="activity-基本使用">Activity 基本使用</h4>
+<ol style="list-style-type: decimal">
 <li>创建活动</li>
 <li><code>AndroidManifest.xml</code> 的 <code>application</code> 标签内进行声明</li>
-<li>载入布局<br>setContentView(R.layout.second_layout)</li>
+<li>载入布局 setContentView(R.layout.second_layout)</li>
 </ol>
-<h4 id="Activity-跳转"><a href="#Activity-跳转" class="headerlink" title="Activity 跳转"></a>Activity 跳转</h4><ol>
+<h4 id="activity-跳转">Activity 跳转</h4>
+<ol style="list-style-type: decimal">
 <li><p>显式 Intent</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Intent(Context packageContext, Class&lt;?&gt; cls)</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
-<p> 这种指定上下文和目标活动类名的 Intent 称之为显式 Intent。</p>
-</li>
-<li><p>隐式 Intent<br> ​     </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   &lt;activity android:name=&quot;.SecondActivity&quot;&gt;</div><div class="line"> &lt;intent-filter&gt;</div><div class="line">   &lt;action android:name=&quot;com.rookieyang.demo.ACTION_START&quot; /&gt;</div><div class="line"></div><div class="line">   &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</div><div class="line">   &lt;category android:name=&quot;com.rookieyang.demo.MY_CATEGORY&quot; /&gt;</div><div class="line"> &lt;/intent-filter&gt;</div><div class="line">&lt;/activity&gt;</div><div class="line"></div><div class="line">Intent implieIntent = new Intent(&quot;com.rookieyang.demo.ACTION_START&quot;);</div><div class="line">implieIntent.addCategory(&quot;com.rookieyang.demo.MY_CATEGORY&quot;);</div><div class="line">startActivity(implieIntent);</div></pre></td></tr></table></figure>
-<p> 隐式 Intent 通过指定一系列更为抽象的 action 和 category 等信息，然后交由系统去分析这个 Intent，并帮我们找出合适的活动去启动。只有活动中的 <code>&lt;action&gt;</code> 和 <code>&lt;category&gt;</code> 标签完全匹配 Intent 中的 action 和 category 时，活动才能响应 Intent。</p>
-<blockquote>
-<p>在调用 <code>startActivity()</code> 方法时会自动将 <code>android.intent.category.DEFAULT</code> 加入到 Intent 中，所以在给 Activity 指定 category 的时候不能够去掉默认的 <code>android.intent.category.DEFAULT</code>，去掉之后通过隐式 Intent 将无法匹配到该 Activity。</p>
-</blockquote>
-<p> 隐式 Intent 除了可以启动自己程序内的活动，还可以启动其他程序的活动：</p>
-<p> ​<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setData(Uri.parse(<span class="string">"http://www.baidu.com"</span>));</div><div class="line">        startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">​</div></pre></td></tr></table></figure></p>
-<p> 隐式 Intent 指定了一个系统内置的 action，通过 <code>setData()</code> 设置 Intent 操作的数据用以调用系统浏览器，其中 <code>setData()</code> 对应 <code>&lt;intent-filter&gt;</code> 标签内的 <code>&lt;data&gt;</code> 标签，用于指定当前活动能够响应什么类型的数据。<code>&lt;data&gt;</code> 标签中主要可以配置以下内容：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Intent(Context packageContext, Class&lt;?&gt; cls)</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
+这种指定上下文和目标活动类名的 Intent 称之为显式 Intent。</li>
+<li><p>隐式 Intent ​<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   &lt;activity android:name=&quot;.SecondActivity&quot;&gt;</div><div class="line"> &lt;intent-filter&gt;</div><div class="line">   &lt;action android:name=&quot;com.rookieyang.demo.ACTION_START&quot; /&gt;</div><div class="line"></div><div class="line">   &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</div><div class="line">   &lt;category android:name=&quot;com.rookieyang.demo.MY_CATEGORY&quot; /&gt;</div><div class="line"> &lt;/intent-filter&gt;</div><div class="line">&lt;/activity&gt;</div><div class="line"></div><div class="line">Intent implieIntent = new Intent(&quot;com.rookieyang.demo.ACTION_START&quot;);</div><div class="line">implieIntent.addCategory(&quot;com.rookieyang.demo.MY_CATEGORY&quot;);</div><div class="line">startActivity(implieIntent);</div></pre></td></tr></table></figure></p>
+<p>隐式 Intent 通过指定一系列更为抽象的 action 和 category 等信息，然后交由系统去分析这个 Intent，并帮我们找出合适的活动去启动。只有活动中的 <code>&lt;action&gt;</code> 和 <code>&lt;category&gt;</code> 标签完全匹配 Intent 中的 action 和 category 时，活动才能响应 Intent。 &gt; 在调用 <code>startActivity()</code> 方法时会自动将 <code>android.intent.category.DEFAULT</code> 加入到 Intent 中，所以在给 Activity 指定 category 的时候不能够去掉默认的 <code>android.intent.category.DEFAULT</code>，去掉之后通过隐式 Intent 将无法匹配到该 Activity。</p>
+<p>隐式 Intent 除了可以启动自己程序内的活动，还可以启动其他程序的活动：</p>
+<p>​<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setData(Uri.parse(<span class="string">"http://www.baidu.com"</span>));</div><div class="line">        startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">​</div></pre></td></tr></table></figure></p>
+<p>隐式 Intent 指定了一个系统内置的 action，通过 <code>setData()</code> 设置 Intent 操作的数据用以调用系统浏览器，其中 <code>setData()</code> 对应 <code>&lt;intent-filter&gt;</code> 标签内的 <code>&lt;data&gt;</code> 标签，用于指定当前活动能够响应什么类型的数据。<code>&lt;data&gt;</code> 标签中主要可以配置以下内容：</p>
 <ul>
 <li><code>android:scheme</code>：用于指定数据的协议部分，如上例的 http 部分。</li>
 <li><code>android:host</code>：用于指定数据的主机名部分，如上例的 www.baidu.com 部分。</li>
 <li><code>android:port</code>：用于指定数据的端口部分，一般紧随主机名之后。</li>
 <li><code>android:path</code>：用于指定主机名和端口之后的部分，如一段网址中跟在域名之后的内容。</li>
 <li><code>android:mimeType</code>：用于指定可以处理的数据类型，允许使用通配符方式进行指定。</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h4 id="Activity-间数据传递"><a href="#Activity-间数据传递" class="headerlink" title="Activity 间数据传递"></a>Activity 间数据传递</h4><ol>
+<h4 id="activity-间数据传递">Activity 间数据传递</h4>
+<ol style="list-style-type: decimal">
 <li><p>向下一个活动传递数据</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//MainActivity</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">intent.putExtra(<span class="string">"data"</span>, <span class="string">"data"</span>);</div><div class="line">startActivity(intent);</div><div class="line"><span class="comment">//SecondActivity</span></div><div class="line">Intent intent = getIntent();</div><div class="line">Toast.makeText(<span class="keyword">this</span>, intent.getStringExtra(<span class="string">"data"</span>), Toast.LENGTH_LONG).show();</div></pre></td></tr></table></figure>
-<p> MainActivity 中通过 Intent 的 <code>putExtra()</code> 方法将数据暂存在 Intent 中，然后在 SecondActivity 中通过 <code>getIntent()</code> 获取到启动 SecondActivity 的 Intent，之后通过 <code>getStringExtra()</code> 方法获取到传递的数据。如果传递的是整型数据则使用 <code>getIntExtra()</code> 方法。</p>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//MainActivity</span></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">intent.putExtra(<span class="string">"data"</span>, <span class="string">"data"</span>);</div><div class="line">startActivity(intent);</div><div class="line"><span class="comment">//SecondActivity</span></div><div class="line">Intent intent = getIntent();</div><div class="line">Toast.makeText(<span class="keyword">this</span>, intent.getStringExtra(<span class="string">"data"</span>), Toast.LENGTH_LONG).show();</div></pre></td></tr></table></figure>
+<p>MainActivity 中通过 Intent 的 <code>putExtra()</code> 方法将数据暂存在 Intent 中，然后在 SecondActivity 中通过 <code>getIntent()</code> 获取到启动 SecondActivity 的 Intent，之后通过 <code>getStringExtra()</code> 方法获取到传递的数据。如果传递的是整型数据则使用 <code>getIntExtra()</code> 方法。</p></li>
 <li><p>返回数据给上一个活动</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//MainActivity</span></div><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">        startActivityForResult(intent, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">            <span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</div><div class="line">                Log.i(<span class="string">"onActivityResult"</span>, data.getStringExtra(<span class="string">"data"</span>));</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//SecondActivity</span></div><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">        intent.putExtra(<span class="string">"data"</span>, <span class="string">"data"</span>);</div><div class="line">        setResult(RESULT_OK, intent);</div><div class="line">        finish();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//MainActivity</span></div><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">        startActivityForResult(intent, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">            <span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</div><div class="line">                Log.i(<span class="string">"onActivityResult"</span>, data.getStringExtra(<span class="string">"data"</span>));</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//SecondActivity</span></div><div class="line">btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">        intent.putExtra(<span class="string">"data"</span>, <span class="string">"data"</span>);</div><div class="line">        setResult(RESULT_OK, intent);</div><div class="line">        finish();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li><code>startActivityForResult(Intent intent, int requestCode)</code>：期望在活动销毁的时候能够返回一个结果给上一个活动。</li>
 <li><code>setResult(int resultCode, Intent data)</code>：专门用于向上一个活动返回数据，第一个参数用于向上一个活动返回处理结果，一般只使用 <code>RESULT_OK</code> 和 <code>RESULT_CANCELED</code>。第二个参数则是把带有数据的 Intent 传递回去，然后调用 <code>finish()</code> 方法来销毁当前活动。</li>
 <li><code>onActivityResult(int requestCode, int resultCode, Intent data)</code>：第一个参数是我们启动活动传入的请求码，第二个参数是返回数据传入的返回结果，第三个参数是返回的携带数据的 Intent，由于一个活动可能调用 <code>startActivityForResult()</code> 启动多个活动，所以首先需要检查 <code>requestCode</code> 来判断数据来源，然后在通过 <code>resultCode</code> 来判断处理结果是否成功。</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h4 id="Activity-的生命周期"><a href="#Activity-的生命周期" class="headerlink" title="Activity 的生命周期"></a>Activity 的生命周期</h4><p><img src="http://i.imgur.com/J27l7mI.png" alt="activity_lifecycle"></p>
-<ol>
-<li><code>onCreate()</code>：活动第一次被创建的时候调用，一般在该方法中完成活动的初始化操作，比如加载布局、绑定事件等。</li>
-<li><code>onStart()</code>：在活动由不可见变为可见的时候调用。</li>
-<li><code>onResume()</code>：在活动准备好和用户进行交互的时候调用。此时活动一定位于栈顶，并且处于运行状态。</li>
-<li><code>onPause()</code>：在系统准备去启动或者恢复另一个活动的时候调用。我们通常会在这个方法中将一些消耗 CPU 的资源释放掉，以及保存一些关键数据，但这个方法的执行速度一定要快，不然会影响到新的栈顶活动的使用。</li>
-<li><code>onStop()</code>：在活动完全不可见的时候调用。如果启动的新活动是一个对话框式的活动，则 <code>onPause()</code> 会执行，而 <code>onStop()</code> 不会执行。</li>
-<li><code>onDestroy()</code>：在活动被销毁之前调用。</li>
-<li><code>onRestart()</code>：在活动由停止状态变为活动状态之前调用。<blockquote>
-<p>以上七种方法中除了 onRestart( ) 方法，其他都是两两相对的，从而可以分为三种生存期：onCreate( ) 和 onDestory( ) 为<code>完整生存期</code>、onStart( ) 和 onStop( ) 为<code>可见生存期</code>、onResume( ) 和 onPause( ) 为<code>前台生存期</code>。<br>Activity 最多可能有四种状态，分别为：运行状态、暂停状态、停止状态、销毁状态。系统一般倾向于回收处于后两种状态的 Activity。</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="Activity-的数据保存"><a href="#Activity-的数据保存" class="headerlink" title="Activity 的数据保存"></a>Activity 的数据保存</h4><p>由于 Activity 处于停止状态的时候可能被系统回收，那么当用户返回被回收的 Activity 之时会面对一个空数据的 Activity。为了避免这种情况的发生，我们可以利用 <code>onSaveInstanceState()</code> 进行数据的保存工作：</p>
+<h4 id="activity-的生命周期">Activity 的生命周期</h4>
+<p><img src="http://i.imgur.com/J27l7mI.png" alt="activity_lifecycle"> 1. <code>onCreate()</code>：活动第一次被创建的时候调用，一般在该方法中完成活动的初始化操作，比如加载布局、绑定事件等。 2. <code>onStart()</code>：在活动由不可见变为可见的时候调用。 3. <code>onResume()</code>：在活动准备好和用户进行交互的时候调用。此时活动一定位于栈顶，并且处于运行状态。 4. <code>onPause()</code>：在系统准备去启动或者恢复另一个活动的时候调用。我们通常会在这个方法中将一些消耗 CPU 的资源释放掉，以及保存一些关键数据，但这个方法的执行速度一定要快，不然会影响到新的栈顶活动的使用。 5. <code>onStop()</code>：在活动完全不可见的时候调用。如果启动的新活动是一个对话框式的活动，则 <code>onPause()</code> 会执行，而 <code>onStop()</code> 不会执行。 6. <code>onDestroy()</code>：在活动被销毁之前调用。 7. <code>onRestart()</code>：在活动由停止状态变为活动状态之前调用。 &gt; 以上七种方法中除了 onRestart( ) 方法，其他都是两两相对的，从而可以分为三种生存期：onCreate( ) 和 onDestory( ) 为<code>完整生存期</code>、onStart( ) 和 onStop( ) 为<code>可见生存期</code>、onResume( ) 和 onPause( ) 为<code>前台生存期</code>。 &gt; Activity 最多可能有四种状态，分别为：运行状态、暂停状态、停止状态、销毁状态。系统一般倾向于回收处于后两种状态的 Activity。</p>
+<h4 id="activity-的数据保存">Activity 的数据保存</h4>
+<p>由于 Activity 处于停止状态的时候可能被系统回收，那么当用户返回被回收的 Activity 之时会面对一个空数据的 Activity。为了避免这种情况的发生，我们可以利用 <code>onSaveInstanceState()</code> 进行数据的保存工作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//保存</span></div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">   outState.putString(<span class="string">"data"</span>, <span class="string">"outState"</span>);</div><div class="line">   Log.i(TAG, <span class="string">"onSaveInstanceState: "</span>);</div><div class="line">   <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//恢复</span></div><div class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">   <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">   setContentView(R.layout.activity_first);</div><div class="line">   <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">     Log.i(TAG, <span class="string">"onCreate: "</span> + savedInstanceState.getString(<span class="string">"data"</span>));</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>主动销毁 Acitivity 不会触发 <code>onSaveInstanceState()</code>，Bundle 也可以和 Intent 结合起来传递数据。</p>
 </blockquote>
-<h4 id="Activity-启动模式"><a href="#Activity-启动模式" class="headerlink" title="Activity 启动模式"></a>Activity 启动模式</h4><p>Activity 有下列四种启动模式：</p>
+<h4 id="activity-启动模式">Activity 启动模式</h4>
+<p>Activity 有下列四种启动模式：</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">启动模式</th>
-<th style="text-align:left">作用</th>
+<tr class="header">
+<th align="left">启动模式</th>
+<th align="left">作用</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">standard</td>
-<td style="text-align:left">每次启动活动都会创建一个活动的实例</td>
+<tr class="odd">
+<td align="left">standard</td>
+<td align="left">每次启动活动都会创建一个活动的实例</td>
 </tr>
-<tr>
-<td style="text-align:left">singleTop</td>
-<td style="text-align:left">在启动活动的时候如果发现返回栈的栈顶已经是该活动，则会直接使用它，不会再创建新的活动实例</td>
+<tr class="even">
+<td align="left">singleTop</td>
+<td align="left">在启动活动的时候如果发现返回栈的栈顶已经是该活动，则会直接使用它，不会再创建新的活动实例</td>
 </tr>
-<tr>
-<td style="text-align:left">singleTask</td>
-<td style="text-align:left">在启动活动的时候如果发现返回栈中已经存在该活动，则直接使用它，并把该活动之上的所有活动统统出栈</td>
+<tr class="odd">
+<td align="left">singleTask</td>
+<td align="left">在启动活动的时候如果发现返回栈中已经存在该活动，则直接使用它，并把该活动之上的所有活动统统出栈</td>
 </tr>
-<tr>
-<td style="text-align:left">singleInstance</td>
-<td style="text-align:left">在启动活动的时候，启动一个单独的返回栈来管理该活动</td>
+<tr class="even">
+<td align="left">singleInstance</td>
+<td align="left">在启动活动的时候，启动一个单独的返回栈来管理该活动</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>singleInstance 的意义：假设程序中有一个活动允许其他程序调用，如果我们想实现其他程序和我们的程序可以共享这个活动的实例，就需要使用 singleInstance 模式，因为在这种模式下会有一个单独的返回栈来管理这个活动，不管是哪个应用程序来访问这个活动，都共用同一个返回栈。</li>
 </ul>
-<h3 id="Intent-的-Flags-属性"><a href="#Intent-的-Flags-属性" class="headerlink" title="Intent 的 Flags 属性"></a>Intent 的 Flags 属性</h3><p>Flags 的作用有很多，有的 Flags 为可以设定 Activity 的启动模式，还有的 Flags 可以影响 Activity 的运行状态，比如 <code>FLAG_ACTIVITY_SINGLE_TOP</code> 和 <code>FLAG_ACTIVITY_CLEAR_TOP</code>。<br>常用的 Flags 如下：</p>
+<h3 id="intent-的-flags-属性">Intent 的 Flags 属性</h3>
+<p>Flags 的作用有很多，有的 Flags 为可以设定 Activity 的启动模式，还有的 Flags 可以影响 Activity 的运行状态，比如 <code>FLAG_ACTIVITY_SINGLE_TOP</code> 和 <code>FLAG_ACTIVITY_CLEAR_TOP</code>。 常用的 Flags 如下：</p>
 <table>
+<colgroup>
+<col width="46%">
+<col width="53%">
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Flags</th>
 <th>作用</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>FLAG_ACTIVITY_NEW_TASK</td>
 <td>When using this flag, if a task is already running for the activity you are now starting, then a new activity will not be started; instead, the current task will simply be brought to the front of the screen with the state it was last in.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>FLAG_ACTIVITY_CLEAR_TOP</td>
-<td>设置该标志之后的 Activity，当启动 Activity 时，如果该 Activity 已经存在任务栈中，则不在创建新的实例，并且位于该 Activity 之上的 Activity都需要出栈<br>一般配合 FLAG_ACTIVITY_NEW_TASK 进行使用</td>
+<td>设置该标志之后的 Activity，当启动 Activity 时，如果该 Activity 已经存在任务栈中，则不在创建新的实例，并且位于该 Activity 之上的 Activity都需要出栈<br>一般配合 FLAG_ACTIVITY_NEW_TASK 进行使用</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>FLAG_ACTIVITY_SINGLE_TOP</td>
 <td>设置 Activity 的启动模式为 singleTop</td>
 </tr>
-<tr>
+<tr class="even">
 <td>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</td>
 <td>具有该标志的 Activity 不会出现在历史 Activity 的列表中</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>FLAG_ACTIVITY_LAUNCH_ADJACENT</td>
 <td>此标志仅用于分屏多窗口模式，新的活动将显示在上一个 Activity 的附近<br>需要与 FLAG_ACTIVITY_NEW_TASK 结合使用。 另外，如果要创建现有活动的新实例，则应同时设置 FLAG_ACTIVITY_MULTIPLE_TASK</td>
 </tr>
-<tr>
+<tr class="even">
 <td>FLAG_ACTIVITY_NEW_DOCUMENT</td>
 <td>该标志用于在一个以目标 Activity 为栈顶的新任务栈中打开文档</td>
 </tr>
@@ -561,41 +554,36 @@
 <li><code>FLAG_ACTIVITY_LAUNCH_ADJACENT</code>：测试发现在分屏模式下在启动目标 Activity 时，如果没有设置 <code>FLAG_ACTIVITY_MULTIPLE_TASK</code> ，那么当目标 Activity 已经存在于任务栈中，将不会进入分屏模式。</li>
 <li><code>FLAG_ACTIVITY_NEW_DOCUMENT</code>： 当单独使用时，它相当于指定 <code>documentLaunchMode =“intoExisting”</code>。当与 <code>FLAG_ACTIVITY_MULTIPLE_TASK</code> 一起使用时，它等同于指定 <code>documentLaunchMode =“always”</code>。</li>
 </ul>
-<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>Intent 的 <code>putExtra()</code> 方法中所支持的数据类型是有限的，当需要传递一些自定义对象的时候，就需要用到序列化了。</p>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>使用 Intent 来传递对象通常有两种实现方式：</p>
-<ol>
-<li><p>Serializable</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    </div><div class="line"> <span class="keyword">private</span> String name;</div><div class="line"> <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> name;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> age;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = name;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">   <span class="keyword">this</span>.age = age;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="comment">//MainActivity 中</span></div><div class="line">Person person = <span class="keyword">new</span> Person();</div><div class="line">person.setAge(<span class="number">13</span>);</div><div class="line">person.setName(<span class="string">"data"</span>);</div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">intent.putExtra(<span class="string">"data_person"</span>, person);</div><div class="line">startActivity(intent);</div><div class="line"><span class="comment">//SecondActivity 中</span></div><div class="line">Person person = (Person) getIntent().getParcelableExtra(<span class="string">"data_person"</span>);</div><div class="line">Log.i(<span class="string">"SecondActivity"</span>, <span class="string">"onCreate: "</span> + person.getName());</div></pre></td></tr></table></figure>
-<blockquote>
-<p>首先创建了一个 Person 类去实现 Serializable 接口，这样所有的 Person 对象就都是可序列化的了，然后在 MainActivity 中创建了一个 Person 对象，然后将对象传入 SecondActivity 中去，在 SecondActivity 中用 <code>getParcelableExtra()</code> 来获取对象。</p>
-</blockquote>
-</li>
+<h3 id="序列化">序列化</h3>
+<h4 id="目的">目的</h4>
+<p>Intent 的 <code>putExtra()</code> 方法中所支持的数据类型是有限的，当需要传递一些自定义对象的时候，就需要用到序列化了。 #### 方法 使用 Intent 来传递对象通常有两种实现方式： 1. Serializable</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    </div><div class="line"> <span class="keyword">private</span> String name;</div><div class="line"> <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> name;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> age;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = name;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">   <span class="keyword">this</span>.age = age;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="comment">//MainActivity 中</span></div><div class="line">Person person = <span class="keyword">new</span> Person();</div><div class="line">person.setAge(<span class="number">13</span>);</div><div class="line">person.setName(<span class="string">"data"</span>);</div><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">intent.putExtra(<span class="string">"data_person"</span>, person);</div><div class="line">startActivity(intent);</div><div class="line"><span class="comment">//SecondActivity 中</span></div><div class="line">Person person = (Person) getIntent().getParcelableExtra(<span class="string">"data_person"</span>);</div><div class="line">Log.i(<span class="string">"SecondActivity"</span>, <span class="string">"onCreate: "</span> + person.getName());</div></pre></td></tr></table></figure>
+
+&gt; 首先创建了一个 Person 类去实现 Serializable 接口，这样所有的 Person 对象就都是可序列化的了，然后在 MainActivity 中创建了一个 Person 对象，然后将对象传入 SecondActivity 中去，在 SecondActivity 中用 `getParcelableExtra()` 来获取对象。</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li><p>Parcelable</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</div><div class="line">    </div><div class="line"> ...</div><div class="line">    </div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</div><div class="line">     dest.writeString(name);</div><div class="line">     dest.writeInt(age);</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;Person&gt; CREATOR = <span class="keyword">new</span> Creator&lt;Person&gt;() &#123;</div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> Person <span class="title">createFromParcel</span><span class="params">(Parcel source)</span> </span>&#123;</div><div class="line">         Person person = <span class="keyword">new</span> Person();</div><div class="line">         person.name = source.readString();</div><div class="line">         person.age = source.readInt();</div><div class="line">         <span class="keyword">return</span> person;</div><div class="line">     &#125;</div><div class="line">    </div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="keyword">public</span> Person[] newArray(<span class="keyword">int</span> size) &#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Person[size];</div><div class="line">     &#125;</div><div class="line"> &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</div><div class="line">    </div><div class="line"> ...</div><div class="line">    </div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</div><div class="line">     dest.writeString(name);</div><div class="line">     dest.writeInt(age);</div><div class="line"> &#125;</div><div class="line">    </div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;Person&gt; CREATOR = <span class="keyword">new</span> Creator&lt;Person&gt;() &#123;</div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> Person <span class="title">createFromParcel</span><span class="params">(Parcel source)</span> </span>&#123;</div><div class="line">         Person person = <span class="keyword">new</span> Person();</div><div class="line">         person.name = source.readString();</div><div class="line">         person.age = source.readInt();</div><div class="line">         <span class="keyword">return</span> person;</div><div class="line">     &#125;</div><div class="line">    </div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="keyword">public</span> Person[] newArray(<span class="keyword">int</span> size) &#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Person[size];</div><div class="line">     &#125;</div><div class="line"> &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>Person 类实现了 Parcelable 接口用于序列化，提供了一个名为 CREATOR 的常量用于反序列化。<code>createFromParcel()</code> 和 <code>writeToParcel()</code> 的顺序需要一致。采用 Parcelable 方式进行序列化，获取对象的方法变为 <code>getParcelableExtra()</code>。</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ol>
-<h3 id="实用技巧"><a href="#实用技巧" class="headerlink" title="实用技巧"></a>实用技巧</h3><ol>
+<h3 id="实用技巧">实用技巧</h3>
+<ol style="list-style-type: decimal">
 <li><p>知晓当前是在哪一个活动</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    Log.d(<span class="string">"onCreate: "</span>, getClass().getSimpleName());</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    Log.d(<span class="string">"onCreate: "</span>, getClass().getSimpleName());</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>创建一个 BaseActivity，然后让其他 Activity 继承 BaseAcitivty，那么当启动活动时就会 logcat 中打印出相应的信息。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>随时随地退出程序</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityCollector</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> List&lt;Activity&gt; activities = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addActivity</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">    activities.add(activity);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">removeActivity</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">    activities.remove(activity);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">finishAll</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (Activity activity : activities) &#123;</div><div class="line">      <span class="keyword">if</span> (!activity.isFinishing()) &#123;</div><div class="line">        activity.finish();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityCollector</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> List&lt;Activity&gt; activities = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addActivity</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">    activities.add(activity);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">removeActivity</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">    activities.remove(activity);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">finishAll</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (Activity activity : activities) &#123;</div><div class="line">      <span class="keyword">if</span> (!activity.isFinishing()) &#123;</div><div class="line">        activity.finish();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>创建一个活动的管理类，在活动的 <code>onCreate()</code> 中调用 <code>addActivity()</code> 方法保存创建的活动，在 <code>onDestroy()</code> 中调用 <code>removeActivity()</code> 方法移除马上要销毁的活动。如果需要随时随地退出程序则只需要调用 <code>finishAll()</code>。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>启动活动的最佳写法</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">actionStart</span><span class="params">(Context context, String param1, String param2)</span> </span>&#123;</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(context, SecondActivity.class);</div><div class="line">  intent.putExtra(<span class="string">"param1"</span>, param1);</div><div class="line">  intent.putExtra(<span class="string">"param2"</span>, param2);</div><div class="line">  context.startActivity(intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">actionStart</span><span class="params">(Context context, String param1, String param2)</span> </span>&#123;</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(context, SecondActivity.class);</div><div class="line">  intent.putExtra(<span class="string">"param1"</span>, param1);</div><div class="line">  intent.putExtra(<span class="string">"param2"</span>, param2);</div><div class="line">  context.startActivity(intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>当活动中需要用到一些参数之时，可以采用如上方式去启动活动。那么当其他人来启动活动的时候将会非常方便。</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ol>
 <hr>
 
@@ -733,7 +721,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -755,7 +743,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -781,15 +769,6 @@
                     <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/u/2219331925/home?wvr=5" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
                 </a>
               </span>
             
@@ -826,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity"><span class="nav-number">1.</span> <span class="nav-text">Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">Activity 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-跳转"><span class="nav-number">1.2.</span> <span class="nav-text">Activity 跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-间数据传递"><span class="nav-number">1.3.</span> <span class="nav-text">Activity 间数据传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-的生命周期"><span class="nav-number">1.4.</span> <span class="nav-text">Activity 的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-的数据保存"><span class="nav-number">1.5.</span> <span class="nav-text">Activity 的数据保存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-启动模式"><span class="nav-number">1.6.</span> <span class="nav-text">Activity 启动模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-的-Flags-属性"><span class="nav-number">2.</span> <span class="nav-text">Intent 的 Flags 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化"><span class="nav-number">3.</span> <span class="nav-text">序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实用技巧"><span class="nav-number">4.</span> <span class="nav-text">实用技巧</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#activity"><span class="nav-number">1.</span> <span class="nav-text">Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#activity-基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">Activity 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#activity-跳转"><span class="nav-number">1.2.</span> <span class="nav-text">Activity 跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#activity-间数据传递"><span class="nav-number">1.3.</span> <span class="nav-text">Activity 间数据传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#activity-的生命周期"><span class="nav-number">1.4.</span> <span class="nav-text">Activity 的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#activity-的数据保存"><span class="nav-number">1.5.</span> <span class="nav-text">Activity 的数据保存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#activity-启动模式"><span class="nav-number">1.6.</span> <span class="nav-text">Activity 启动模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intent-的-flags-属性"><span class="nav-number">2.</span> <span class="nav-text">Intent 的 Flags 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化"><span class="nav-number">3.</span> <span class="nav-text">序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实用技巧"><span class="nav-number">4.</span> <span class="nav-text">实用技巧</span></a></li></ol></div>
             
 
           </div>
@@ -1157,6 +1136,8 @@
 
 
   
+  
+
 
   
 

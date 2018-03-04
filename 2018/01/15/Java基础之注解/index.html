@@ -91,13 +91,13 @@
 
 
 
-<meta name="description" content="问题关于注解首先请思考一下以下问题：  注解是什么？  注解的主要使用场景？  注解可以分为哪些类型？  注解的处理过程？   接下来我们将对这几个问题进行探讨">
+<meta name="description" content="问题 关于注解首先请思考一下以下问题：  注解是什么？ 注解的主要使用场景？ 注解可以分为哪些类型？ 注解的处理过程？  接下来我们将对这几个问题进行探讨">
 <meta name="keywords" content="Java,注解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础之注解">
 <meta property="og:url" content="http://www.rookieyang.cn/2018/01/15/Java基础之注解/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="问题关于注解首先请思考一下以下问题：  注解是什么？  注解的主要使用场景？  注解可以分为哪些类型？  注解的处理过程？   接下来我们将对这几个问题进行探讨">
+<meta property="og:description" content="问题 关于注解首先请思考一下以下问题：  注解是什么？ 注解的主要使用场景？ 注解可以分为哪些类型？ 注解的处理过程？  接下来我们将对这几个问题进行探讨">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc8rfhvj308c028wec.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8zywyj30el00qglf.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8bslfj309j02ewec.jpg">
@@ -114,10 +114,10 @@
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpj2enf9j308y03imx1.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpjl1kmcj308z03mjr8.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpc82cpmj30930820sz.jpg">
-<meta property="og:updated_time" content="2018-01-15T15:46:11.000Z">
+<meta property="og:updated_time" content="2018-03-04T15:13:50.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础之注解">
-<meta name="twitter:description" content="问题关于注解首先请思考一下以下问题：  注解是什么？  注解的主要使用场景？  注解可以分为哪些类型？  注解的处理过程？   接下来我们将对这几个问题进行探讨">
+<meta name="twitter:description" content="问题 关于注解首先请思考一下以下问题：  注解是什么？ 注解的主要使用场景？ 注解可以分为哪些类型？ 注解的处理过程？  接下来我们将对这几个问题进行探讨">
 <meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc8rfhvj308c028wec.jpg">
 
 
@@ -444,175 +444,196 @@
       
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>关于注解首先请思考一下以下问题：</p>
+        <h2 id="问题">问题</h2>
+<p>关于注解首先请思考一下以下问题：</p>
 <ul>
-<li><p>注解是什么？</p>
-</li>
-<li><p>注解的主要使用场景？</p>
-</li>
-<li><p>注解可以分为哪些类型？</p>
-</li>
-<li><p>注解的处理过程？</p>
-</li>
+<li>注解是什么？</li>
+<li>注解的主要使用场景？</li>
+<li>注解可以分为哪些类型？</li>
+<li>注解的处理过程？</li>
 </ul>
 <p>接下来我们将对这几个问题进行探讨<a id="more"></a></p>
-<h2 id="注解简介"><a href="#注解简介" class="headerlink" title="注解简介"></a>注解简介</h2><blockquote>
+<h2 id="注解简介">注解简介</h2>
+<blockquote>
 <p><em>Annotations</em>, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.</p>
 </blockquote>
-<p>上述是官方给出的关于注解的定义，大致意思是注解是<strong>元数据</strong>（MetaData）的一种形式，它用于提供一些和程序元素有关的元数据，这些数据本身不属于程序，并且也不会直接影响程序的操作。</p>
-<p>为了更直观的理解注解的概念，我们还需要进一步了解元数据这个概念，关于元数据 Wiki 上的描述如下：</p>
+<p>上述是官方给出的关于注解的定义，大致意思是注解是<strong>元数据</strong>（MetaData）的一种形式，它用于提供一些和程序元素有关的元数据，这些数据本身不属于程序，并且也不会直接影响程序的操作。 为了更直观的理解注解的概念，我们还需要进一步了解元数据这个概念，关于元数据 Wiki 上的描述如下：</p>
 <blockquote>
-<p><strong>Metadata</strong> is “data [information] that provides information about other data”，For example, a digital image may include metadata that describes how large the picture is, the color depth, the image resolution, when the image was created, the shutter speed, and other data.</p>
+<p><strong>Metadata</strong> is &quot;data [information] that provides information about other data&quot;，For example, a digital image may include metadata that describes how large the picture is, the color depth, the image resolution, when the image was created, the shutter speed, and other data.</p>
 </blockquote>
-<p>元数据是描述数据的数据，对于一张相片而言元数据包括相片的大小、色彩深度、图片的分辨率、图片建立时间以及快门速度等相关数据。</p>
-<p>结合两者可以得到：<strong>注解是一种用于描述程序元素信息的修饰符，可以用来修饰包、类、构造器、方法、成员变量、参数、局部变量。</strong></p>
-<p>这里再结合具体的场景进行理解：</p>
+<p>元数据是描述数据的数据，对于一张相片而言元数据包括相片的大小、色彩深度、图片的分辨率、图片建立时间以及快门速度等相关数据。 结合两者可以得到：<strong>注解是一种用于描述程序元素信息的修饰符，可以用来修饰包、类、构造器、方法、成员变量、参数、局部变量。</strong> 这里再结合具体的场景进行理解：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindView</span>(R.id.toolbar)</div><div class="line"><span class="keyword">public</span> Toolbar mToolbar;</div></pre></td></tr></table></figure>
 <p>对于成员变量 mToolbar 而言，其基本的信息包含 width、heigth、id，通过注解我们能够很明确的描述它的 id 信息。</p>
-<h2 id="注解的主要使用场景"><a href="#注解的主要使用场景" class="headerlink" title="注解的主要使用场景"></a>注解的主要使用场景</h2><p>要明白注解的使用场景，首先需要了解的是注解的主要作用：</p>
+<h2 id="注解的主要使用场景">注解的主要使用场景</h2>
+<p>要明白注解的使用场景，首先需要了解的是注解的主要作用：</p>
 <blockquote>
 <ul>
-<li><p><strong>Information for the compiler</strong>— Annotations can be used by the compiler to detect errors or suppress warnings.</p>
-</li>
-<li><p><strong>Compile-time and deployment-time processing</strong>— Software tools can process annotation information to generate code, XML files, and so forth.</p>
-</li>
-<li><p><strong>Runtime processing</strong>— Some annotations are available to be examined at runtime.</p>
-</li>
+<li><p><strong>Information for the compiler</strong>— Annotations can be used by the compiler to detect errors or suppress warnings.</p></li>
+<li><p><strong>Compile-time and deployment-time processing</strong>— Software tools can process annotation information to generate code, XML files, and so forth.</p></li>
+<li><p><strong>Runtime processing</strong>— Some annotations are available to be examined at runtime.</p></li>
 </ul>
 </blockquote>
 <p>接下来举几个常见的例子说明：</p>
-<ol>
-<li><p>为编译器提供信息用于检测错误或者抑制警告</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addItems</span><span class="params">(@NonNull String item)</span> </span>&#123;</div><div class="line">  List list = <span class="keyword">new</span> ArrayList();</div><div class="line">  list.add(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编译时和部署时通过对注解进行处理生成代码、XML 文件等</p>
-<p>比较常见的如<a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">butterknife</a>，butterknife 能够通过注解自动生成 findViewById 的代码，<strong>有助于减轻样板代码的负担</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindView</span>(R.id.toolbar)</div><div class="line"><span class="keyword">public</span> Toolbar mToolbar;</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行时通过注解进行检查处理</p>
-<p>在运行时我们可以通过反射机制对注解提供的信息进行处理，然后实现需要的功能。</p>
-</li>
+<ol style="list-style-type: decimal">
+<li>为编译器提供信息用于检测错误或者抑制警告</li>
 </ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addItems</span><span class="params">(@NonNull String item)</span> </span>&#123;</div><div class="line">  List list = <span class="keyword">new</span> ArrayList();</div><div class="line">  list.add(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol start="2" style="list-style-type: decimal">
+<li>编译时和部署时通过对注解进行处理生成代码、XML 文件等</li>
+</ol>
+<p>比较常见的如<a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">butterknife</a>，butterknife 能够通过注解自动生成 findViewById 的代码，<strong>有助于减轻样板代码的负担</strong>。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindView</span>(R.id.toolbar)</div><div class="line"><span class="keyword">public</span> Toolbar mToolbar;</div></pre></td></tr></table></figure></p>
+<ol start="3" style="list-style-type: decimal">
+<li>运行时通过注解进行检查处理</li>
+</ol>
+<p>在运行时我们可以通过反射机制对注解提供的信息进行处理，然后实现需要的功能。</p>
 <p>在明确了注解的主要作用之后，注解的使用场景就已经呼之欲出了，<strong>当我们需要为程序中的元素提供信息，并且这些信息需要得到处理的时候，就可以考虑使用注解。</strong></p>
-<h2 id="注解的分类"><a href="#注解的分类" class="headerlink" title="注解的分类"></a>注解的分类</h2><h3 id="基本注解"><a href="#基本注解" class="headerlink" title="基本注解"></a>基本注解</h3><p>Java 提供了 5 个基本的 Annotation</p>
+<h2 id="注解的分类">注解的分类</h2>
+<h3 id="基本注解">基本注解</h3>
+<p>Java 提供了 5 个基本的 Annotation</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">注解名</th>
-<th style="text-align:left">作用</th>
+<tr class="header">
+<th align="left">注解名</th>
+<th align="left">作用</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">@Override</td>
-<td style="text-align:left">限定重写父类方法</td>
+<tr class="odd">
+<td align="left"><span class="citation">@Override</span></td>
+<td align="left">限定重写父类方法</td>
 </tr>
-<tr>
-<td style="text-align:left">@Deprecated</td>
-<td style="text-align:left">表示某个程序元素已经过时</td>
+<tr class="even">
+<td align="left"><span class="citation">@Deprecated</span></td>
+<td align="left">表示某个程序元素已经过时</td>
 </tr>
-<tr>
-<td style="text-align:left">@SuppressWarnings</td>
-<td style="text-align:left">抑制编译器的警告</td>
+<tr class="odd">
+<td align="left"><span class="citation">@SuppressWarnings</span></td>
+<td align="left">抑制编译器的警告</td>
 </tr>
-<tr>
-<td style="text-align:left">@SafeVarargs</td>
-<td style="text-align:left">抑制堆污染警告</td>
+<tr class="even">
+<td align="left"><span class="citation">@SafeVarargs</span></td>
+<td align="left">抑制堆污染警告</td>
 </tr>
-<tr>
-<td style="text-align:left">@FunctionalInterface</td>
-<td style="text-align:left">指定某个接口必须是函数式接口</td>
+<tr class="odd">
+<td align="left"><span class="citation">@FunctionalInterface</span></td>
+<td align="left">指定某个接口必须是函数式接口</td>
 </tr>
 </tbody>
 </table>
 <p>接下来聊聊它们的使用</p>
-<ol>
-<li><p>Override</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FatherClass</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overridedMethod</span><span class="params">()</span> </span>&#123; </div><div class="line">  &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseAnnotationUse</span> <span class="keyword">extends</span> <span class="title">FatherClass</span></span>&#123;</div><div class="line">  </div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overridedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.overridedMethod();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Override的主要作用是：</p>
-<ol>
-<li><p>帮助检查是否正确的复写了父类中的已有方法（如果不小心拼写错误或者方法签名对不上被覆盖的方法，编辑器都会发出警告信息）</p>
-</li>
+<ol style="list-style-type: decimal">
+<li>Override</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FatherClass</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overridedMethod</span><span class="params">()</span> </span>&#123; </div><div class="line">  &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseAnnotationUse</span> <span class="keyword">extends</span> <span class="title">FatherClass</span></span>&#123;</div><div class="line">  </div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overridedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.overridedMethod();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Override的主要作用是： 1. 帮助检查是否正确的复写了父类中的已有方法（如果不小心拼写错误或者方法签名对不上被覆盖的方法，编辑器都会发出警告信息）</p>
+<ol start="2" style="list-style-type: decimal">
 <li><p>表示当前方法定义将覆盖超类的方法。</p>
 <p>如果没有正确的复写父类中的方法则会提示 <strong>Method does not override method from its superclass</strong>。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc8rfhvj308c028wec.jpg" alt=""></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8zywyj30el00qglf.jpg" alt=""></p>
-</li>
+<div class="figure">
+<img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc8rfhvj308c028wec.jpg">
+
+</div>
+<div class="figure">
+<img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8zywyj30el00qglf.jpg">
+
+</div></li>
+<li><p>Deprecated 在 FatherClass 增加如下方法：</p></li>
 </ol>
-</li>
-<li><p>Deprecated<br><br>在 FatherClass 增加如下方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Deprecated</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deprecatedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Deprecated</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deprecatedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>然后在 BaseAnnotationUse 中增加：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line"> deprecatedMethod();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line"> deprecatedMethod();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这个时候将会看到 deprecatedMethod() 显示红色，并且编辑器提示<strong>deprecatedMethod() 已经过时了</strong></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8bslfj309j02ewec.jpg" alt=""></p>
-</li>
-<li><p>SuppressWarning<br><br>对 BaseAnnotationUse 中的 useDeprecatedMethod 方法进行如下修改</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"deprecation"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line"> deprecatedMethod();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> 通过增加 SuppressWarning 抑制了 Deprecated 的警告，deprecatedMethod() 的红色将会消失</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc9h4f3j309q02n746.jpg" alt=""></p>
-</li>
-<li><p>SafeVarargs</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SafeVarargs</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">faultyMethod</span><span class="params">(List&lt;String&gt;... listStrArray)</span> </span>&#123;</div><div class="line">	List[] listArray = listStrArray;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当把一个不带泛型的对象赋给一个带泛型的变量的时候，往往将会导致”堆污染“，所以在 Java 7 中增加了 SafeVarargs 用于抑制堆污染的警告，SafeVarargs 只能用在参数长度可变的方法或构造方法上，且方法必须声明为static或final，否则会出现编译错误。</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc9e5utj30es02ogli.jpg" alt=""></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc97402j30ns00wglh.jpg" alt=""></p>
-</li>
-<li><p>FunctionalInterface</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FunctionalInterface</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseInterface</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>FunctionalInterface 是 Java 8 专门为 Lambda 表达式新增的，通过 FunctionalInterface 可以限制接口中只能存在一个抽象方法，如果在 BaseInterface 接口中新增抽象方法，编译时将会提示 BaseInterface 不是函数式接口。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc8jd23j308b06maa2.jpg" alt=""></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc8exc7j30od01vgll.jpg" alt=""></p>
-</li>
+<div class="figure">
+<img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8bslfj309j02ewec.jpg">
+
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>SuppressWarning 对 BaseAnnotationUse 中的 useDeprecatedMethod 方法进行如下修改</li>
 </ol>
-<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><p>JDK 在 java.lang.annotation 中内置了 6 种元注解，除了 Native 之外都用于修饰其它的 Annotation 定义</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"deprecation"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</div><div class="line"> deprecatedMethod();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<pre><code>通过增加 SuppressWarning 抑制了 Deprecated 的警告，deprecatedMethod\(\) 的红色将会消失</code></pre>
+<div class="figure">
+<img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc9h4f3j309q02n746.jpg">
+
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>SafeVarargs</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SafeVarargs</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">faultyMethod</span><span class="params">(List&lt;String&gt;... listStrArray)</span> </span>&#123;</div><div class="line">	List[] listArray = listStrArray;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当把一个不带泛型的对象赋给一个带泛型的变量的时候，往往将会导致”堆污染“，所以在 Java 7 中增加了 SafeVarargs 用于抑制堆污染的警告，SafeVarargs 只能用在参数长度可变的方法或构造方法上，且方法必须声明为static或final，否则会出现编译错误。</p>
+<div class="figure">
+<img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc9e5utj30es02ogli.jpg">
+
+</div>
+<div class="figure">
+<img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc97402j30ns00wglh.jpg">
+
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li>FunctionalInterface</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FunctionalInterface</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseInterface</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>FunctionalInterface 是 Java 8 专门为 Lambda 表达式新增的，通过 FunctionalInterface 可以限制接口中只能存在一个抽象方法，如果在 BaseInterface 接口中新增抽象方法，编译时将会提示 BaseInterface 不是函数式接口。</p>
+<div class="figure">
+<img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnhpc8jd23j308b06maa2.jpg">
+
+</div>
+<div class="figure">
+<img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc8exc7j30od01vgll.jpg">
+
+</div>
+<h3 id="元注解">元注解</h3>
+<p>JDK 在 java.lang.annotation 中内置了 6 种元注解，除了 Native 之外都用于修饰其它的 Annotation 定义</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">注解名</th>
-<th style="text-align:left">作用</th>
+<tr class="header">
+<th align="left">注解名</th>
+<th align="left">作用</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">@Retention</td>
-<td style="text-align:left">指定被修饰的注解的保留时间</td>
+<tr class="odd">
+<td align="left"><span class="citation">@Retention</span></td>
+<td align="left">指定被修饰的注解的保留时间</td>
 </tr>
-<tr>
-<td style="text-align:left">@Target</td>
-<td style="text-align:left">指定被修饰的注解可以修饰的程序元素</td>
+<tr class="even">
+<td align="left"><span class="citation">@Target</span></td>
+<td align="left">指定被修饰的注解可以修饰的程序元素</td>
 </tr>
-<tr>
-<td style="text-align:left">@Documented</td>
-<td style="text-align:left">指定被修饰的注解可以被 javadoc 提取成文档</td>
+<tr class="odd">
+<td align="left"><span class="citation">@Documented</span></td>
+<td align="left">指定被修饰的注解可以被 javadoc 提取成文档</td>
 </tr>
-<tr>
-<td style="text-align:left">@Inherited</td>
-<td style="text-align:left">指定被修饰的注解具有继承性，如果某个类使用了被 @Inherited 修饰的注解，那么其子类将自动被该注解修饰</td>
+<tr class="even">
+<td align="left"><span class="citation">@Inherited</span></td>
+<td align="left">指定被修饰的注解具有继承性，如果某个类使用了被 <span class="citation">@Inherited</span> 修饰的注解，那么其子类将自动被该注解修饰</td>
 </tr>
-<tr>
-<td style="text-align:left">@Repeatable</td>
-<td style="text-align:left">用于定义重复注解</td>
+<tr class="odd">
+<td align="left"><span class="citation">@Repeatable</span></td>
+<td align="left">用于定义重复注解</td>
 </tr>
-<tr>
-<td style="text-align:left">@Native</td>
-<td style="text-align:left">表示定义常量值的字段可以从本地代码引用。</td>
+<tr class="even">
+<td align="left"><span class="citation">@Native</span></td>
+<td align="left">表示定义常量值的字段可以从本地代码引用。</td>
 </tr>
 </tbody>
 </table>
-<p>接下来主要介绍前五种，@Native 实在是不常用</p>
-<ol>
-<li><p>Retention</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Retention &#123;</div><div class="line">  <span class="comment">/**</span></div><div class="line">  * Returns the retention policy.</div><div class="line">  * <span class="doctag">@return</span> the retention policy</div><div class="line">  */</div><div class="line">	<span class="function">RetentionPolicy <span class="title">value</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来主要介绍前五种，<span class="citation">@Native</span> 实在是不常用</p>
+<ol style="list-style-type: decimal">
+<li>Retention</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Retention &#123;</div><div class="line">  <span class="comment">/**</span></div><div class="line">  * Returns the retention policy.</div><div class="line">  * <span class="doctag">@return</span> the retention policy</div><div class="line">  */</div><div class="line">	<span class="function">RetentionPolicy <span class="title">value</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>Retention的定义如上，其拥有一个 RetentionPolicy 类型的成员变量，RetentionPolicy 是枚举类，主要有三个枚举值：</p>
 <ul>
 <li>RetentionPolicy.SOURCE 注解只能保留在源文件当中，编译器不会编译这种注解</li>
 <li>RetentionPolicy.CLASS 注解能够保留在 class 文件当中，但是当程序运行的时候，JVM 不能够获取到注解信息</li>
 <li>RetentionPolicy.RUNTIME 注解能够保留在 class 文件当中，程序运行的时候，JVM 也能够获取到注解信息，程序能够通过反射去获取到 Annotation 信息</li>
 </ul>
-</li>
-<li><p>Target</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Target &#123;</div><div class="line">  <span class="comment">/**</span></div><div class="line">  * Returns an array of the kinds of elements an annotation type</div><div class="line">  * can be applied to.</div><div class="line">  * <span class="doctag">@return</span> an array of the kinds of elements an annotation type</div><div class="line">  * can be applied to</div><div class="line">  */</div><div class="line">  ElementType[] value();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol start="2" style="list-style-type: decimal">
+<li>Target</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Target &#123;</div><div class="line">  <span class="comment">/**</span></div><div class="line">  * Returns an array of the kinds of elements an annotation type</div><div class="line">  * can be applied to.</div><div class="line">  * <span class="doctag">@return</span> an array of the kinds of elements an annotation type</div><div class="line">  * can be applied to</div><div class="line">  */</div><div class="line">  ElementType[] value();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>ElementType 也是一个枚举类，其枚举值和意义是：</p>
 <ul>
 <li>ElementType.TYPE 表明注解可以修饰类、接口或者枚举定义</li>
@@ -626,110 +647,129 @@
 <li>ElementType.TYPE_PARAMETER 表明注解只能定义程序元素的修饰</li>
 <li>ElementType.TYPE_USE 表明注解不仅可以在定义程序元素的时候使用，还可以在<strong>创建对象、类型转换、使用 implements 实现接口、使用 throws 声明抛出异常</strong>的时候使用</li>
 </ul>
-</li>
-<li><p>Documented<br>对于使用被 @Documented 修饰的注解和不带 @Documented 修饰的注解，其区别如下：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpm1fxm6j308j02saa2.jpg" alt="annotation_1"></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhplxhl8fj308p02hq2w.jpg" alt="annotation_2"></p>
-</li>
-<li><p>Inherited</p>
-<p>Inherited 的继承作用可以通过以下例子来体现，首先创建一个 Interitable 注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Inheritable &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后创建一个由 Inheritable 修饰的 Base 类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Inheritable</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>最后创建一个继承自 Base 类的 InheritableTest 类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InheritableTest</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="comment">//判断是否被 Inheritable 注解</span></div><div class="line">    System.out.println(InheritableTest.class.isAnnotationPresent(Inheritable.class));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行之后可以发现结果为 true</p>
-</li>
-<li><p>Repeatable</p>
-<p>Repeatable 是 Java8 新增的注解，用于定义重复注解，在 Java8 之前的重复注解只能写成以下形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Infos(&#123;@Info(name = &quot;zhangsan&quot;), @Info(name = &quot;lisi&quot;)&#125;)</div><div class="line">private Person mPerson;</div><div class="line">public class Person &#123;</div><div class="line"></div><div class="line">    private String mName;</div><div class="line">    private int mAge;</div><div class="line">    private int mHeight;</div><div class="line">    private int mWeight;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其中 Info 和 Infos 分别是</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Info &#123;</div><div class="line">  </div><div class="line">  <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Infos &#123;</div><div class="line">  </div><div class="line">  Info[] value();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>由于 Infos 中保留了 Info 的信息，所以 Infos 的保留时间不能比 Info 少，否则编译器将会报错。如果 Info 的保留时间是 RUNTIME，而 Infos 的保留时间是 SOURCE，那么 JVM 最终会丢弃 Infos 以及 Infos 中的 Info 信息，这与 Info 期望的保留时间相矛盾。</p>
-</li>
+<ol start="3" style="list-style-type: decimal">
+<li>Documented 对于使用被 <span class="citation">@Documented</span> 修饰的注解和不带 <span class="citation">@Documented</span> 修饰的注解，其区别如下：</li>
 </ol>
-<h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h3><p>JDK 内置的注解并不能完全满足我们的需求，大多数情况下我们还需要学会自定义注解，定义一个注解需要用到 @Interface 关键字</p>
+<div class="figure">
+<img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpm1fxm6j308j02saa2.jpg" alt="annotation_1">
+<p class="caption">annotation_1</p>
+</div>
+<div class="figure">
+<img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhplxhl8fj308p02hq2w.jpg" alt="annotation_2">
+<p class="caption">annotation_2</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Inherited</li>
+</ol>
+<p>Inherited 的继承作用可以通过以下例子来体现，首先创建一个 Interitable 注解</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Inheritable &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后创建一个由 Inheritable 修饰的 Base 类</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Inheritable</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后创建一个继承自 Base 类的 InheritableTest 类</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InheritableTest</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="comment">//判断是否被 Inheritable 注解</span></div><div class="line">    System.out.println(InheritableTest.class.isAnnotationPresent(Inheritable.class));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行之后可以发现结果为 true</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Repeatable</li>
+</ol>
+<p>Repeatable 是 Java8 新增的注解，用于定义重复注解，在 Java8 之前的重复注解只能写成以下形式</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Infos(&#123;@Info(name = &quot;zhangsan&quot;), @Info(name = &quot;lisi&quot;)&#125;)</div><div class="line">private Person mPerson;</div><div class="line">public class Person &#123;</div><div class="line"></div><div class="line">    private String mName;</div><div class="line">    private int mAge;</div><div class="line">    private int mHeight;</div><div class="line">    private int mWeight;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中 Info 和 Infos 分别是</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Info &#123;</div><div class="line">  </div><div class="line">  <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Infos &#123;</div><div class="line">  </div><div class="line">  Info[] value();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于 Infos 中保留了 Info 的信息，所以 Infos 的保留时间不能比 Info 少，否则编译器将会报错。如果 Info 的保留时间是 RUNTIME，而 Infos 的保留时间是 SOURCE，那么 JVM 最终会丢弃 Infos 以及 Infos 中的 Info 信息，这与 Info 期望的保留时间相矛盾。</p>
+<h3 id="自定义注解">自定义注解</h3>
+<p>JDK 内置的注解并不能完全满足我们的需求，大多数情况下我们还需要学会自定义注解，定义一个注解需要用到 <span class="citation">@Interface</span> 关键字</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> BindView &#123;</div><div class="line">  </div><div class="line">  <span class="comment">/**</span></div><div class="line">  * <span class="doctag">@return</span> View 的 Id</div><div class="line">  */</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> BindOnClickListener &#123;</div><div class="line">  </div><div class="line">  <span class="comment">/**</span></div><div class="line">  * <span class="doctag">@return</span> 实现 OnClickListener 接口的类</div><div class="line">  */</div><div class="line">  Class&lt;? extends OnClickListener&gt; value();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面定义了两个注解用于绑定 View 的 id 以及 点击事件，并且指定了注解可以修饰的元素以及保留时间，可以看到定义一个注解与定义一个接口非常类似，而实际上每个注解都是继承自 Annotation 接口的接口，反编译 BindView 生成的 class 文件可以看到</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Compiled from <span class="string">"BindView.java"</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">com</span>.<span class="title">rookieyang</span>.<span class="title">runtimeannotation</span>.<span class="title">customizeannotation</span>.<span class="title">BindView</span> <span class="keyword">extends</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">annotation</span>.<span class="title">Annotation</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里自定义的注解都是含有成员变量的，而注解除了按照基本注解、元注解、自定义注解进行分类之外，我还可以根据是否包含成员变量将它分为两类：</p>
 <ul>
-<li><p>标记注解：这种注解没有成员变量，它仅仅通过是否存在来提供信息，如@Override、@Deprecated</p>
-</li>
-<li><p>元数据注解：这种注解包含成员变量，它通过成员变量提供更多的信息，如@Retention、@Target</p>
-</li>
+<li><p>标记注解：这种注解没有成员变量，它仅仅通过是否存在来提供信息，如@Override、<span class="citation">@Deprecated</span></p></li>
+<li><p>元数据注解：这种注解包含成员变量，它通过成员变量提供更多的信息，如@Retention、<span class="citation">@Target</span></p></li>
 </ul>
-<h2 id="注解的处理"><a href="#注解的处理" class="headerlink" title="注解的处理"></a>注解的处理</h2><p>在使用自定义的注解的时候，如果不提供注解的处理工具，注解是不会自动生效的，注解的处理方法主要有两种，一种是运行时处理注解，一种是编译时处理注解。</p>
-<ol>
-<li><p>运行时处理注解</p>
+<h2 id="注解的处理">注解的处理</h2>
+<p>在使用自定义的注解的时候，如果不提供注解的处理工具，注解是不会自动生效的，注解的处理方法主要有两种，一种是运行时处理注解，一种是编译时处理注解。</p>
+<ol style="list-style-type: decimal">
+<li>运行时处理注解</li>
+</ol>
 <p>运行时处理注解主要利用 Java 的反射机制，接下来将结合具体实例说明如何通过反射处理注解。</p>
 <p>首先利用自定义注解部分定义的两个注解 BindView 和 BindOnClickListener 对 View 进行注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindView</span>(R.id.hello_world)</div><div class="line"><span class="meta">@BindOnClickListener</span>(CustomizeOnClickListener.class)</div><div class="line"><span class="keyword">private</span> Button mHelloWorld;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindView</span>(R.id.hello_world)</div><div class="line"><span class="meta">@BindOnClickListener</span>(CustomizeOnClickListener.class)</div><div class="line"><span class="keyword">private</span> Button mHelloWorld;</div></pre></td></tr></table></figure></p>
 <p>然后在 Activity 中定义一个 CustomizeOnClickListener 内部类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class CustomizeOnClickListener implements OnClickListener &#123;</div><div class="line"></div><div class="line">  @Override</div><div class="line">  public void onClick(View view) &#123;</div><div class="line">    Toast.makeText(MainActivity.this, R.string.hello_world,</div><div class="line">    Toast.LENGTH_SHORT).show();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class CustomizeOnClickListener implements OnClickListener &#123;</div><div class="line"></div><div class="line">  @Override</div><div class="line">  public void onClick(View view) &#123;</div><div class="line">    Toast.makeText(MainActivity.this, R.string.hello_world,</div><div class="line">    Toast.LENGTH_SHORT).show();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>接着定义一个处理注解的类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationProcess</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">    Field[] fields = obj.getClass().getDeclaredFields();</div><div class="line">    Activity activity;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!(obj <span class="keyword">instanceof</span> Activity)) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"传入的参数不是Activity"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    activity = (Activity) obj;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        View view = <span class="keyword">null</span>;</div><div class="line">        field.setAccessible(<span class="keyword">true</span> );</div><div class="line">        BindView bindView = field.getAnnotation(BindView.class);</div><div class="line">        BindOnClickListener bindOnClickListener = field</div><div class="line">        .getAnnotation(BindOnClickListener.class);</div><div class="line">        <span class="comment">//判断是否是 View</span></div><div class="line">        <span class="keyword">boolean</span> isView = View.class.isAssignableFrom(field.getType());</div><div class="line">        <span class="keyword">if</span> (bindView != <span class="keyword">null</span> &amp;&amp; isView) &#123;</div><div class="line">          view = activity.findViewById(bindView.value());</div><div class="line">          <span class="comment">//设置 obj 对象当中的 field 值为 view</span></div><div class="line">          field.set(obj, view);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (bindOnClickListener != <span class="keyword">null</span> &amp;&amp; isView &amp;&amp; view != <span class="keyword">null</span>) &#123;</div><div class="line">          Class&lt;? extends OnClickListener&gt; listener = bindOnClickListener.value();</div><div class="line">          <span class="comment">//实例化 CustomizeOnClickListener 内部类</span></div><div class="line">          OnClickListener onClickListener = listener.getConstructor(</div><div class="line">          obj.getClass()).newInstance(activity);</div><div class="line">          view.setOnClickListener(onClickListener);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">      &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        Log.i(obj.getClass().getSimpleName(), e.getMessage());</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationProcess</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">    Field[] fields = obj.getClass().getDeclaredFields();</div><div class="line">    Activity activity;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!(obj <span class="keyword">instanceof</span> Activity)) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"传入的参数不是Activity"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    activity = (Activity) obj;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        View view = <span class="keyword">null</span>;</div><div class="line">        field.setAccessible(<span class="keyword">true</span> );</div><div class="line">        BindView bindView = field.getAnnotation(BindView.class);</div><div class="line">        BindOnClickListener bindOnClickListener = field</div><div class="line">        .getAnnotation(BindOnClickListener.class);</div><div class="line">        <span class="comment">//判断是否是 View</span></div><div class="line">        <span class="keyword">boolean</span> isView = View.class.isAssignableFrom(field.getType());</div><div class="line">        <span class="keyword">if</span> (bindView != <span class="keyword">null</span> &amp;&amp; isView) &#123;</div><div class="line">          view = activity.findViewById(bindView.value());</div><div class="line">          <span class="comment">//设置 obj 对象当中的 field 值为 view</span></div><div class="line">          field.set(obj, view);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (bindOnClickListener != <span class="keyword">null</span> &amp;&amp; isView &amp;&amp; view != <span class="keyword">null</span>) &#123;</div><div class="line">          Class&lt;? extends OnClickListener&gt; listener = bindOnClickListener.value();</div><div class="line">          <span class="comment">//实例化 CustomizeOnClickListener 内部类</span></div><div class="line">          OnClickListener onClickListener = listener.getConstructor(</div><div class="line">          obj.getClass()).newInstance(activity);</div><div class="line">          view.setOnClickListener(onClickListener);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">      &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        Log.i(obj.getClass().getSimpleName(), e.getMessage());</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>最后在 Activity 中调用即可：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AnnotationProcess.process(<span class="keyword">this</span>);</div></pre></td></tr></table></figure>
-</li>
-<li><p>编译时处理注解</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AnnotationProcess.process(<span class="keyword">this</span>);</div></pre></td></tr></table></figure></p>
+<ol start="2" style="list-style-type: decimal">
+<li>编译时处理注解</li>
+</ol>
 <p>相对与运行时利用反射处理注解会有性能损失而言，编译时处理注解利用 APT（Annotation Processing Tool）对注解进行处理然后生成代码、XML 文件，利用 APT 去处理注解性能更好。参照 JDK 文档中对于 Processor 接口的描述，我们可以大致知道注解处理器的工作流程</p>
 <blockquote>
-<ol>
+<ol style="list-style-type: decimal">
 <li>If an existing Processor object is not being used, to create an instance of a processor the tool calls the no-arg constructor of the processor class.</li>
 <li>Next, the tool calls the init method with an appropriate ProcessingEnvironment.</li>
 <li>Afterwards, the tool calls getSupportedAnnotationTypes, getSupportedOptions, and getSupportedSourceVersion. These methods are only called once per run, not on each round.</li>
 <li>As appropriate, the tool calls the process method on the Processor object; a new Processor object is not created for each round.</li>
 </ol>
 </blockquote>
-<p>编译工具将会通过注解处理器的无参构造函数实例化一个注解处理器对象，然后调用注解处理器的 init 方法并传入 ProcessingEnvironment，之后则调用 getSupportedAnnotationTypes，getSupportedOptions和getSupportedSourceVersion，最后将会调用 process 方法。<br>接下来将说明如何利用 APT 生成一个类文件用于显示 HelloWorld：</p>
+<p>编译工具将会通过注解处理器的无参构造函数实例化一个注解处理器对象，然后调用注解处理器的 init 方法并传入 ProcessingEnvironment，之后则调用 getSupportedAnnotationTypes，getSupportedOptions和getSupportedSourceVersion，最后将会调用 process 方法。 接下来将说明如何利用 APT 生成一个类文件用于显示 HelloWorld：</p>
 <p>首先需要明确希望生成的类文件：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.rookieyang.myannotationtwo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.widget.Toast;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity_HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    Toast.makeText(context, <span class="string">"HelloWorld"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>想要生成这个类文件需要获取到两点信息：<strong>包名和类名</strong>，通过包名可以使类文件生成在使用注解的包下，便于解析注解的时候加载类文件，通过类名加上 “_HelloWorld” 确保生成的类文件唯一存在，同时也达到了使用注解的类和生成的类绑定的效果。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.rookieyang.myannotationtwo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.widget.Toast;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity_HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    Toast.makeText(context, <span class="string">"HelloWorld"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>想要生成这个类文件需要获取到两点信息：<strong>包名和类名</strong>，通过包名可以使类文件生成在使用注解的包下，便于解析注解的时候加载类文件，通过类名加上 &quot;_HelloWorld&quot; 确保生成的类文件唯一存在，同时也达到了使用注解的类和生成的类绑定的效果。</p>
 <p>接下来需要创建两个 Module，其中一个定义了所有的注解，另外一个定义了 APT，之所以需要定义两个 Module 的原因，其一为了让工程结构更清晰，另一方面定义 APT 需要用到 javax 包。整体的工程结构如下图所示：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpgt6yrqj308w0aqwer.jpg" alt=""></p>
+<div class="figure">
+<img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpgt6yrqj308w0aqwer.jpg">
+
+</div>
 <p>之后需要为 annotations-compiler 和 app 模块引入相关依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">annotations-compiler 模块</div><div class="line">compile <span class="string">'com.google.auto.service:auto-service:1.0-rc3'</span></div><div class="line"><span class="function">compile <span class="title">project</span><span class="params">(path: <span class="string">':annotations'</span>)</span></span></div><div class="line"></div><div class="line">app 模块</div><div class="line">compile <span class="title">project</span><span class="params">(path: <span class="string">':annotations'</span>)</span></div><div class="line">annotationProcessor <span class="title">project</span><span class="params">(<span class="string">':annotations-compiler'</span>)</span></div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">annotations-compiler 模块</div><div class="line">compile <span class="string">'com.google.auto.service:auto-service:1.0-rc3'</span></div><div class="line"><span class="function">compile <span class="title">project</span><span class="params">(path: <span class="string">':annotations'</span>)</span></span></div><div class="line"></div><div class="line">app 模块</div><div class="line">compile <span class="title">project</span><span class="params">(path: <span class="string">':annotations'</span>)</span></div><div class="line">annotationProcessor <span class="title">project</span><span class="params">(<span class="string">':annotations-compiler'</span>)</span></div></pre></td></tr></table></figure></p>
 <p>其中 auto-service 的作用是帮助我们生成下列文件，主要作用是声明注解处理器。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhph5udigj309q024mx0.jpg" alt=""></p>
+<div class="figure">
+<img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhph5udigj309q024mx0.jpg">
+
+</div>
 <p>annotationProcessor 则是为模块指定注解处理器</p>
 <p>配置之后首先在 annotations 模块定义一个 HelloWorld 注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> HelloWorld &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.CLASS)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> HelloWorld &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>然后在 annotations-compiler 模块编写对应注解处理器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//标识一个注解处理器</span></div><div class="line"><span class="meta">@AutoService</span>(Processor.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationsCompiler</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Elements mElements;</div><div class="line">  <span class="keyword">private</span> Filer mFiler;</div><div class="line">  <span class="keyword">private</span> Messager mMessager;</div><div class="line"></div><div class="line">  <span class="comment">/*</span></div><div class="line">  * 用于初始化 mElements、mFiler、mMessager</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ProcessingEnvironment processingEnvi)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.init(processingEnvi);</div><div class="line"></div><div class="line">    mElements = processingEnvi.getElementUtils();</div><div class="line">    mFiler = processingEnvi.getFiler();</div><div class="line">    mMessager = processingEnvi.getMessager();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@param</span> elements 实际上传入的都是 &#123;<span class="doctag">@link</span> #getSupportedAnnotationTypes()&#125;</div><div class="line">  * 中支持的并且被扫描到（使用过）注解元素，例如这里获取到的类元素就是 HelloWorld 注解</div><div class="line">  * <span class="doctag">@param</span> roundEnvi 一个注解处理工具框架，通过它可以查询到使用了注解的元素</div><div class="line">  * <span class="doctag">@return</span> 返回处理结果</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; elements,</span></span></div><div class="line">  RoundEnvironment roundEnvi) &#123;</div><div class="line">    String packageName;</div><div class="line">    String className;</div><div class="line">    <span class="comment">//获取使用了 HelloWorld 注解的元素</span></div><div class="line">    <span class="keyword">for</span> (Element element : roundEnvi.getElementsAnnotatedWith(HelloWorld.class)) &#123;</div><div class="line">      <span class="comment">//通过 Elements 去获取包名</span></div><div class="line">      packageName = mElements.getPackageOf(element).toString();</div><div class="line">      <span class="comment">//HelloWorld 注解只能被用在成员变量，所以通过获取外层元素就可以获取到使用注解的元素所在的类</span></div><div class="line">      className = element.getEnclosingElement().getSimpleName() + <span class="string">"_HelloWorld"</span>;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        <span class="comment">//通过 Filer 指定的路径下创建一个 java 源文件，然后写入对应的代码</span></div><div class="line">        JavaFileObject javaFileObject = mFiler.createSourceFile(</div><div class="line">        packageName + <span class="string">"."</span> + className);</div><div class="line">        Writer writer = javaFileObject.openWriter();</div><div class="line">        writer.write(<span class="string">"package "</span> + packageName + <span class="string">";\n\n"</span>);</div><div class="line">        writer.write(<span class="string">"import android.content.Context;\n"</span>);</div><div class="line">        writer.write(<span class="string">"import android.widget.Toast;\n\n"</span>);</div><div class="line">        writer.write(<span class="string">"public class "</span> + className + <span class="string">" &#123;\n\n"</span>);</div><div class="line">        writer.write(<span class="string">"\tpublic static void show(Context context) &#123;\n"</span>);</div><div class="line">        writer.write(<span class="string">"\t\tToast.makeText(context,"</span></div><div class="line">        + <span class="string">" \"HelloWorld\", Toast.LENGTH_SHORT).show();\n"</span>);</div><div class="line">        writer.write(<span class="string">"\t&#125;\n"</span>);</div><div class="line">        writer.write(<span class="string">"\n&#125;"</span>);</div><div class="line">        writer.flush();</div><div class="line">        writer.close();</div><div class="line">      &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> 返回注解处理器支持的 Java 版本</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> SourceVersion <span class="title">getSupportedSourceVersion</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> SourceVersion.latestSupported();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> 返回注解处理器支持的注解集合</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getSupportedAnnotationTypes</span><span class="params">()</span> </span>&#123;</div><div class="line">    Set&lt;String&gt; annotationTypes = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (Class&lt;? extends Annotation&gt; annotation : getSupportedAnnotations()) &#123;</div><div class="line">      annotationTypes.add(annotation.getCanonicalName());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> annotationTypes;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> 返回支持的注解类型集合</div><div class="line">  */</div><div class="line">  <span class="keyword">private</span> Set&lt;Class&lt;? extends Annotation&gt;&gt; getSupportedAnnotations() &#123;</div><div class="line">    Set&lt;Class&lt;? extends Annotation&gt;&gt; annotationSet = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</div><div class="line">    annotationSet.add(HelloWorld.class);</div><div class="line"> </div><div class="line">    <span class="keyword">return</span> annotationSet;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//标识一个注解处理器</span></div><div class="line"><span class="meta">@AutoService</span>(Processor.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationsCompiler</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Elements mElements;</div><div class="line">  <span class="keyword">private</span> Filer mFiler;</div><div class="line">  <span class="keyword">private</span> Messager mMessager;</div><div class="line"></div><div class="line">  <span class="comment">/*</span></div><div class="line">  * 用于初始化 mElements、mFiler、mMessager</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ProcessingEnvironment processingEnvi)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.init(processingEnvi);</div><div class="line"></div><div class="line">    mElements = processingEnvi.getElementUtils();</div><div class="line">    mFiler = processingEnvi.getFiler();</div><div class="line">    mMessager = processingEnvi.getMessager();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@param</span> elements 实际上传入的都是 &#123;<span class="doctag">@link</span> #getSupportedAnnotationTypes()&#125;</div><div class="line">  * 中支持的并且被扫描到（使用过）注解元素，例如这里获取到的类元素就是 HelloWorld 注解</div><div class="line">  * <span class="doctag">@param</span> roundEnvi 一个注解处理工具框架，通过它可以查询到使用了注解的元素</div><div class="line">  * <span class="doctag">@return</span> 返回处理结果</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; elements,</span></span></div><div class="line">  RoundEnvironment roundEnvi) &#123;</div><div class="line">    String packageName;</div><div class="line">    String className;</div><div class="line">    <span class="comment">//获取使用了 HelloWorld 注解的元素</span></div><div class="line">    <span class="keyword">for</span> (Element element : roundEnvi.getElementsAnnotatedWith(HelloWorld.class)) &#123;</div><div class="line">      <span class="comment">//通过 Elements 去获取包名</span></div><div class="line">      packageName = mElements.getPackageOf(element).toString();</div><div class="line">      <span class="comment">//HelloWorld 注解只能被用在成员变量，所以通过获取外层元素就可以获取到使用注解的元素所在的类</span></div><div class="line">      className = element.getEnclosingElement().getSimpleName() + <span class="string">"_HelloWorld"</span>;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        <span class="comment">//通过 Filer 指定的路径下创建一个 java 源文件，然后写入对应的代码</span></div><div class="line">        JavaFileObject javaFileObject = mFiler.createSourceFile(</div><div class="line">        packageName + <span class="string">"."</span> + className);</div><div class="line">        Writer writer = javaFileObject.openWriter();</div><div class="line">        writer.write(<span class="string">"package "</span> + packageName + <span class="string">";\n\n"</span>);</div><div class="line">        writer.write(<span class="string">"import android.content.Context;\n"</span>);</div><div class="line">        writer.write(<span class="string">"import android.widget.Toast;\n\n"</span>);</div><div class="line">        writer.write(<span class="string">"public class "</span> + className + <span class="string">" &#123;\n\n"</span>);</div><div class="line">        writer.write(<span class="string">"\tpublic static void show(Context context) &#123;\n"</span>);</div><div class="line">        writer.write(<span class="string">"\t\tToast.makeText(context,"</span></div><div class="line">        + <span class="string">" \"HelloWorld\", Toast.LENGTH_SHORT).show();\n"</span>);</div><div class="line">        writer.write(<span class="string">"\t&#125;\n"</span>);</div><div class="line">        writer.write(<span class="string">"\n&#125;"</span>);</div><div class="line">        writer.flush();</div><div class="line">        writer.close();</div><div class="line">      &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> 返回注解处理器支持的 Java 版本</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> SourceVersion <span class="title">getSupportedSourceVersion</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> SourceVersion.latestSupported();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> 返回注解处理器支持的注解集合</div><div class="line">  */</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getSupportedAnnotationTypes</span><span class="params">()</span> </span>&#123;</div><div class="line">    Set&lt;String&gt; annotationTypes = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (Class&lt;? extends Annotation&gt; annotation : getSupportedAnnotations()) &#123;</div><div class="line">      annotationTypes.add(annotation.getCanonicalName());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> annotationTypes;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">/**</span></div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> 返回支持的注解类型集合</div><div class="line">  */</div><div class="line">  <span class="keyword">private</span> Set&lt;Class&lt;? extends Annotation&gt;&gt; getSupportedAnnotations() &#123;</div><div class="line">    Set&lt;Class&lt;? extends Annotation&gt;&gt; annotationSet = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</div><div class="line">    annotationSet.add(HelloWorld.class);</div><div class="line"> </div><div class="line">    <span class="keyword">return</span> annotationSet;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>接下来说下几个有助于理解注解处理器的点：</p>
 <ul>
 <li><p>Elements 是一个获取程序元素信息的接口，例如获取元素的包名、判断是否是重写方法，例如</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc87z4nj30900bcq32.jpg" alt=""></p>
-</li>
+<div class="figure">
+<img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc87z4nj30900bcq32.jpg">
+
+</div></li>
 <li><p>Filer 则是一个支持通过注解处理器创建文件的接口，可以用于创建 Class文件、源文件、资源文件</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpj2enf9j308y03imx1.jpg" alt=""></p>
-</li>
+<div class="figure">
+<img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpj2enf9j308y03imx1.jpg">
+
+</div></li>
 <li><p>Messager 则是为注解处理器提供的输出错误信息的接口。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpjl1kmcj308z03mjr8.jpg" alt=""></p>
-</li>
+<div class="figure">
+<img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpjl1kmcj308z03mjr8.jpg">
+
+</div></li>
 <li><p>Element 与 Elements 区别在于 Element 是获取单个程序元素信息的接口，而 Elements 可以获取整个程序的元素信息。除了 Element 之外，上述程序还可以看到 TypeElement，而 TypeElement 是一个继承了 Element 接口的接口，用于表示类元素。实际上 JDK 还提供了很多继承自 Element 的接口用于表示程序中的各项元素，具体的 Element 继承结构如下图所示：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpc82cpmj30930820sz.jpg" alt=""></p>
-</li>
+<div class="figure">
+<img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnhpc82cpmj30930820sz.jpg">
+
+</div></li>
 </ul>
 <p>在编写完注解处理器之后，最后在 App 模块中编写对应的调用代码即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">//获得生成的类的 Class 对象</span></div><div class="line">    Class&lt;?&gt; helloClass = Class.forName(getPackageName() + <span class="string">"."</span></div><div class="line">    + getClass().getSimpleName() + <span class="string">"_HelloWorld"</span>);</div><div class="line">    <span class="comment">//利用反射取得 show 方法，然后执行对应的方法即可</span></div><div class="line">    Method showMethod = helloClass.getMethod(<span class="string">"show"</span>, Context.class);</div><div class="line">    showMethod.invoke(<span class="keyword">this</span>, <span class="keyword">this</span>);</div><div class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">//获得生成的类的 Class 对象</span></div><div class="line">    Class&lt;?&gt; helloClass = Class.forName(getPackageName() + <span class="string">"."</span></div><div class="line">    + getClass().getSimpleName() + <span class="string">"_HelloWorld"</span>);</div><div class="line">    <span class="comment">//利用反射取得 show 方法，然后执行对应的方法即可</span></div><div class="line">    Method showMethod = helloClass.getMethod(<span class="string">"show"</span>, Context.class);</div><div class="line">    showMethod.invoke(<span class="keyword">this</span>, <span class="keyword">this</span>);</div><div class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>实际上编译时注解的整个处理过程是利用注解处理器对程序中使用了注解的元素进行遍历，从元素中提取所需的信息，然后生成类文件，最后在程序中加载生成的类并调用其中的方法。</p>
 <p>最后给出本次测试的工程链接 <a href="https://github.com/firstdream10/Android-Study-Project/tree/master/Annotation" target="_blank" rel="external">Annotation 测试</a></p>
-</li>
+<h2 id="总结">总结</h2>
+<p>最后让我们回答开始的几个问题</p>
+<ol style="list-style-type: decimal">
+<li><p>注解是一种用于描述程序元素信息的修饰符，可以用来修饰包、类、构造器、方法、成员变量、参数、局部变量。</p></li>
+<li><p>当我们需要为程序中的元素提供信息，并且这些信息得到处理的时候，就可以考虑使用注解。</p></li>
+<li><p>按照系统内置的注解，可以分为<strong>基本注解、元注解、自定义注解</strong>。按照是否有成员变量可以分为<strong>标记注解、元数据注解</strong>。按照处理方式，可以分为<strong>运行时注解、编译时注解</strong>。</p></li>
+<li><p>注解的处理过程主要为运行时通过反射处理和编译时通过注解处理器进行处理。</p></li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后让我们回答开始的几个问题</p>
-<ol>
-<li><p>注解是一种用于描述程序元素信息的修饰符，可以用来修饰包、类、构造器、方法、成员变量、参数、局部变量。</p>
-</li>
-<li><p>当我们需要为程序中的元素提供信息，并且这些信息得到处理的时候，就可以考虑使用注解。</p>
-</li>
-<li><p>按照系统内置的注解，可以分为<strong>基本注解、元注解、自定义注解</strong>。按照是否有成员变量可以分为<strong>标记注解、元数据注解</strong>。按照处理方式，可以分为<strong>运行时注解、编译时注解</strong>。</p>
-</li>
-<li><p>注解的处理过程主要为运行时通过反射处理和编译时通过注解处理器进行处理。</p>
-</li>
-</ol>
-<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><ul>
+<h2 id="thanks">Thanks</h2>
+<ul>
 <li>《Java 编程思想》</li>
 <li>《疯狂 Java 讲义》</li>
 <li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/index.html" target="_blank" rel="external">Annotation Tutorials</a></li>
@@ -782,14 +822,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/22/Android启动过程简析（三）/" rel="next" title="Android启动过程简析（三）之 SystemServer 进程">
+                <i class="fa fa-chevron-left"></i> Android启动过程简析（三）之 SystemServer 进程
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/07/2018计划/" rel="prev" title="2018的学习计划">
-                2018的学习计划 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/07/2018计划/" rel="prev" title="2017年年终总结">
+                2017年年终总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -869,7 +913,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -891,7 +935,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -917,15 +961,6 @@
                     <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/u/2219331925/home?wvr=5" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
                 </a>
               </span>
             
@@ -962,7 +997,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解简介"><span class="nav-number">2.</span> <span class="nav-text">注解简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的主要使用场景"><span class="nav-number">3.</span> <span class="nav-text">注解的主要使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的分类"><span class="nav-number">4.</span> <span class="nav-text">注解的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本注解"><span class="nav-number">4.1.</span> <span class="nav-text">基本注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元注解"><span class="nav-number">4.2.</span> <span class="nav-text">元注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义注解"><span class="nav-number">4.3.</span> <span class="nav-text">自定义注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的处理"><span class="nav-number">5.</span> <span class="nav-text">注解的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thanks"><span class="nav-number">7.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解简介"><span class="nav-number">2.</span> <span class="nav-text">注解简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的主要使用场景"><span class="nav-number">3.</span> <span class="nav-text">注解的主要使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的分类"><span class="nav-number">4.</span> <span class="nav-text">注解的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本注解"><span class="nav-number">4.1.</span> <span class="nav-text">基本注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元注解"><span class="nav-number">4.2.</span> <span class="nav-text">元注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义注解"><span class="nav-number">4.3.</span> <span class="nav-text">自定义注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的处理"><span class="nav-number">5.</span> <span class="nav-text">注解的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thanks"><span class="nav-number">7.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
             
 
           </div>
@@ -1293,6 +1328,8 @@
 
 
   
+  
+
 
   
 

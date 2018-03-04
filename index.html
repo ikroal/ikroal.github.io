@@ -311,6 +311,516 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2018/02/28/Android启动过程简析（四）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/28/Android启动过程简析（四）/" itemprop="url">
+                  Android启动过程简析（四）之Lanucher的启动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T22:55:07+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">Android进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/28/Android启动过程简析（四）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/28/Android启动过程简析（四）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/28/Android启动过程简析（四）/" class="leancloud_visitors" data-flag-title="Android启动过程简析（四）之Lanucher的启动">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言">前言</h2>
+<p>通过<a href="/2018/01/22/Android启动过程简析（三）/" title="Android启动过程简析（三）">Android启动过程简析（三）</a>这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/28/Android启动过程简析（四）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2018/01/28/白话深度学习之基础篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/01/28/白话深度学习之基础篇/" itemprop="url">
+                  白话深度学习-基础篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-28T12:06:04+08:00">
+                2018-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/28/白话深度学习之基础篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/28/白话深度学习之基础篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/28/白话深度学习之基础篇/" class="leancloud_visitors" data-flag-title="白话深度学习-基础篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="收获">收获</h2>
+<p>「白话深度学习与TensorFlow」的基础篇主要内容为“机器学习是什么”、“深度学习是什么”以及“TensorFlow”框架特性与安装，通过阅读基础篇的内容大致了解了以下几个部分： - 机器学习与深度学习的概念 - 机器学习与深度学习的区别 - 机器学习的常用方法 - 安装TensorFlow框架</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/28/白话深度学习之基础篇/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2018/01/22/Android启动过程简析（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/01/22/Android启动过程简析（三）/" itemprop="url">
+                  Android启动过程简析（三）之 SystemServer 进程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T23:34:45+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">Android进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/22/Android启动过程简析（三）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/22/Android启动过程简析（三）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/22/Android启动过程简析（三）/" class="leancloud_visitors" data-flag-title="Android启动过程简析（三）之 SystemServer 进程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言">前言</h2>
+<p>在<a href="/2017/11/05/Android启动过程简析（二）/" title="Android启动过程简析（二）">Android启动过程简析（二）</a>中已经大致分析了 zygote 进程的启动过程当中所做的主要工作，本篇将继续对 SystemServer 的启动过程进行分析。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/22/Android启动过程简析（三）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2018/01/15/Java基础之注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -431,16 +941,13 @@
 
       
         
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>关于注解首先请思考一下以下问题：</p>
+          <h2 id="问题">问题</h2>
+<p>关于注解首先请思考一下以下问题：</p>
 <ul>
-<li><p>注解是什么？</p>
-</li>
-<li><p>注解的主要使用场景？</p>
-</li>
-<li><p>注解可以分为哪些类型？</p>
-</li>
-<li><p>注解的处理过程？</p>
-</li>
+<li>注解是什么？</li>
+<li>注解的主要使用场景？</li>
+<li>注解可以分为哪些类型？</li>
+<li>注解的处理过程？</li>
 </ul>
 <p>接下来我们将对这几个问题进行探讨
           <!--noindex-->
@@ -514,7 +1021,7 @@
               
                 
                 <a class="post-title-link" href="/2018/01/07/2018计划/" itemprop="url">
-                  2018的学习计划
+                  2017年年终总结
                 </a>
               
             
@@ -581,7 +1088,7 @@
 
           
           
-             <span id="/2018/01/07/2018计划/" class="leancloud_visitors" data-flag-title="2018的学习计划">
+             <span id="/2018/01/07/2018计划/" class="leancloud_visitors" data-flag-title="2017年年终总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -611,7 +1118,7 @@
 
       
         
-          <p>拖了很久终于准备好给自己安排下新年计划了，回顾过去的这半年真的是惨不忍睹，每个方面都显得毫无章法。就技术而言，感觉不懂的很多，想学习的方面也挺多的，但是由于焦虑感却始终无法沉下心来进行学习，导致每个知识点只是蜻蜓点水般的过去了。所以 2018 想对 2017 做一个反思，顺便给自己一个明确的方向。
+          <p>2017 快结束了，正好趁这个时间对过去一年做个总结，过去一年上半年的表现应该能有 70 分，毕竟在做毕设期间劲头足，而且也学习到了不少东西，而参加工作的下半年则恐怕连 30 分都不到。大致分析了一下问题所在
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/07/2018计划/#more" rel="contents">
@@ -780,7 +1287,8 @@
 
       
         
-          <h2 id="zygote-启动过程"><a href="#zygote-启动过程" class="headerlink" title="zygote 启动过程"></a>zygote 启动过程</h2><p>上文已经分析过，zygote 在 frameworks/base/cmds/app_process/app_main.cpp 中的 main 函数启动，但是在 zygote 启动过程中具体做了一些什么工作呢？本文将对此进行分析。
+          <h2 id="前言">前言</h2>
+<p>在 <a href="/2017/10/28/Android启动过程简析（一）/" title="Android启动过程简析（一）">Android启动过程简析（一）</a>中我们已经分析过了 init 进程是如何被启动的，本篇文章将会继续分析 zygote 启动过程以及作用。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/05/Android启动过程简析（二）/#more" rel="contents">
@@ -949,13 +1457,8 @@
 
       
         
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在进入到 Android 启动过程之前先让我们思考以下几个问题</p>
-<ol>
-<li>Android 系统的启动过程是怎样的？</li>
-<li>init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？</li>
-<li>AMS、PMS 等这些服务是如何被启动的？</li>
-<li>Launcher 是如何被启动的？</li>
-</ol>
+          <h2 id="问题">问题</h2>
+<p>在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？</p>
 <p>此篇文章将针对 init 部分给出分析
           <!--noindex-->
           <div class="post-button text-center">
@@ -1028,7 +1531,7 @@
               
                 
                 <a class="post-title-link" href="/2017/09/24/Selector的用法/" itemprop="url">
-                  Android Selector 的用法
+                  Android 基础之 Selector 的用法
                 </a>
               
             
@@ -1095,7 +1598,7 @@
 
           
           
-             <span id="/2017/09/24/Selector的用法/" class="leancloud_visitors" data-flag-title="Android Selector 的用法">
+             <span id="/2017/09/24/Selector的用法/" class="leancloud_visitors" data-flag-title="Android 基础之 Selector 的用法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1125,12 +1628,8 @@
 
       
         
-          <h5 id="Selector-简介"><a href="#Selector-简介" class="headerlink" title="Selector 简介"></a>Selector 简介</h5><p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。</p>
-<h5 id="Drawable-selector"><a href="#Drawable-selector" class="headerlink" title="Drawable-selector"></a>Drawable-selector</h5><ol>
-<li><p>首先需要在 res/drawable 文件夹下新建一个 Drawable Resource File 文件，填入文件名即可，创建之后的文件内容如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>在 selector 标签下新建一个 item 标签，item 标签表示一种状态，如果不指明状态，那么控件在任何状态下都会加载 item 内的 样式，常用的状态设置如下所示：
+          <h2 id="前言">前言</h2>
+<p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/24/Selector的用法/#more" rel="contents">
@@ -1299,7 +1798,9 @@
 
       
         
-          <h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="面向对象的六大原则"><a href="#面向对象的六大原则" class="headerlink" title="面向对象的六大原则"></a>面向对象的六大原则</h4><h5 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h5><p>单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因</p>
+          <h2 id="面向对象的六大原则">面向对象的六大原则</h2>
+<h3 id="单一职责原则">单一职责原则</h3>
+<p>单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因</p>
 <blockquote>
 <p>简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。</p>
 </blockquote>
@@ -1351,7 +1852,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/09/10/百分比圆环的实现/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/09/10/Android自定义控件之百分比圆环/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -1373,8 +1874,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/09/10/百分比圆环的实现/" itemprop="url">
-                  百分比圆环的实现
+                <a class="post-title-link" href="/2017/09/10/Android自定义控件之百分比圆环/" itemprop="url">
+                  Android 自定义控件之百分比圆环
                 </a>
               
             
@@ -1431,9 +1932,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/10/百分比圆环的实现/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/10/Android自定义控件之百分比圆环/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/10/百分比圆环的实现/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/10/Android自定义控件之百分比圆环/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1441,7 +1942,7 @@
 
           
           
-             <span id="/2017/09/10/百分比圆环的实现/" class="leancloud_visitors" data-flag-title="百分比圆环的实现">
+             <span id="/2017/09/10/Android自定义控件之百分比圆环/" class="leancloud_visitors" data-flag-title="Android 自定义控件之百分比圆环">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1471,526 +1972,11 @@
 
       
         
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好记得一些清理软件的存储空间都是以这种百分比圆环的方式显示出来的，所以了解了一下它的实现过程。</p>
-<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p>最终实现的效果如下图所示：<br><img src="https://i.imgur.com/UlM8EHR.gif" alt="2017-09-10 16.01.09"></p>
-<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><p>从上图我们可以看到，绘制一个这样的百分比圆环主要有涉及到三个元素：</p>
-<ol>
-<li>背景空心圆：代表着总的进度</li>
-<li>圆弧：代表着当前进度</li>
-<li>文字：需要局中，表示具体的进度
+          <h2 id="前言">前言</h2>
+<p>最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好看见 360 清理大师的存储空间是以百分比圆环的方式实现的，所以大致模仿了一下它的实现过程。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/10/百分比圆环的实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/09/03/Binder浅解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知北遊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/03/Binder浅解/" itemprop="url">
-                  Binder 浅解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-03T21:43:27+08:00">
-                2017-09-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android进阶/" itemprop="url" rel="index">
-                    <span itemprop="name">Android进阶</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/03/Binder浅解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/03/Binder浅解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/09/03/Binder浅解/" class="leancloud_visitors" data-flag-title="Binder 浅解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="什么是-Binder"><a href="#什么是-Binder" class="headerlink" title="什么是 Binder"></a>什么是 Binder</h4><p>Binder 是 Android 中一种跨进程通信（IPC）方式。</p>
-<h4 id="Binder-的原理"><a href="#Binder-的原理" class="headerlink" title="Binder 的原理"></a>Binder 的原理</h4><p>Binder通信采用C/S架构，从组件视角来说，包含 Client、Server、ServiceManager 以及 binder 驱动，其中 ServiceManager 用于管理系统中的各种服务。架构图如下所示：<br><img src="https://lh3.googleusercontent.com/-r87ZtMW666o/WXhxa-i0nJI/AAAAAAAAAX0/tPeJ1cnEgXsMc7-ogBqi15BGw5UjY60gACHMYCw/I/Binder" alt="Binder原理"></p>
-<ul>
-<li>此处的 Service Manager 是指 Native 层的 ServiceManager（C++）
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/03/Binder浅解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/08/27/Service总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知北遊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/27/Service总结/" itemprop="url">
-                  Service总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T18:04:55+08:00">
-                2017-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Android基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/27/Service总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/27/Service总结/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/27/Service总结/" class="leancloud_visitors" data-flag-title="Service总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="Service-的含义及作用"><a href="#Service-的含义及作用" class="headerlink" title="Service 的含义及作用"></a>Service 的含义及作用</h4><p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/27/Service总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/08/26/Android之BroastCastReceiver/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知北遊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/26/Android之BroastCastReceiver/" itemprop="url">
-                  BroastCasts 总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T23:06:37+08:00">
-                2017-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Android基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/26/Android之BroastCastReceiver/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/26/Android之BroastCastReceiver/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/26/Android之BroastCastReceiver/" class="leancloud_visitors" data-flag-title="BroastCasts 总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="BroadCasts-定义及其作用"><a href="#BroadCasts-定义及其作用" class="headerlink" title="BroadCasts 定义及其作用"></a>BroadCasts 定义及其作用</h4><p>BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/26/Android之BroastCastReceiver/#more" rel="contents">
+            <a class="btn" href="/2017/09/10/Android自定义控件之百分比圆环/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2076,7 +2062,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2098,7 +2084,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2124,15 +2110,6 @@
                     <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/u/2219331925/home?wvr=5" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
                 </a>
               </span>
             
@@ -2468,6 +2445,28 @@
 
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
