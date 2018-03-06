@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/05/Python下BeautifulSoup的使用/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="BeautifulSoup 简介 BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.">
-<meta property="og:updated_time" content="2018-01-15T14:53:30.000Z">
+<meta property="og:updated_time" content="2018-03-06T11:09:31.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 BeautifulSoup 的基本使用">
 <meta name="twitter:description" content="BeautifulSoup 简介 BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.">
@@ -427,25 +427,24 @@
       
 
       
-        <h4 id="beautifulsoup-简介">BeautifulSoup 简介</h4>
+        <h2 id="beautifulsoup-简介">BeautifulSoup 简介</h2>
 <p>BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.<a id="more"></a></p>
-<h4 id="库的安装">库的安装</h4>
+<h2 id="库的安装">库的安装</h2>
 <p>库的安装参考此篇文章 <a href="/2017/04/04/requests库的使用/" title="requests 库的使用">requests 库的使用</a></p>
-<h4 id="基本使用">基本使用</h4>
+<h2 id="基本使用">基本使用</h2>
 <ol style="list-style-type: decimal">
-<li>导入 BeautifulSoup<br><code>from bs4 import BeautifulSoup</code></li>
-<li>创建文档对象<br><code>soup = BeautifulSoup(html文档, 'html.parser')</code><br>配合 Python 内置的 html 解析器，将 html 文档传入 BeautifulSoup 构造方法。</li>
+<li><p>导入 BeautifulSoup<br> <code>from bs4 import BeautifulSoup</code></p></li>
+<li><p>创建文档对象<br> <code>soup = BeautifulSoup(html文档, 'html.parser')</code><br> 配合 Python 内置的 html 解析器，将 html 文档传入 BeautifulSoup 构造方法。</p></li>
 <li>获取数据<br>BeautifulSoup提供了如下几种方式搜索文档获取数据：
 <ul>
-<li><code>find_all()</code> 全文搜索<br>返回文档中所有符合要求的数据。</li>
-<li><code>find()</code> 单次搜索<br>返回文档中第一个符合要求的数据。</li>
-<li><code>select()</code> CSS选择器查找<br><code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code>
-</li></ul>
-<code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如： <code>soup.find_all(&quot;a&quot;, limit=2)</code> 同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如： <code>titleList = soup.find_all(&quot;a&quot;, {&quot;class&quot;: &quot;fz14&quot;})</code></li>
-
+<li><code>find_all()</code> 全文搜索<br> 返回文档中所有符合要求的数据。</li>
+<li><code>find()</code> 单次搜索<br> 返回文档中第一个符合要求的数据。</li>
+<li><code>select()</code> CSS选择器查找<br> <code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code></li>
+</ul>
+<p><code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如：<br> <code>soup.find_all(&quot;a&quot;, limit=2)</code><br> 同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如：<br> <code>titleList = soup.find_all(&quot;a&quot;, {&quot;class&quot;: &quot;fz14&quot;})</code></p></li>
 </ol>
 <hr>
-<h4 id="参考资料">参考资料</h4>
+<h2 id="参考资料">参考资料</h2>
 <p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">BeautifulSoup 文档</a> ​</p>
 
       
@@ -666,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#beautifulsoup-简介"><span class="nav-number">1.</span> <span class="nav-text">BeautifulSoup 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#库的安装"><span class="nav-number">2.</span> <span class="nav-text">库的安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本使用"><span class="nav-number">3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#beautifulsoup-简介"><span class="nav-number">1.</span> <span class="nav-text">BeautifulSoup 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库的安装"><span class="nav-number">2.</span> <span class="nav-text">库的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

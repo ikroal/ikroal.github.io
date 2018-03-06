@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/06/Python下pymsql库的基本使用/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="库的导入 import pymysql">
-<meta property="og:updated_time" content="2018-01-15T14:52:53.000Z">
+<meta property="og:updated_time" content="2018-03-06T11:01:23.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 pymsql 库的基本使用">
 <meta name="twitter:description" content="库的导入 import pymysql">
@@ -443,7 +443,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""insert into periodical_data(title,author,journalName,publicationDate,referenceNum, downloadNum) value (%s,%s,%s,%s,%s,%s)"""</span>,</div><div class="line">(item[<span class="string">'title'</span>],</div><div class="line">str(item[<span class="string">'author'</span>]),</div><div class="line">item[<span class="string">'journalName'</span>],</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">item[<span class="string">'referenceNum'</span>],</div><div class="line">item[<span class="string">'downloadNum'</span>]))</div></pre></td></tr></table></figure></li>
 <li><p>更新</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">connection.cursor.execute(<span class="string">"""update periodical_data set title = %s,author = %s,journalName = %s, publicationDate = %s,referenceNum = %s,downloadNum = %s where title = %s and publicationDate = %s and author = %s"""</span>,</div><div class="line">(str(item[<span class="string">'title'</span>]),</div><div class="line">str(item[<span class="string">'author'</span>]),</div><div class="line">str(item[<span class="string">'journalName'</span>]),</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">item[<span class="string">'referenceNum'</span>],</div><div class="line">item[<span class="string">'downloadNum'</span>],</div><div class="line">str(item[<span class="string">'title'</span>]),</div><div class="line">item[<span class="string">'publicationDate'</span>],</div><div class="line">str(item[<span class="string">'author'</span>])))</div></pre></td></tr></table></figure></li>
-<li><p>提交更改 <code>connection.commit()</code></p></li>
+<li><p>提交更改<br> <code>connection.commit()</code></p></li>
 </ol>
 <hr>
 

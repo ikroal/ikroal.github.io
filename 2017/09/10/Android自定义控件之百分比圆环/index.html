@@ -98,16 +98,16 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/09/10/Android自定义控件之百分比圆环/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="前言 最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好看见 360 清理大师的存储空间是以百分比圆环的方式实现的，所以大致模仿了一下它的实现过程。">
-<meta property="og:image" content="https://i.imgur.com/UlM8EHR.gif">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp2bel4d8bg30k00tmtb9.gif">
 <meta property="og:image" content="https://i.imgur.com/9ZYvei1.jpg">
 <meta property="og:image" content="https://i.imgur.com/vOewNzN.jpg">
 <meta property="og:image" content="https://i.imgur.com/xwZqHv9.jpg">
 <meta property="og:image" content="https://i.imgur.com/M9hzVs4.jpg">
-<meta property="og:updated_time" content="2018-03-04T16:14:33.220Z">
+<meta property="og:updated_time" content="2018-03-05T14:36:25.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 自定义控件之百分比圆环">
 <meta name="twitter:description" content="前言 最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好看见 360 清理大师的存储空间是以百分比圆环的方式实现的，所以大致模仿了一下它的实现过程。">
-<meta name="twitter:image" content="https://i.imgur.com/UlM8EHR.gif">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp2bel4d8bg30k00tmtb9.gif">
 
 
 
@@ -436,7 +436,7 @@
         <h2 id="前言">前言</h2>
 <p>最近做一个简单的测试 APP 的时候需要将手机的存储空间使用情况显示出来，刚好看见 360 清理大师的存储空间是以百分比圆环的方式实现的，所以大致模仿了一下它的实现过程。<a id="more"></a></p>
 <h2 id="效果图">效果图</h2>
-<p>首先放上效果图，然后我们再根据效果图进行分析 <img src="https://i.imgur.com/UlM8EHR.gif" alt="2017-09-10 16.01.09"></p>
+<p>首先放上效果图，然后我们再根据效果图进行分析 <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp2bel4d8bg30k00tmtb9.gif"></p>
 <h2 id="实现思路">实现思路</h2>
 <p>从上图我们可以看到，绘制一个这样的百分比圆环主要有涉及到三个元素： 1. 背景空心圆：代表着总的进度 2. 圆弧：代表着当前进度 3. 文字：需要居中，表示具体的进度</p>
 <p>在了解到涉及到的元素之后，我们还需要了解绘制各个元素需要哪些参数，由于绘制都通过 onDraw 方法中的 canvas 对象，所以我们可以通过 canvas 对象的方法去确定所需要的参数。</p>
@@ -475,7 +475,7 @@
 </ol>
 <p><a href="https://github.com/firstdream10/RingPercent" target="_blank" rel="external">相关测试工程</a></p>
 <h2 id="总结">总结</h2>
-<p>实际上自定义 View 过程需要将效果进行拆分，然后对拆分之后的每一个元素进行单独的处理，而为了让自定义的 View 可定制，还需要用到自定义属性。</p>
+<p>涉及到 View 的绘制需要对元素进行拆分，然后进行单独处理，这样思路会比较清晰</p>
 <h2 id="thanks">Thanks</h2>
 <ol style="list-style-type: decimal">
 <li><a href="http://www.cnblogs.com/slgkaifa/p/7101297.html" target="_blank" rel="external">android canvas drawText()文字居中</a></li>
@@ -535,8 +535,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/03/Binder浅解/" rel="prev" title="Binder 浅解">
-                Binder 浅解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/03/Android进阶之Binder浅解/" rel="prev" title="Android 进阶之 Binder 浅解">
+                Android 进阶之 Binder 浅解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

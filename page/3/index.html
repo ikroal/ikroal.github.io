@@ -772,17 +772,17 @@
 
       
         
-          <h4 id="主要方法及作用">主要方法及作用</h4>
+          <h2 id="主要方法及作用">主要方法及作用</h2>
 <ol style="list-style-type: decimal">
 <li>自定义 ViewGroup 主要涉及的方法如下：
 <ul>
-<li><code>onMeasure()</code> 计算 childView 的测量值以及模式，以及设置自己的宽和高。</li>
-<li><code>onLayout()</code> 对所有 childView 进行定位。</li>
+<li>onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。</li>
+<li>onLayout() 对所有 childView 进行定位。</li>
 </ul></li>
 <li>自定义 View 主要涉及的方法如下：
 <ul>
-<li><code>onMeasure()</code> 测量 View 的宽和高。</li>
-<li><code>onDraw()</code> 将 View 绘制到屏幕上。</li>
+<li>onMeasure() 测量 View 的宽和高。</li>
+<li>onDraw() 将 View 绘制到屏幕上。</li>
 </ul></li>
 </ol>
           <!--noindex-->
@@ -953,7 +953,7 @@
 
       
         
-          <h4 id="构造函数的调用时机">构造函数的调用时机</h4>
+          <h2 id="构造函数的调用时机">构造函数的调用时机</h2>
 <p>在自定义 View 的过程当中，不可避免的需要接触到 View 的构造函数，目前 View 具有四个构造函数，分别如下：
           <!--noindex-->
           <div class="post-button text-center">
@@ -1123,7 +1123,7 @@
 
       
         
-          <p>首先 <code>getMeasureWidth()</code> 方法在 <code>measure()</code> 过程结束后就可以获取到了，而 <code>getWidth()</code> 方法要在 <code>layout()</code> 过程结束后才能获取到。另外 <code>getMeasureWidth()</code> 方法中的值是通过 <code>setMeasuredDimension()</code> 方法来进行设置的，而 <code>getWidth()</code> 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。
+          <p>首先 getMeasureWidth() 方法在 measure() 过程结束后就可以获取到了，而 getWidth() 方法要在 layout() 过程结束后才能获取到。另外 getMeasureWidth() 方法中的值是通过 setMeasuredDimension() 方法来进行设置的，而 getWidth() 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/16/getWidth()方法和getMeasureWidth()方法的区别/#more" rel="contents">
@@ -1461,7 +1461,7 @@
 
       
         
-          <h4 id="简介">简介</h4>
+          <h2 id="简介">简介</h2>
 <blockquote>
 <p>D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。</p>
 </blockquote>

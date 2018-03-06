@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,Thread," />
+  <meta name="keywords" content="Android,Service," />
 
 
 
@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
-<meta name="keywords" content="Java,Thread">
+<meta name="description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
+<meta name="keywords" content="Android,Service">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 线程简述">
-<meta property="og:url" content="http://www.rookieyang.cn/2017/08/22/Java多线程总结/index.html">
+<meta property="og:title" content="Android 基础之 Service">
+<meta property="og:url" content="http://www.rookieyang.cn/2017/08/27/Android基础之Service/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-3VjAes2Q55I/WZ2bm0Md6_I/AAAAAAAAAa8/aJ6l7WMWz7YoZ3CyWI2EqE6NdsgsksA0wCHMYCw/I/%255BUNSET%255D">
-<meta property="og:updated_time" content="2018-01-15T14:51:45.000Z">
+<meta property="og:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp2c9n5bf7j30at0e3wex.jpg">
+<meta property="og:updated_time" content="2018-03-05T15:06:25.679Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 线程简述">
-<meta name="twitter:description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/-3VjAes2Q55I/WZ2bm0Md6_I/AAAAAAAAAa8/aJ6l7WMWz7YoZ3CyWI2EqE6NdsgsksA0wCHMYCw/I/%255BUNSET%255D">
+<meta name="twitter:title" content="Android 基础之 Service">
+<meta name="twitter:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp2c9n5bf7j30at0e3wex.jpg">
 
 
 
@@ -131,12 +131,12 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2017/08/22/Java多线程总结/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/08/27/Android基础之Service/"/>
 
 
 
 
-  <title> Java 线程简述 | 知北遊的博客 </title>
+  <title> Android 基础之 Service | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -313,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/08/22/Java多线程总结/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/08/27/Android基础之Service/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -334,7 +334,7 @@
             
             
               
-                Java 线程简述
+                Android 基础之 Service
               
             
           </h1>
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T08:41:38+08:00">
-                2017-08-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T18:04:55+08:00">
+                2017-08-27
               </time>
             
 
@@ -372,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/Android基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Android基础</span>
                   </a>
                 </span>
 
@@ -390,9 +390,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/22/Java多线程总结/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/27/Android基础之Service/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/22/Java多线程总结/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/27/Android基础之Service/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2017/08/22/Java多线程总结/" class="leancloud_visitors" data-flag-title="Java 线程简述">
+             <span id="/2017/08/27/Android基础之Service/" class="leancloud_visitors" data-flag-title="Android 基础之 Service">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -429,26 +429,18 @@
       
 
       
-        <h4 id="线程的作用">线程的作用</h4>
-<blockquote>
-<p>线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
-</blockquote>
-<p>简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。 <a id="more"></a></p>
-<h4 id="线程的生命周期">线程的生命周期</h4>
-<p><img src="https://lh3.googleusercontent.com/-3VjAes2Q55I/WZ2bm0Md6_I/AAAAAAAAAa8/aJ6l7WMWz7YoZ3CyWI2EqE6NdsgsksA0wCHMYCw/I/%255BUNSET%255D" alt="线程状态"> 线程的主要生命周期如上图所示，主要分为五个状态： 1. 新建态（New）：Java 中使用 new 关键字创建线程之后，这时线程即处于新建态。 2. 就绪态（Runnable）：在线程调用 start() 方法之后，线程即处于就绪态。 3. 运行态（Running）：当就绪态的线程获得 CPU 并且开始执行 run() 方法之后，线程就会处于运行状态。 4. 阻塞态（Blocked）：在处于运行态的线程调用了 sleep() 或 wait() 又或者是调用了一个阻塞式的 IO 方法之后，线程将会处于阻塞状态。 5. 死亡态（Dead）：在线程中的 run() 方法执行完毕、线程抛出异常、调用线程的 stop() 这几种情形下线程将会进入死亡态。</p>
-<h4 id="线程的实现方法">线程的实现方法</h4>
-<p>Java 中线程的实现主要是通过 Thread 类和 Runnable 接口。 1. 通过 Thread 类实现：</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">/** do some things **/</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li><p>通过 Runnable 接口实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">/** do some things **/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">MyThread myThread = <span class="keyword">new</span> MyThread();</div><div class="line">Thread thread = <span class="keyword">new</span> Thread(myThread);</div></pre></td></tr></table></figure></li>
+        <h4 id="service-的含义及作用">Service 的含义及作用</h4>
+<p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通过绑定启动的时候是可控的，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。<a id="more"></a> 另外关于 Service，官网上还有如下的提示： &gt; 服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
+<h4 id="service-的生命周期">Service 的生命周期</h4>
+<p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示： <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp2c9n5bf7j30at0e3wex.jpg"></p>
+<h4 id="service-的基本使用">Service 的基本使用</h4>
+<ol style="list-style-type: decimal">
+<li>创建服务 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。</li>
+<li>运行服务 运行服务主要方法有两种，一种是调用 startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。</li>
+<li>服务中处理事件 startService 启动服务，事件的处理一般在服务的 onStartCommand 方法进行的，bindService 绑定服务之后，将会在 ServiceConnection 的 onServiceConnected 中返回一个 Binder 对象，利用返回的 Binder 对象可以调用相关的事件处理方法。</li>
+<li>停止服务 服务的运行条件是服务被绑定或者被启动，所以想让服务不运行则需要破坏这两个条件，可以通过调用 stopService 和 unbindService 实现。</li>
 </ol>
-<blockquote>
-<p>相对而言第二种方式更为合理一些，第二种方式创建的线程类只实现了 Runnable 接口，还可以再继承其它的父类。</p>
-</blockquote>
 <hr>
-<h4 id="参考资料">参考资料</h4>
-<p><a href="http://blog.csdn.net/ns_code/article/details/17161237" target="_blank" rel="external">【Java并发编程】之六：Runnable和Thread实现多线程的区别（含代码）</a></p>
 
       
     </div>
@@ -478,9 +470,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/Thread/" rel="tag"># Thread</a>
+            <a href="/tags/Service/" rel="tag"># Service</a>
           
         </div>
       
@@ -493,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/24/Android问题记录之AVD的创建以及闪退/" rel="next" title="Ubuntu 14.04下AVD的创建以及闪退问题">
-                <i class="fa fa-chevron-left"></i> Ubuntu 14.04下AVD的创建以及闪退问题
+              <a href="/2017/09/03/Android进阶之Binder浅解/" rel="next" title="Android 进阶之 Binder 浅解">
+                <i class="fa fa-chevron-left"></i> Android 进阶之 Binder 浅解
               </a>
             
           </div>
@@ -503,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/22/LayoutInflater总结/" rel="prev" title="LayoutInflater 总结">
-                LayoutInflater 总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/26/Android之BroastCastReceiver/" rel="prev" title="Android 基础之 BroastCasts">
+                Android 基础之 BroastCasts <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -668,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的作用"><span class="nav-number">1.</span> <span class="nav-text">线程的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期"><span class="nav-number">2.</span> <span class="nav-text">线程的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的实现方法"><span class="nav-number">3.</span> <span class="nav-text">线程的实现方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的含义及作用"><span class="nav-number">1.</span> <span class="nav-text">Service 的含义及作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的生命周期"><span class="nav-number">2.</span> <span class="nav-text">Service 的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的基本使用"><span class="nav-number">3.</span> <span class="nav-text">Service 的基本使用</span></a></li></ol></div>
             
 
           </div>
@@ -812,9 +804,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.rookieyang.cn/2017/08/22/Java多线程总结/';
-          this.page.identifier = '2017/08/22/Java多线程总结/';
-          this.page.title = 'Java 线程简述';
+          this.page.url = 'http://www.rookieyang.cn/2017/08/27/Android基础之Service/';
+          this.page.identifier = '2017/08/27/Android基础之Service/';
+          this.page.title = 'Android 基础之 Service';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';

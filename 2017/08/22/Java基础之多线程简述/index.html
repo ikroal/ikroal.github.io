@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Java,Thread," />
 
 
 
@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的">
-<meta name="keywords" content="Android">
+<meta name="description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
+<meta name="keywords" content="Java,Thread">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HorizontalScrollView 和 ViewPager 触控冲突解决">
-<meta property="og:url" content="http://www.rookieyang.cn/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/index.html">
+<meta property="og:title" content="Java 线程简述">
+<meta property="og:url" content="http://www.rookieyang.cn/2017/08/22/Java基础之多线程简述/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的">
-<meta property="og:image" content="http://i.imgur.com/Dz86zGW.gif">
-<meta property="og:updated_time" content="2018-01-15T14:51:40.000Z">
+<meta property="og:description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fp2cidgmfrj30i908xmy2.jpg">
+<meta property="og:updated_time" content="2018-03-05T15:15:38.114Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HorizontalScrollView 和 ViewPager 触控冲突解决">
-<meta name="twitter:description" content="要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的">
-<meta name="twitter:image" content="http://i.imgur.com/Dz86zGW.gif">
+<meta name="twitter:title" content="Java 线程简述">
+<meta name="twitter:description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fp2cidgmfrj30i908xmy2.jpg">
 
 
 
@@ -131,12 +131,12 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/08/22/Java基础之多线程简述/"/>
 
 
 
 
-  <title> HorizontalScrollView 和 ViewPager 触控冲突解决 | 知北遊的博客 </title>
+  <title> Java 线程简述 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -313,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/08/22/Java基础之多线程简述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -334,7 +334,7 @@
             
             
               
-                HorizontalScrollView 和 ViewPager 触控冲突解决
+                Java 线程简述
               
             
           </h1>
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-27T09:18:10+08:00">
-                2016-09-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T08:41:38+08:00">
+                2017-08-22
               </time>
             
 
@@ -372,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Android基础</span>
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
                   </a>
                 </span>
 
@@ -390,9 +390,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/22/Java基础之多线程简述/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/22/Java基础之多线程简述/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/" class="leancloud_visitors" data-flag-title="HorizontalScrollView 和 ViewPager 触控冲突解决">
+             <span id="/2017/08/22/Java基础之多线程简述/" class="leancloud_visitors" data-flag-title="Java 线程简述">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -429,25 +429,29 @@
       
 
       
-        <p>要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 <a id="more"></a><code>onInterceptTouchEvent()</code> 拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalScrollView 可以正常滑动，但是 ViewPager 却不能正常滑动，而这个时候我们期望的是边缘滑动时，HorizontalScrollView 响应事件，非边缘滑动时，ViewPager 响应事件，为了达到这一目的我们需要重写 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 函数，具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    mXPoint = ev.getRawX();</div><div class="line">    <span class="keyword">if</span> (mXPoint &gt; <span class="number">100</span> &amp;&amp; mXPoint &lt; mMenuWidth) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(ev);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过限定滑动的屏幕范围决定是否事件在这一层被处理，在这样处理之后 HorizontalScrollView 和 ViewPager 都能正确响应了，但是当 HorizontalScrollView 滑动至终点时，屏幕中间的部分却不能够正确响应 HorizontalScrollView 的滑动事件，所以我们需要做进一步处理，判断 HorizontalScrollView 是否滑动至终点，所以在 <code>onTouchEvent</code> 事件中利用一个 <code>flag</code> 的标志位去判断是否滑动至终点，具体代码如下： <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> action = ev.getAction();</div><div class="line">    <span class="keyword">switch</span> (action) &#123;</div><div class="line">        <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">            <span class="keyword">int</span> scollX = getScrollX();</div><div class="line">            <span class="keyword">if</span> (scollX &gt; mMenuHaltWidth) &#123;                    　</div><div class="line">                <span class="keyword">this</span>.scrollTo(mMenuWidth, <span class="number">0</span>);</div><div class="line">                sMenuFlag = <span class="keyword">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;                    </div><div class="line">                <span class="keyword">this</span>.scrollTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">                sMenuFlag = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(ev);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>　<code>onInterceptTouchEvent()</code> 函数判断条件变为： 　<code>if (mXPoint &gt; 100 &amp;&amp; mXPoint &lt; mMenuWidth &amp;&amp; sMenuFlag == false)</code></p>
-<table style="width:14%;">
-<colgroup>
-<col width="13%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>#### 最终效果 #### <img src="http://i.imgur.com/Dz86zGW.gif"></td>
-</tr>
-</tbody>
-</table>
-<h4 id="参考资料">参考资料</h4>
+        <h4 id="线程的作用">线程的作用</h4>
+<blockquote>
+<p>线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
+</blockquote>
+<p>简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。 <a id="more"></a></p>
+<h4 id="线程的生命周期">线程的生命周期</h4>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fp2cidgmfrj30i908xmy2.jpg"> 线程的主要生命周期如上图所示，主要分为五个状态： 1. 新建态（New）：Java 中使用 new 关键字创建线程之后，这时线程即处于新建态。 2. 就绪态（Runnable）：在线程调用 start() 方法之后，线程即处于就绪态。 3. 运行态（Running）：当就绪态的线程获得 CPU 并且开始执行 run() 方法之后，线程就会处于运行状态。 4. 阻塞态（Blocked）：在处于运行态的线程调用了 sleep() 或 wait() 又或者是调用了一个阻塞式的 IO 方法之后，线程将会处于阻塞状态。 5. 死亡态（Dead）：在线程中的 run() 方法执行完毕、线程抛出异常、调用线程的 stop() 这几种情形下线程将会进入死亡态。</p>
+<h4 id="线程的实现方法">线程的实现方法</h4>
+<p>Java 中线程的实现主要是通过 Thread 类和 Runnable 接口。</p>
 <ol style="list-style-type: decimal">
-<li><a href="http://www.2cto.com/kf/201412/363128.html" title="Android 控件的触摸事件传递与处理" target="_blank" rel="external">Android 控件的触摸事件传递与处理</a></li>
-<li><a href="http://www.cnblogs.com/zhuyp1015/p/4579374.html" title="Android 触摸事件处理机制" target="_blank" rel="external">Android 触摸事件处理机制</a></li>
+<li>通过 Thread 类实现：</li>
 </ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">/** do some things **/</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<ol start="2" style="list-style-type: decimal">
+<li>通过 Runnable 接口实现：</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">/** do some things **/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">MyThread myThread = <span class="keyword">new</span> MyThread();</div><div class="line">Thread thread = <span class="keyword">new</span> Thread(myThread);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>相对而言第二种方式更为合理一些，第二种方式创建的线程类只实现了 Runnable 接口，还可以再继承其它的父类。</p>
+</blockquote>
+<hr>
+<h4 id="参考资料">参考资料</h4>
+<p><a href="http://blog.csdn.net/ns_code/article/details/17161237" target="_blank" rel="external">【Java并发编程】之六：Runnable和Thread实现多线程的区别（含代码）</a></p>
 
       
     </div>
@@ -477,7 +481,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Thread/" rel="tag"># Thread</a>
           
         </div>
       
@@ -490,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/requests库的使用/" rel="next" title="使用 requests 获取 Discuz 论坛验证码">
-                <i class="fa fa-chevron-left"></i> 使用 requests 获取 Discuz 论坛验证码
+              <a href="/2017/08/24/Android问题记录之AVD的创建以及闪退/" rel="next" title="Ubuntu 14.04下AVD的创建以及闪退问题">
+                <i class="fa fa-chevron-left"></i> Ubuntu 14.04下AVD的创建以及闪退问题
               </a>
             
           </div>
@@ -500,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/26/Python语法基础/" rel="prev" title="Python 语法基础">
-                Python 语法基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/22/Android基础之LayoutInflater总结/" rel="prev" title="Android 基础之 LayoutInflater 总结">
+                Android 基础之 LayoutInflater 总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -665,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的作用"><span class="nav-number">1.</span> <span class="nav-text">线程的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期"><span class="nav-number">2.</span> <span class="nav-text">线程的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的实现方法"><span class="nav-number">3.</span> <span class="nav-text">线程的实现方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -809,9 +815,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.rookieyang.cn/2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/';
-          this.page.identifier = '2016/09/27/HorizontalScrollView和ViewPager触控冲突解决/';
-          this.page.title = 'HorizontalScrollView 和 ViewPager 触控冲突解决';
+          this.page.url = 'http://www.rookieyang.cn/2017/08/22/Java基础之多线程简述/';
+          this.page.identifier = '2017/08/22/Java基础之多线程简述/';
+          this.page.title = 'Java 线程简述';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';

@@ -91,17 +91,17 @@
 
 
 
-<meta name="description" content="LayoutInflater 的获取 获取 LayoutInflater 的方式一般有三种： 1. getLayoutInflater() 2. LayoutInflater.from(Context context) 3. context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) 这三种获取方式本质上都是一样的  getLayoutInf">
+<meta name="description" content="LayoutInflater 的获取 获取 LayoutInflater 的方式一般有三种：  getLayoutInflater() LayoutInflater.from(Context context) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)  这三种获取方式本质上都是一样的  getLayoutInflater()">
 <meta name="keywords" content="Android,LayoutInflater">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LayoutInflater 总结">
-<meta property="og:url" content="http://www.rookieyang.cn/2017/07/22/LayoutInflater总结/index.html">
+<meta property="og:title" content="Android 基础之 LayoutInflater 总结">
+<meta property="og:url" content="http://www.rookieyang.cn/2017/07/22/Android基础之LayoutInflater总结/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="LayoutInflater 的获取 获取 LayoutInflater 的方式一般有三种： 1. getLayoutInflater() 2. LayoutInflater.from(Context context) 3. context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) 这三种获取方式本质上都是一样的  getLayoutInf">
-<meta property="og:updated_time" content="2018-01-15T14:51:56.000Z">
+<meta property="og:description" content="LayoutInflater 的获取 获取 LayoutInflater 的方式一般有三种：  getLayoutInflater() LayoutInflater.from(Context context) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)  这三种获取方式本质上都是一样的  getLayoutInflater()">
+<meta property="og:updated_time" content="2018-03-05T15:59:59.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LayoutInflater 总结">
-<meta name="twitter:description" content="LayoutInflater 的获取 获取 LayoutInflater 的方式一般有三种： 1. getLayoutInflater() 2. LayoutInflater.from(Context context) 3. context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) 这三种获取方式本质上都是一样的  getLayoutInf">
+<meta name="twitter:title" content="Android 基础之 LayoutInflater 总结">
+<meta name="twitter:description" content="LayoutInflater 的获取 获取 LayoutInflater 的方式一般有三种：  getLayoutInflater() LayoutInflater.from(Context context) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)  这三种获取方式本质上都是一样的  getLayoutInflater()">
 
 
 
@@ -129,12 +129,12 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2017/07/22/LayoutInflater总结/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/07/22/Android基础之LayoutInflater总结/"/>
 
 
 
 
-  <title> LayoutInflater 总结 | 知北遊的博客 </title>
+  <title> Android 基础之 LayoutInflater 总结 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -311,7 +311,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/07/22/LayoutInflater总结/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/07/22/Android基础之LayoutInflater总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -332,7 +332,7 @@
             
             
               
-                LayoutInflater 总结
+                Android 基础之 LayoutInflater 总结
               
             
           </h1>
@@ -388,9 +388,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/22/LayoutInflater总结/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/22/Android基础之LayoutInflater总结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/22/LayoutInflater总结/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/22/Android基础之LayoutInflater总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -398,7 +398,7 @@
 
           
           
-             <span id="/2017/07/22/LayoutInflater总结/" class="leancloud_visitors" data-flag-title="LayoutInflater 总结">
+             <span id="/2017/07/22/Android基础之LayoutInflater总结/" class="leancloud_visitors" data-flag-title="Android 基础之 LayoutInflater 总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -428,20 +428,25 @@
 
       
         <h4 id="layoutinflater-的获取">LayoutInflater 的获取</h4>
-<p>获取 LayoutInflater 的方式一般有三种： 1. <code>getLayoutInflater()</code> 2. <code>LayoutInflater.from(Context context)</code> 3. <code>context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)</code></p>
+<p>获取 LayoutInflater 的方式一般有三种：</p>
+<ol style="list-style-type: decimal">
+<li>getLayoutInflater()</li>
+<li>LayoutInflater.from(Context context)</li>
+<li>context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)</li>
+</ol>
 <p>这三种获取方式本质上都是一样的</p>
 <ul>
-<li>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</li>
+<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p></li>
 <li><p>LayoutInflater.from(Context context) 内部通过以下代码获取 LayoutInflater。<a id="more"></a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LayoutInflater <span class="title">from</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    LayoutInflater LayoutInflater =</div><div class="line">            (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</div><div class="line">    <span class="keyword">if</span> (LayoutInflater == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError(<span class="string">"LayoutInflater not found."</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> LayoutInflater;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>结论：所以这三种方式最终都调用了 Context.getSystemService()</strong></p></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LayoutInflater <span class="title">from</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    LayoutInflater LayoutInflater =</div><div class="line">            (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</div><div class="line">    <span class="keyword">if</span> (LayoutInflater == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError(<span class="string">"LayoutInflater not found."</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> LayoutInflater;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ul>
+<p><strong>结论：所以这三种方式最终都调用了 Context.getSystemService()</strong></p>
 <h4 id="layoutinflater-的-inflater-方法">LayoutInflater 的 inflater 方法</h4>
-<p>inflater 作为 LayoutInflater 中最常用的方法，用于从 xml 的布局文件得到一个 View 对象，加载到 Activity 用于动态创建布局。inflater 总共重载了 4 种调用方式： 1. <code>public View inflate(@LayoutRes int resource, @Nullable ViewGroup root)</code> 2. <code>public View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachToRoot)</code> 3. <code>public View inflate(XmlPullParser parser, @Nullable ViewGroup root)</code> 4. <code>public View inflate(XmlPullParser parser, @Nullable ViewGroup root, boolean attachToRoot)</code></p>
+<p>inflater 作为 LayoutInflater 中最常用的方法，用于从 xml 的布局文件得到一个 View 对象，加载到 Activity 用于动态创建布局。inflater 总共重载了 4 种调用方式： 1. public View inflate(<span class="citation">@LayoutRes</span> int resource, <span class="citation">@Nullable</span> ViewGroup root) 2. public View inflate(<span class="citation">@LayoutRes</span> int resource, <span class="citation">@Nullable</span> ViewGroup root, boolean attachToRoot) 3. public View inflate(XmlPullParser parser, <span class="citation">@Nullable</span> ViewGroup root) 4. public View inflate(XmlPullParser parser, <span class="citation">@Nullable</span> ViewGroup root, boolean attachToRoot)</p>
+<p>对于构造函数的使用而言，有如下注意事项：</p>
 <ul>
-<li><code>resource</code> 指的是布局文件的 ID</li>
-<li><code>root</code> 填充的根视图</li>
-<li><code>attachToRoot</code> 决定是否将载入的视图附加到根视图上，如果为 false 则仅用于为 XML 中的根视图创建正确的 LayoutParams 的子类</li>
+<li>root 填充的根视图</li>
+<li>attachToRoot 决定是否将载入的视图附加到根视图上，如果为 false 则仅用于为 XML 中的根视图创建正确的 LayoutParams 的子类</li>
 <li>前三个 inflater 方法最终都会调用第四个 inflater 方法，采用了 pull 解析</li>
 <li>避免将 null 作为 ViewGroup 传入</li>
 <li>当不需要将返回的 View 添加入 ViewGroup 时应该设置attachToRoot 为 false</li>
@@ -502,7 +507,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/22/Java多线程总结/" rel="next" title="Java 线程简述">
+              <a href="/2017/08/22/Java基础之多线程简述/" rel="next" title="Java 线程简述">
                 <i class="fa fa-chevron-left"></i> Java 线程简述
               </a>
             
@@ -512,7 +517,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/11/AsyncTask总结/" rel="prev" title="AsyncTask 总结">
+              <a href="/2017/07/11/Android基础之AsyncTask总结/" rel="prev" title="AsyncTask 总结">
                 AsyncTask 总结 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -821,9 +826,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.rookieyang.cn/2017/07/22/LayoutInflater总结/';
-          this.page.identifier = '2017/07/22/LayoutInflater总结/';
-          this.page.title = 'LayoutInflater 总结';
+          this.page.url = 'http://www.rookieyang.cn/2017/07/22/Android基础之LayoutInflater总结/';
+          this.page.identifier = '2017/07/22/Android基础之LayoutInflater总结/';
+          this.page.title = 'Android 基础之 LayoutInflater 总结';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';

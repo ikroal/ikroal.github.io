@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/05/Python-下Excel-的读取与写入/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="前言 前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
-<meta property="og:updated_time" content="2018-01-15T14:53:43.000Z">
+<meta property="og:updated_time" content="2018-03-06T11:03:40.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 Excel 的读取与写入">
 <meta name="twitter:description" content="前言 前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
@@ -440,12 +440,12 @@
 </ol>
 <h4 id="excel-文件的写入追加">Excel 文件的写入追加</h4>
 <ol style="list-style-type: decimal">
-<li>创建 Excel 文件 <code>workbook = xlsxwriter.Workbook(year + title + &quot;.xls&quot;)</code></li>
-<li>增加 Sheet <code>worksheet = workbook.add_worksheet()</code></li>
+<li>创建 Excel 文件<br> <code>workbook = xlsxwriter.Workbook(year + title + &quot;.xls&quot;)</code></li>
+<li>增加 Sheet<br> <code>worksheet = workbook.add_worksheet()</code></li>
 <li><p>写入数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">worksheet.write(&apos;A1&apos;, &apos;tag&apos;)</div><div class="line">worksheet.write(&apos;B1&apos;, &apos;文章名字&apos;)</div><div class="line">sheet_write.write(rows, 0, &quot;1&quot;)</div><div class="line">workbook.close()</div></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">worksheet.write(<span class="string">'A1'</span>, <span class="string">'tag'</span>)</div><div class="line">worksheet.write(<span class="string">'B1'</span>, <span class="string">'文章名字'</span>)</div><div class="line">sheet_write.write(rows, <span class="number">0</span>, <span class="string">"1"</span>)</div><div class="line">workbook.close()</div></pre></td></tr></table></figure></li>
 <li><p>追加数据<br> 追加之前需要将 <code>xlutils.copy</code> 导入到工程中，首先用 <code>xlrd</code> 打开旧的 Excel 文件，然后利用 <code>xlutils.copy</code> 中的 copy() 方法复制已经存在的数据，最终在原有数据的基础上进行写入。具体代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#导入模块</div><div class="line">from xlutils.copy import copy</div><div class="line">#打开文件</div><div class="line">resultwork = xlrd.open_workbook(year + title + &quot;.xls&quot;)</div><div class="line">#获取行数</div><div class="line">sheet1 = resultwork.sheet_by_index(0)</div><div class="line">rows = sheet1.nrows</div><div class="line">#追加数据，保存</div><div class="line">old_excel = copy.copy(resultwork)</div><div class="line">sheet_write = old_excel.get_sheet(0)</div><div class="line">sheet_write.write(rows, 0, &quot;1&quot;)</div><div class="line">old_excel.save(year + title + &quot;.xls&quot;)</div></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#导入模块</span></div><div class="line"><span class="keyword">from</span> xlutils.copy <span class="keyword">import</span> copy</div><div class="line"><span class="comment">#打开文件</span></div><div class="line">resultwork = xlrd.open_workbook(year + title + <span class="string">".xls"</span>)</div><div class="line"><span class="comment">#获取行数</span></div><div class="line">sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</div><div class="line">rows = sheet1.nrows</div><div class="line"><span class="comment">#追加数据，保存</span></div><div class="line">old_excel = copy.copy(resultwork)</div><div class="line">sheet_write = old_excel.get_sheet(<span class="number">0</span>)</div><div class="line">sheet_write.write(rows, <span class="number">0</span>, <span class="string">"1"</span>)</div><div class="line">old_excel.save(year + title + <span class="string">".xls"</span>)</div></pre></td></tr></table></figure></li>
 </ol>
 <hr>
 <h4 id="参考资料">参考资料</h4>

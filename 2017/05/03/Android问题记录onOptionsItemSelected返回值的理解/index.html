@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,Service," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -91,19 +91,17 @@
 
 
 
-<meta name="description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，如果系统不是极端不够用，">
-<meta name="keywords" content="Android,Service">
+<meta name="description" content="首先查看官方 API 的解释：  This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item&apos;s Runnabl">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Service总结">
-<meta property="og:url" content="http://www.rookieyang.cn/2017/08/27/Service总结/index.html">
+<meta property="og:title" content="onOptionsItemSelected() 返回值的理解">
+<meta property="og:url" content="http://www.rookieyang.cn/2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，如果系统不是极端不够用，">
-<meta property="og:image" content="http://www.rookieyang.cn/2017/08/27/Service总结/media/https://lh3.googleusercontent.com/-8_ilqWBW5y8/WaLgz_KuoeI/AAAAAAAAAbc/BYeSBXsoVssQchMiul3janGZGY4XEIMrwCHMYCw/I/15038466780030.jpg">
-<meta property="og:updated_time" content="2018-01-15T14:53:05.000Z">
+<meta property="og:description" content="首先查看官方 API 的解释：  This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item&apos;s Runnabl">
+<meta property="og:updated_time" content="2018-03-05T16:07:32.009Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Service总结">
-<meta name="twitter:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，如果系统不是极端不够用，">
-<meta name="twitter:image" content="http://www.rookieyang.cn/2017/08/27/Service总结/media/https://lh3.googleusercontent.com/-8_ilqWBW5y8/WaLgz_KuoeI/AAAAAAAAAbc/BYeSBXsoVssQchMiul3janGZGY4XEIMrwCHMYCw/I/15038466780030.jpg">
+<meta name="twitter:title" content="onOptionsItemSelected() 返回值的理解">
+<meta name="twitter:description" content="首先查看官方 API 的解释：  This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item&apos;s Runnabl">
 
 
 
@@ -131,12 +129,12 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2017/08/27/Service总结/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/"/>
 
 
 
 
-  <title> Service总结 | 知北遊的博客 </title>
+  <title> onOptionsItemSelected() 返回值的理解 | 知北遊的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -313,7 +311,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/08/27/Service总结/">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
@@ -334,7 +332,7 @@
             
             
               
-                Service总结
+                onOptionsItemSelected() 返回值的理解
               
             
           </h1>
@@ -349,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T18:04:55+08:00">
-                2017-08-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T20:21:57+08:00">
+                2017-05-03
               </time>
             
 
@@ -372,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Android基础</span>
+                  <a href="/categories/Android问题记录/" itemprop="url" rel="index">
+                    <span itemprop="name">Android问题记录</span>
                   </a>
                 </span>
 
@@ -390,9 +388,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/27/Service总结/#comments" itemprop="discussionUrl">
+                <a href="/2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/27/Service总结/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +398,7 @@
 
           
           
-             <span id="/2017/08/27/Service总结/" class="leancloud_visitors" data-flag-title="Service总结">
+             <span id="/2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/" class="leancloud_visitors" data-flag-title="onOptionsItemSelected() 返回值的理解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -429,10 +427,31 @@
       
 
       
-        <h4 id="service-的含义及作用">Service 的含义及作用</h4>
-<p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。<a id="more"></a> 另外关于 Service，官网上还有如下的提示： &gt; 服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
-<h4 id="service-的生命周期">Service 的生命周期</h4>
-<p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示： <img src="media/https://lh3.googleusercontent.com/-8_ilqWBW5y8/WaLgz_KuoeI/AAAAAAAAAbc/BYeSBXsoVssQchMiul3janGZGY4XEIMrwCHMYCw/I/15038466780030.jpg"> #### Service 的基本使用 1. 创建服务 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。 2. 运行服务 运行服务主要方法有两种，一种是调用 startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。 3. 服务中处理事件 startService 启动服务，事件的处理一般在服务的 onStartCommand 方法进行的，bindService 绑定服务之后，将会在 ServiceConnection 的 onServiceConnected 中返回一个 Binder 对象，利用返回的 Binder 对象可以调用相关的事件处理方法。 4. 停止服务 服务的运行条件是服务被绑定或者被启动，所以想让服务不运行则需要破坏这两个条件，可以通过调用 stopService 和 unbindService 实现。</p>
+        <p>首先查看官方 API 的解释：</p>
+<blockquote>
+<p>This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item's Runnable or sending a message to its Handler as appropriate). You can use this method for any items for which you would like to do processing without those other facilities.</p>
+</blockquote>
+<a id="more"></a>
+<p>也就是说当点击 OptionsMenu 中的 Item 时，默认会返回 false，这个时候将会处理 item 关联的 Runnable 或发送一条 message 给它的 Handler。 为了弄清楚返回 false 时可能会发生什么做了如下测试：</p>
+<ol style="list-style-type: decimal">
+<li><p>测试一</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">        <span class="keyword">case</span> R.id.add_item:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Add"</span>, Toast.LENGTH_LONG).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.remove_item:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Remove"</span>, Toast.LENGTH_LONG).show();</div><div class="line">            item.setActionView(R.layout.progress);</div><div class="line">            Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">            item.setIntent(intent);</div><div class="line">            Log.i(TAG, <span class="string">"onOptionsItemSelected: Remove"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"re"</span>, Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上述代码中给 item 关联了一个 Intent 用于跳转到 SecondActivity，如果返回为 true 则点击 item 时不会跳转到 SecondActivity，如果返回 false 则会跳转到 SecondActivity。</p>
+</blockquote></li>
+<li>测试二
+<ul>
+<li><p>创建一个 Fragment</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu, MenuInflater inflater)</span> </span>&#123;</div><div class="line">    inflater.inflate(R.menu.main, menu);</div><div class="line">    <span class="keyword">super</span>.onCreateOptionsMenu(menu, inflater);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">      <span class="keyword">case</span> R.id.remove_item:</div><div class="line">        Toast.makeText(getContext(), <span class="string">"Fragment Remove"</span>, Toast.LENGTH_LONG).show();</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">        Toast.makeText(getContext(), <span class="string">"Fragment"</span>, Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line">      Bundle savedInstanceState) &#123;</div><div class="line">    setHasOptionsMenu(<span class="keyword">true</span>);</div><div class="line">    <span class="keyword">return</span> inflater.inflate(fragment_layout, container, <span class="keyword">false</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述创建了一个自定义的 Fragment 类，并添加了 OptionMenu 的点击事件。</p></li>
+<li><p>在之前的 Activity 的布局文件中添加 Fragment</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">  <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">  <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">fragment</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/fragment"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"com.rookieyang.demo.MyFragment"</span></div><div class="line">    <span class="attr">tools:layout</span>=<span class="string">"@layout/fragment_layout"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>在完成上述步骤之后点击 remove 的 item，由于 Activity 中的 onOptionsItemSelected() 返回了false，导致事件没有被消费就会向下传递给 Fragment，进而执行 Fragment 中的 item 的点击事件，所以能够看到屏幕上将会显示 <code>Fragment Remove</code> 而不是 <code>Remove</code>。</p>
+</blockquote></li>
+</ol>
+<p>补：OptionMenu 的 Item 自定义的点击事件优先级要高于 onOptionsItemSelected()。</p>
 <hr>
 
       
@@ -465,8 +484,6 @@
           
             <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/Service/" rel="tag"># Service</a>
-          
         </div>
       
 
@@ -478,8 +495,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/03/Binder浅解/" rel="next" title="Binder 浅解">
-                <i class="fa fa-chevron-left"></i> Binder 浅解
+              <a href="/2017/05/08/Android之Gallery实现/" rel="next" title="Gallery 的三种实现方式">
+                <i class="fa fa-chevron-left"></i> Gallery 的三种实现方式
               </a>
             
           </div>
@@ -488,8 +505,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/26/Android之BroastCastReceiver/" rel="prev" title="BroastCasts 总结">
-                BroastCasts 总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/02/Android基础之Activity/" rel="prev" title="Android基础之Activity">
+                Android基础之Activity <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,17 +561,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460"
@@ -643,22 +651,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的含义及作用"><span class="nav-number">1.</span> <span class="nav-text">Service 的含义及作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的生命周期"><span class="nav-number">2.</span> <span class="nav-text">Service 的生命周期</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -797,9 +789,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.rookieyang.cn/2017/08/27/Service总结/';
-          this.page.identifier = '2017/08/27/Service总结/';
-          this.page.title = 'Service总结';
+          this.page.url = 'http://www.rookieyang.cn/2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/';
+          this.page.identifier = '2017/05/03/Android问题记录onOptionsItemSelected返回值的理解/';
+          this.page.title = 'onOptionsItemSelected() 返回值的理解';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://firstdream1010.disqus.com/embed.js';
