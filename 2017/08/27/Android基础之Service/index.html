@@ -6,19 +6,19 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="YbZMIV1CdS1G5t36Y3vn27toDWPvb_1QIFQeoJxb3us" />
+  <meta name="google-site-verification" content="YbZMIV1CdS1G5t36Y3vn27toDWPvb_1QIFQeoJxb3us">
 
 
 
@@ -34,7 +34,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -68,23 +68,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,Service," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="知北遊的博客" type="application/atom+xml" />
+  <meta name="keywords" content="Android,Service,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+  <link rel="alternate" href="/atom.xml" title="知北遊的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -98,8 +98,9 @@
 <meta property="og:url" content="http://www.rookieyang.cn/2017/08/27/Android基础之Service/index.html">
 <meta property="og:site_name" content="知北遊的博客">
 <meta property="og:description" content="Service 的含义及作用Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp2c9n5bf7j30at0e3wex.jpg">
-<meta property="og:updated_time" content="2018-03-05T15:06:25.679Z">
+<meta property="og:updated_time" content="2018-03-05T15:06:25.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 基础之 Service">
 <meta name="twitter:description" content="Service 的含义及作用Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通">
@@ -131,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2017/08/27/Android基础之Service/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2017/08/27/Android基础之Service/">
 
 
 
@@ -180,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">知北遊的博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -210,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -220,7 +221,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -230,7 +231,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -240,7 +241,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -253,7 +254,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -317,7 +318,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
     </span>
 
@@ -360,7 +361,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -391,8 +392,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/08/27/Android基础之Service/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/27/Android基础之Service/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/27/Android基础之Service/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -433,7 +433,7 @@
 <blockquote>
 <p>服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
 </blockquote>
-<h4 id="Service-的生命周期"><a href="#Service-的生命周期" class="headerlink" title="Service 的生命周期"></a>Service 的生命周期</h4><p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp2c9n5bf7j30at0e3wex.jpg" alt=""></p>
+<h4 id="Service-的生命周期"><a href="#Service-的生命周期" class="headerlink" title="Service 的生命周期"></a>Service 的生命周期</h4><p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp2c9n5bf7j30at0e3wex.jpg" alt></p>
 <h4 id="Service-的基本使用"><a href="#Service-的基本使用" class="headerlink" title="Service 的基本使用"></a>Service 的基本使用</h4><ol>
 <li>创建服务<br> 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。</li>
 <li>运行服务<br> 运行服务主要方法有两种，一种是调用<br> startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。</li>
@@ -485,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/03/Android进阶之Binder浅解/" rel="next" title="Android 进阶之 Binder 浅解">
-                <i class="fa fa-chevron-left"></i> Android 进阶之 Binder 浅解
+              <a href="/2017/08/26/Android之BroastCastReceiver/" rel="next" title="Android 基础之 BroastCasts">
+                <i class="fa fa-chevron-left"></i> Android 基础之 BroastCasts
               </a>
             
           </div>
@@ -495,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/26/Android之BroastCastReceiver/" rel="prev" title="Android 基础之 BroastCasts">
-                Android 基础之 BroastCasts <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/03/Android进阶之Binder浅解/" rel="prev" title="Android 进阶之 Binder 浅解">
+                Android 进阶之 Binder 浅解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -552,7 +552,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -563,9 +563,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460"
-               alt="知北遊" />
+          <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460" alt="知北遊">
           <p class="site-author-name" itemprop="name">知北遊</p>
            
               <p class="site-description motion-element" itemprop="description">时间能写出未来的结局</p>
@@ -576,7 +574,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +585,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -680,7 +678,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2016 - 
   <span itemprop="copyrightYear">2019</span>

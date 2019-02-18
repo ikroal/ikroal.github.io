@@ -1,1107 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
     <loc>http://www.rookieyang.cn/2018/03/17/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9B%86%E5%90%88-%E4%B8%80/</loc>
-    <lastmod>2018-04-20T07:53:12.022Z</lastmod>
-    <data>
-        <display>
-        <title>Java 基础之集合框架(一)：集合框架</title>
-        <pubTime>2018-03-17T05:47:45.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>集合</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java基础" url="http://www.rookieyang.cn/categories/Java%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.rookieyang.cn/2018/03/08/Java%E8%BF%9B%E9%98%B6%E4%B9%8BClassLoader/</loc>
-    <lastmod>2018-03-15T14:01:10.268Z</lastmod>
-    <data>
-        <display>
-        <title>Java进阶之ClassLoader</title>
-        <pubTime>2018-03-08T11:37:57.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>注解</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java进阶" url="http://www.rookieyang.cn/categories/Java%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-02-18</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/07/11/Android%E5%9F%BA%E7%A1%80%E4%B9%8BAsyncTask%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-03-06T12:37:38.283Z</lastmod>
-    <data>
-        <display>
-        <title>AsyncTask 总结</title>
-        <pubTime>2017-07-11T04:49:39.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>源码分析</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android进阶" url="http://www.rookieyang.cn/categories/Android%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/08/24/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BAVD%E7%9A%84%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%97%AA%E9%80%80/</loc>
-    <lastmod>2018-03-06T12:34:17.409Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu 14.04下AVD的创建以及闪退问题</title>
-        <pubTime>2017-08-24T15:15:12.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>工具问题</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android问题记录" url="http://www.rookieyang.cn/categories/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/13/Python%E4%B8%8BFlask%E7%BB%93%E5%90%88Neo4j%E6%9E%84%E5%BB%BA%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
-    <lastmod>2018-03-06T12:30:50.564Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 Flask 结合 Neo4j 构建管理系统（三）</title>
-        <pubTime>2017-04-13T01:04:34.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>Neo4j</tag>
-         
-        <tag>Flask</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/12/Python%E4%B8%8BFlask%E7%BB%93%E5%90%88Neo4j%E6%9E%84%E5%BB%BA%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2018-03-06T12:30:17.074Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 Flask 结合 Neo4j 构建管理系统（二）</title>
-        <pubTime>2017-04-12T06:34:52.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>Neo4j</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/09/Python%E4%B8%8BFlask%E7%BB%93%E5%90%88Neo4j%E6%9E%84%E5%BB%BA%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-03-06T12:25:11.719Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 Flask 结合 Neo4j 构建管理系统（一）</title>
-        <pubTime>2017-04-09T03:09:28.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>Flask</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/08/Python%E4%B8%8B%E7%94%A8Scrapy%E9%87%87%E9%9B%86%E7%9F%A5%E7%BD%91%E6%9C%9F%E5%88%8A%E6%95%B0%E6%8D%AE%EF%BC%88%E5%9B%9B%EF%BC%89/</loc>
-    <lastmod>2018-03-06T12:23:49.899Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下用 Scrapy 采集知网期刊数据（四）</title>
-        <pubTime>2017-04-08T08:56:50.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>数据处理</tag>
-         
-        <tag>Scrapy</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/04/21/Android%E8%A7%86%E5%9B%BE%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/</loc>
-    <lastmod>2018-03-06T12:19:49.644Z</lastmod>
-    <data>
-        <display>
-        <title>Android 视图设计用户界面</title>
-        <pubTime>2016-04-21T11:20:19.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>基础控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/05/27/%E4%BD%BF%E7%94%A8%E8%A7%86%E5%9B%BE%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E5%92%8C%E8%8F%9C%E5%8D%95/</loc>
-    <lastmod>2018-03-06T12:13:01.033Z</lastmod>
-    <data>
-        <display>
-        <title>使用视图显示图片和菜单</title>
-        <pubTime>2016-05-27T14:38:07.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>基础控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/09/08/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%88%A9%E7%94%A8TabLayout%E5%92%8CToolBar%E5%AE%9E%E7%8E%B0%E6%BB%91%E5%8A%A8%E6%A0%87%E7%AD%BE%E9%A1%B5/</loc>
-    <lastmod>2018-03-06T12:05:32.889Z</lastmod>
-    <data>
-        <display>
-        <title>利用 TabLayout 和 ToolBar 实现滑动标签页</title>
-        <pubTime>2016-09-08T15:35:25.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>自定义控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/09/22/Android%E4%B8%8B%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8DXML%E7%9A%84%E6%A0%B9View/</loc>
-    <lastmod>2018-03-06T12:04:51.315Z</lastmod>
-    <data>
-        <display>
-        <title>Android 下获取 activity_main.xml 的根 View</title>
-        <pubTime>2016-09-22T07:35:02.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>基础问题记录</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android问题记录" url="http://www.rookieyang.cn/categories/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/09/26/Python%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2018-03-06T12:02:13.615Z</lastmod>
-    <data>
-        <display>
-        <title>Python 语法基础</title>
-        <pubTime>2016-09-26T13:37:03.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>基础语法</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python基础" url="http://www.rookieyang.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/09/27/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95HorizontalScrollView%E5%92%8CViewPager%E8%A7%A6%E6%8E%A7%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3/</loc>
-    <lastmod>2018-03-06T11:41:06.865Z</lastmod>
-    <data>
-        <display>
-        <title>HorizontalScrollView 和 ViewPager 触控冲突解决</title>
-        <pubTime>2016-09-27T01:18:10.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/04/requests%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-03-06T11:38:08.652Z</lastmod>
-    <data>
-        <display>
-        <title>使用 requests 获取 Discuz 论坛验证码</title>
-        <pubTime>2017-04-04T07:18:27.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>requests 库</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python基础" url="http://www.rookieyang.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/05/Python%E4%B8%8BBeautifulSoup%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-03-06T11:09:31.292Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 BeautifulSoup 的基本使用</title>
-        <pubTime>2017-04-05T08:44:47.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>数据处理</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python基础" url="http://www.rookieyang.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/</loc>
-    <lastmod>2018-03-06T11:06:53.223Z</lastmod>
-    <data>
-        <display>
-        <title>正则表达式和 CSS 选择器以及 XPath</title>
-        <pubTime>2017-04-05T11:10:14.000Z</pubTime>
-        
-        <tag>HTML</tag>
-         
-        <tag>字符匹配</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂记" url="http://www.rookieyang.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/05/Python-%E4%B8%8BExcel-%E7%9A%84%E8%AF%BB%E5%8F%96%E4%B8%8E%E5%86%99%E5%85%A5/</loc>
-    <lastmod>2018-03-06T11:03:40.754Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 Excel 的读取与写入</title>
-        <pubTime>2017-04-05T12:30:38.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>数据处理</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python基础" url="http://www.rookieyang.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/06/Python%E4%B8%8Bpymsql%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-03-06T11:01:23.440Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 pymsql 库的基本使用</title>
-        <pubTime>2017-04-06T08:48:11.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>MySql 操作</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python基础" url="http://www.rookieyang.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/06/Python%E4%B8%8B%E7%94%A8Scrapy%E9%87%87%E9%9B%86%E7%9F%A5%E7%BD%91%E6%9C%9F%E5%88%8A%E6%95%B0%E6%8D%AE%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-03-06T10:59:57.025Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下用 Scrapy 采集知网期刊数据（一）</title>
-        <pubTime>2017-04-06T10:29:07.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>数据处理</tag>
-         
-        <tag>Scrapy</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/06/Python%E4%B8%8B%E7%94%A8Scrapy%E9%87%87%E9%9B%86%E7%9F%A5%E7%BD%91%E6%9C%9F%E5%88%8A%E6%95%B0%E6%8D%AE%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2018-03-06T10:58:06.861Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下用 Scrapy 采集知网期刊数据（二）</title>
-        <pubTime>2017-04-06T12:41:27.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>数据处理</tag>
-         
-        <tag>Scrapy</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/08/Python%E4%B8%8B%E7%94%A8Scrapy%E9%87%87%E9%9B%86%E7%9F%A5%E7%BD%91%E6%9C%9F%E5%88%8A%E6%95%B0%E6%8D%AE%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
-    <lastmod>2018-03-06T09:38:48.501Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下用 Scrapy 采集知网期刊数据（三）</title>
-        <pubTime>2017-04-08T02:29:56.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>数据处理</tag>
-         
-        <tag>Scrapy</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/13/d3-js%E7%BB%98%E5%88%B6%E5%8A%9B%E5%AF%BC%E5%90%91%E5%9B%BE/</loc>
-    <lastmod>2018-03-06T09:26:13.601Z</lastmod>
-    <data>
-        <display>
-        <title>d3.js 绘制力导向图</title>
-        <pubTime>2017-04-13T08:41:47.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>d3.js</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂记" url="http://www.rookieyang.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/14/d3-js%E7%BB%98%E5%88%B6%E6%9F%B1%E5%BD%A2%E5%9B%BE/</loc>
-    <lastmod>2018-03-06T09:15:09.716Z</lastmod>
-    <data>
-        <display>
-        <title>d3.js 绘制柱形图</title>
-        <pubTime>2017-04-14T15:35:28.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>d3.js</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂记" url="http://www.rookieyang.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/16/getWidth()%E6%96%B9%E6%B3%95%E5%92%8CgetMeasureWidth()%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2018-03-06T09:12:22.619Z</lastmod>
-    <data>
-        <display>
-        <title>getWidth() 方法和 getMeasureWidth() 方法的区别</title>
-        <pubTime>2017-04-16T02:05:07.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/17/Android%E4%B8%ADView%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%B5%85%E8%A7%A3/</loc>
-    <lastmod>2018-03-06T09:09:52.982Z</lastmod>
-    <data>
-        <display>
-        <title>Android 中 View 的构造函数浅解</title>
-        <pubTime>2017-04-17T02:51:23.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/17/Android%E8%87%AA%E5%AE%9A%E4%B9%89View%E5%92%8CViewGroup%E7%AE%80%E8%A6%81%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-03-06T09:04:05.341Z</lastmod>
-    <data>
-        <display>
-        <title>Android 自定义 View 和 ViewGroup 简要总结</title>
-        <pubTime>2017-04-17T11:47:43.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>自定义控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/05/02/Android%E5%9F%BA%E7%A1%80%E4%B9%8BActivity/</loc>
-    <lastmod>2018-03-05T16:33:45.295Z</lastmod>
-    <data>
-        <display>
-        <title>Android基础之Activity</title>
-        <pubTime>2017-05-02T11:58:36.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Activity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/05/03/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95onOptionsItemSelected%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2018-03-05T16:07:32.009Z</lastmod>
-    <data>
-        <display>
-        <title>onOptionsItemSelected() 返回值的理解</title>
-        <pubTime>2017-05-03T12:21:57.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android问题记录" url="http://www.rookieyang.cn/categories/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/05/08/Android%E4%B9%8BGallery%E5%AE%9E%E7%8E%B0/</loc>
-    <lastmod>2018-03-05T16:05:17.666Z</lastmod>
-    <data>
-        <display>
-        <title>Gallery 的三种实现方式</title>
-        <pubTime>2017-05-08T11:17:49.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>自定义控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/07/22/Android%E5%9F%BA%E7%A1%80%E4%B9%8BLayoutInflater%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-03-05T15:59:59.165Z</lastmod>
-    <data>
-        <display>
-        <title>Android 基础之 LayoutInflater 总结</title>
-        <pubTime>2017-07-22T15:01:23.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>LayoutInflater</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/08/26/Android%E4%B9%8BBroastCastReceiver/</loc>
-    <lastmod>2018-03-05T15:15:58.819Z</lastmod>
-    <data>
-        <display>
-        <title>Android 基础之 BroastCasts</title>
-        <pubTime>2017-08-26T15:06:37.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>BroatCasts</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/08/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AE%80%E8%BF%B0/</loc>
-    <lastmod>2018-03-05T15:15:38.114Z</lastmod>
-    <data>
-        <display>
-        <title>Java 线程简述</title>
-        <pubTime>2017-08-22T00:41:38.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Thread</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java基础" url="http://www.rookieyang.cn/categories/Java%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/09/03/Android%E8%BF%9B%E9%98%B6%E4%B9%8BBinder%E6%B5%85%E8%A7%A3/</loc>
-    <lastmod>2018-03-05T15:07:42.075Z</lastmod>
-    <data>
-        <display>
-        <title>Android 进阶之 Binder 浅解</title>
-        <pubTime>2017-09-03T13:43:27.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>IPC</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android进阶" url="http://www.rookieyang.cn/categories/Android%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/</loc>
-    <lastmod>2018-03-05T15:06:25.679Z</lastmod>
-    <data>
-        <display>
-        <title>Android 基础之 Service</title>
-        <pubTime>2017-08-27T10:04:55.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Service</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/09/10/Android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E4%B9%8B%E7%99%BE%E5%88%86%E6%AF%94%E5%9C%86%E7%8E%AF/</loc>
-    <lastmod>2018-03-05T14:36:25.034Z</lastmod>
-    <data>
-        <display>
-        <title>Android 自定义控件之百分比圆环</title>
-        <pubTime>2017-09-10T01:01:22.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>自定义控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2018/01/28/%E7%99%BD%E8%AF%9D%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87/</loc>
-    <lastmod>2018-03-05T14:33:14.188Z</lastmod>
-    <data>
-        <display>
-        <title>白话深度学习-基础篇</title>
-        <pubTime>2018-01-28T04:06:04.000Z</pubTime>
-        
-        <tag>白话深度学习与TensorFlow</tag>
-         
-         
-           
-             
-              <breadCrumb title="读书笔记" url="http://www.rookieyang.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/09/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99%E5%8F%8A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2018-03-04T15:45:34.506Z</lastmod>
-    <data>
-        <display>
-        <title>面向对象的六大原则及单例模式</title>
-        <pubTime>2017-09-16T17:05:58.000Z</pubTime>
-        
-        <tag>Android源码设计模式解析与实战</tag>
-         
-         
-           
-             
-              <breadCrumb title="读书笔记" url="http://www.rookieyang.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/09/24/Selector%E7%9A%84%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2018-03-04T15:43:19.759Z</lastmod>
-    <data>
-        <display>
-        <title>Android 基础之 Selector 的用法</title>
-        <pubTime>2017-09-24T07:58:15.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Drawble</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2018/01/07/2018%E8%AE%A1%E5%88%92/</loc>
-    <lastmod>2018-03-04T15:36:06.917Z</lastmod>
-    <data>
-        <display>
-        <title>2017年年终总结</title>
-        <pubTime>2018-01-07T13:48:26.000Z</pubTime>
-        
-        <tag>新年计划</tag>
-         
-         
-           
-             
-              <breadCrumb title="新年计划" url="http://www.rookieyang.cn/categories/%E6%96%B0%E5%B9%B4%E8%AE%A1%E5%88%92/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/</loc>
-    <lastmod>2018-03-04T15:13:50.763Z</lastmod>
-    <data>
-        <display>
-        <title>Java基础之注解</title>
-        <pubTime>2018-01-15T14:07:15.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>注解</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java基础" url="http://www.rookieyang.cn/categories/Java%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2018/02/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E5%9B%9B%EF%BC%89/</loc>
-    <lastmod>2018-03-04T15:10:56.939Z</lastmod>
-    <data>
-        <display>
-        <title>Android启动过程简析（四）之Lanucher的启动</title>
-        <pubTime>2018-02-28T14:55:07.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>源码分析</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android进阶" url="http://www.rookieyang.cn/categories/Android%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2018/01/22/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
-    <lastmod>2018-03-04T14:57:17.233Z</lastmod>
-    <data>
-        <display>
-        <title>Android启动过程简析（三）之 SystemServer 进程</title>
-        <pubTime>2018-01-22T15:34:45.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>源码分析</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android进阶" url="http://www.rookieyang.cn/categories/Android%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/11/05/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2018-03-04T08:14:50.351Z</lastmod>
-    <data>
-        <display>
-        <title>Android 启动过程简析（二）之 zygote 进程</title>
-        <pubTime>2017-11-05T15:30:49.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>源码分析</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android进阶" url="http://www.rookieyang.cn/categories/Android%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-03-04T06:04:32.836Z</lastmod>
-    <data>
-        <display>
-        <title>Android 启动过程简析（一）之 init 进程</title>
-        <pubTime>2017-10-28T05:51:42.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>源码分析</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android进阶" url="http://www.rookieyang.cn/categories/Android%E8%BF%9B%E9%98%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-04</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/04/22/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%8E%A7%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E9%A1%B9/</loc>
-    <lastmod>2018-01-15T15:06:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>控件添加右键菜单项</title>
-        <pubTime>2016-04-22T14:39:59.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>AWT</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java基础" url="http://www.rookieyang.cn/categories/Java%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-15</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/20/Python%E4%B8%8BJson%E6%A8%A1%E5%9D%97/</loc>
-    <lastmod>2018-01-15T14:52:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 json 模块</title>
-        <pubTime>2017-04-20T12:12:47.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>Json</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python基础" url="http://www.rookieyang.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-15</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/13/Python%E4%B8%8BFlask%E7%BB%93%E5%90%88Neo4j%E6%9E%84%E5%BB%BA%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/</loc>
-    <lastmod>2018-01-15T14:52:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python 下 Flask 结合 Neo4j 构建管理系统（四）</title>
-        <pubTime>2017-04-13T07:30:43.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>Neo4j</tag>
-         
-        <tag>Flask</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python实战" url="http://www.rookieyang.cn/categories/Python%E5%AE%9E%E6%88%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-15</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2016/04/22/DialogFragment%E5%AE%9E%E7%8E%B0TimePickerDialog/</loc>
-    <lastmod>2018-01-15T14:51:13.000Z</lastmod>
-    <data>
-        <display>
-        <title>DialogFragment 实现TimePickerDialog</title>
-        <pubTime>2016-04-22T06:33:14.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>基础控件</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android基础" url="http://www.rookieyang.cn/categories/Android%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-15</lastmod>
+  </url>  <url>
     <loc>http://www.rookieyang.cn/2017/04/20/bootstrap-fileinput%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-01-15T14:50:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>BootStrap-FileInput 的基本使用</title>
-        <pubTime>2017-04-20T11:13:02.000Z</pubTime>
-        
-        <tag>BootStrap</tag>
-         
-        <tag>Web</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂记" url="http://www.rookieyang.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
+    <lastmod>2018-01-15</lastmod>
+  </url>
 </urlset>

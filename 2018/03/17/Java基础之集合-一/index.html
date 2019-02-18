@@ -6,19 +6,19 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="YbZMIV1CdS1G5t36Y3vn27toDWPvb_1QIFQeoJxb3us" />
+  <meta name="google-site-verification" content="YbZMIV1CdS1G5t36Y3vn27toDWPvb_1QIFQeoJxb3us">
 
 
 
@@ -34,7 +34,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -68,43 +68,44 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Java,集合," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="知北遊的博客" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <meta name="keywords" content="Java,集合,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="知北遊的博客" type="application/atom+xml">
 
-<meta name="description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作  集合存在的意义以及与数组的区别想要了解 Java 为什么会设计集合，就得先明白集合的出现解决了什么问题，关于这一问题「Java 编程思想」中是">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
 <meta name="keywords" content="Java,集合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 基础之集合框架(一)：集合框架">
 <meta property="og:url" content="http://www.rookieyang.cn/2018/03/17/Java基础之集合-一/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作  集合存在的意义以及与数组的区别想要了解 Java 为什么会设计集合，就得先明白集合的出现解决了什么问题，关于这一问题「Java 编程思想」中是">
+<meta property="og:description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fpn3859y19j30e60e0aa0.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fpswot80pvj30g809t3yd.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fq11lt0spyj30d8085aa1.jpg">
-<meta property="og:updated_time" content="2018-04-20T07:53:12.022Z">
+<meta property="og:updated_time" content="2019-02-18T02:54:27.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 基础之集合框架(一)：集合框架">
-<meta name="twitter:description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作  集合存在的意义以及与数组的区别想要了解 Java 为什么会设计集合，就得先明白集合的出现解决了什么问题，关于这一问题「Java 编程思想」中是">
+<meta name="twitter:description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
 <meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fpn3859y19j30e60e0aa0.jpg">
 
 
@@ -133,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="http://www.rookieyang.cn/2018/03/17/Java基础之集合-一/"/>
+  <link rel="canonical" href="http://www.rookieyang.cn/2018/03/17/Java基础之集合-一/">
 
 
 
@@ -182,7 +183,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">知北遊的博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -212,7 +213,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -222,7 +223,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -232,7 +233,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -242,7 +243,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -255,7 +256,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -319,7 +320,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
     </span>
 
@@ -362,7 +363,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -393,8 +394,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/17/Java基础之集合-一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/17/Java基础之集合-一/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/17/Java基础之集合-一/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -435,7 +435,7 @@
 <ol>
 <li>集合存在的意义，集合和数组的区别</li>
 <li>集合框架的设计意图</li>
-<li>集合的常用操作</li>
+<li>集合的常用操作<a id="more"></a></li>
 </ol>
 <h2 id="集合存在的意义以及与数组的区别"><a href="#集合存在的意义以及与数组的区别" class="headerlink" title="集合存在的意义以及与数组的区别"></a>集合存在的意义以及与数组的区别</h2><p>想要了解 Java 为什么会设计集合，就得先明白集合的出现解决了什么问题，关于这一问题「Java 编程思想」中是这么描述的</p>
 <blockquote>
@@ -443,20 +443,20 @@
 </blockquote>
 <p>所以之所以需要集合是因为在编程的过程中会需要保存<strong>数量不定</strong>、<strong>类型不定</strong>的数据。</p>
 <p>针对<strong>数量不定</strong>考虑下面这种情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COUNT = <span class="number">10</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String STOP_FLAG = <span class="string">"s"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">        String collection[] = <span class="keyword">new</span> String[COUNT];</div><div class="line">        System.out.println(<span class="string">"输入即将保存的数据"</span>);</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (!(collection[i] = scanner.next()).equals(STOP_FLAG)) &#123;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        scanner.close();</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; collection.length; i++) &#123;</div><div class="line">            System.out.print(collection[i] + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COUNT = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String STOP_FLAG = <span class="string">"s"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String collection[] = <span class="keyword">new</span> String[COUNT];</span><br><span class="line">        System.out.println(<span class="string">"输入即将保存的数据"</span>);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!(collection[i] = scanner.next()).equals(STOP_FLAG)) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        scanner.close();</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; collection.length; i++) &#123;</span><br><span class="line">            System.out.print(collection[i] + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>作为一个简单的输入程序，采用数组的形式去保存用户的输入，当用户的输入超过数组可容纳的数量的时候便会抛出异常，这个问题如何解决呢？一种方式是将数组的数量分配的足够大，但是采取这种方式极有可能浪费内存空间。另一种方式则是动态扩展大小，通过动态扩展大小既能够容纳足够多的元素，又能够节约内存空间。而集合正具备动态扩展大小这一特性，所以在这种情况下，集合就体现出了它的作用。<br>至于<strong>类型不定</strong>，考虑另一种情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.rookieyang.collections;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataArray</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String datas[];</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COUNT = <span class="number">5</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataArray</span><span class="params">()</span> </span>&#123;</div><div class="line">        datas = <span class="keyword">new</span> String[COUNT];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	<span class="comment">//也可自行对数组进行动态扩展，这里只是测试</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addData</span><span class="params">(String data)</span></span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            datas[index] = data;</div><div class="line">            index++;</div><div class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">            System.out.println(<span class="string">"超出最大的存储范围"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> com.rookieyang.collections;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataCollection</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;T&gt; datas;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addData</span><span class="params">(T data)</span> </span>&#123;</div><div class="line">        datas.add(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rookieyang.collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataArray</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String datas[];</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COUNT = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataArray</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        datas = <span class="keyword">new</span> String[COUNT];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//也可自行对数组进行动态扩展，这里只是测试</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addData</span><span class="params">(String data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            datas[index] = data;</span><br><span class="line">            index++;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"超出最大的存储范围"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.rookieyang.collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataCollection</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; datas;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addData</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        datas.add(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看出对于数组而言在动态添加数据会略显麻烦，而且只能保存 String 类型数据，但对于采用集合而言，使用起来不仅简单而且其扩展性也强，我们可以根据自己的需求决定集合中保存何种类型数据，这就实现了代码的复用。<br>对于集合和数组而言，其主要区别如下</p>
 <ul>
 <li>数组是静态的，一个数组实例具有固定的大小，集合是动态的，可以根据实际需要动态扩展大小</li>
 <li>数组既可以保存基本类型，也可保存引用类型，集合只能保存引用类型，在保存基本类型的时候会自动装箱</li>
 </ul>
-<h2 id="集合整体框架分析"><a href="#集合整体框架分析" class="headerlink" title="集合整体框架分析"></a>集合整体框架分析</h2><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fpn3859y19j30e60e0aa0.jpg" alt=""></p>
+<h2 id="集合整体框架分析"><a href="#集合整体框架分析" class="headerlink" title="集合整体框架分析"></a>集合整体框架分析</h2><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fpn3859y19j30e60e0aa0.jpg" alt></p>
 <p>首先看下集合的整体框架图，对于集合而言主要分为两个部分：Collection 和 Map，其中 Collection 主要保存的是单个元素，而 Map 则可以将某些对象与其它一些对象存在的关系用 key-value 方式保存下来。接下来我们将就这两个部分展开分析。</p>
 <h3 id="Collection-接口"><a href="#Collection-接口" class="headerlink" title="Collection 接口"></a>Collection 接口</h3><h4 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h4><p>这里为了方便分析只展示了接口的继承结构</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fpswot80pvj30g809t3yd.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fpswot80pvj30g809t3yd.jpg" alt></p>
 <p>首先查看 Iterable</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">  </div><div class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</div><div class="line">        Objects.requireNonNull(action);</div><div class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</div><div class="line">            action.accept(t);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">            action.accept(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Itrable 接口中拥有一个 iterator 方法以及两个 1.8 添加的默认方法：</p>
 <ul>
 <li>iterator：返回一个迭代器用于遍历</li>
@@ -464,7 +464,7 @@
 <li>spliterator：提供了一个用于并行遍历的迭代器，由于这里主要探讨结构设计，所以暂且不展开说明</li>
 </ul>
 <p>看到这里我产生了第一个疑问，为什么 Collection 不直接继承 Iterator 接口，而需要用 Iterable 进行包装之后再继承呢？<br>这里假设存在一个 CustomizeCollection 接口在包含了 Collection 接口方法的基础上继承了 Iterator 接口而不是 Iterable（或者是直接包含了 Collection 接口方法以及 Iterator 接口方法），那么当我们实现 CustomizeCollection 接口的时候所得到的 CustomizeClass 类结构将如下图所示：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fq11lt0spyj30d8085aa1.jpg" alt=""><br>可以看到如果想实现 CustomizeCollection 则必须要实现 Iterator 接口方法，很显然采用这种方式可能导致在不同的 CustomizeCollection 接口实现类中存在相同的 Itrator 接口方法实现（遍历这一操作某些时候可能是通用的），这样一来就降低了<strong>代码的复用性</strong>，另外从<strong>单一职责</strong>的角度来考虑，CustomizeCollection 接口中揉合了集合元素的管理功能以及迭代器的功能，而采用 Iterable 包装之后则可以将这两个功能进行一定程度上的分割。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fq11lt0spyj30d8085aa1.jpg" alt><br>可以看到如果想实现 CustomizeCollection 则必须要实现 Iterator 接口方法，很显然采用这种方式可能导致在不同的 CustomizeCollection 接口实现类中存在相同的 Itrator 接口方法实现（遍历这一操作某些时候可能是通用的），这样一来就降低了<strong>代码的复用性</strong>，另外从<strong>单一职责</strong>的角度来考虑，CustomizeCollection 接口中揉合了集合元素的管理功能以及迭代器的功能，而采用 Iterable 包装之后则可以将这两个功能进行一定程度上的分割。</p>
 <p>接着从 Collection 又延展出三个接口，这三个接口是对集合功能的具体化：</p>
 <ul>
 <li>Set 表示的是无序、不存在重复元素的集合</li>
@@ -539,7 +539,7 @@
 </li>
 </ul>
 <h3 id="Map-接口"><a href="#Map-接口" class="headerlink" title="Map 接口"></a>Map 接口</h3><h4 id="结构分析-1"><a href="#结构分析-1" class="headerlink" title="结构分析"></a>结构分析</h4><p>Map 是一个单一的接口，并没有在此基础上进行扩展，但在 Map 接口的内部有一个 Entry 接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function">K <span class="title">getKey</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">V <span class="title">getValue</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">V <span class="title">setValue</span><span class="params">(V value)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    .....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function">K <span class="title">getKey</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">V <span class="title">getValue</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">V <span class="title">setValue</span><span class="params">(V value)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到 Entry 里面封装的都是和 Map 中元素有关的操作，这一接口主要用来规定 Map 中用来存储 key-value 所需要提供的功能</p>
 <h4 id="功能分析-1"><a href="#功能分析-1" class="headerlink" title="功能分析"></a>功能分析</h4><p>Map 接口的功能大致如下：</p>
 <ul>
@@ -564,7 +564,7 @@
 <li>其它<ul>
 <li>Set<k> keySet() 将 key 生成 Set 集合</k></li>
 <li>Collection<v> values() 将 value 生成集合</v></li>
-<li>Set<map.entry<k, v="">&gt; entrySet() 将 Map 中保存的元素生成 Set 集合，一般用于遍历集合</map.entry<k,></li>
+<li>Set<map.entry<k, v>&gt; entrySet() 将 Map 中保存的元素生成 Set 集合，一般用于遍历集合</map.entry<k,></li>
 </ul>
 </li>
 </ul>
@@ -614,15 +614,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/02/28/Android启动过程简析（四）/" rel="next" title="Android启动过程简析（四）之Lanucher的启动">
+                <i class="fa fa-chevron-left"></i> Android启动过程简析（四）之Lanucher的启动
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/08/Java进阶之ClassLoader/" rel="prev" title="Java进阶之ClassLoader">
-                Java进阶之ClassLoader <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -677,7 +677,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -688,9 +688,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460"
-               alt="知北遊" />
+          <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460" alt="知北遊">
           <p class="site-author-name" itemprop="name">知北遊</p>
            
               <p class="site-description motion-element" itemprop="description">时间能写出未来的结局</p>
@@ -701,7 +699,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -712,7 +710,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -805,7 +803,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2016 - 
   <span itemprop="copyrightYear">2019</span>
