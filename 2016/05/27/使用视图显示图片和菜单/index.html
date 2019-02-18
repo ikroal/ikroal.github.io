@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="显示图片的视图控件  GridView 添加方式：">
+<meta name="description" content="显示图片的视图控件 GridView添加方式：">
 <meta name="keywords" content="Android,基础控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用视图显示图片和菜单">
 <meta property="og:url" content="http://www.rookieyang.cn/2016/05/27/使用视图显示图片和菜单/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="显示图片的视图控件  GridView 添加方式：">
+<meta property="og:description" content="显示图片的视图控件 GridView添加方式：">
 <meta property="og:image" content="http://i.imgur.com/LDQw3gn.png">
 <meta property="og:image" content="http://i.imgur.com/SzABy68.png">
 <meta property="og:updated_time" content="2018-03-06T12:13:01.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用视图显示图片和菜单">
-<meta name="twitter:description" content="显示图片的视图控件  GridView 添加方式：">
+<meta name="twitter:description" content="显示图片的视图控件 GridView添加方式：">
 <meta name="twitter:image" content="http://i.imgur.com/LDQw3gn.png">
 
 
@@ -430,47 +430,50 @@
       
 
       
-        <h4 id="显示图片的视图控件">显示图片的视图控件</h4>
-<ul>
-<li><p>GridView 添加方式：<a id="more"></a> <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">GridView</span></span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:id</span>=<span class="string">"@+id/gridview"</span></div><div class="line">  <span class="attr">android:numColumns</span>=<span class="string">"auto_fit"</span></div><div class="line">  <span class="attr">android:verticalSpacing</span>=<span class="string">"10dp"</span></div><div class="line">  <span class="attr">android:horizontalSpacing</span>=<span class="string">"10dp"</span></div><div class="line">  <span class="attr">android:columnWidth</span>=<span class="string">"90dp"</span></div><div class="line">  <span class="attr">android:stretchMode</span>=<span class="string">"columnWidth"</span>/&gt;//缩放与列宽同步</div></pre></td></tr></table></figure></p>
-<p>其中 <code>verticalSpacing</code> 表示 grid 元素之间的竖直距离，<code>horizontalSpacing</code> 表示 grid 元素之间的水平距离。 常用方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gridView.setAdapter(<span class="keyword">new</span> ImageAdapter(<span class="keyword">this</span>));</div><div class="line">gridView.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">        Toast.makeText(getBaseContext(), <span class="string">"pic"</span> + (position + <span class="number">1</span>) + <span class="string">"selected"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>显示效果：</p></li>
+        <h4 id="显示图片的视图控件"><a href="#显示图片的视图控件" class="headerlink" title="显示图片的视图控件"></a>显示图片的视图控件</h4><ul>
+<li><p>GridView<br>添加方式：<a id="more"></a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">GridView</span></span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:id</span>=<span class="string">"@+id/gridview"</span></div><div class="line">  <span class="attr">android:numColumns</span>=<span class="string">"auto_fit"</span></div><div class="line">  <span class="attr">android:verticalSpacing</span>=<span class="string">"10dp"</span></div><div class="line">  <span class="attr">android:horizontalSpacing</span>=<span class="string">"10dp"</span></div><div class="line">  <span class="attr">android:columnWidth</span>=<span class="string">"90dp"</span></div><div class="line">  <span class="attr">android:stretchMode</span>=<span class="string">"columnWidth"</span>/&gt;//缩放与列宽同步</div></pre></td></tr></table></figure>
+<p>  其中 <code>verticalSpacing</code> 表示 grid 元素之间的竖直距离，<code>horizontalSpacing</code> 表示 grid 元素之间的水平距离。<br>  常用方法:</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gridView.setAdapter(<span class="keyword">new</span> ImageAdapter(<span class="keyword">this</span>));</div><div class="line">gridView.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">        Toast.makeText(getBaseContext(), <span class="string">"pic"</span> + (position + <span class="number">1</span>) + <span class="string">"selected"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>  显示效果：</p>
+</li>
 </ul>
-<div class="figure">
-<img src="http://i.imgur.com/LDQw3gn.png">
-
-</div>
+<p><img src="http://i.imgur.com/LDQw3gn.png" alt=""></p>
 <hr>
-<h4 id="菜单和视图一起显示">菜单和视图一起显示</h4>
-<p>常用方法：</p>
+<h4 id="菜单和视图一起显示"><a href="#菜单和视图一起显示" class="headerlink" title="菜单和视图一起显示"></a>菜单和视图一起显示</h4><p>常用方法：</p>
 <ul>
 <li><p><code>CreateMenu(Menu menu)</code> 创建菜单项</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateMenu</span><span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">  MenuItem mnu1 = menu.add(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"Item 1"</span>);</div><div class="line">  &#123;</div><div class="line">      mnu1.setAlphabeticShortcut(<span class="string">'a'</span>);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  MenuItem mnu2 = menu.add(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">"Item 2"</span>);</div><div class="line">  &#123;</div><div class="line">      mnu2.setAlphabeticShortcut(<span class="string">'a'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>add()</code> 方法中4个参数：</p>
-<ol style="list-style-type: decimal">
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateMenu</span><span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">  MenuItem mnu1 = menu.add(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"Item 1"</span>);</div><div class="line">  &#123;</div><div class="line">      mnu1.setAlphabeticShortcut(<span class="string">'a'</span>);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  MenuItem mnu2 = menu.add(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">"Item 2"</span>);</div><div class="line">  &#123;</div><div class="line">      mnu2.setAlphabeticShortcut(<span class="string">'a'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  <code>add()</code> 方法中4个参数：</p>
+<ol>
 <li>groupId 菜单项所在的组的标识符，0 表示不在一个组中。</li>
 <li>itemId 唯一的菜单项ID</li>
 <li>order 菜单项显示的顺序</li>
 <li>title 菜单项显示的文本</li>
-</ol></li>
+</ol>
+</li>
 <li><p><code>MenuChoice(MenuItem item)</code> 用于判断菜单项是否被选中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">MenuChoice</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">   <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">       <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">           Toast.makeText(<span class="keyword">this</span>, <span class="string">"You clicked on Item1"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">       <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">           Toast.makeText(<span class="keyword">this</span>, <span class="string">"You clicked on Item2"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"> &#125;=</div></pre></td></tr></table></figure></li>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">MenuChoice</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">   <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">       <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">           Toast.makeText(<span class="keyword">this</span>, <span class="string">"You clicked on Item1"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">       <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">           Toast.makeText(<span class="keyword">this</span>, <span class="string">"You clicked on Item2"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"> &#125;=</div></pre></td></tr></table></figure>
+</li>
 <li><p><code>onCreateOptionsMenu()</code> 当 MENU 按钮按下时调用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span> <span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">  <span class="keyword">super</span>.onCreateOptionsMenu(menu);</div><div class="line">  CreateMenu(menu);</div><div class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span> <span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">  <span class="keyword">super</span>.onCreateOptionsMenu(menu);</div><div class="line">  CreateMenu(menu);</div><div class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 <li><p><code>onOptionsItemSelected()</code> 选择菜单时调用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span> <span class="params">(MenuItem item)</span></span>&#123;</div><div class="line">  <span class="keyword">return</span> MenuChoice(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-<li><p><code>setOnCreateContextMenuListener</code> 设置上下文菜单 通过设置 <code>setOnCreateContextMenuListener</code> 方法，然后实现 <code>onCreateContextMenu</code> 方法即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateContextMenu</span><span class="params">(ContextMenu menu,</span></span></div><div class="line">	View view, ContextMenuInfo menuInfo) &#123;</div><div class="line">    <span class="keyword">super</span>.onCreateContextMenu(menu, view, menuInfo);</div><div class="line">    CreateMenu(menu);</div><div class="line">  &#125;</div></pre></td></tr></table></figure></li>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span> <span class="params">(MenuItem item)</span></span>&#123;</div><div class="line">  <span class="keyword">return</span> MenuChoice(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>setOnCreateContextMenuListener</code> 设置上下文菜单<br>通过设置 <code>setOnCreateContextMenuListener</code> 方法，然后实现 <code>onCreateContextMenu</code> 方法即可。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateContextMenu</span><span class="params">(ContextMenu menu,</span></span></div><div class="line">	View view, ContextMenuInfo menuInfo) &#123;</div><div class="line">    <span class="keyword">super</span>.onCreateContextMenu(menu, view, menuInfo);</div><div class="line">    CreateMenu(menu);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>　　实现效果如图：<br><img src="http://i.imgur.com/SzABy68.png" alt=""></p>
+</li>
 </ul>
-<p>　　实现效果如图： <img src="http://i.imgur.com/SzABy68.png"></p>
 <hr>
-<h4 id="webview">WebView</h4>
-<ul>
+<h4 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h4><ul>
 <li><p>添加 WebView</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">WebView</span></span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:id</span>=<span class="string">"@+id/webview"</span>/&gt;</div></pre></td></tr></table></figure></li>
-<li><p>避免启动设备的 Web 浏览器 实现 WebViewClient 类重写 <code>shouldOverrideUrlLoading</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">webView.setWebViewClient(<span class="keyword">new</span> CallBack());</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallBack</span> <span class="keyword">extends</span> <span class="title">WebViewClient</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">false</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">WebView</span></span></div><div class="line">  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  <span class="attr">android:id</span>=<span class="string">"@+id/webview"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>避免启动设备的 Web 浏览器<br>实现 WebViewClient 类重写 <code>shouldOverrideUrlLoading</code></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">webView.setWebViewClient(<span class="keyword">new</span> CallBack());</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallBack</span> <span class="keyword">extends</span> <span class="title">WebViewClient</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">false</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 
@@ -608,7 +611,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -619,7 +622,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -630,7 +633,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -692,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示图片的视图控件"><span class="nav-number">1.</span> <span class="nav-text">显示图片的视图控件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#菜单和视图一起显示"><span class="nav-number">2.</span> <span class="nav-text">菜单和视图一起显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webview"><span class="nav-number">3.</span> <span class="nav-text">WebView</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示图片的视图控件"><span class="nav-number">1.</span> <span class="nav-text">显示图片的视图控件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#菜单和视图一起显示"><span class="nav-number">2.</span> <span class="nav-text">菜单和视图一起显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebView"><span class="nav-number">3.</span> <span class="nav-text">WebView</span></a></li></ol></div>
             
 
           </div>
@@ -715,7 +718,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

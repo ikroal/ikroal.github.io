@@ -431,7 +431,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#dict 转成 str </span></div><div class="line">json.dump()</div><div class="line"><span class="comment">#将 json 数据保存到文件</span></div><div class="line">json.dumps()</div><div class="line"><span class="comment">#str 转成 dict </span></div><div class="line">json.load()</div><div class="line"><span class="comment">#从文件中读取 json 数据</span></div><div class="line">json.loads()</div></pre></td></tr></table></figure>
 <p>将 Json 数据写入文件：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">  data_result_file = <span class="string">"data_result.json"</span></div><div class="line">  <span class="keyword">with</span> open(data_result_file, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">      data_json = json.loads(results.data)</div><div class="line">      json.dump(data_json, f, indent=<span class="number">4</span>)</div><div class="line"><span class="keyword">except</span> IOError:</div><div class="line">  print(<span class="string">"文件不存在"</span>)</div></pre></td></tr></table></figure>
-<p>由于 <code>json.dump()</code> 产生的是 <code>str</code> 对象，不是 <code>bytes</code> 对象，所以写入时文件权限不能设置为 <code>wb</code>，否则会出现 <code>TypeError: a bytes-like object is required, not ‘str'</code>。</p>
+<p>由于 <code>json.dump()</code> 产生的是 <code>str</code> 对象，不是 <code>bytes</code> 对象，所以写入时文件权限不能设置为 <code>wb</code>，否则会出现 <code>TypeError: a bytes-like object is required, not ‘str&#39;</code>。</p>
 <hr>
 
       
@@ -559,7 +559,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -570,7 +570,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -581,7 +581,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -650,7 +650,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
