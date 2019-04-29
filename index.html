@@ -312,6 +312,175 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2019/04/21/Hadoop基础之生态圈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="知北遊">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北遊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/04/21/Hadoop基础之生态圈/" itemprop="url">
+                  Hadoop 基础之生态圈
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T11:14:35+08:00">
+                2019-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop 基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/21/Hadoop基础之生态圈/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/21/Hadoop基础之生态圈/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/21/Hadoop基础之生态圈/" class="leancloud_visitors" data-flag-title="Hadoop 基础之生态圈">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言">前言</h2>
+<p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/21/Hadoop基础之生态圈/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2018/03/17/Java基础之集合-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -431,8 +600,9 @@
 
       
         
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：</p>
-<ol>
+          <h2 id="问题">问题</h2>
+<p>集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：</p>
+<ol style="list-style-type: decimal">
 <li>集合存在的意义，集合和数组的区别</li>
 <li>集合框架的设计意图</li>
 <li>集合的常用操作
@@ -603,7 +773,8 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>通过<a href="/2018/01/22/Android启动过程简析（三）/" title="Android启动过程简析（三）">Android启动过程简析（三）</a>这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。
+          <h2 id="前言">前言</h2>
+<p>通过<a href="/2018/01/22/Android启动过程简析（三）/" title="Android启动过程简析（三）">Android启动过程简析（三）</a>这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/02/28/Android启动过程简析（四）/#more" rel="contents">
@@ -771,7 +942,8 @@
 
       
         
-          <h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>「白话深度学习与TensorFlow」的基础篇主要内容为“机器学习是什么”、“深度学习是什么”以及“TensorFlow”框架特性与安装，通过阅读基础篇的内容大致了解了以下几个部分：</p>
+          <h2 id="收获">收获</h2>
+<p>「白话深度学习与TensorFlow」的基础篇主要内容为“机器学习是什么”、“深度学习是什么”以及“TensorFlow”框架特性与安装，通过阅读基础篇的内容大致了解了以下几个部分：</p>
 <ul>
 <li>机器学习与深度学习的概念</li>
 <li>机器学习与深度学习的区别</li>
@@ -945,7 +1117,8 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="/2017/11/05/Android启动过程简析（二）/" title="Android启动过程简析（二）">Android启动过程简析（二）</a>中已经大致分析了 zygote 进程的启动过程当中所做的主要工作，本篇将继续对 SystemServer 的启动过程进行分析。
+          <h2 id="前言">前言</h2>
+<p>在<a href="/2017/11/05/Android启动过程简析（二）/" title="Android启动过程简析（二）">Android启动过程简析（二）</a>中已经大致分析了 zygote 进程的启动过程当中所做的主要工作，本篇将继续对 SystemServer 的启动过程进行分析。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/22/Android启动过程简析（三）/#more" rel="contents">
@@ -1113,7 +1286,8 @@
 
       
         
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>关于注解首先请思考一下以下问题：</p>
+          <h2 id="问题">问题</h2>
+<p>关于注解首先请思考一下以下问题：</p>
 <ul>
 <li>注解是什么？</li>
 <li>注解的主要使用场景？</li>
@@ -1456,7 +1630,8 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 <a href="/2017/10/28/Android启动过程简析（一）/" title="Android启动过程简析（一）">Android启动过程简析（一）</a>中我们已经分析过了 init 进程是如何被启动的，本篇文章将会继续分析 zygote 启动过程以及作用。
+          <h2 id="前言">前言</h2>
+<p>在 <a href="/2017/10/28/Android启动过程简析（一）/" title="Android启动过程简析（一）">Android启动过程简析（一）</a>中我们已经分析过了 init 进程是如何被启动的，本篇文章将会继续分析 zygote 启动过程以及作用。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/05/Android启动过程简析（二）/#more" rel="contents">
@@ -1624,13 +1799,8 @@
 
       
         
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在进入到 Android 启动过程之前先让我们思考以下几个问题</p>
-<ol>
-<li>Android 系统的启动过程是怎样的？</li>
-<li>init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？</li>
-<li>AMS、PMS 等这些服务是如何被启动的？</li>
-<li>Launcher 是如何被启动的？</li>
-</ol>
+          <h2 id="问题">问题</h2>
+<p>在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？</p>
 <p>此篇文章将针对 init 部分给出分析
           <!--noindex-->
           <div class="post-button text-center">
@@ -1799,7 +1969,8 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。
+          <h2 id="前言">前言</h2>
+<p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/24/Selector的用法/#more" rel="contents">
@@ -1810,177 +1981,6 @@
         
       
     </p></div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.rookieyang.cn/2017/09/17/面向对象的六大原则及单例模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="知北遊">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知北遊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/17/面向对象的六大原则及单例模式/" itemprop="url">
-                  面向对象的六大原则及单例模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T01:05:58+08:00">
-                2017-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/17/面向对象的六大原则及单例模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/17/面向对象的六大原则及单例模式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/09/17/面向对象的六大原则及单例模式/" class="leancloud_visitors" data-flag-title="面向对象的六大原则及单例模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="面向对象的六大原则"><a href="#面向对象的六大原则" class="headerlink" title="面向对象的六大原则"></a>面向对象的六大原则</h2><h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因</p>
-<blockquote>
-<p>简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/17/面向对象的六大原则及单例模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
     <div>
       
@@ -2057,7 +2057,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2068,7 +2068,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2079,7 +2079,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

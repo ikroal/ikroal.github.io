@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="BroadCasts 定义及其作用BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。">
+<meta name="description" content="BroadCasts 定义及其作用 BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。">
 <meta name="keywords" content="Android,BroatCasts">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 基础之 BroastCasts">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/08/26/Android之BroastCastReceiver/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="BroadCasts 定义及其作用BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。">
+<meta property="og:description" content="BroadCasts 定义及其作用 BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-05T15:15:58.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 基础之 BroastCasts">
-<meta name="twitter:description" content="BroadCasts 定义及其作用BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。">
+<meta name="twitter:description" content="BroadCasts 定义及其作用 BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。">
 
 
 
@@ -427,41 +427,21 @@
       
 
       
-        <h4 id="BroadCasts-定义及其作用"><a href="#BroadCasts-定义及其作用" class="headerlink" title="BroadCasts 定义及其作用"></a>BroadCasts 定义及其作用</h4><p>BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。<br><a id="more"></a></p>
-<h4 id="BroadCasts-的分类"><a href="#BroadCasts-的分类" class="headerlink" title="BroadCasts 的分类"></a>BroadCasts 的分类</h4><ol>
-<li>按作用范围来分：<ul>
-<li>全局广播</li>
-<li>本地广播<br>  本地主要为了解决全局广播的安全性问题，由于全局广播是面向系统中所有应用的，所以当携带一些关键数据时可能会导致数据的泄漏。</li>
-</ul>
-</li>
-<li>按接收顺序来分：<ul>
-<li>标准广播<br>  标准广播在发出之后，所有相关的广播接收器几乎能够一次性接收到该条广播。</li>
-<li>有序广播<br>  有序广播发出后，同一时间只有一个广播接收器能够接收到这条广播消息，只有当该广播接收器当中的处理逻辑处理完成之后，广播才能向下传递，并且优先级高的广播能够截断正在传递的广播。如果多个应用程序设置的优先级别相同，则谁先注册的广播，谁就可以优先接收到广播。</li>
-</ul>
-</li>
-</ol>
-<h4 id="BroadCasts-的使用"><a href="#BroadCasts-的使用" class="headerlink" title="BroadCasts 的使用"></a>BroadCasts 的使用</h4><p>广播机制的使用方法大体按照如下步骤：</p>
-<ol>
-<li><p>创建广播接收器<br> Android 系统提供了一个 BroadCastReciver 的抽象类，所以需要创建自己的广播接收器，然后重写当中的 onReceive 方法，在当中编写事件的处理逻辑。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForceReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(<span class="keyword">final</span> Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(context);</span><br><span class="line">        builder.setTitle(<span class="string">"提示"</span>);</span><br><span class="line">        builder.setMessage(<span class="string">"已经被退出"</span>);</span><br><span class="line">        builder.setCancelable(<span class="keyword">false</span>);</span><br><span class="line">        builder.setPositiveButton(<span class="string">"OK"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">                ActivityCollector.finishActivities();</span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(context, LoginActivity.class);</span><br><span class="line">                context.startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注册广播<br> 为了进行广播的接收还需要对需要接收的广播进行注册，注册方式可以分为两种：<br> 第一种是动态注册，如果是全局广播则在 Activity 中直接调用 registerReceiver 方法即可，该方法主要接收两个参数，一个是 BroadCastReceiver，第二个则是 IntentFilter。如果是本地广播则需要借助系统提供的 LocalBroadCastManager 去进行注册，方法名与注册全局广播的方法名一致。<br> 全局广播：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">"com.rookieyang.forcelogin"</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure>
-<p> 本地广播：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">"com.rookieyang.forcelogin"</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(<span class="keyword">this</span>);</span><br><span class="line">localBroadcastManager.registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure>
-<p> 第二种是静态注册，静态注册可以实现在程序未启动的情况下接收到广播，静态注册的广播是全局广播。</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">".BootCompleteReceiver"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h4 id="broadcasts-定义及其作用">BroadCasts 定义及其作用</h4>
+<p>BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。 <a id="more"></a> #### BroadCasts 的分类 1. 按作用范围来分： * 全局广播 * 本地广播 本地主要为了解决全局广播的安全性问题，由于全局广播是面向系统中所有应用的，所以当携带一些关键数据时可能会导致数据的泄漏。 2. 按接收顺序来分： * 标准广播 标准广播在发出之后，所有相关的广播接收器几乎能够一次性接收到该条广播。 * 有序广播 有序广播发出后，同一时间只有一个广播接收器能够接收到这条广播消息，只有当该广播接收器当中的处理逻辑处理完成之后，广播才能向下传递，并且优先级高的广播能够截断正在传递的广播。如果多个应用程序设置的优先级别相同，则谁先注册的广播，谁就可以优先接收到广播。</p>
+<h4 id="broadcasts-的使用">BroadCasts 的使用</h4>
+<p>广播机制的使用方法大体按照如下步骤：</p>
+<ol style="list-style-type: decimal">
+<li><p>创建广播接收器 Android 系统提供了一个 BroadCastReciver 的抽象类，所以需要创建自己的广播接收器，然后重写当中的 onReceive 方法，在当中编写事件的处理逻辑。 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForceReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(<span class="keyword">final</span> Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(context);</span><br><span class="line">        builder.setTitle(<span class="string">"提示"</span>);</span><br><span class="line">        builder.setMessage(<span class="string">"已经被退出"</span>);</span><br><span class="line">        builder.setCancelable(<span class="keyword">false</span>);</span><br><span class="line">        builder.setPositiveButton(<span class="string">"OK"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">                ActivityCollector.finishActivities();</span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(context, LoginActivity.class);</span><br><span class="line">                context.startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>注册广播 为了进行广播的接收还需要对需要接收的广播进行注册，注册方式可以分为两种： 第一种是动态注册，如果是全局广播则在 Activity 中直接调用 registerReceiver 方法即可，该方法主要接收两个参数，一个是 BroadCastReceiver，第二个则是 IntentFilter。如果是本地广播则需要借助系统提供的 LocalBroadCastManager 去进行注册，方法名与注册全局广播的方法名一致。 全局广播： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">"com.rookieyang.forcelogin"</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure></p>
+<p>本地广播： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">"com.rookieyang.forcelogin"</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(<span class="keyword">this</span>);</span><br><span class="line">localBroadcastManager.registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure></p>
+<p>第二种是静态注册，静态注册可以实现在程序未启动的情况下接收到广播，静态注册的广播是全局广播。 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">".BootCompleteReceiver"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>监听系统的开机广播是需要添加权限的，动态注册相比较于静态注册而言更为灵活，但是静态注册能够实现在应用未启动的情况下接收广播。而且动态注册的广播最后必须要取消注册。</p>
-</blockquote>
-</li>
-<li><p>发送广播<br> 发送广播需要主要通过 Intent 传递信息，如果是是系统广播则不需要我们去编码去发送广播，如果是自定义的广播，发送标准广播则调用 sendBroadCast 方法，发送有序广播则调用 sendOrderedBroadcast 方法。如果是本地广播则和上文一致需要借助 LocalBroadCastManager 进行发送，本地广播没有有序广播。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.rookieyang.forcelogin"</span>);</span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"><span class="comment">//sendOrderedBroadcast(intent);</span></span><br><span class="line">localBroadcastManager.sendBroadcast();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接收处理<br> 接收处理在广播接收器的 onReceive 方法中进行，创建广播接收器中已经说明，在此不再赘述。</p>
-</li>
-<li>取消注册<br> 静态注册的不需要我们编码去取消注册，对于动态注册的则需要编码去取消注册，如果是全局广播则调用 unregisterReceiver 方法即可，如果是本地广播则调用 LocalBroadCastManager 对象的该方法即可。 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unregisterReceiver(forceReceiver);</span><br><span class="line">localBroadcastManager.unregisterReceiver(forceReceiver);</span><br></pre></td></tr></table></figure>
-</li>
+</blockquote></li>
+<li><p>发送广播 发送广播需要主要通过 Intent 传递信息，如果是是系统广播则不需要我们去编码去发送广播，如果是自定义的广播，发送标准广播则调用 sendBroadCast 方法，发送有序广播则调用 sendOrderedBroadcast 方法。如果是本地广播则和上文一致需要借助 LocalBroadCastManager 进行发送，本地广播没有有序广播。 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.rookieyang.forcelogin"</span>);</span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"><span class="comment">//sendOrderedBroadcast(intent);</span></span><br><span class="line">localBroadcastManager.sendBroadcast();</span><br></pre></td></tr></table></figure></p></li>
+<li>接收处理 接收处理在广播接收器的 onReceive 方法中进行，创建广播接收器中已经说明，在此不再赘述。</li>
+<li><p>取消注册 静态注册的不需要我们编码去取消注册，对于动态注册的则需要编码去取消注册，如果是全局广播则调用 unregisterReceiver 方法即可，如果是本地广播则调用 LocalBroadCastManager 对象的该方法即可。 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unregisterReceiver(forceReceiver);</span><br><span class="line">localBroadcastManager.unregisterReceiver(forceReceiver);</span><br></pre></td></tr></table></figure></p></li>
 </ol>
 <hr>
 
@@ -597,7 +577,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -608,7 +588,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -619,7 +599,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -681,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#BroadCasts-定义及其作用"><span class="nav-number">1.</span> <span class="nav-text">BroadCasts 定义及其作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BroadCasts-的分类"><span class="nav-number">2.</span> <span class="nav-text">BroadCasts 的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BroadCasts-的使用"><span class="nav-number">3.</span> <span class="nav-text">BroadCasts 的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#broadcasts-定义及其作用"><span class="nav-number">1.</span> <span class="nav-text">BroadCasts 定义及其作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#broadcasts-的使用"><span class="nav-number">2.</span> <span class="nav-text">BroadCasts 的使用</span></a></li></ol></div>
             
 
           </div>
