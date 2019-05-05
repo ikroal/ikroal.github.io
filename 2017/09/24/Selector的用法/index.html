@@ -91,20 +91,20 @@
 
 
 
-<meta name="description" content="前言 Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。">
+<meta name="description" content="前言Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。">
 <meta name="keywords" content="Android,Drawble">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 基础之 Selector 的用法">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/09/24/Selector的用法/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="前言 Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。">
+<meta property="og:description" content="前言Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp17otxntij306l067wed.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fp17otuc2vj306m06wdfm.jpg">
 <meta property="og:updated_time" content="2018-03-04T15:43:19.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 基础之 Selector 的用法">
-<meta name="twitter:description" content="前言 Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。">
+<meta name="twitter:description" content="前言Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp17otxntij306l067wed.jpg">
 
 
@@ -189,7 +189,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">青春会老去，岁月不会停</p>
+        <p class="site-subtitle">祝愿我们在抵达路的末端时,都不会后悔</p>
       
   </div>
 
@@ -430,24 +430,19 @@
       
 
       
-        <h2 id="前言">前言</h2>
-<p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。<a id="more"></a></p>
-<h2 id="drawable-selector">Drawable-selector</h2>
-<ol style="list-style-type: decimal">
-<li>首先需要在 res/drawable 文件夹下新建一个 Drawable Resource File 文件，填入文件名即可，创建之后的文件内容如下：</li>
-</ol>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<ol start="2" style="list-style-type: decimal">
-<li>在 selector 标签下新建一个 item 标签，item 标签表示一种状态，如果不指明状态，那么控件在任何状态下都会加载 item 内的 样式，常用的状态设置如下所示：</li>
-</ol>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。<a id="more"></a></p>
+<h2 id="Drawable-selector"><a href="#Drawable-selector" class="headerlink" title="Drawable-selector"></a>Drawable-selector</h2><ol>
+<li><p>首先需要在 res/drawable 文件夹下新建一个 Drawable Resource File 文件，填入文件名即可，创建之后的文件内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 selector 标签下新建一个 item 标签，item 标签表示一种状态，如果不指明状态，那么控件在任何状态下都会加载 item 内的 样式，常用的状态设置如下所示：</p>
 <ul>
 <li>android:state_pressed 设置为 true 时代表按压控件的时候使用 item 样式</li>
 <li>android:state_selected 设置为 true 时代表控件被选中的时候使用 item 样式</li>
 <li>android:state_checked 设置为 true 时代表控件处于 checked 状态的时候使用 item 样式</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>接下来在 item 内部创建 shape 标签用于指定绘制的图形类别，总共有四种图形可以选择分别是：rectangle、oval、line、ring。在确定需要绘制的 shape 类型之后，就可以在 shape 标签内部对 shape 的各项属性进行配置，总共有六种标签属性。</li>
-</ol>
+</li>
+<li><p>接下来在 item 内部创建 shape 标签用于指定绘制的图形类别，总共有四种图形可以选择分别是：rectangle、oval、line、ring。在确定需要绘制的 shape 类型之后，就可以在 shape 标签内部对 shape 的各项属性进行配置，总共有六种标签属性。</p>
 <ul>
 <li>size 用来设置 shape 的大小</li>
 <li>solid 用来设置填充 shape 的颜色</li>
@@ -456,14 +451,14 @@
 <li>padding 设置内边距</li>
 <li>gradient 设置 shape 的渐变颜色</li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
-<li>设置好相应的属性之后就可以通过设置控件的 android:drawble 属性进行使用了，这里给出一个例子</li>
+</li>
+<li><p>设置好相应的属性之后就可以通过设置控件的 android:drawble 属性进行使用了，这里给出一个例子</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">"rectangle"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">"5dp"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">"1dp"</span> <span class="attr">android:color</span>=<span class="string">"#00faff"</span> <span class="attr">android:dashGap</span>=<span class="string">"10dp"</span> 	<span class="attr">android:dashWidth</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">"150dp"</span> <span class="attr">android:height</span>=<span class="string">"150dp"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#bcb7b7"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">"oval"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">"360dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">"1dp"</span> <span class="attr">android:color</span>=<span class="string">"#00fcb5"</span> <span class="attr">android:dashGap</span>=<span class="string">"10dp"</span> 			<span class="attr">android:dashWidth</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">"300dp"</span> <span class="attr">android:height</span>=<span class="string">"300dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#ffff"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述代码绘制了两种状态，一种是默认状态下的圆，白色填充、虚线描边、半径是 300dp。另一种是被按下的状态，灰色填充、虚线描边、长和宽与圆一致。具体效果如下图所示：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp17otxntij306l067wed.jpg" alt><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fp17otuc2vj306m06wdfm.jpg" alt></p>
+</li>
 </ol>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">"rectangle"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">"5dp"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">"1dp"</span> <span class="attr">android:color</span>=<span class="string">"#00faff"</span> <span class="attr">android:dashGap</span>=<span class="string">"10dp"</span> 	<span class="attr">android:dashWidth</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">"150dp"</span> <span class="attr">android:height</span>=<span class="string">"150dp"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#bcb7b7"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">"oval"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">"360dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">"1dp"</span> <span class="attr">android:color</span>=<span class="string">"#00fcb5"</span> <span class="attr">android:dashGap</span>=<span class="string">"10dp"</span> 			<span class="attr">android:dashWidth</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">"300dp"</span> <span class="attr">android:height</span>=<span class="string">"300dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#ffff"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>上述代码绘制了两种状态，一种是默认状态下的圆，白色填充、虚线描边、半径是 300dp。另一种是被按下的状态，灰色填充、虚线描边、长和宽与圆一致。具体效果如下图所示： <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp17otxntij306l067wed.jpg"><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fp17otuc2vj306m06wdfm.jpg"></p>
-<h2 id="color-selector">Color-selector</h2>
-<p>Color-selector 定义在 res文件夹下，使用过程基本与 Drawable-selector 一致，不同在于 Color-selector 只是用于定义控件的颜色，所以只需要配置 item 标签的 color 属性即可，具体的例子如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"#000000"</span> <span class="attr">android:state_pressed</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"#ffff"</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Color-selector"><a href="#Color-selector" class="headerlink" title="Color-selector"></a>Color-selector</h2><p>Color-selector 定义在 res\color 文件夹下，使用过程基本与 Drawable-selector 一致，不同在于 Color-selector 只是用于定义控件的颜色，所以只需要配置 item 标签的 color 属性即可，具体的例子如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"#000000"</span> <span class="attr">android:state_pressed</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"#ffff"</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>通过指定 item 的状态和颜色，即可做到按压和松开时控件的颜色变化。</p>
 
       
@@ -598,7 +593,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -682,7 +677,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#drawable-selector"><span class="nav-number">2.</span> <span class="nav-text">Drawable-selector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#color-selector"><span class="nav-number">3.</span> <span class="nav-text">Color-selector</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Drawable-selector"><span class="nav-number">2.</span> <span class="nav-text">Drawable-selector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Color-selector"><span class="nav-number">3.</span> <span class="nav-text">Color-selector</span></a></li></ol></div>
             
 
           </div>

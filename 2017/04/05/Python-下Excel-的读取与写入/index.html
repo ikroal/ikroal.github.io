@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="前言 前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
+<meta name="description" content="前言前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
 <meta name="keywords" content="Python,数据处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 下 Excel 的读取与写入">
 <meta property="og:url" content="http://www.rookieyang.cn/2017/04/05/Python-下Excel-的读取与写入/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="前言 前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
+<meta property="og:description" content="前言前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-06T11:03:40.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 Excel 的读取与写入">
-<meta name="twitter:description" content="前言 前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
+<meta name="twitter:description" content="前言前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 xlrd 库来进行 Excel 的读取操作，写入操作则由 xlsxwriter 和 xlutils 库来进行，其中 xlutils 用于对 Excel 文件的追加。">
 
 
 
@@ -186,7 +186,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">青春会老去，岁月不会停</p>
+        <p class="site-subtitle">祝愿我们在抵达路的末端时,都不会后悔</p>
       
   </div>
 
@@ -427,29 +427,27 @@
       
 
       
-        <h4 id="前言">前言</h4>
-<p>前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 <code>xlrd</code> 库来进行 Excel 的读取操作，写入操作则由 <code>xlsxwriter</code> 和 <code>xlutils</code> 库来进行，其中 <code>xlutils</code> 用于对 Excel 文件的追加。 <a id="more"></a></p>
-<h4 id="excel-文件的读取">Excel 文件的读取</h4>
-<ol style="list-style-type: decimal">
-<li>打开 Excel 文件<br> <code>workbook = xlrd.open_workbook(r'查询条件.xlsx')</code></li>
-<li>获取所有 sheet<br> <code>workbook.sheet_names()</code></li>
-<li>根据sheet索引或者名称获取 sheet 内容<br> <code>sheet1 = workbook.sheet_by_index(0)  # sheet索引从0开始</code><br> <code>sheet1 = data.sheet_by_name(u'Sheet1')#通过名称获取</code></li>
-<li>获取 <code>sheet1</code> 的行数<br> <code>sheet1.nrows</code></li>
-<li>获取 <code>sheet1</code> 的列数<br> <code>sheet1.ncols</code></li>
-<li>获取指定行列的值<br> <code>sheet1.row(row)[col].value</code></li>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>前段时间需要将 MySql 的数据导出到指定格式的 Excel 表格中去，由于是基于 Python3.5 的程序，所以最后选定了 <code>xlrd</code> 库来进行 Excel 的读取操作，写入操作则由 <code>xlsxwriter</code> 和 <code>xlutils</code> 库来进行，其中 <code>xlutils</code> 用于对 Excel 文件的追加。<br><a id="more"></a></p>
+<h4 id="Excel-文件的读取"><a href="#Excel-文件的读取" class="headerlink" title="Excel 文件的读取"></a>Excel 文件的读取</h4><ol>
+<li>打开 Excel 文件&lt;/br&gt;<br><code>workbook = xlrd.open_workbook(r&#39;查询条件.xlsx&#39;)</code></li>
+<li>获取所有 sheet&lt;/br&gt;<br> <code>workbook.sheet_names()</code></li>
+<li>根据sheet索引或者名称获取 sheet 内容&lt;/br&gt;<br><code>sheet1 = workbook.sheet_by_index(0)  # sheet索引从0开始</code>&lt;/br&gt;<br> <code>sheet1 = data.sheet_by_name(u&#39;Sheet1&#39;)#通过名称获取</code></li>
+<li>获取 <code>sheet1</code> 的行数&lt;/br&gt;<br><code>sheet1.nrows</code></li>
+<li>获取 <code>sheet1</code> 的列数&lt;/br&gt;<br><code>sheet1.ncols</code></li>
+<li>获取指定行列的值&lt;/br&gt;<br> <code>sheet1.row(row)[col].value</code></li>
 </ol>
-<h4 id="excel-文件的写入追加">Excel 文件的写入追加</h4>
-<ol style="list-style-type: decimal">
-<li>创建 Excel 文件<br> <code>workbook = xlsxwriter.Workbook(year + title + &quot;.xls&quot;)</code></li>
-<li>增加 Sheet<br> <code>worksheet = workbook.add_worksheet()</code></li>
+<h4 id="Excel-文件的写入追加"><a href="#Excel-文件的写入追加" class="headerlink" title="Excel 文件的写入追加"></a>Excel 文件的写入追加</h4><ol>
+<li>创建 Excel 文件<br><br> <code>workbook = xlsxwriter.Workbook(year + title + &quot;.xls&quot;)</code></li>
+<li>增加 Sheet<br><br> <code>worksheet = workbook.add_worksheet()</code></li>
 <li><p>写入数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">worksheet.write(<span class="string">'A1'</span>, <span class="string">'tag'</span>)</span><br><span class="line">worksheet.write(<span class="string">'B1'</span>, <span class="string">'文章名字'</span>)</span><br><span class="line">sheet_write.write(rows, <span class="number">0</span>, <span class="string">"1"</span>)</span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure></li>
-<li><p>追加数据<br> 追加之前需要将 <code>xlutils.copy</code> 导入到工程中，首先用 <code>xlrd</code> 打开旧的 Excel 文件，然后利用 <code>xlutils.copy</code> 中的 copy() 方法复制已经存在的数据，最终在原有数据的基础上进行写入。具体代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入模块</span></span><br><span class="line"><span class="keyword">from</span> xlutils.copy <span class="keyword">import</span> copy</span><br><span class="line"><span class="comment">#打开文件</span></span><br><span class="line">resultwork = xlrd.open_workbook(year + title + <span class="string">".xls"</span>)</span><br><span class="line"><span class="comment">#获取行数</span></span><br><span class="line">sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</span><br><span class="line">rows = sheet1.nrows</span><br><span class="line"><span class="comment">#追加数据，保存</span></span><br><span class="line">old_excel = copy.copy(resultwork)</span><br><span class="line">sheet_write = old_excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">sheet_write.write(rows, <span class="number">0</span>, <span class="string">"1"</span>)</span><br><span class="line">old_excel.save(year + title + <span class="string">".xls"</span>)</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">worksheet.write(<span class="string">'A1'</span>, <span class="string">'tag'</span>)</span><br><span class="line">worksheet.write(<span class="string">'B1'</span>, <span class="string">'文章名字'</span>)</span><br><span class="line">sheet_write.write(rows, <span class="number">0</span>, <span class="string">"1"</span>)</span><br><span class="line">workbook.close()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>追加数据&lt;/br&gt;<br> 追加之前需要将 <code>xlutils.copy</code> 导入到工程中，首先用 <code>xlrd</code> 打开旧的 Excel 文件，然后利用 <code>xlutils.copy</code> 中的 copy() 方法复制已经存在的数据，最终在原有数据的基础上进行写入。具体代码如下：</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入模块</span></span><br><span class="line"><span class="keyword">from</span> xlutils.copy <span class="keyword">import</span> copy</span><br><span class="line"><span class="comment">#打开文件</span></span><br><span class="line">resultwork = xlrd.open_workbook(year + title + <span class="string">".xls"</span>)</span><br><span class="line"><span class="comment">#获取行数</span></span><br><span class="line">sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</span><br><span class="line">rows = sheet1.nrows</span><br><span class="line"><span class="comment">#追加数据，保存</span></span><br><span class="line">old_excel = copy.copy(resultwork)</span><br><span class="line">sheet_write = old_excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">sheet_write.write(rows, <span class="number">0</span>, <span class="string">"1"</span>)</span><br><span class="line">old_excel.save(year + title + <span class="string">".xls"</span>)</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <hr>
-<h4 id="参考资料">参考资料</h4>
-<ol style="list-style-type: decimal">
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
 <li><a href="http://xlsxwriter.readthedocs.io/index.html#" target="_blank" rel="noopener">xlsxwriter 文档</a></li>
 <li><a href="http://www.jb51.net/article/63497.htm" target="_blank" rel="noopener">Python中使用第三方库xlutils来追加写入Excel文件示例</a></li>
 </ol>
@@ -586,7 +584,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -670,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#excel-文件的读取"><span class="nav-number">2.</span> <span class="nav-text">Excel 文件的读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#excel-文件的写入追加"><span class="nav-number">3.</span> <span class="nav-text">Excel 文件的写入追加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Excel-文件的读取"><span class="nav-number">2.</span> <span class="nav-text">Excel 文件的读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Excel-文件的写入追加"><span class="nav-number">3.</span> <span class="nav-text">Excel 文件的写入追加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
