@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://ikroal-1252236042.cos.ap-guangzhou.myqcloud.com/img/YARN-node.png">
 <meta property="og:image" content="https://ikroal-1252236042.cos.ap-guangzhou.myqcloud.com/img/master-run.png">
 <meta property="og:image" content="https://ikroal-1252236042.cos.ap-guangzhou.myqcloud.com/img/salve-run.png">
-<meta property="og:updated_time" content="2019-05-05T04:50:43.288Z">
+<meta property="og:updated_time" content="2019-05-05T04:53:50.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop 基础之搭建环境">
 <meta name="twitter:description" content="前言本文主要介绍了 Hadoop 的三种运行模式以及配置的方式。">
@@ -496,8 +496,7 @@
 <li><p>通过 YARN 执行 Job（可选配置，不过为了更接近真实集群还是建议配置）</p>
 <ul>
 <li><p>修改 etc/hadoop/mapred-site.xml</p>
-</li>
-<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml</span><br><span class="line">vi etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml</span><br><span class="line">vi etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
 <p>增加以下内容</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span> <span class="comment">&lt;!--表明运行在 YARN 上--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
