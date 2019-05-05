@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="简介 Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
+<meta name="description" content="简介  Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装 在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
 <meta name="keywords" content="Python,Flask">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 下 Flask 结合 Neo4j 构建管理系统（一）">
 <meta property="og:url" content="http://www.ikroal.xyz/2017/04/09/Python下Flask结合Neo4j构建管理系统（一）/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="简介 Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
+<meta property="og:description" content="简介  Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装 在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp3d9t5xvrj30o80ayaas.jpg">
 <meta property="og:updated_time" content="2018-03-06T12:25:11.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 下 Flask 结合 Neo4j 构建管理系统（一）">
-<meta name="twitter:description" content="简介 Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
+<meta name="twitter:description" content="简介  Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。  安装 在终端中输入 sudo pip install Flask 即可进行安装（如果不想进行全局安装，请参考官方文档）。">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fp3d9t5xvrj30o80ayaas.jpg">
 
 
@@ -429,11 +429,14 @@
       
 
       
-        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+        <h4 id="简介">简介</h4>
+<blockquote>
 <p>Flask 是一个使用 Python 编写的轻量级 Web 应用框架。其 WSGI 工具箱采用 Werkzeug ，模板引擎则使用 Jinja2 。</p>
 </blockquote>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>在终端中输入 <code>sudo pip install Flask</code> 即可进行安装（如果不想进行全局安装，请参考官方文档）。<a id="more"></a></p>
-<h4 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h4><p>首先需要创建如下结构的文件夹：</p>
+<h4 id="安装">安装</h4>
+<p>在终端中输入 <code>sudo pip install Flask</code> 即可进行安装（如果不想进行全局安装，请参考官方文档）。<a id="more"></a></p>
+<h4 id="创建文件夹">创建文件夹</h4>
+<p>首先需要创建如下结构的文件夹：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/flaskr</span><br><span class="line">    /static</span><br><span class="line">    /templates</span><br></pre></td></tr></table></figure>
 <ul>
 <li>flaskr 是工程文件夹名</li>
@@ -441,16 +444,19 @@
 <li>templates 是放置网页模板的文件夹</li>
 <li>如果用 PyCharm 开发，在创建 templates 文件夹后需要按住快捷键 <code>Command + ,</code> 在 Project→Project Structure，选择 templates 文件夹后点击 <code>Mark as</code> 中的 <code>Templates</code></li>
 </ul>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>在 flaskr 目录下创建 <code>app.py</code> 的文件，输入如下代码：</p>
+<h4 id="测试">测试</h4>
+<p>在 flaskr 目录下创建 <code>app.py</code> 的文件，输入如下代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello World!'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>app = Flask(__name__)</code> 创建一个该类的实例，第一个参数是应用模块或者包的名称。 如果你使用单一的模块（如本例），你应该使用 <strong>name</strong> ，因为模块的名称将会因其作为单独应用启动还是作为模块导入而有不同（ 也即是 ‘<strong>main</strong>‘ 或实际的导入名）。这是必须的，这样 Flask 才知道到哪去找模板、静态文件等等。</li>
+<li><code>app = Flask(__name__)</code> 创建一个该类的实例，第一个参数是应用模块或者包的名称。 如果你使用单一的模块（如本例），你应该使用 <strong>name</strong> ，因为模块的名称将会因其作为单独应用启动还是作为模块导入而有不同（ 也即是 '<strong>main</strong>' 或实际的导入名）。这是必须的，这样 Flask 才知道到哪去找模板、静态文件等等。</li>
 <li><code>__name__</code> 指当前的模块名，当模块直接运行时，<code>__name__</code> 为 <code>__main__</code>，当模块被导入运行时，<code>__name__</code> 为模块名字。</li>
 <li>route() 装饰器告诉 Flask 什么样的URL 能触发我们的函数，函数的名字也在生成 URL 时被特定的函数采用，这个函数返回我们想要显示在用户浏览器中的信息。</li>
 </ul>
-<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><p>运行之后进入 <code>http://localhost:5000</code> 可以看到如下结果：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp3d9t5xvrj30o80ayaas.jpg" alt></p>
+<h4 id="运行结果">运行结果</h4>
+<p>运行之后进入 <code>http://localhost:5000</code> 可以看到如下结果： <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp3d9t5xvrj30o80ayaas.jpg"></p>
 <hr>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://docs.jinkan.org/docs/flask/index.html" target="_blank" rel="noopener">Flask 文档</a></p>
+<h4 id="参考资料">参考资料</h4>
+<p><a href="http://docs.jinkan.org/docs/flask/index.html" target="_blank" rel="noopener">Flask 文档</a></p>
 
       
     </div>

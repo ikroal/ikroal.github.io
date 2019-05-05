@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：&amp;lt;/br&amp;gt;  An error occurred while creating the AVD. See idea.log for details  在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题">
+<meta name="description" content="在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：  An error occurred while creating the AVD. See idea.log for details  在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sud">
 <meta name="keywords" content="Android,工具问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 14.04下AVD的创建以及闪退问题">
 <meta property="og:url" content="http://www.ikroal.xyz/2017/08/24/Android问题记录之AVD的创建以及闪退/index.html">
 <meta property="og:site_name" content="知北遊的博客">
-<meta property="og:description" content="在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：&amp;lt;/br&amp;gt;  An error occurred while creating the AVD. See idea.log for details  在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题">
+<meta property="og:description" content="在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：  An error occurred while creating the AVD. See idea.log for details  在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sud">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-06T12:34:17.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04下AVD的创建以及闪退问题">
-<meta name="twitter:description" content="在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：&amp;lt;/br&amp;gt;  An error occurred while creating the AVD. See idea.log for details  在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题">
+<meta name="twitter:description" content="在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：  An error occurred while creating the AVD. See idea.log for details  在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sud">
 
 
 
@@ -427,20 +427,13 @@
       
 
       
-        <p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：&lt;/br&gt;</p>
+        <p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：<br></p>
 <blockquote>
 <p>An error occurred while creating the AVD. See idea.log for details</p>
 </blockquote>
 <p>在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sudo aptitude -f install lib32stdc++6 去解决依赖问题，这条语句使用一次可能并不能解决问题，实际当中我运行了三次才解决了依赖的冲突的问题，每一次运行的时候依次选择 no-&gt;yes-&gt;yes。具体要运行几次，必须看 lib32stdc++6 库是否安装成功。<a id="more"></a></p>
-<p>在经过上述的操作之后，虽然 AVD 可能能成功创建，但实际可能还是无法启动，无法启动的原因可能是需要安装 Intel’s KVM，具体步骤可以参考<a href="https://github.com/uw-it-aca/spacescout-android/wiki/1.-Setting-Up-Android-Studio-on-Ubuntu#install-intels-kvm-for-better-avd-performance" target="_blank" rel="noopener">Setting Up Android Studio on Ubuntu</a>当中的 Install Intel’s KVM for Better AVD Performance 部分，在这部分当中只需做到第七步即可，由于我使用的 AndroidStudio 2.3，无法找到第八步所说的选项。</p>
-<p>在安装好所需要的一切库之后，接下来的步骤如下：</p>
-<ol>
-<li>创建虚拟机，记下虚拟机名称</li>
-<li>进入到 Sdk 路径下的 tools 目录，执行以下指令<blockquote>
-<p>sudo chmod +x emulator<br>./emulator -avd 虚拟机名称 -qemu -m 2047 -enable-kvm</p>
-</blockquote>
-</li>
-</ol>
+<p>在经过上述的操作之后，虽然 AVD 可能能成功创建，但实际可能还是无法启动，无法启动的原因可能是需要安装 Intel's KVM，具体步骤可以参考<a href="https://github.com/uw-it-aca/spacescout-android/wiki/1.-Setting-Up-Android-Studio-on-Ubuntu#install-intels-kvm-for-better-avd-performance" target="_blank" rel="noopener">Setting Up Android Studio on Ubuntu</a>当中的 Install Intel's KVM for Better AVD Performance 部分，在这部分当中只需做到第七步即可，由于我使用的 AndroidStudio 2.3，无法找到第八步所说的选项。</p>
+<p>在安装好所需要的一切库之后，接下来的步骤如下： 1. 创建虚拟机，记下虚拟机名称 2. 进入到 Sdk 路径下的 tools 目录，执行以下指令 &gt; sudo chmod +x emulator &gt; ./emulator -avd 虚拟机名称 -qemu -m 2047 -enable-kvm</p>
 <p>在经过上述的两个步骤之后基本上是能够成功启动了的。</p>
 <hr>
 
