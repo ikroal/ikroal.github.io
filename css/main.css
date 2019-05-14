@@ -2,6 +2,14 @@
   font-family: 'ZCOOL KuaiLe';
   font-size: 15px;
 }
+.site-description.motion-element {
+  font-family: 'ZCOOL KuaiLe';
+  font-size: 15px;
+}
+.site-author-name {
+  font-family: 'Yesteryear';
+  font-size: 20px;
+}
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15; /* 1 */
@@ -1841,7 +1849,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2091ff;
+  background: #ff52ff;
 }
 .feed-link,
 .chat {
