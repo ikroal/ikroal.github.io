@@ -37,6 +37,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -168,7 +172,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/YARN-node.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/master-run.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/salve-run.png">
-<meta property="og:updated_time" content="2019-05-13T10:39:11.731Z">
+<meta property="og:updated_time" content="2019-05-15T01:26:23.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop 基础之搭建环境">
 <meta name="twitter:description" content="前言 本文主要介绍了 Hadoop 的三种运行模式以及配置的方式。">
@@ -514,7 +518,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-13 18:39:11" itemprop="dateModified" datetime="2019-05-13T18:39:11+08:00">2019-05-13</time>
+                <time title="修改时间：2019-05-15 09:26:23" itemprop="dateModified" datetime="2019-05-15T09:26:23+08:00">2019-05-15</time>
               
             
           </span>
@@ -601,7 +605,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -713,10 +717,14 @@
 <h2 id="错误">错误</h2>
 <p>这里主要记录配置过程中遇到的一部分错误</p>
 <ol type="1">
-<li>Container exited with a non-zero exit code 1. Error file: prelaunch.err. 该错误是在腾讯云主机上配置的伪集群模式运行 wordcount 时出现的，尝试了网上的一些办法都没有解决。最后采用自己电脑配置再运行一遍成功，可能是因为云主机的配置问题。</li>
-<li>在 YARN 上运行 Java.net.ConnectException: Connection refused 可能是防火墙的原因，根据 <a href="http://www.aboutyun.com/thread-20153-1-1.html" target="_blank" rel="noopener">🔗</a> 中的提示解决</li>
-<li>无法外网访问VM中的 Hadoop YARN 的8088端口 无法通过云主机 ip:8088 访问 YARN 的 Web 页面时，不妨通过 <code>netstat -nlp | grep java</code> 查看当前提供 web 服务的端口，如果 ip 是 127.0.0.1 证明存在问题，需要修改 hosts，具体过程见 <a href="https://www.cnblogs.com/dongxiucai/p/9641962.html" target="_blank" rel="noopener">🔗</a>。</li>
-<li>slave: bash: line 0: cd: /root/hadoop/hadoop-2.9.2: No such file or directory 配置集群模式时出现，主要原因是手动配置 slave 时 Hadoop 存放路径与 master 不一致，只需要将 slave 的 Hadoop 放在与 master 的同一路径下即可解决。</li>
+<li><p>Container exited with a non-zero exit code 1. Error file: prelaunch.err.</p>
+<p>该错误是在腾讯云主机上配置的伪集群模式运行 wordcount 时出现的，尝试了网上的一些办法都没有解决。最后采用自己电脑配置再运行一遍成功，可能是因为云主机的配置问题。</p></li>
+<li><p>在 YARN 上运行 Java.net.ConnectException: Connection refused</p>
+<p>可能是防火墙的原因，根据 <a href="http://www.aboutyun.com/thread-20153-1-1.html" target="_blank" rel="noopener">🔗</a> 中的提示解决</p></li>
+<li><p>无法外网访问VM中的 Hadoop YARN 的8088端口</p>
+<p>无法通过云主机 ip:8088 访问 YARN 的 Web 页面时，不妨通过 <code>netstat -nlp | grep java</code> 查看当前提供 web 服务的端口，如果 ip 是 127.0.0.1 证明存在问题，需要修改 hosts，具体过程见 <a href="https://www.cnblogs.com/dongxiucai/p/9641962.html" target="_blank" rel="noopener">🔗</a>。</p></li>
+<li><p>slave: bash: line 0: cd: /root/hadoop/hadoop-2.9.2: No such file or directory</p>
+<p>配置集群模式时出现，主要原因是手动配置 slave 时 Hadoop 存放路径与 master 不一致，只需要将 slave 的 Hadoop 放在与 master 的同一路径下即可解决。</p></li>
 </ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
@@ -1688,6 +1696,13 @@
 
 
   
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1732,6 +1747,11 @@
   
 
   
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
 
   
 

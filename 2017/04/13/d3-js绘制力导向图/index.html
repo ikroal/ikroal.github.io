@@ -37,6 +37,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -592,7 +596,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -637,7 +641,7 @@
 <pre><code> * `force.on()` 可为三种事件设定监听器，start，tick，end。其中，start 是刚开始运动，end 是运动停止，tick 是表示运动的每一步。
  * 选择集 node，link，text 上都绑定了数据，当每一次 tick 事件发生时，被绑定的数据被更新，`function(d)` 中的 d 也都更新了。</code></pre>
 <p>增加样式：</p>
-<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .node &#123;</span></span><br><span class="line"><span class="undefined">        stroke: #222;</span></span><br><span class="line"><span class="undefined">        stroke-width: 1.5px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .link &#123;</span></span><br><span class="line"><span class="undefined">        stroke: #707071;</span></span><br><span class="line"><span class="undefined">        stroke-opacity: .6;</span></span><br><span class="line"><span class="undefined">        stroke-width: 1px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .node.Website &#123;</span></span><br><span class="line"><span class="undefined">        fill: #ff756e;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .node.Sort &#123;</span></span><br><span class="line"><span class="undefined">        fill: #de9bf9;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .nodeText &#123;</span></span><br><span class="line"><span class="undefined">        fill: #ffffff</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.node</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">stroke</span>: <span class="selector-id">#222</span>;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">stroke-width</span>: 1<span class="selector-class">.5px</span>;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.link</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">stroke</span>: <span class="selector-id">#707071</span>;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">stroke-opacity</span>: <span class="selector-class">.6</span>;</span></span><br><span class="line"><span class="undefined">        stroke-width: 1px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.node</span><span class="selector-class">.Website</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">fill</span>: <span class="selector-id">#ff756e</span>;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.node</span><span class="selector-class">.Sort</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">fill</span>: <span class="selector-id">#de9bf9</span>;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.nodeText</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">fill</span>: <span class="selector-id">#ffffff</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <figure>
 <img src="https://lh3.googleusercontent.com/-A6JxI-hyuww/WPCrNFzHKfI/AAAAAAAAANM/g8eygh02iYo/I/%25255BUNSET%25255D.png" alt="效果"><figcaption>效果</figcaption>
 </figure></li>
@@ -1642,6 +1646,13 @@
 
 
   
+  
+
+  
+  
+
+  
+
 
   
 
@@ -1686,6 +1697,11 @@
   
 
   
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
 
   
 
