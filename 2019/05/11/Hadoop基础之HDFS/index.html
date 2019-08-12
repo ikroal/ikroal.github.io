@@ -43,6 +43,9 @@
 
 
 
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
   <meta name="google-site-verification" content="26j9czoiq-aQmhWKy0lXUjxUQUj46pdsoeYffIMpVGQ">
@@ -421,7 +424,7 @@
 
   
 
-  <a href="https://github.com/ikroal" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
 
 
 
@@ -610,7 +613,7 @@
 <p>本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。</p>
 <a id="more"></a>
 <h2 id="简介">简介</h2>
-<p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <a href="https://ai.google/research/pubs/pub51" target="_blank" rel="noopener">The Google File System</a> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
+<p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGUvcmVzZWFyY2gvcHVicy9wdWI1MQ==" title="https://ai.google/research/pubs/pub51">The Google File System<i class="fa fa-external-link"></i></span> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
 <h2 id="体系架构">体系架构</h2>
 <p><img src="/2019/05/11/Hadoop基础之HDFS/HDFS-Structure.png"></p>
 <p>上图表明 HDFS 是一个标准的 master/slave 架构，主要由三个部分构成：</p>
@@ -704,10 +707,10 @@
 </ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
-<li><a href="https://www.cnblogs.com/codeOfLife/p/5375120.html" target="_blank" rel="noopener">初步掌握HDFS的架构及原理</a></li>
-<li><a href="https://blog.csdn.net/bingduanlbd/article/details/51914550#t23" target="_blank" rel="noopener">深入理解HDFS：Hadoop分布式文件系统</a></li>
-<li><a href="https://blog.csdn.net/whdxjbw/article/details/81072207" target="_blank" rel="noopener">HDFS读写流程（史上最精炼详细）</a></li>
-<li><a href="https://www.cnblogs.com/qingyunzong/p/8548806.html" target="_blank" rel="noopener">Hadoop学习之路（十一）HDFS的读写详解</a></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY29kZU9mTGlmZS9wLzUzNzUxMjAuaHRtbA==" title="https://www.cnblogs.com/codeOfLife/p/5375120.html">初步掌握HDFS的架构及原理<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JpbmdkdWFubGJkL2FydGljbGUvZGV0YWlscy81MTkxNDU1MCN0MjM=" title="https://blog.csdn.net/bingduanlbd/article/details/51914550#t23">深入理解HDFS：Hadoop分布式文件系统<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3doZHhqYncvYXJ0aWNsZS9kZXRhaWxzLzgxMDcyMjA3" title="https://blog.csdn.net/whdxjbw/article/details/81072207">HDFS读写流程（史上最精炼详细）<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcWluZ3l1bnpvbmcvcC84NTQ4ODA2Lmh0bWw=" title="https://www.cnblogs.com/qingyunzong/p/8548806.html">Hadoop学习之路（十一）HDFS的读写详解<i class="fa fa-external-link"></i></span></li>
 </ol>
 
       
@@ -746,7 +749,7 @@
     <a href="http://www.ikroal.xyz/2019/05/11/Hadoop基础之HDFS/" title="Hadoop 基础之 HDFS 入门">http://www.ikroal.xyz/2019/05/11/Hadoop基础之HDFS/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
 </ul>
 
       </div>
@@ -778,6 +781,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/11/Giraph简介/" rel="prev" title="Giraph 简介">
+                Giraph 简介 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -855,7 +862,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -892,7 +899,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1011,7 +1020,7 @@
                   
                     
                   
-                  <a href="https://github.com/ikroal" title="GitHub &rarr; https://github.com/ikroal" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="GitHub &rarr; https://github.com/ikroal"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1022,7 +1031,7 @@
                   
                     
                   
-                  <a href="tencent://Message/?uin=1010419353" title="QQ &rarr; tencent://Message/?uin=1010419353" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                  <span class="exturl" data-url="dGVuY2VudDovL01lc3NhZ2UvP3Vpbj0xMDEwNDE5MzUz" title="QQ &rarr; tencent://Message/?uin=1010419353"><i class="fa fa-fw fa-qq"></i>QQ</span>
                 </span>
               
             </div>
@@ -1092,7 +1101,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">82k</span>
+    <span title="站点总字数">85k</span>
   
 
   
@@ -1101,12 +1110,12 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:17</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
 
 
 
@@ -1114,7 +1123,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.1.1</div>
 
 
 
@@ -1252,6 +1261,8 @@
   
 
   
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
 
   
 

@@ -43,6 +43,9 @@
 
 
 
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
   <meta name="google-site-verification" content="26j9czoiq-aQmhWKy0lXUjxUQUj46pdsoeYffIMpVGQ">
@@ -172,7 +175,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/YARN-node.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/master-run.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/salve-run.png">
-<meta property="og:updated_time" content="2019-05-15T01:26:23.451Z">
+<meta property="og:updated_time" content="2019-08-05T13:15:38.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop 基础之搭建环境">
 <meta name="twitter:description" content="前言 本文主要介绍了 Hadoop 的三种运行模式以及配置的方式。">
@@ -426,7 +429,7 @@
 
   
 
-  <a href="https://github.com/ikroal" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
 
 
 
@@ -518,7 +521,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-15 09:26:23" itemprop="dateModified" datetime="2019-05-15T09:26:23+08:00">2019-05-15</time>
+                <time title="修改时间：2019-08-05 21:15:38" itemprop="dateModified" datetime="2019-08-05T21:15:38+08:00">2019-08-05</time>
               
             
           </span>
@@ -625,7 +628,7 @@
 <p>本次配置基于 Hadoop2.9.2，其中 Standalone 在 CentOS 7.2 系统下进行配置， Pseudo-Distributed 模式在 MacOS 10.14.4 上进行配置，Fully-Distributed 模式在腾讯云主机上进行配置，集群由两台云主机组成，分别运行 Ubuntu 14.04.1 和 CentOS 7.2 系统。</p>
 <h3 id="环境准备">环境准备</h3>
 <ul>
-<li><p>Java 7/8 Hadoop 2.7.x to 2.x 支持 Java 7/8，其它 Hadoop 版本支持的 Java 版本请点击 <a href="https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions" target="_blank" rel="noopener">🔗</a> 进行查询 下载：</p>
+<li><p>Java 7/8 Hadoop 2.7.x to 2.x 支持 Java 7/8，其它 Hadoop 版本支持的 Java 版本请点击 <span class="exturl" data-url="aHR0cHM6Ly9jd2lraS5hcGFjaGUub3JnL2NvbmZsdWVuY2UvZGlzcGxheS9IQURPT1AvSGFkb29wK0phdmErVmVyc2lvbnM=" title="https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions">🔗<i class="fa fa-external-link"></i></span> 进行查询 下载：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-1.8.0-openjdk-devel //centos 安装 Java8，ubuntu 下需要用 apt-get 进行安装</span><br></pre></td></tr></table></figure>
 <p>配置环境变量：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">vi .bash_profile</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk.i386</span><br><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure></li>
@@ -720,17 +723,17 @@
 <li><p>Container exited with a non-zero exit code 1. Error file: prelaunch.err.</p>
 <p>该错误是在腾讯云主机上配置的伪集群模式运行 wordcount 时出现的，尝试了网上的一些办法都没有解决。最后采用自己电脑配置再运行一遍成功，可能是因为云主机的配置问题。</p></li>
 <li><p>在 YARN 上运行 Java.net.ConnectException: Connection refused</p>
-<p>可能是防火墙的原因，根据 <a href="http://www.aboutyun.com/thread-20153-1-1.html" target="_blank" rel="noopener">🔗</a> 中的提示解决</p></li>
+<p>可能是防火墙的原因，根据 <span class="exturl" data-url="aHR0cDovL3d3dy5hYm91dHl1bi5jb20vdGhyZWFkLTIwMTUzLTEtMS5odG1s" title="http://www.aboutyun.com/thread-20153-1-1.html">🔗<i class="fa fa-external-link"></i></span> 中的提示解决</p></li>
 <li><p>无法外网访问VM中的 Hadoop YARN 的8088端口</p>
-<p>无法通过云主机 ip:8088 访问 YARN 的 Web 页面时，不妨通过 <code>netstat -nlp | grep java</code> 查看当前提供 web 服务的端口，如果 ip 是 127.0.0.1 证明存在问题，需要修改 hosts，具体过程见 <a href="https://www.cnblogs.com/dongxiucai/p/9641962.html" target="_blank" rel="noopener">🔗</a>。</p></li>
+<p>无法通过云主机 ip:8088 访问 YARN 的 Web 页面时，不妨通过 <code>netstat -nlp | grep java</code> 查看当前提供 web 服务的端口，如果 ip 是 127.0.0.1 证明存在问题，需要修改 hosts，具体过程见 <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZG9uZ3hpdWNhaS9wLzk2NDE5NjIuaHRtbA==" title="https://www.cnblogs.com/dongxiucai/p/9641962.html">🔗<i class="fa fa-external-link"></i></span>。</p></li>
 <li><p>slave: bash: line 0: cd: /root/hadoop/hadoop-2.9.2: No such file or directory</p>
 <p>配置集群模式时出现，主要原因是手动配置 slave 时 Hadoop 存放路径与 master 不一致，只需要将 slave 的 Hadoop 放在与 master 的同一路径下即可解决。</p></li>
 </ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
-<li><a href="https://www.jianshu.com/p/2d8518b19ee5" target="_blank" rel="noopener">Hadoop完全分布式部署</a></li>
-<li><a href="https://blog.csdn.net/yangjl38/article/details/7583374" target="_blank" rel="noopener">Hadoop三种模式介绍</a></li>
-<li><a href="https://blog.csdn.net/qq_26442553/article/details/78710170" target="_blank" rel="noopener">hadoop的三种运行模式区别及配置详解</a></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC8yZDg1MThiMTllZTU=" title="https://www.jianshu.com/p/2d8518b19ee5">Hadoop完全分布式部署<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmdqbDM4L2FydGljbGUvZGV0YWlscy83NTgzMzc0" title="https://blog.csdn.net/yangjl38/article/details/7583374">Hadoop三种模式介绍<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2NDQyNTUzL2FydGljbGUvZGV0YWlscy83ODcxMDE3MA==" title="https://blog.csdn.net/qq_26442553/article/details/78710170">hadoop的三种运行模式区别及配置详解<i class="fa fa-external-link"></i></span></li>
 </ol>
 
       
@@ -769,7 +772,7 @@
     <a href="http://www.ikroal.xyz/2019/05/04/Hadoop基础之搭建环境/" title="Hadoop 基础之搭建环境">http://www.ikroal.xyz/2019/05/04/Hadoop基础之搭建环境/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
 </ul>
 
       </div>
@@ -882,7 +885,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -919,7 +922,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1038,7 +1043,7 @@
                   
                     
                   
-                  <a href="https://github.com/ikroal" title="GitHub &rarr; https://github.com/ikroal" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="GitHub &rarr; https://github.com/ikroal"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1049,7 +1054,7 @@
                   
                     
                   
-                  <a href="tencent://Message/?uin=1010419353" title="QQ &rarr; tencent://Message/?uin=1010419353" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                  <span class="exturl" data-url="dGVuY2VudDovL01lc3NhZ2UvP3Vpbj0xMDEwNDE5MzUz" title="QQ &rarr; tencent://Message/?uin=1010419353"><i class="fa fa-fw fa-qq"></i>QQ</span>
                 </span>
               
             </div>
@@ -1119,7 +1124,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">82k</span>
+    <span title="站点总字数">85k</span>
   
 
   
@@ -1128,12 +1133,12 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:17</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
 
 
 
@@ -1141,7 +1146,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v7.1.1</div>
 
 
 
@@ -1279,6 +1284,8 @@
   
 
   
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
 
   
 
