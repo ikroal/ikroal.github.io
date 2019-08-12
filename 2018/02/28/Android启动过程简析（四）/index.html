@@ -156,19 +156,19 @@
 
 
 
-  <meta name="description" content="前言 通过Android启动过程简析（三）这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。">
+  <meta name="description" content="前言通过Android启动过程简析（三）这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。">
 <meta name="keywords" content="Android,源码分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android启动过程简析（四）之Lanucher的启动">
 <meta property="og:url" content="http://www.ikroal.xyz/2018/02/28/Android启动过程简析（四）/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="前言 通过Android启动过程简析（三）这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。">
+<meta property="og:description" content="前言通过Android启动过程简析（三）这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/Android-start.png">
 <meta property="og:updated_time" content="2019-05-15T01:28:21.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android启动过程简析（四）之Lanucher的启动">
-<meta name="twitter:description" content="前言 通过Android启动过程简析（三）这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。">
+<meta name="twitter:description" content="前言通过Android启动过程简析（三）这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/Android-start.png">
 
 
@@ -604,10 +604,8 @@
       
 
       
-        <h2 id="前言">前言</h2>
-<p>通过<a href="/2018/01/22/Android启动过程简析（三）/" title="Android启动过程简析（三）">Android启动过程简析（三）</a>这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。<a id="more"></a></p>
-<h2 id="lanucher的启动流程">Lanucher的启动流程</h2>
-<p>在 SystemServer 中启动的这么多服务当中 ActivityManagerService 是负责四大组件的启动、切换、调度的，所以 Launcher 的启动与 ActivityManagerService 离不开关系</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>通过<a href="/2018/01/22/Android启动过程简析（三）/" title="Android启动过程简析（三）">Android启动过程简析（三）</a>这篇文章我们已经大致了解了服务是如何被启动的，接着本文将会分析系统启动的最后一步，即 Launcher 的启动。<a id="more"></a></p>
+<h2 id="Lanucher的启动流程"><a href="#Lanucher的启动流程" class="headerlink" title="Lanucher的启动流程"></a>Lanucher的启动流程</h2><p>在 SystemServer 中启动的这么多服务当中 ActivityManagerService 是负责四大组件的启动、切换、调度的，所以 Launcher 的启动与 ActivityManagerService 离不开关系</p>
 <p>frameworks/base/services/java/com/android/server/SystemServer.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startOtherServices</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">// We now tell the activity manager it is okay to run third party</span></span><br><span class="line">    <span class="comment">// code.  It will call back into us once it has gotten to the state</span></span><br><span class="line">    <span class="comment">// where third party code can really run (but before it has actually</span></span><br><span class="line">    <span class="comment">// started launching the initial applications), for us to complete our</span></span><br><span class="line">    <span class="comment">// initialization.</span></span><br><span class="line">    mActivityManagerService.systemReady(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            ....</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                startSystemUi(context);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">                reportWtf(<span class="string">"starting System UI"</span>, e);</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到在 startOtherServices 中调用了 mActivityManagerService 的 systemReady 方法，并在传入的 Runnable 对象中启动了 SystemUi，接着继续查看 systemReady 方法</p>
@@ -620,11 +618,9 @@
 <p>在 getHomeIntent 中首先创建了一个 Intent 对象，然后给这个对象增加了一个 category，category 对应的信息是 android.intent.category.HOME，查找 Lanucher3 的 AndroidManifest.xml 可以看见</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"com.android.launcher3.Launcher"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:launchMode</span>=<span class="string">"singleTask"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:clearTaskOnLaunch</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:stateNotNeeded</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span>=<span class="string">"@style/Theme"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:windowSoftInputMode</span>=<span class="string">"adjustPan"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:screenOrientation</span>=<span class="string">"nosensor"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:configChanges</span>=<span class="string">"keyboard|keyboardHidden|navigation"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:resumeWhilePausing</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:taskAffinity</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.HOME"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.MONKEY"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这说明即将启动的 Activity 是 com.android.launcher3.Launcher，现在回到 startHomeActivityLocked 方法中，继续往下看可以知道在得到 Intent 对象之后，最后是通过 ActivityStarter 的 startHomeActivityLocked 启动了 Launcher。之后的部分由于涉及到 Lanucher 源码和 Activity 启动的细致流程，所以就暂时不做分析了。</p>
-<h2 id="总结">总结</h2>
-<p>通过四篇文章的分析对系统启动的过程有了一个大致的了解，但是限于水平有限，有些部分分析的比较粗糙，希望之后在水平提升之后能够对各个部分进行进一步的完善，例如：Binder、ActivityManagerService、Acitvity 的启动过程等等。 最后借用 Gityuan <span class="exturl" data-url="aHR0cDovL2dpdHl1YW4uY29tL2FuZHJvaWQv" title="http://gityuan.com/android/">Android系统开篇<i class="fa fa-external-link"></i></span>中的一张图片说明系统启动的过程</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Android-start.png"></p>
-<h2 id="thanks">Thanks</h2>
-<ol type="1">
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过四篇文章的分析对系统启动的过程有了一个大致的了解，但是限于水平有限，有些部分分析的比较粗糙，希望之后在水平提升之后能够对各个部分进行进一步的完善，例如：Binder、ActivityManagerService、Acitvity 的启动过程等等。<br>最后借用 Gityuan <span class="exturl" data-url="aHR0cDovL2dpdHl1YW4uY29tL2FuZHJvaWQv" title="http://gityuan.com/android/">Android系统开篇<i class="fa fa-external-link"></i></span>中的一张图片说明系统启动的过程</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Android-start.png" alt></p>
+<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><ol>
 <li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaXRhY2hpODUvYXJ0aWNsZS9kZXRhaWxzLzU2NjY5ODA4" title="http://blog.csdn.net/itachi85/article/details/56669808">Android系统启动流程（四）Launcher启动过程与系统启动流程<i class="fa fa-external-link"></i></span></li>
 </ol>
 
@@ -978,7 +974,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lanucher的启动流程"><span class="nav-number">2.</span> <span class="nav-text">Lanucher的启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thanks"><span class="nav-number">4.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lanucher的启动流程"><span class="nav-number">2.</span> <span class="nav-text">Lanucher的启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thanks"><span class="nav-number">4.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
             
 
           </div>

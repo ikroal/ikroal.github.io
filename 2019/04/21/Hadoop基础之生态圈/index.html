@@ -156,19 +156,19 @@
 
 
 
-  <meta name="description" content="前言 本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。">
+  <meta name="description" content="前言本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。">
 <meta name="keywords" content="BigData">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop 基础之生态圈">
 <meta property="og:url" content="http://www.ikroal.xyz/2019/04/21/Hadoop基础之生态圈/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="前言 本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。">
+<meta property="og:description" content="前言本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png">
 <meta property="og:updated_time" content="2019-05-13T08:40:38.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop 基础之生态圈">
-<meta name="twitter:description" content="前言 本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。">
+<meta name="twitter:description" content="前言本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png">
 
 
@@ -604,45 +604,29 @@
       
 
       
-        <h2 id="前言">前言</h2>
-<p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
 <a id="more"></a>
-<h2 id="hadoop-生态系统">Hadoop 生态系统</h2>
-<p>Hadoop 生态系统是指以 <strong>分布式的文件系统 HDFS</strong>、<strong>分布式的计算框架 MapReduce</strong> 以及<strong>资源管理器 YARN</strong>为基础构成的分布式数据处理系统，其结构图如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png"></p>
+<h2 id="Hadoop-生态系统"><a href="#Hadoop-生态系统" class="headerlink" title="Hadoop 生态系统"></a>Hadoop 生态系统</h2><p>Hadoop 生态系统是指以 <strong>分布式的文件系统 HDFS</strong>、<strong>分布式的计算框架 MapReduce</strong> 以及<strong>资源管理器 YARN</strong>为基础构成的分布式数据处理系统，其结构图如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png" alt></p>
 <p>下面将对图中各项组件做一个介绍</p>
-<h3 id="hdfs">HDFS</h3>
-<p>HDFS 是 Google 于 2003 发表的 分布式文件系统 GFS 论文的开源实现版本，主要目的是使用普通商业电脑解决大量数据的存储以及读取速度问题，在 GFS 出现之前一般主要在<strong>单台计算机</strong>用 RAID 来提高数据存储量和读取速度。但是采用 RAID 一方面成本比较高（需求太高时可能只有超级计算机才能满足），另一方面数据量过大时可能超级计算机也无法满足需求。所以这个时候就需要采取<strong>分布式</strong>的方式去满足扩大存储（多台机器多个磁盘）和增加读取速度的需求（多台机器可以同时读）。</p>
-<h3 id="mapreduce">MapReduce</h3>
-<p>MapReduce 是一个分布式的计算框架，在 MapReduce 出现之前就已经有了分布式计算这个概念。但是大多数分布式计算只能专门用于处理一类运算，而 Google 在大量实践中总结出了一个通用的编程模型： <code>map</code> 和 <code>reduce</code>。其中 <code>map</code> 是指分开计算的过程，而 <code>reduce</code> 是指合并结果的过程。而在这一编程模型添加的一系列机制和操作构成了 MapReduce。MapReduce 大大降低了分布式计算的门槛，对于开发人员而言只需要编写一系列 <code>map</code> 和 <code>reduce</code> 函数即可完成所需的分布式计算过程。</p>
-<h3 id="yarn">YARN</h3>
-<p>YARN 是一个资源管理框架，主要作用是负责集群的资源调度和作业任务管理。YARN 的出现源于 Hadoop 不能满足统一使用集群资源的需求，因为 Hadoop1 中集群的资源调度和任务管理与 MapReduce 的执行过程是耦合在一起的，而后续出现的 Spark、Storm 等分布式计算系统其架构和执行过程与 MapReduce 不同，无法直接向 Hadoop 申请集群资源。所以为了实现集群资源的统一管理，在 Hadoop2 中对 MapReduce 进行了一个解耦，抽离出了 YARN 这个框架。</p>
-<h3 id="zookeeper">ZooKeeper</h3>
-<p>Zookeeper 主要作用是提供一个分布式、高可用的协调服务，解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。</p>
-<h3 id="pig">Pig</h3>
-<p>虽然 MapReduce 极大的简化了分布式计算编程的门槛，但是 Yahoo 的工程师依然觉得 MapReduce 编程太过麻烦，所以他们便开发了 Pig 这个脚本语言用于描述对大数据集的操作。这样就可以通过编译 Pig 脚本生成对应的 MapReduce 程序。</p>
-<h3 id="hive">Hive</h3>
-<p>为了方便使用 SQL 的工程师使用 MapReduce，Facebook 的工程师开发了 Hive，通过 Hive 熟悉数据库的工程师可以无门槛的使用 MapReduce。</p>
-<h3 id="mahout">Mahout</h3>
-<p>Mahout 的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。Mahout 现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。</p>
-<h3 id="tez">Tez</h3>
-<p>Tez 是 Apache 最新开源的支持 DAG 作业的计算框架，它直接源于 MapReduce 框架，核心思想是将 Map 和 Reduce 两个操作进一步拆分，即 Map 被拆分成 Input、Processor、Sort、Merge和Output， Reduce 被拆分成 Input、Shuffle、Sort、Merge、Processor 和 Output 等。</p>
-<h3 id="hase">Hase</h3>
-<p>HBase 是一个建立在 HDFS 之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。</p>
-<h3 id="flume">Flume</h3>
-<p>Cloudera 开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。</p>
-<h3 id="sqoop">Sqoop</h3>
-<p>Sqoop 是 SQL-to-Hadoop 的缩写，主要用于传统数据库和 Hadoop 之前传输数据。数据的导入和导出本质上是Mapreduce 程序，充分利用了 MR 的并行化和容错性。</p>
-<h3 id="ambari">Ambari</h3>
-<p>Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个 web 工具。</p>
-<h2 id="总结">总结</h2>
-<p>总的来说 HDFS 、MapReduce 以及 YARN 是 Hadoop 的核心组件，而我们学习 Hadoop 最好从核心组件开始学习其原理机制，再逐渐往上层进行了解。</p>
-<h2 id="thanks">Thanks</h2>
-<ol type="1">
+<h3 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h3><p>HDFS 是 Google 于 2003 发表的 分布式文件系统 GFS 论文的开源实现版本，主要目的是使用普通商业电脑解决大量数据的存储以及读取速度问题，在 GFS 出现之前一般主要在<strong>单台计算机</strong>用 RAID 来提高数据存储量和读取速度。但是采用 RAID 一方面成本比较高（需求太高时可能只有超级计算机才能满足），另一方面数据量过大时可能超级计算机也无法满足需求。所以这个时候就需要采取<strong>分布式</strong>的方式去满足扩大存储（多台机器多个磁盘）和增加读取速度的需求（多台机器可以同时读）。</p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>MapReduce 是一个分布式的计算框架，在 MapReduce 出现之前就已经有了分布式计算这个概念。但是大多数分布式计算只能专门用于处理一类运算，而 Google 在大量实践中总结出了一个通用的编程模型： <code>map</code> 和 <code>reduce</code>。其中 <code>map</code> 是指分开计算的过程，而 <code>reduce</code> 是指合并结果的过程。而在这一编程模型添加的一系列机制和操作构成了 MapReduce。MapReduce 大大降低了分布式计算的门槛，对于开发人员而言只需要编写一系列 <code>map</code> 和 <code>reduce</code> 函数即可完成所需的分布式计算过程。</p>
+<h3 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h3><p>YARN 是一个资源管理框架，主要作用是负责集群的资源调度和作业任务管理。YARN 的出现源于 Hadoop 不能满足统一使用集群资源的需求，因为 Hadoop1 中集群的资源调度和任务管理与 MapReduce 的执行过程是耦合在一起的，而后续出现的 Spark、Storm 等分布式计算系统其架构和执行过程与 MapReduce 不同，无法直接向 Hadoop 申请集群资源。所以为了实现集群资源的统一管理，在 Hadoop2 中对 MapReduce 进行了一个解耦，抽离出了 YARN 这个框架。</p>
+<h3 id="ZooKeeper"><a href="#ZooKeeper" class="headerlink" title="ZooKeeper"></a>ZooKeeper</h3><p> Zookeeper 主要作用是提供一个分布式、高可用的协调服务，解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。</p>
+<h3 id="Pig"><a href="#Pig" class="headerlink" title="Pig"></a>Pig</h3><p>虽然 MapReduce 极大的简化了分布式计算编程的门槛，但是 Yahoo 的工程师依然觉得 MapReduce 编程太过麻烦，所以他们便开发了 Pig 这个脚本语言用于描述对大数据集的操作。这样就可以通过编译 Pig 脚本生成对应的 MapReduce 程序。</p>
+<h3 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h3><p>为了方便使用 SQL 的工程师使用 MapReduce，Facebook 的工程师开发了 Hive，通过 Hive 熟悉数据库的工程师可以无门槛的使用 MapReduce。</p>
+<h3 id="Mahout"><a href="#Mahout" class="headerlink" title="Mahout"></a>Mahout</h3><p>Mahout 的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。Mahout 现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。</p>
+<h3 id="Tez"><a href="#Tez" class="headerlink" title="Tez"></a>Tez</h3><p>Tez 是 Apache 最新开源的支持 DAG 作业的计算框架，它直接源于 MapReduce 框架，核心思想是将 Map 和 Reduce 两个操作进一步拆分，即 Map 被拆分成 Input、Processor、Sort、Merge和Output， Reduce 被拆分成 Input、Shuffle、Sort、Merge、Processor 和 Output 等。</p>
+<h3 id="Hase"><a href="#Hase" class="headerlink" title="Hase"></a>Hase</h3><p>HBase 是一个建立在 HDFS 之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。</p>
+<h3 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h3><p>Cloudera 开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。</p>
+<h3 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h3><p>Sqoop 是 SQL-to-Hadoop 的缩写，主要用于传统数据库和 Hadoop 之前传输数据。数据的导入和导出本质上是Mapreduce 程序，充分利用了 MR 的并行化和容错性。</p>
+<h3 id="Ambari"><a href="#Ambari" class="headerlink" title="Ambari"></a>Ambari</h3><p>Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个 web 工具。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说 HDFS 、MapReduce 以及 YARN 是 Hadoop 的核心组件，而我们学习 Hadoop 最好从核心组件开始学习其原理机制，再逐渐往上层进行了解。</p>
+<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><ol>
 <li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1X2JlbGlmL2FydGljbGUvZGV0YWlscy84MzA1ODc5OA==" title="https://blog.csdn.net/hu_belif/article/details/83058798">Hadoop生态圈总结——大数据<i class="fa fa-external-link"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pjYl9kYXRhL2FydGljbGUvZGV0YWlscy84MDQwMjQxMQ==" title="https://blog.csdn.net/zcb_data/article/details/80402411">hadoop生态圈各个组件简介<i class="fa fa-external-link"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3JpZG1peC9wLzUxMDI2OTQuaHRtbA==" title="https://www.cnblogs.com/gridmix/p/5102694.html">大数据技术Hadoop入门理论系列之一----hadoop生态圈介绍<i class="fa fa-external-link"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly90aW1lLmdlZWtiYW5nLm9yZy9jb2x1bW4vaW50cm8vMTMz" title="https://time.geekbang.org/column/intro/133">从0开始学大数据---极客时间<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3JpZG1peC9wLzUxMDI2OTQuaHRtbA==" title="https://www.cnblogs.com/gridmix/p/5102694.html">大数据技术Hadoop入门理论系列之一——hadoop生态圈介绍<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aW1lLmdlZWtiYW5nLm9yZy9jb2x1bW4vaW50cm8vMTMz" title="https://time.geekbang.org/column/intro/133">从0开始学大数据—-极客时间<i class="fa fa-external-link"></i></span></li>
 </ol>
 
       
@@ -993,7 +977,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hadoop-生态系统"><span class="nav-number">2.</span> <span class="nav-text">Hadoop 生态系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hdfs"><span class="nav-number">2.1.</span> <span class="nav-text">HDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapreduce"><span class="nav-number">2.2.</span> <span class="nav-text">MapReduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yarn"><span class="nav-number">2.3.</span> <span class="nav-text">YARN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper"><span class="nav-number">2.4.</span> <span class="nav-text">ZooKeeper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pig"><span class="nav-number">2.5.</span> <span class="nav-text">Pig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hive"><span class="nav-number">2.6.</span> <span class="nav-text">Hive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mahout"><span class="nav-number">2.7.</span> <span class="nav-text">Mahout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tez"><span class="nav-number">2.8.</span> <span class="nav-text">Tez</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hase"><span class="nav-number">2.9.</span> <span class="nav-text">Hase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flume"><span class="nav-number">2.10.</span> <span class="nav-text">Flume</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqoop"><span class="nav-number">2.11.</span> <span class="nav-text">Sqoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ambari"><span class="nav-number">2.12.</span> <span class="nav-text">Ambari</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thanks"><span class="nav-number">4.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop-生态系统"><span class="nav-number">2.</span> <span class="nav-text">Hadoop 生态系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS"><span class="nav-number">2.1.</span> <span class="nav-text">HDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MapReduce"><span class="nav-number">2.2.</span> <span class="nav-text">MapReduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YARN"><span class="nav-number">2.3.</span> <span class="nav-text">YARN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZooKeeper"><span class="nav-number">2.4.</span> <span class="nav-text">ZooKeeper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pig"><span class="nav-number">2.5.</span> <span class="nav-text">Pig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hive"><span class="nav-number">2.6.</span> <span class="nav-text">Hive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mahout"><span class="nav-number">2.7.</span> <span class="nav-text">Mahout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tez"><span class="nav-number">2.8.</span> <span class="nav-text">Tez</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hase"><span class="nav-number">2.9.</span> <span class="nav-text">Hase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flume"><span class="nav-number">2.10.</span> <span class="nav-text">Flume</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqoop"><span class="nav-number">2.11.</span> <span class="nav-text">Sqoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ambari"><span class="nav-number">2.12.</span> <span class="nav-text">Ambari</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thanks"><span class="nav-number">4.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
             
 
           </div>

@@ -602,16 +602,16 @@
 
       
         
-          <h4 id="layoutinflater-的获取">LayoutInflater 的获取</h4>
-<p>获取 LayoutInflater 的方式一般有三种：</p>
-<ol type="1">
+          <h4 id="LayoutInflater-的获取"><a href="#LayoutInflater-的获取" class="headerlink" title="LayoutInflater 的获取"></a>LayoutInflater 的获取</h4><p>获取 LayoutInflater 的方式一般有三种：</p>
+<ol>
 <li>getLayoutInflater()</li>
 <li>LayoutInflater.from(Context context)</li>
 <li>context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)</li>
 </ol>
 <p>这三种获取方式本质上都是一样的</p>
 <ul>
-<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p></li>
+<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p>
+</li>
 <li><p>LayoutInflater.from(Context context) 内部通过以下代码获取 LayoutInflater。</p></li></ul>
           <!--noindex-->
           
@@ -832,11 +832,10 @@
 
       
         
-          <h2 id="asynctask-的作用">AsyncTask 的作用</h2>
-<blockquote>
+          <h2 id="AsyncTask-的作用"><a href="#AsyncTask-的作用" class="headerlink" title="AsyncTask 的作用"></a>AsyncTask 的作用</h2><blockquote>
 <p>AsyncTask 允许对用户界面执行异步操作。 它会先阻塞工作线程中的操作，然后在 UI 线程中发布结果，而无需您亲自处理线程和/或处理程序。</p>
 </blockquote>
-<p>AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。</p>
+<p>AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。<br></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1035,7 +1034,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -1056,9 +1055,8 @@
 
       
         
-          <h2 id="gallery">Gallery</h2>
-<p>主要内容：</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png"></p>
+          <h2 id="Gallery"><a href="#Gallery" class="headerlink" title="Gallery"></a>Gallery</h2><p>主要内容：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png" alt></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1243,7 +1241,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">958</span>
+                <span title="本文字数">968</span>
               
 
               
@@ -1280,7 +1278,7 @@
         
           <p>首先查看官方 API 的解释：</p>
 <blockquote>
-<p>This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item's Runnable or sending a message to its Handler as appropriate). You can use this method for any items for which you would like to do processing without those other facilities.</p>
+<p>This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item’s Runnable or sending a message to its Handler as appropriate). You can use this method for any items for which you would like to do processing without those other facilities.</p>
 </blockquote>
           <!--noindex-->
           
@@ -1466,7 +1464,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.1k</span>
+                <span title="本文字数">5k</span>
               
 
               
@@ -1501,8 +1499,7 @@
 
       
         
-          <h2 id="activity导图">Activity导图</h2>
-<p>主要内容： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Activity-mind-mapping.png"></p>
+          <h2 id="Activity导图"><a href="#Activity导图" class="headerlink" title="Activity导图"></a>Activity导图</h2><p>主要内容：<br><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Activity-mind-mapping.png" alt></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1687,7 +1684,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">164</span>
+                <span title="本文字数">168</span>
               
 
               
@@ -1907,7 +1904,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">382</span>
+                <span title="本文字数">377</span>
               
 
               
@@ -1942,8 +1939,7 @@
 
       
         
-          <h4 id="安装与引入">安装与引入</h4>
-<p>在引入 File Input 之前首先需要下载下列文件：</p>
+          <h4 id="安装与引入"><a href="#安装与引入" class="headerlink" title="安装与引入"></a>安装与引入</h4><p>在引入 File Input 之前首先需要下载下列文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bootstrap-fileinput/css/fileinput.min.css</span><br><span class="line">bootstrap-fileinput/js/fileinput_locale_zh.js</span><br><span class="line">bootstrap-fileinput/js/fileinput.min.js</span><br></pre></td></tr></table></figure>
 <p>上述文件可以在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2thcnRpay12L2Jvb3RzdHJhcC1maWxlaW5wdXQ=" title="https://github.com/kartik-v/bootstrap-fileinput">File Input 的项目地址<i class="fa fa-external-link"></i></span>找到。</p>
           <!--noindex-->
@@ -2165,18 +2161,17 @@
 
       
         
-          <h2 id="主要方法及作用">主要方法及作用</h2>
-<ol type="1">
-<li>自定义 ViewGroup 主要涉及的方法如下：
-<ul>
+          <h2 id="主要方法及作用"><a href="#主要方法及作用" class="headerlink" title="主要方法及作用"></a>主要方法及作用</h2><ol>
+<li>自定义 ViewGroup 主要涉及的方法如下：<ul>
 <li>onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。</li>
 <li>onLayout() 对所有 childView 进行定位。</li>
-</ul></li>
-<li>自定义 View 主要涉及的方法如下：
-<ul>
+</ul>
+</li>
+<li>自定义 View 主要涉及的方法如下：<ul>
 <li>onMeasure() 测量 View 的宽和高。</li>
 <li>onDraw() 将 View 绘制到屏幕上。</li>
-</ul></li>
+</ul>
+</li>
 </ol>
           <!--noindex-->
           
@@ -2362,7 +2357,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.2k</span>
+                <span title="本文字数">3.1k</span>
               
 
               
@@ -2397,8 +2392,7 @@
 
       
         
-          <h2 id="构造函数的调用时机">构造函数的调用时机</h2>
-<p>在自定义 View 的过程当中，不可避免的需要接触到 View 的构造函数，目前 View 具有四个构造函数，分别如下：</p>
+          <h2 id="构造函数的调用时机"><a href="#构造函数的调用时机" class="headerlink" title="构造函数的调用时机"></a>构造函数的调用时机</h2><p>在自定义 View 的过程当中，不可避免的需要接触到 View 的构造函数，目前 View 具有四个构造函数，分别如下：</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2618,7 +2612,7 @@
 
       
         
-          <p>首先 getMeasureWidth() 方法在 measure() 过程结束后就可以获取到了，而 getWidth() 方法要在 layout() 过程结束后才能获取到。另外 getMeasureWidth() 方法中的值是通过 setMeasuredDimension() 方法来进行设置的，而 getWidth() 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。</p>
+          <p>首先 getMeasureWidth() 方法在 measure() 过程结束后就可以获取到了，而 getWidth() 方法要在 layout() 过程结束后才能获取到。另外  getMeasureWidth() 方法中的值是通过 setMeasuredDimension() 方法来进行设置的，而 getWidth() 方法中的值则是通过视图右边的坐标减去左边的坐标计算出来的。</p>
           <!--noindex-->
           
             <div class="post-button text-center">

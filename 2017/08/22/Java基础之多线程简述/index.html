@@ -156,19 +156,19 @@
 
 
 
-  <meta name="description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
+  <meta name="description" content="线程的作用 线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
 <meta name="keywords" content="Java,Thread">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 线程简述">
 <meta property="og:url" content="http://www.ikroal.xyz/2017/08/22/Java基础之多线程简述/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
+<meta property="og:description" content="线程的作用 线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/thread-life-cycle.png">
 <meta property="og:updated_time" content="2019-05-13T08:42:25.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 线程简述">
-<meta name="twitter:description" content="线程的作用  线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
+<meta name="twitter:description" content="线程的作用 线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。  简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/thread-life-cycle.png">
 
 
@@ -570,7 +570,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">659</span>
+                <span title="本文字数">655</span>
               
 
               
@@ -604,34 +604,32 @@
       
 
       
-        <h4 id="线程的作用">线程的作用</h4>
-<blockquote>
+        <h4 id="线程的作用"><a href="#线程的作用" class="headerlink" title="线程的作用"></a>线程的作用</h4><blockquote>
 <p>线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
 </blockquote>
-<p>简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。 <a id="more"></a></p>
-<h4 id="线程的生命周期">线程的生命周期</h4>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/thread-life-cycle.png"> 线程的主要生命周期如上图所示，主要分为五个状态：</p>
-<ol type="1">
+<p>简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。<br><a id="more"></a></p>
+<h4 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h4><p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/thread-life-cycle.png" alt><br>线程的主要生命周期如上图所示，主要分为五个状态：</p>
+<ol>
 <li>新建态（New）：Java 中使用 new 关键字创建线程之后，这时线程即处于新建态。</li>
 <li>就绪态（Runnable）：在线程调用 start() 方法之后，线程即处于就绪态。</li>
 <li>运行态（Running）：当就绪态的线程获得 CPU 并且开始执行 run() 方法之后，线程就会处于运行状态。</li>
 <li>阻塞态（Blocked）：在处于运行态的线程调用了 sleep() 或 wait() 又或者是调用了一个阻塞式的 IO 方法之后，线程将会处于阻塞状态。</li>
 <li>死亡态（Dead）：在线程中的 run() 方法执行完毕、线程抛出异常、调用线程的 stop() 这几种情形下线程将会进入死亡态。</li>
 </ol>
-<h4 id="线程的实现方法">线程的实现方法</h4>
-<p>Java 中线程的实现主要是通过 Thread 类和 Runnable 接口。</p>
-<ol type="1">
+<h4 id="线程的实现方法"><a href="#线程的实现方法" class="headerlink" title="线程的实现方法"></a>线程的实现方法</h4><p>Java 中线程的实现主要是通过 Thread 类和 Runnable 接口。</p>
+<ol>
 <li><p>通过 Thread 类实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/** do some things **/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/** do some things **/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>通过 Runnable 接口实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/** do some things **/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">MyThread myThread = <span class="keyword">new</span> MyThread();</span><br><span class="line">Thread thread = <span class="keyword">new</span> Thread(myThread);</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/** do some things **/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">MyThread myThread = <span class="keyword">new</span> MyThread();</span><br><span class="line">Thread thread = <span class="keyword">new</span> Thread(myThread);</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <blockquote>
 <p>相对而言第二种方式更为合理一些，第二种方式创建的线程类只实现了 Runnable 接口，还可以再继承其它的父类。</p>
 </blockquote>
 <hr>
-<h4 id="参考资料">参考资料</h4>
-<p><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbnNfY29kZS9hcnRpY2xlL2RldGFpbHMvMTcxNjEyMzc=" title="http://blog.csdn.net/ns_code/article/details/17161237">【Java并发编程】之六：Runnable和Thread实现多线程的区别（含代码）<i class="fa fa-external-link"></i></span></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbnNfY29kZS9hcnRpY2xlL2RldGFpbHMvMTcxNjEyMzc=" title="http://blog.csdn.net/ns_code/article/details/17161237">【Java并发编程】之六：Runnable和Thread实现多线程的区别（含代码）<i class="fa fa-external-link"></i></span></p>
 
       
     </div>
