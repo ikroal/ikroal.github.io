@@ -164,15 +164,12 @@
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="前言本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Architecture.png">
-<meta property="og:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Computation_Model.png">
-<meta property="og:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Bsp.png">
 <meta property="og:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Compute_Progress.png">
-<meta property="og:updated_time" content="2019-08-12T04:06:00.759Z">
+<meta property="og:updated_time" content="2019-08-14T10:51:42.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Giraph 简介">
 <meta name="twitter:description" content="前言本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
-<meta name="twitter:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Architecture.png">
+<meta name="twitter:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Compute_Progress.png">
 
 
 
@@ -514,7 +511,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-12 12:06:00" itemprop="dateModified" datetime="2019-08-12T12:06:00+08:00">2019-08-12</time>
+                <time title="修改时间：2019-08-14 18:51:42" itemprop="dateModified" datetime="2019-08-14T18:51:42+08:00">2019-08-14</time>
               
             
           </span>
@@ -610,7 +607,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。</p>
 <a id="more"></a>
 <h2 id="什么是-Giraph"><a href="#什么是-Giraph" class="headerlink" title="什么是 Giraph"></a>什么是 Giraph</h2><p>Giraph 是 Google 于 2010 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly93d3cucmVzZWFyY2hnYXRlLm5ldC9wcm9maWxlL0phbWVzX0RlaG5lcnQvcHVibGljYXRpb24vMjIxMjU3MzgzX1ByZWdlbF9BX3N5c3RlbV9mb3JfbGFyZ2Utc2NhbGVfZ3JhcGhfcHJvY2Vzc2luZy9saW5rcy8wMGI3ZDUzN2M2MTU4MjFmYTQwMDAwMDAucGRm" title="https://www.researchgate.net/profile/James_Dehnert/publication/221257383_Pregel_A_system_for_large-scale_graph_processing/links/00b7d537c615821fa4000000.pdf">Pregel: a system for large-scale graph processing<i class="fa fa-external-link"></i></span> 的开源实现。Giraph 是以 Hadoop 为基础开发的上层应用，其系统架构和计算模型与 Pregel 保持了一致。同时也在 Pregel 模型上增加了一些新的特性，如：out-of-core computation、edge-oriented input 等。Giraph 的目的是为了解决大规模图的分布式计算问题。通过隐藏分布式和并行计算的细节以及提供一套用于描述图算法的 API，Giraph 不仅拥有了很好的可扩展性，还降低了分布式图计算的使用门槛。</p>
-<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p><img src="/2019/08/11/Giraph简介/Giraph_Architecture.png" alt></p>
+<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><!--![](Giraph简介/Giraph_Architecture.png)-->
 <p>上图蓝色部分标识了 Giraph 的系统架构，可以看到 Giraph 实质上还是一个 Master/Slave 的架构，主要由三个部分构成：</p>
 <ul>
 <li><p>Master</p>
@@ -623,10 +620,10 @@
 <p>在 Giraph 中 Zookeeper 的主要作用是 Master 选举、命名服务以及协调服务。图中显示的 Zookeeper 是外置状态，但实际上如果不给 Giraph 提供外置 Zookeeper，那么 Giraph 将会在 Master 所在节点上自行启动一个 Zookeeper 来提供服务。</p>
 </li>
 </ul>
-<h2 id="计算模型"><a href="#计算模型" class="headerlink" title="计算模型"></a>计算模型</h2><p><img src="/2019/08/11/Giraph简介/Giraph_Computation_Model.png" alt></p>
+<h2 id="计算模型"><a href="#计算模型" class="headerlink" title="计算模型"></a>计算模型</h2><!--![](Giraph简介/Giraph_Computation_Model.png)-->
 <p>上图显示了 Giraph 的整个计算模型，主要由输入、一系列 Superstep 迭代计算、输出构成，其中这些 Superstep 被称之为 BSP(Bulk Synchronous Parallelism)  模型。</p>
 <h3 id="BSP-模型"><a href="#BSP-模型" class="headerlink" title="BSP 模型"></a>BSP 模型</h3><p>BSP 模型是一个块同步并行模型，其由许多个 Superstep 组成。对于 BSP 模型而言，其在 Superstep 内的操作是并行的，但在两个 Superstep 之间则是由一个同步操作进行隔离的。也就是说 Superstep(N + 1)  会等待 Superstep(N) 执行完成之后才会开始。</p>
-<p><img src="/2019/08/11/Giraph简介/Giraph_Bsp.png" alt></p>
+<!--![](Giraph简介/Giraph_Bsp.png)-->
 <p>上图显示了 Superstep 的结构图，一个 Superstep 由<strong>局部计算</strong>、<strong>通讯</strong>、<strong>栅栏同步</strong> 三个部分构成。可以看到即使有部分的计算比较快，但最终还是会在栅栏同步这里停下等待其余的计算完成。在图计算中应用这种模型的好处是：可以解决图计算的同步问题，同步模型有利于推断程序语义（即利于编程），并且消除了死锁和数据竞争的问题。</p>
 <h3 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h3><p><img src="/2019/08/11/Giraph简介/Giraph_Compute_Progress.png" alt></p>
 <p>上图展示了一个计算图中顶点最大值的过程，其中深色的顶点表示本次 Superstep 结束之后将自己标记为不活跃状态（即不再需要进行计算），当所有顶点均处于不活跃状态的时候即表明计算结束。下面针对各个 Superstep 进行分析：</p>
