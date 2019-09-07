@@ -156,18 +156,18 @@
 
 
 
-  <meta name="description" content="面向对象的六大原则单一职责原则单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因  简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。">
+  <meta name="description" content="面向对象的六大原则 单一职责原则 单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因  简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。">
 <meta name="keywords" content="Android源码设计模式解析与实战">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象的六大原则及单例模式">
 <meta property="og:url" content="http://www.ikroal.xyz/2017/09/17/面向对象的六大原则及单例模式/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="面向对象的六大原则单一职责原则单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因  简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。">
+<meta property="og:description" content="面向对象的六大原则 单一职责原则 单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因  简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-05-15T01:43:25.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象的六大原则及单例模式">
-<meta name="twitter:description" content="面向对象的六大原则单一职责原则单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因  简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。">
+<meta name="twitter:description" content="面向对象的六大原则 单一职责原则 单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因  简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。">
 
 
 
@@ -602,21 +602,26 @@
       
 
       
-        <h2 id="面向对象的六大原则"><a href="#面向对象的六大原则" class="headerlink" title="面向对象的六大原则"></a>面向对象的六大原则</h2><h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因</p>
+        <h2 id="面向对象的六大原则">面向对象的六大原则</h2>
+<h3 id="单一职责原则">单一职责原则</h3>
+<p>单一职责原则 (SRP) 是指就一个类而言，应该仅有一个引起它变化的原因</p>
 <blockquote>
 <p>简单而言就是一个类应该只有一项职责，而不是具有多项职责，比如一个类既负责图片缓存的处理同时还负责显示图片，实际上应该拆分成两个类，一个类负责图片的缓存，另外一个类负责图片显示。如果一个类兼具太多的职责不仅导致了耦合性，而且在一个职责发生变化的时候还可能削弱其它的职责功能。</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>开闭原则 (OCP) 是指软件中的对象对于修改应该是封闭的，对于扩展应该是开放的。</p>
+<h3 id="开闭原则">开闭原则</h3>
+<p>开闭原则 (OCP) 是指软件中的对象对于修改应该是封闭的，对于扩展应该是开放的。</p>
 <blockquote>
 <p>如果一个类为了实现新的功能不断的对类中的原有代码进行修改和增加，不仅可能引入 Bug，还有可能会导致类越来越庞大，比如一个图片的缓存类需要实现内存缓存、SD 卡缓存、两种方式混合的缓存方法，在图片显示类中需要自由选择何种方式进行缓存显示。比较好的一种方式是：由于三种缓存方式实际上基本功能一致，所以可以定义一个接口，然后在图片显示类中义一个接口用于指向三个类实例化的对象，那么当需要采用哪种方式去进行缓存的时候，只需要使用 set 方法进行依赖注入将接口指向相应方式的对象即可，并且如果要实现其它不同的缓存方式只需要对接口进行实现即可。这样实现的代码耦合性弱扩展性强。</p>
 </blockquote>
-<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>里氏替换原则是指所有引用基类的地方必须能透明地使用其子类的对象</p>
+<h3 id="里氏替换原则">里氏替换原则</h3>
+<p>里氏替换原则是指所有引用基类的地方必须能透明地使用其子类的对象</p>
 <blockquote>
 <p>一个基类的子类拥有基类的属性和方法（私有的除外），所以在大多数情况下基类能干的子类都能做，这样可以保证很好的扩展性，因为可以在基类的基础上进行扩展实现不同功能的子类。因此里氏替换原则有利于提高扩展性，同时为开闭原则提供了保障。</p>
 </blockquote>
-<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>依赖倒置原则是用于解耦的一种方式，主要有以下几个关键点：</p>
-<ol>
+<h3 id="依赖倒置原则">依赖倒置原则</h3>
+<p>依赖倒置原则是用于解耦的一种方式，主要有以下几个关键点：</p>
+<ol type="1">
 <li>高层模块不应该依赖底层模块，两者都应该依赖其抽象</li>
 <li>抽象不应该依赖细节</li>
 <li>细节应该依赖抽象</li>
@@ -624,90 +629,86 @@
 <blockquote>
 <p>第一点是指当高层的模块使用底层的模块时候，不应该直接使用底层模块类的具体对象，而应该使用其接口或者是抽象类，这样可以保证其扩展性，也就是说高层模块与底层模块之间应该通过接口发生联系，而不应该存在直接关联。</p>
 </blockquote>
-<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>接口隔离原则是指类间的关系应该建立在最小的接口上</p>
+<h3 id="接口隔离原则">接口隔离原则</h3>
+<p>接口隔离原则是指类间的关系应该建立在最小的接口上</p>
 <blockquote>
 <p>最小的接口实际上就是抽象的一种表达，一个接口下面可能可能会实现很多种接口，或者是很多层级接口，要对这些接口相同的功能部分进行操作的时候只需要对最顶层的接口操作即可，譬如当关闭输入输出流的时候，Java 中有很多种流，字节流、字符流、缓冲流。这个时候为了减少依赖、耦合性以及增加扩展性，我们只需要利用 Cloaseable 接口指向各种流的对象进行关闭操作即可。</p>
 </blockquote>
-<h3 id="迪米特原则"><a href="#迪米特原则" class="headerlink" title="迪米特原则"></a>迪米特原则</h3><p>迪米特原则是指一个对象应该对其它对象有最少的了解</p>
+<h3 id="迪米特原则">迪米特原则</h3>
+<p>迪米特原则是指一个对象应该对其它对象有最少的了解</p>
 <blockquote>
 <p>一个类应该尽可能少的利用到其它类完成相同的任务，这样可以降低耦合性</p>
 </blockquote>
-<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>所谓单例也就是说在一个类在系统中只存在一个实例，并且可以自行实例化向系统提供这个实例</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>适用于某个类有且仅有一个对象的场景，避免创建多个对象消耗过多的资源。</p>
+<h2 id="单例模式">单例模式</h2>
+<h3 id="定义">定义</h3>
+<p>所谓单例也就是说在一个类在系统中只存在一个实例，并且可以自行实例化向系统提供这个实例</p>
+<h3 id="使用场景">使用场景</h3>
+<p>适用于某个类有且仅有一个对象的场景，避免创建多个对象消耗过多的资源。</p>
 <blockquote>
-<ol>
-<li><p>构造函数不对外开放，一般为 private</p>
-</li>
-<li><p>通过一个静态方法或者枚举返回单例类对象</p>
-</li>
-<li><p>确保单例类对象有且只有一个，尤其是在多线程环境下</p>
-</li>
-<li><p>确保单例类对象在反序列化时不会重新构建对象</p>
-</li>
+<ol type="1">
+<li><p>构造函数不对外开放，一般为 private</p></li>
+<li><p>通过一个静态方法或者枚举返回单例类对象</p></li>
+<li><p>确保单例类对象有且只有一个，尤其是在多线程环境下</p></li>
+<li><p>确保单例类对象在反序列化时不会重新构建对象</p></li>
 </ol>
 <p>也即是说单例模式的对象必须由该类的静态方法进行实例化和提供，并且不能出现多个对象。</p>
 </blockquote>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ol>
-<li>优点<ul>
+<h3 id="优缺点">优缺点</h3>
+<ol type="1">
+<li>优点
+<ul>
 <li>单例模式在内存中只存在一个实例，减少了内存的开支。</li>
 <li>减少了系统的性能开销，当一个对象的产生需要较多的资源的时候，这个时候可以通过产生一个单例对象，然后永驻内存来解决。</li>
 <li>单例模式可以避免对资源的多重占用。</li>
 <li>单例模式可以在系统设置全局的访问点，优化和共享资源访问</li>
-</ul>
-</li>
-<li>缺点<ul>
+</ul></li>
+<li>缺点
+<ul>
 <li><strong>单例模式一般没有接口，扩展很困难。</strong></li>
 <li><strong>单例对象如果持有 Context，那么很容易引发内存泄漏，此时传递给单例对象的 Context 最好是 Application Context</strong></li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h3 id="常用的实现方式"><a href="#常用的实现方式" class="headerlink" title="常用的实现方式"></a>常用的实现方式</h3><ol>
+<h3 id="常用的实现方式">常用的实现方式</h3>
+<ol type="1">
 <li><p>饿汉模式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CEO</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> CEO sCeo = <span class="keyword">new</span> CEO();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">CEO</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CEO <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> sCeo;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>该种方式实现的单例模式当类被加载的时候就会初始化一个 CEO 对象，然后外部可以通过 newInstance 静态方法进行获取。</p>
 <p>由于单例模式需要类能够自行进行实例化，所以返回值一定是类变量以及通过静态方法进行返回。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>懒汉模式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstance</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> SingleInstance sSingleInstance;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">SingleInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingleInstance <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (sSingleInstance != <span class="keyword">null</span>) &#123;</span><br><span class="line">          sSingleInstance = <span class="keyword">new</span> SingleInstance();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> sSingleInstance;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>采用懒汉模式实现的单例模式可以在使用的时候才将对象实例化，但是由于每次调用 newInstance 方法的时候都会进行同步（比不需要同步的慢 100 倍），所以造成了不必要的同步开销，不建议使用。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>Double Check Lock</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstance</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> SingleInstance sSingleInstance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">SingleInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstance <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (sSingleInstance != <span class="keyword">null</span>) &#123;</span><br><span class="line">          <span class="keyword">synchronized</span> (SingleInstance.class) &#123;</span><br><span class="line">              <span class="keyword">if</span> (sSingleInstance != <span class="keyword">null</span>) &#123;</span><br><span class="line">                  sSingleInstance = <span class="keyword">new</span> SingleInstance();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> sSingleInstance;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>第一次的判断避免了在对象非空情况下进行同步导致不必要开销的问题，第二次判断是由于可能存在线程 A，B 同时判断了对象为空，然后依次进入同步块中，如果这个时候不进行判断则可能导致创建出两个对象出来，所以需要进行第二次判断。</p>
 <p>这个模式存在的一个问题是 mSingleInstance = new SingleInstance() 不是原子操作，其分为三个部分：给实例对象分配内存；调用构造函数，初始化成员字段；将实例对象指向分配的内存空间。并且后两步的执行顺序是不确定的，所以可能出现 A 线程执行完第三步，没有执行完第二步的情况下，程序切换至 B 线程，B 线程判断当前对象非空取走对象，但由于对象的成员字段没有初始化完成，所以可能出现错误。</p>
 <p>解决办法是在 sInstance 前加上 volatile 关键字。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>静态内部类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstance</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">SingleInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstance <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> SingleHolder.sSingleInstance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleHolder</span> </span>&#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingleInstance sSingleInstance = <span class="keyword">new</span> SingleInstance();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>采用这种方式实现的单例模式很好的避免了 DCL 中可能出现的问题，由于内部类只有在使用它的成员以及方法的时候才会进行载入，所以可以做到使用的时候才实例化对象，而且能够确保线程安全。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>枚举单例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> SingletonEnum &#123;</span><br><span class="line">  INSTANCE;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"do sth."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在任何情况下枚举实例都是一个单例，而且创建过程是线程安全的。</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>容器实现单例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonManager</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Object&gt; objectMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">SingletonManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerService</span><span class="params">(String key, Object instance)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (!objectMap.containsKey(key)) &#123;</span><br><span class="line">          objectMap.put(key, instance);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getService</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> objectMap.get(key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>采用容器实现的单例模式可以对多种对象的单例进行管理，例如 Android 当中的 getSystemService 就是这样实现的单例模式。</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<h2 id="总结">总结</h2>
+<ol type="1">
 <li><p>前四种方式实现的单例模式存在在反序列化（反射执行无参构造函数）的情况下可能会重新创建一个对象，为了避免这种情况的发生，我们需要重写 readResolve 方法，这样在进行反序列化的时候就会执行这个方法获取对象实例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Object <span class="title">readResolve</span><span class="params">()</span><span class="keyword">throws</span> ObjectStreamException</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> sSingleInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>单例模式的核心在于将构造函数进行私有化，并且通过一个静态方法返回唯一的对象实例，在这个获取的过程当中需要保证<strong>线程安全、防止反序列化</strong>导致生成实例对象等问题。</p>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Object <span class="title">readResolve</span><span class="params">()</span><span class="keyword">throws</span> ObjectStreamException</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> sSingleInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>单例模式的核心在于将构造函数进行私有化，并且通过一个静态方法返回唯一的对象实例，在这个获取的过程当中需要保证<strong>线程安全、防止反序列化</strong>导致生成实例对象等问题。</p></li>
 </ol>
 <hr>
 
@@ -860,7 +861,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1101,7 +1102,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">88k</span>
   
 
   
@@ -1110,7 +1111,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:23</span>
+    <span title="站点阅读时长">2:26</span>
   
 </div>
 

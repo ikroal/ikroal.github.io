@@ -446,6 +446,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2017/08/24/Android问题记录之AVD的创建以及闪退/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ikroal">
+      <meta itemprop="description" content="时间能写出未来的结局">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ikroal's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/08/24/Android问题记录之AVD的创建以及闪退/" class="post-title-link" itemprop="url">Ubuntu 14.04下AVD的创建以及闪退问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-24 23:15:12" itemprop="dateCreated datePublished" datetime="2017-08-24T23:15:12+08:00">2017-08-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-06 20:34:17" itemprop="dateModified" datetime="2018-03-06T20:34:17+08:00">2018-03-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android问题记录/" itemprop="url" rel="index"><span itemprop="name">Android问题记录</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/08/24/Android问题记录之AVD的创建以及闪退/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/24/Android问题记录之AVD的创建以及闪退/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">748</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：<br></p>
+<blockquote>
+<p>An error occurred while creating the AVD. See idea.log for details</p>
+</blockquote>
+<p>在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sudo aptitude -f install lib32stdc++6 去解决依赖问题，这条语句使用一次可能并不能解决问题，实际当中我运行了三次才解决了依赖的冲突的问题，每一次运行的时候依次选择 no-&gt;yes-&gt;yes。具体要运行几次，必须看 lib32stdc++6 库是否安装成功。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/08/24/Android问题记录之AVD的创建以及闪退/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2017/08/22/Java基础之多线程简述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -567,7 +791,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">655</span>
+                <span title="本文字数">659</span>
               
 
               
@@ -602,10 +826,11 @@
 
       
         
-          <h4 id="线程的作用"><a href="#线程的作用" class="headerlink" title="线程的作用"></a>线程的作用</h4><blockquote>
+          <h4 id="线程的作用">线程的作用</h4>
+<blockquote>
 <p>线程（英语：Thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
 </blockquote>
-<p>简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。<br></p>
+<p>简而言之，线程的存在是为了实现程序的并发操作，提高执行效率。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -825,16 +1050,16 @@
 
       
         
-          <h4 id="LayoutInflater-的获取"><a href="#LayoutInflater-的获取" class="headerlink" title="LayoutInflater 的获取"></a>LayoutInflater 的获取</h4><p>获取 LayoutInflater 的方式一般有三种：</p>
-<ol>
+          <h4 id="layoutinflater-的获取">LayoutInflater 的获取</h4>
+<p>获取 LayoutInflater 的方式一般有三种：</p>
+<ol type="1">
 <li>getLayoutInflater()</li>
 <li>LayoutInflater.from(Context context)</li>
 <li>context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)</li>
 </ol>
 <p>这三种获取方式本质上都是一样的</p>
 <ul>
-<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p>
-</li>
+<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p></li>
 <li><p>LayoutInflater.from(Context context) 内部通过以下代码获取 LayoutInflater。</p></li></ul>
           <!--noindex-->
           
@@ -1055,10 +1280,11 @@
 
       
         
-          <h2 id="AsyncTask-的作用"><a href="#AsyncTask-的作用" class="headerlink" title="AsyncTask 的作用"></a>AsyncTask 的作用</h2><blockquote>
+          <h2 id="asynctask-的作用">AsyncTask 的作用</h2>
+<blockquote>
 <p>AsyncTask 允许对用户界面执行异步操作。 它会先阻塞工作线程中的操作，然后在 UI 线程中发布结果，而无需您亲自处理线程和/或处理程序。</p>
 </blockquote>
-<p>AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。<br></p>
+<p>AsyncTask 基于异步消息处理机制进行实现，通过 AsyncTask 能够很简单的从子线程切换至主线程。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1257,7 +1483,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">7 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -1278,8 +1504,9 @@
 
       
         
-          <h2 id="Gallery"><a href="#Gallery" class="headerlink" title="Gallery"></a>Gallery</h2><p>主要内容：</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png" alt></p>
+          <h2 id="gallery">Gallery</h2>
+<p>主要内容：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1464,7 +1691,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">968</span>
+                <span title="本文字数">958</span>
               
 
               
@@ -1501,7 +1728,7 @@
         
           <p>首先查看官方 API 的解释：</p>
 <blockquote>
-<p>This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item’s Runnable or sending a message to its Handler as appropriate). You can use this method for any items for which you would like to do processing without those other facilities.</p>
+<p>This hook is called whenever an item in your options menu is selected. The default implementation simply returns false to have the normal processing happen (calling the item's Runnable or sending a message to its Handler as appropriate). You can use this method for any items for which you would like to do processing without those other facilities.</p>
 </blockquote>
           <!--noindex-->
           
@@ -1687,7 +1914,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5k</span>
+                <span title="本文字数">5.1k</span>
               
 
               
@@ -1722,7 +1949,8 @@
 
       
         
-          <h2 id="Activity导图"><a href="#Activity导图" class="headerlink" title="Activity导图"></a>Activity导图</h2><p>主要内容：<br><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Activity-mind-mapping.png" alt></p>
+          <h2 id="activity导图">Activity导图</h2>
+<p>主要内容： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Activity-mind-mapping.png"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1907,7 +2135,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">168</span>
+                <span title="本文字数">164</span>
               
 
               
@@ -2127,7 +2355,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">377</span>
+                <span title="本文字数">382</span>
               
 
               
@@ -2162,7 +2390,8 @@
 
       
         
-          <h4 id="安装与引入"><a href="#安装与引入" class="headerlink" title="安装与引入"></a>安装与引入</h4><p>在引入 File Input 之前首先需要下载下列文件：</p>
+          <h4 id="安装与引入">安装与引入</h4>
+<p>在引入 File Input 之前首先需要下载下列文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bootstrap-fileinput/css/fileinput.min.css</span><br><span class="line">bootstrap-fileinput/js/fileinput_locale_zh.js</span><br><span class="line">bootstrap-fileinput/js/fileinput.min.js</span><br></pre></td></tr></table></figure>
 <p>上述文件可以在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2thcnRpay12L2Jvb3RzdHJhcC1maWxlaW5wdXQ=" title="https://github.com/kartik-v/bootstrap-fileinput">File Input 的项目地址<i class="fa fa-external-link"></i></span>找到。</p>
           <!--noindex-->
@@ -2384,242 +2613,23 @@
 
       
         
-          <h2 id="主要方法及作用"><a href="#主要方法及作用" class="headerlink" title="主要方法及作用"></a>主要方法及作用</h2><ol>
-<li>自定义 ViewGroup 主要涉及的方法如下：<ul>
+          <h2 id="主要方法及作用">主要方法及作用</h2>
+<ol type="1">
+<li>自定义 ViewGroup 主要涉及的方法如下：
+<ul>
 <li>onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。</li>
 <li>onLayout() 对所有 childView 进行定位。</li>
-</ul>
-</li>
-<li>自定义 View 主要涉及的方法如下：<ul>
+</ul></li>
+<li>自定义 View 主要涉及的方法如下：
+<ul>
 <li>onMeasure() 测量 View 的宽和高。</li>
 <li>onDraw() 将 View 绘制到屏幕上。</li>
-</ul>
-</li>
+</ul></li>
 </ol>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2017/04/17/Android自定义View和ViewGroup简要总结/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2017/04/17/Android中View的构造函数浅解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ikroal">
-      <meta itemprop="description" content="时间能写出未来的结局">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ikroal's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/17/Android中View的构造函数浅解/" class="post-title-link" itemprop="url">Android 中 View 的构造函数浅解</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-04-17 10:51:23" itemprop="dateCreated datePublished" datetime="2017-04-17T10:51:23+08:00">2017-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-03-06 17:09:52" itemprop="dateModified" datetime="2018-03-06T17:09:52+08:00">2018-03-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android基础/" itemprop="url" rel="index"><span itemprop="name">Android基础</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/04/17/Android中View的构造函数浅解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/17/Android中View的构造函数浅解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">3.1k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">5 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="构造函数的调用时机"><a href="#构造函数的调用时机" class="headerlink" title="构造函数的调用时机"></a>构造函数的调用时机</h2><p>在自定义 View 的过程当中，不可避免的需要接触到 View 的构造函数，目前 View 具有四个构造函数，分别如下：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/04/17/Android中View的构造函数浅解/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2712,7 +2722,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2936,7 +2946,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">88k</span>
   
 
   
@@ -2945,7 +2955,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:23</span>
+    <span title="站点阅读时长">2:26</span>
   
 </div>
 
@@ -3513,7 +3523,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Java 线程简述");titles.push("Android 基础之 LayoutInflater 总结");titles.push("AsyncTask 总结");titles.push("Gallery 的三种实现方式");titles.push("onOptionsItemSelected() 返回值的理解");titles.push("Android基础之Activity");titles.push("Python 下 json 模块");titles.push("BootStrap-FileInput 的基本使用");titles.push("Android 自定义 View 和 ViewGroup 简要总结");titles.push("Android 中 View 的构造函数浅解");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Ubuntu 14.04下AVD的创建以及闪退问题");titles.push("Java 线程简述");titles.push("Android 基础之 LayoutInflater 总结");titles.push("AsyncTask 总结");titles.push("Gallery 的三种实现方式");titles.push("onOptionsItemSelected() 返回值的理解");titles.push("Android基础之Activity");titles.push("Python 下 json 模块");titles.push("BootStrap-FileInput 的基本使用");titles.push("Android 自定义 View 和 ViewGroup 简要总结");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {

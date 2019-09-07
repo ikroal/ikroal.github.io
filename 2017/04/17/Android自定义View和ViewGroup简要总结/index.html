@@ -156,18 +156,18 @@
 
 
 
-  <meta name="description" content="主要方法及作用 自定义 ViewGroup 主要涉及的方法如下： onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。 onLayout() 对所有 childView 进行定位。   自定义 View 主要涉及的方法如下： onMeasure() 测量 View 的宽和高。 onDraw() 将 View 绘制到屏幕上。">
+  <meta name="description" content="主要方法及作用  自定义 ViewGroup 主要涉及的方法如下：  onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。 onLayout() 对所有 childView 进行定位。  自定义 View 主要涉及的方法如下：  onMeasure() 测量 View 的宽和高。 onDraw() 将 View 绘制到屏幕上。">
 <meta name="keywords" content="Android,自定义控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 自定义 View 和 ViewGroup 简要总结">
 <meta property="og:url" content="http://www.ikroal.xyz/2017/04/17/Android自定义View和ViewGroup简要总结/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="主要方法及作用 自定义 ViewGroup 主要涉及的方法如下： onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。 onLayout() 对所有 childView 进行定位。   自定义 View 主要涉及的方法如下： onMeasure() 测量 View 的宽和高。 onDraw() 将 View 绘制到屏幕上。">
+<meta property="og:description" content="主要方法及作用  自定义 ViewGroup 主要涉及的方法如下：  onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。 onLayout() 对所有 childView 进行定位。  自定义 View 主要涉及的方法如下：  onMeasure() 测量 View 的宽和高。 onDraw() 将 View 绘制到屏幕上。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-03-06T09:04:05.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 自定义 View 和 ViewGroup 简要总结">
-<meta name="twitter:description" content="主要方法及作用 自定义 ViewGroup 主要涉及的方法如下： onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。 onLayout() 对所有 childView 进行定位。   自定义 View 主要涉及的方法如下： onMeasure() 测量 View 的宽和高。 onDraw() 将 View 绘制到屏幕上。">
+<meta name="twitter:description" content="主要方法及作用  自定义 ViewGroup 主要涉及的方法如下：  onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。 onLayout() 对所有 childView 进行定位。  自定义 View 主要涉及的方法如下：  onMeasure() 测量 View 的宽和高。 onDraw() 将 View 绘制到屏幕上。">
 
 
 
@@ -602,39 +602,43 @@
       
 
       
-        <h2 id="主要方法及作用"><a href="#主要方法及作用" class="headerlink" title="主要方法及作用"></a>主要方法及作用</h2><ol>
-<li>自定义 ViewGroup 主要涉及的方法如下：<ul>
+        <h2 id="主要方法及作用">主要方法及作用</h2>
+<ol type="1">
+<li>自定义 ViewGroup 主要涉及的方法如下：
+<ul>
 <li>onMeasure() 计算 childView 的测量值以及模式，以及设置自己的宽和高。</li>
 <li>onLayout() 对所有 childView 进行定位。</li>
-</ul>
-</li>
-<li>自定义 View 主要涉及的方法如下：<ul>
+</ul></li>
+<li>自定义 View 主要涉及的方法如下：
+<ul>
 <li>onMeasure() 测量 View 的宽和高。</li>
 <li>onDraw() 将 View 绘制到屏幕上。</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <a id="more"></a>
-<h2 id="测量模式"><a href="#测量模式" class="headerlink" title="测量模式"></a>测量模式</h2><p>onMeasure() 过程和测量模式相关，而测量模式分为三种：</p>
-<ol>
+<h2 id="测量模式">测量模式</h2>
+<p>onMeasure() 过程和测量模式相关，而测量模式分为三种：</p>
+<ol type="1">
 <li>UNSPECIFIED：父容器不对 View 有任何限制，要多大给多大。这种情况一般用于系统内部。</li>
 <li>EXACTLY：父容器已经检测出 View 所需要的精确大小，这个时候 View 的最终大小就是 SpecSize 所指定的值。它对应 LayoutParams 中的 mactch_parent 和具体数值这两种模式。</li>
 <li>AT_MOST 父容器指定了一个可用大小即 SpecSize，View 的大小不能大于这个值，具体值看不同 View 的具体实现。它对应于 LayoutParams 中的 wrap_content。</li>
 </ol>
-<h2 id="LayoutParams-和-generateLayoutParams"><a href="#LayoutParams-和-generateLayoutParams" class="headerlink" title="LayoutParams 和 generateLayoutParams"></a>LayoutParams 和 generateLayoutParams</h2><p>LayoutParams的官方文档解释如下：</p>
+<h2 id="layoutparams-和-generatelayoutparams">LayoutParams 和 generateLayoutParams</h2>
+<p>LayoutParams的官方文档解释如下：</p>
 <blockquote>
-<p>1.LayoutParams are used by views to tell their parents how they want to be laid out.<br>— LayoutParams 是 View 用来告诉它的父控件如何放置自己的。</p>
-<p>2.The base LayoutParams class just describes how big the view wants to be for both width and height.<br>— 基类 LayoutParams（也就是 ViewGroup.LayoutParams）仅仅描述了这个 View 想要的宽度和高度。</p>
-<p>3.There are subclasses of LayoutParams for different subclasses of ViewGroup.<br>— 不同 ViewGroup 的继承类对应着不同的 ViewGroup.LayoutParams 的子类。</p>
+<p>1.LayoutParams are used by views to tell their parents how they want to be laid out. -- LayoutParams 是 View 用来告诉它的父控件如何放置自己的。</p>
+<p>2.The base LayoutParams class just describes how big the view wants to be for both width and height. -- 基类 LayoutParams（也就是 ViewGroup.LayoutParams）仅仅描述了这个 View 想要的宽度和高度。</p>
+<p>3.There are subclasses of LayoutParams for different subclasses of ViewGroup. -- 不同 ViewGroup 的继承类对应着不同的 ViewGroup.LayoutParams 的子类。</p>
 </blockquote>
 <p>generateLayoutParams官方文档解释如下：</p>
 <blockquote>
-<p>Returns a new set of layout parameters based on the supplied attributes set.<br>— 根据提供的属性集返回一组新的布局参数。</p>
+<p>Returns a new set of layout parameters based on the supplied attributes set. -- 根据提供的属性集返回一组新的布局参数。</p>
 </blockquote>
 <p>在 addView() 的执行过程当中，如果 checkLayoutParams() 检测到传递过来的 LayoutParams 不是对应布局的 LayoutParam，则会通过 generateLayoutParams() 根据你传递的 LayoutParams 的属性构造一个对应布局的 LayoutParams。</p>
 <hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG1qNjIzNTY1NzkxL2FydGljbGUvZGV0YWlscy8zODMzOTgxNy8=" title="http://blog.csdn.net/lmj623565791/article/details/38339817/"> Android 手把手教您自定义ViewGroup（一）<i class="fa fa-external-link"></i></span></li>
+<h2 id="参考资料">参考资料</h2>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG1qNjIzNTY1NzkxL2FydGljbGUvZGV0YWlscy8zODMzOTgxNy8=" title="http://blog.csdn.net/lmj623565791/article/details/38339817/">Android 手把手教您自定义ViewGroup（一）<i class="fa fa-external-link"></i></span></li>
 <li><span class="exturl" data-url="aHR0cDovL3d3dy5qaWFuc2h1LmNvbS9wLzJhOTM4ZTU5OGVjOA==" title="http://www.jianshu.com/p/2a938e598ec8">自定义控件知识储备-LayoutParams的那些事<i class="fa fa-external-link"></i></span></li>
 </ol>
 
@@ -789,7 +793,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -990,7 +994,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要方法及作用"><span class="nav-number">1.</span> <span class="nav-text">主要方法及作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测量模式"><span class="nav-number">2.</span> <span class="nav-text">测量模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LayoutParams-和-generateLayoutParams"><span class="nav-number">3.</span> <span class="nav-text">LayoutParams 和 generateLayoutParams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要方法及作用"><span class="nav-number">1.</span> <span class="nav-text">主要方法及作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测量模式"><span class="nav-number">2.</span> <span class="nav-text">测量模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layoutparams-和-generatelayoutparams"><span class="nav-number">3.</span> <span class="nav-text">LayoutParams 和 generateLayoutParams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1030,7 +1034,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">88k</span>
   
 
   
@@ -1039,7 +1043,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:23</span>
+    <span title="站点阅读时长">2:26</span>
   
 </div>
 

@@ -156,19 +156,19 @@
 
 
 
-  <meta name="description" content="Service 的含义及作用Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通">
+  <meta name="description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
 <meta name="keywords" content="Android,Service">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 基础之 Service">
 <meta property="og:url" content="http://www.ikroal.xyz/2017/08/27/Android基础之Service/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="Service 的含义及作用Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通">
+<meta property="og:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png">
 <meta property="og:updated_time" content="2019-05-13T08:24:03.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 基础之 Service">
-<meta name="twitter:description" content="Service 的含义及作用Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通">
+<meta name="twitter:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png">
 
 
@@ -570,7 +570,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">980</span>
+                <span title="本文字数">988</span>
               
 
               
@@ -604,16 +604,16 @@
       
 
       
-        <h4 id="Service-的含义及作用"><a href="#Service-的含义及作用" class="headerlink" title="Service 的含义及作用"></a>Service 的含义及作用</h4><p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通过绑定启动的时候是可控的，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。<a id="more"></a><br>另外关于 Service，官网上还有如下的提示：</p>
-<blockquote>
-<p>服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
-</blockquote>
-<h4 id="Service-的生命周期"><a href="#Service-的生命周期" class="headerlink" title="Service 的生命周期"></a>Service 的生命周期</h4><p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示：<br><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png" alt></p>
-<h4 id="Service-的基本使用"><a href="#Service-的基本使用" class="headerlink" title="Service 的基本使用"></a>Service 的基本使用</h4><ol>
-<li>创建服务<br> 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。</li>
-<li>运行服务<br> 运行服务主要方法有两种，一种是调用<br> startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。</li>
-<li>服务中处理事件<br> startService 启动服务，事件的处理一般在服务的 onStartCommand 方法进行的，bindService 绑定服务之后，将会在 ServiceConnection 的 onServiceConnected 中返回一个 Binder 对象，利用返回的 Binder 对象可以调用相关的事件处理方法。</li>
-<li>停止服务<br> 服务的运行条件是服务被绑定或者被启动，所以想让服务不运行则需要破坏这两个条件，可以通过调用 stopService 和 unbindService 实现。</li>
+        <h4 id="service-的含义及作用">Service 的含义及作用</h4>
+<p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通过绑定启动的时候是可控的，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。<a id="more"></a> 另外关于 Service，官网上还有如下的提示： &gt; 服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
+<h4 id="service-的生命周期">Service 的生命周期</h4>
+<p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png"></p>
+<h4 id="service-的基本使用">Service 的基本使用</h4>
+<ol type="1">
+<li>创建服务 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。</li>
+<li>运行服务 运行服务主要方法有两种，一种是调用 startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。</li>
+<li>服务中处理事件 startService 启动服务，事件的处理一般在服务的 onStartCommand 方法进行的，bindService 绑定服务之后，将会在 ServiceConnection 的 onServiceConnected 中返回一个 Binder 对象，利用返回的 Binder 对象可以调用相关的事件处理方法。</li>
+<li>停止服务 服务的运行条件是服务被绑定或者被启动，所以想让服务不运行则需要破坏这两个条件，可以通过调用 stopService 和 unbindService 实现。</li>
 </ol>
 <hr>
 
@@ -768,7 +768,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -969,7 +969,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Service-的含义及作用"><span class="nav-number">1.</span> <span class="nav-text">Service 的含义及作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service-的生命周期"><span class="nav-number">2.</span> <span class="nav-text">Service 的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service-的基本使用"><span class="nav-number">3.</span> <span class="nav-text">Service 的基本使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的含义及作用"><span class="nav-number">1.</span> <span class="nav-text">Service 的含义及作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的生命周期"><span class="nav-number">2.</span> <span class="nav-text">Service 的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service-的基本使用"><span class="nav-number">3.</span> <span class="nav-text">Service 的基本使用</span></a></li></ol></div>
             
 
           </div>
@@ -1009,7 +1009,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">88k</span>
   
 
   
@@ -1018,7 +1018,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:23</span>
+    <span title="站点阅读时长">2:26</span>
   
 </div>
 

@@ -156,19 +156,19 @@
 
 
 
-  <meta name="description" content="前言本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
+  <meta name="description" content="前言 本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
 <meta name="keywords" content="Graph Processing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Giraph 简介">
 <meta property="og:url" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="前言本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
+<meta property="og:description" content="前言 本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Compute_Progress.png">
 <meta property="og:updated_time" content="2019-08-17T08:50:56.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Giraph 简介">
-<meta name="twitter:description" content="前言本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
+<meta name="twitter:description" content="前言 本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
 <meta name="twitter:image" content="http://www.ikroal.xyz/2019/08/11/Giraph简介/Giraph_Compute_Progress.png">
 
 
@@ -604,53 +604,55 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。</p>
+        <h2 id="前言">前言</h2>
+<p>本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。</p>
 <a id="more"></a>
-<h2 id="什么是-Giraph"><a href="#什么是-Giraph" class="headerlink" title="什么是 Giraph"></a>什么是 Giraph</h2><p>Giraph 是 Google 于 2010 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly93d3cucmVzZWFyY2hnYXRlLm5ldC9wcm9maWxlL0phbWVzX0RlaG5lcnQvcHVibGljYXRpb24vMjIxMjU3MzgzX1ByZWdlbF9BX3N5c3RlbV9mb3JfbGFyZ2Utc2NhbGVfZ3JhcGhfcHJvY2Vzc2luZy9saW5rcy8wMGI3ZDUzN2M2MTU4MjFmYTQwMDAwMDAucGRm" title="https://www.researchgate.net/profile/James_Dehnert/publication/221257383_Pregel_A_system_for_large-scale_graph_processing/links/00b7d537c615821fa4000000.pdf">Pregel: a system for large-scale graph processing<i class="fa fa-external-link"></i></span> 的开源实现。Giraph 是以 Hadoop 为基础开发的上层应用，其系统架构和计算模型与 Pregel 保持了一致。同时也在 Pregel 模型上增加了一些新的特性，如：out-of-core computation、edge-oriented input 等。Giraph 的目的是为了解决大规模图的分布式计算问题。通过隐藏分布式和并行计算的细节以及提供一套用于描述图算法的 API，Giraph 不仅拥有了很好的可扩展性，还降低了分布式图计算的使用门槛。</p>
-<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><!--![](Giraph简介/Giraph_Architecture.png)-->
+<h2 id="什么是-giraph">什么是 Giraph</h2>
+<p>Giraph 是 Google 于 2010 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly93d3cucmVzZWFyY2hnYXRlLm5ldC9wcm9maWxlL0phbWVzX0RlaG5lcnQvcHVibGljYXRpb24vMjIxMjU3MzgzX1ByZWdlbF9BX3N5c3RlbV9mb3JfbGFyZ2Utc2NhbGVfZ3JhcGhfcHJvY2Vzc2luZy9saW5rcy8wMGI3ZDUzN2M2MTU4MjFmYTQwMDAwMDAucGRm" title="https://www.researchgate.net/profile/James_Dehnert/publication/221257383_Pregel_A_system_for_large-scale_graph_processing/links/00b7d537c615821fa4000000.pdf">Pregel: a system for large-scale graph processing<i class="fa fa-external-link"></i></span> 的开源实现。Giraph 是以 Hadoop 为基础开发的上层应用，其系统架构和计算模型与 Pregel 保持了一致。同时也在 Pregel 模型上增加了一些新的特性，如：out-of-core computation、edge-oriented input 等。Giraph 的目的是为了解决大规模图的分布式计算问题。通过隐藏分布式和并行计算的细节以及提供一套用于描述图算法的 API，Giraph 不仅拥有了很好的可扩展性，还降低了分布式图计算的使用门槛。</p>
+<h2 id="系统架构">系统架构</h2>
+<!--![](Giraph简介/Giraph_Architecture.png)-->
 <p>上图蓝色部分标识了 Giraph 的系统架构，可以看到 Giraph 实质上还是一个 Master/Slave 的架构，主要由三个部分构成：</p>
 <ul>
 <li><p>Master</p>
-<p>Master 实质上运行在 Hadoop 的 MapTask 上， 其主要作用是对输入图进行分区、协调 Worker 的活动、维护一份存活的 Worker 列表（包括 Worker 的标识符、地址信息等）以及更新 Job 的状态。</p>
-</li>
+<p>Master 实质上运行在 Hadoop 的 MapTask 上， 其主要作用是对输入图进行分区、协调 Worker 的活动、维护一份存活的 Worker 列表（包括 Worker 的标识符、地址信息等）以及更新 Job 的状态。</p></li>
 <li><p>Worker</p>
-<p>与 Master 一样，Worker 也运行在 Hadoop 的 MapTask 上，其主要作用是维护已分配图的状态。</p>
-</li>
+<p>与 Master 一样，Worker 也运行在 Hadoop 的 MapTask 上，其主要作用是维护已分配图的状态。</p></li>
 <li><p>Zookeeper</p>
-<p>在 Giraph 中 Zookeeper 的主要作用是 Master 选举、命名服务以及协调服务。图中显示的 Zookeeper 是外置状态，但实际上如果不给 Giraph 提供外置 Zookeeper，那么 Giraph 将会在 Master 所在节点上自行启动一个 Zookeeper 来提供服务。</p>
-</li>
+<p>在 Giraph 中 Zookeeper 的主要作用是 Master 选举、命名服务以及协调服务。图中显示的 Zookeeper 是外置状态，但实际上如果不给 Giraph 提供外置 Zookeeper，那么 Giraph 将会在 Master 所在节点上自行启动一个 Zookeeper 来提供服务。</p></li>
 </ul>
-<h2 id="计算模型"><a href="#计算模型" class="headerlink" title="计算模型"></a>计算模型</h2><!--![](Giraph简介/Giraph_Computation_Model.png)-->
-<p>上图显示了 Giraph 的整个计算模型，主要由输入、一系列 Superstep 迭代计算、输出构成，其中这些 Superstep 被称之为 BSP(Bulk Synchronous Parallelism)  模型。</p>
-<h3 id="BSP-模型"><a href="#BSP-模型" class="headerlink" title="BSP 模型"></a>BSP 模型</h3><p>BSP 模型是一个块同步并行模型，其由许多个 Superstep 组成。对于 BSP 模型而言，其在 Superstep 内的操作是并行的，但在两个 Superstep 之间则是由一个同步操作进行隔离的。也就是说 Superstep(N + 1)  会等待 Superstep(N) 执行完成之后才会开始。</p>
+<h2 id="计算模型">计算模型</h2>
+<!--![](Giraph简介/Giraph_Computation_Model.png)-->
+<p>上图显示了 Giraph 的整个计算模型，主要由输入、一系列 Superstep 迭代计算、输出构成，其中这些 Superstep 被称之为 BSP(Bulk Synchronous Parallelism) 模型。</p>
+<h3 id="bsp-模型">BSP 模型</h3>
+<p>BSP 模型是一个块同步并行模型，其由许多个 Superstep 组成。对于 BSP 模型而言，其在 Superstep 内的操作是并行的，但在两个 Superstep 之间则是由一个同步操作进行隔离的。也就是说 Superstep(N + 1) 会等待 Superstep(N) 执行完成之后才会开始。</p>
 <!--![](Giraph简介/Giraph_Bsp.png)-->
 <p>上图显示了 Superstep 的结构图，一个 Superstep 由<strong>局部计算</strong>、<strong>通讯</strong>、<strong>栅栏同步</strong> 三个部分构成。可以看到即使有部分的计算比较快，但最终还是会在栅栏同步这里停下等待其余的计算完成。在图计算中应用这种模型的好处是：可以解决图计算的同步问题，同步模型有利于推断程序语义（即利于编程），并且消除了死锁和数据竞争的问题。</p>
-<h3 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h3><p><img src="/2019/08/11/Giraph简介/Giraph_Compute_Progress.png" alt></p>
+<h3 id="计算过程">计算过程</h3>
+<p><img src="/2019/08/11/Giraph简介/Giraph_Compute_Progress.png"></p>
 <p>上图展示了一个计算图中顶点最大值的过程，其中深色的顶点表示本次 Superstep 结束之后将自己标记为不活跃状态（即不再需要进行计算），当所有顶点均处于不活跃状态的时候即表明计算结束。下面针对各个 Superstep 进行分析：</p>
 <ul>
 <li><p>Superstep0</p>
-<p>Superstep0 时所有的顶点处于活跃状态并沿出边发送其顶点值</p>
-</li>
+<p>Superstep0 时所有的顶点处于活跃状态并沿出边发送其顶点值</p></li>
 <li><p>Superstep1</p>
-<p>Superstep1 时每个顶点处理 Superstep0 发来的顶点值，第一、四个顶点[从左往右计数]发现有更大的顶点值 6，所以更新其顶点值为 6 ，并沿出边发送更新之后的顶点值。而第二、三个顶点发现并没有比它们顶点值更大的顶点值，因此两个顶点将自身标记为不活跃状态。</p>
-</li>
+<p>Superstep1 时每个顶点处理 Superstep0 发来的顶点值，第一、四个顶点[从左往右计数]发现有更大的顶点值 6，所以更新其顶点值为 6 ，并沿出边发送更新之后的顶点值。而第二、三个顶点发现并没有比它们顶点值更大的顶点值，因此两个顶点将自身标记为不活跃状态。</p></li>
 <li><p>Superstep2</p>
-<p>Superstep2 时由于第二个顶点收到了 Superstep1 发送过来的顶点值，所以系统会将第二个顶点标记为活跃状态然后去处理接收到的顶点值，但第二个顶点依旧发现没有比它更大的顶点值，所以会再次标记自己为不活跃状态。第一、四个顶点由于没有接收到 Superstep1 发来的顶点值，所以会将其标记为不活跃状态。第三个顶点在处理 Superstep1 发来的顶点值时，发现了比它更大的顶点值 6，所以会进行更新然后沿出边发送更新之后的顶点值。</p>
-</li>
+<p>Superstep2 时由于第二个顶点收到了 Superstep1 发送过来的顶点值，所以系统会将第二个顶点标记为活跃状态然后去处理接收到的顶点值，但第二个顶点依旧发现没有比它更大的顶点值，所以会再次标记自己为不活跃状态。第一、四个顶点由于没有接收到 Superstep1 发来的顶点值，所以会将其标记为不活跃状态。第三个顶点在处理 Superstep1 发来的顶点值时，发现了比它更大的顶点值 6，所以会进行更新然后沿出边发送更新之后的顶点值。</p></li>
 <li><p>Superstep3</p>
-<p>Superstep3 阶段只有第二、四顶点接收到了 Superstep2 发来的顶点值，所以跟 Superstep2 中处理方式一致，系统先标记为这两个顶点为活跃状态，顶点比较接收的顶点值之后将自身标记为不活跃状态。至于第一、四顶点因为处于不活跃状态且没有收到上一个超步接收到的顶点值，所以不会进行处理从而依旧保持不活跃状态。至此整个计算过程就结束了。</p>
-</li>
+<p>Superstep3 阶段只有第二、四顶点接收到了 Superstep2 发来的顶点值，所以跟 Superstep2 中处理方式一致，系统先标记为这两个顶点为活跃状态，顶点比较接收的顶点值之后将自身标记为不活跃状态。至于第一、四顶点因为处于不活跃状态且没有收到上一个超步接收到的顶点值，所以不会进行处理从而依旧保持不活跃状态。至此整个计算过程就结束了。</p></li>
 </ul>
-<h2 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h2><p>在了解了 Giraph 的系统架构和计算模型之后，这里简单介绍一下 Giraph 的整个运行流程：</p>
-<ol>
+<h2 id="运行流程">运行流程</h2>
+<p>在了解了 Giraph 的系统架构和计算模型之后，这里简单介绍一下 Giraph 的整个运行流程：</p>
+<ol type="1">
 <li>Giraph 向 Hadoop 提交 Job 之后，Zookeeper 将会选出一个 MapTask 作为 Giraph 的 Master，其余的 MapTask 则作为 Worker。然后这些 Worker 会通过 Zookeeper 命名服务找到 Master，并向 Master 进行注册。</li>
 <li>Master 将会对输入图进行分区，并发送分区信息给 Worker，Woker 会对分区进行读取，期间可能会发生 Worker 之间的分区交换。</li>
 <li>之后 Master 会开始协调 Worker 迭代执行 Superstep，Worker 将会在 Superstep 中完成顶点的计算过程，直到所有的顶点处于不活跃状态之后结束计算。</li>
 <li>在计算结束之后，Giraph 将会根据用户指定的格式输出结果。</li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上述简要介绍了 Giraph 的核心知识，即架构和计算模型。但除此之外，Giraph 中还有重要的优化和容错机制尚未介绍，这些都需要后续学习的时候进行整理分析。</p>
-<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucmVzZWFyY2hnYXRlLm5ldC9wcm9maWxlL0phbWVzX0RlaG5lcnQvcHVibGljYXRpb24vMjIxMjU3MzgzX1ByZWdlbF9BX3N5c3RlbV9mb3JfbGFyZ2Utc2NhbGVfZ3JhcGhfcHJvY2Vzc2luZy9saW5rcy8wMGI3ZDUzN2M2MTU4MjFmYTQwMDAwMDAucGRm" title="https://www.researchgate.net/profile/James_Dehnert/publication/221257383_Pregel_A_system_for_large-scale_graph_processing/links/00b7d537c615821fa4000000.pdf">Pregel: a system for large-scale graph processing<i class="fa fa-external-link"></i></span> </li>
+<h2 id="总结">总结</h2>
+<p>上述简要介绍了 Giraph 的核心知识，即架构和计算模型。但除此之外，Giraph 中还有重要的优化和容错机制尚未介绍，这些都需要后续学习的时候进行整理分析。</p>
+<h2 id="thanks">Thanks</h2>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucmVzZWFyY2hnYXRlLm5ldC9wcm9maWxlL0phbWVzX0RlaG5lcnQvcHVibGljYXRpb24vMjIxMjU3MzgzX1ByZWdlbF9BX3N5c3RlbV9mb3JfbGFyZ2Utc2NhbGVfZ3JhcGhfcHJvY2Vzc2luZy9saW5rcy8wMGI3ZDUzN2M2MTU4MjFmYTQwMDAwMDAucGRm" title="https://www.researchgate.net/profile/James_Dehnert/publication/221257383_Pregel_A_system_for_large-scale_graph_processing/links/00b7d537c615821fa4000000.pdf">Pregel: a system for large-scale graph processing<i class="fa fa-external-link"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9jc2hpaG9uZy5naXRodWIuaW8vMjAxOC8wNS8zMC9QcmVnZWwlRUYlQkMlODglRTUlOUIlQkUlRTglQUUlQTElRTclQUUlOTclRUYlQkMlODklRTYlOEElODAlRTYlOUMlQUYlRTUlOEUlOUYlRTclOTAlODYv" title="https://cshihong.github.io/2018/05/30/Pregel%EF%BC%88%E5%9B%BE%E8%AE%A1%E7%AE%97%EF%BC%89%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/">Pregel（图计算）技术原理<i class="fa fa-external-link"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly93d3cudHdibG9ncy5uZXQvYS81YjhhYjUzZDJiNzE3NzVkMWNlOGJhNzQvemgtY24=" title="https://www.twblogs.net/a/5b8ab53d2b71775d1ce8ba74/zh-cn">BSP模型的相关讲解<i class="fa fa-external-link"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vQllSYW5zL3AvNDY4MjI4Mi5odG1s" title="https://www.cnblogs.com/BYRans/p/4682282.html">从BSP模型到Apache Hama<i class="fa fa-external-link"></i></span></li>
@@ -726,8 +728,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/17/Giraph环境搭建/" rel="prev" title="Giraph环境搭建">
-                Giraph环境搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/17/Giraph环境搭建/" rel="prev" title="Giraph 环境搭建">
+                Giraph 环境搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -806,7 +808,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1007,7 +1009,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Giraph"><span class="nav-number">2.</span> <span class="nav-text">什么是 Giraph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统架构"><span class="nav-number">3.</span> <span class="nav-text">系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算模型"><span class="nav-number">4.</span> <span class="nav-text">计算模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BSP-模型"><span class="nav-number">4.1.</span> <span class="nav-text">BSP 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算过程"><span class="nav-number">4.2.</span> <span class="nav-text">计算过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行流程"><span class="nav-number">5.</span> <span class="nav-text">运行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thanks"><span class="nav-number">7.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-giraph"><span class="nav-number">2.</span> <span class="nav-text">什么是 Giraph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统架构"><span class="nav-number">3.</span> <span class="nav-text">系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算模型"><span class="nav-number">4.</span> <span class="nav-text">计算模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bsp-模型"><span class="nav-number">4.1.</span> <span class="nav-text">BSP 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算过程"><span class="nav-number">4.2.</span> <span class="nav-text">计算过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行流程"><span class="nav-number">5.</span> <span class="nav-text">运行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thanks"><span class="nav-number">7.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
             
 
           </div>
@@ -1047,7 +1049,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">88k</span>
   
 
   
@@ -1056,7 +1058,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:23</span>
+    <span title="站点阅读时长">2:26</span>
   
 </div>
 

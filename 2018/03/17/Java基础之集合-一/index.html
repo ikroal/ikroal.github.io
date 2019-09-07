@@ -156,13 +156,13 @@
 
 
 
-  <meta name="description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
+  <meta name="description" content="问题 集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
 <meta name="keywords" content="Java,集合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 基础之集合框架(一)：集合框架">
 <meta property="og:url" content="http://www.ikroal.xyz/2018/03/17/Java基础之集合-一/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
-<meta property="og:description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
+<meta property="og:description" content="问题 集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/collections-all-structure.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/collection-structure.png">
@@ -170,7 +170,7 @@
 <meta property="og:updated_time" content="2019-05-13T08:44:47.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 基础之集合框架(一)：集合框架">
-<meta name="twitter:description" content="问题集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
+<meta name="twitter:description" content="问题 集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：  集合存在的意义，集合和数组的区别 集合框架的设计意图 集合的常用操作">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/collections-all-structure.png">
 
 
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.6k</span>
+                <span title="本文字数">3.9k</span>
               
 
               
@@ -586,7 +586,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -606,30 +606,35 @@
       
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：</p>
-<ol>
+        <h2 id="问题">问题</h2>
+<p>集合类应该是平时使用的非常频繁的类了，但是对其内部构成却一直不太清晰，所以希望通过本篇文章尝试去理解集合框架的整体设计以及集合存在的必要性。在开始分析之前首先让我们思考以下问题：</p>
+<ol type="1">
 <li>集合存在的意义，集合和数组的区别</li>
 <li>集合框架的设计意图</li>
 <li>集合的常用操作<a id="more"></a></li>
 </ol>
-<h2 id="集合存在的意义以及与数组的区别"><a href="#集合存在的意义以及与数组的区别" class="headerlink" title="集合存在的意义以及与数组的区别"></a>集合存在的意义以及与数组的区别</h2><p>想要了解 Java 为什么会设计集合，就得先明白集合的出现解决了什么问题，关于这一问题「Java 编程思想」中是这么描述的</p>
+<h2 id="集合存在的意义以及与数组的区别">集合存在的意义以及与数组的区别</h2>
+<p>想要了解 Java 为什么会设计集合，就得先明白集合的出现解决了什么问题，关于这一问题「Java 编程思想」中是这么描述的</p>
 <blockquote>
-<p>如果一个程序中只包含固定数量的且其生命周期都是已知的对象，那么这是一个非常简单的程序。<br>通常，程序总是根据运行时才知道的某些条件去创建新对象。在此之前，不会知道所需对象的数量，甚至不知道确切的类型。</p>
+<p>如果一个程序中只包含固定数量的且其生命周期都是已知的对象，那么这是一个非常简单的程序。 通常，程序总是根据运行时才知道的某些条件去创建新对象。在此之前，不会知道所需对象的数量，甚至不知道确切的类型。</p>
 </blockquote>
 <p>所以之所以需要集合是因为在编程的过程中会需要保存<strong>数量不定</strong>、<strong>类型不定</strong>的数据。</p>
 <p>针对<strong>数量不定</strong>考虑下面这种情况</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COUNT = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String STOP_FLAG = <span class="string">"s"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String collection[] = <span class="keyword">new</span> String[COUNT];</span><br><span class="line">        System.out.println(<span class="string">"输入即将保存的数据"</span>);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!(collection[i] = scanner.next()).equals(STOP_FLAG)) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        scanner.close();</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; collection.length; i++) &#123;</span><br><span class="line">            System.out.print(collection[i] + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>作为一个简单的输入程序，采用数组的形式去保存用户的输入，当用户的输入超过数组可容纳的数量的时候便会抛出异常，这个问题如何解决呢？一种方式是将数组的数量分配的足够大，但是采取这种方式极有可能浪费内存空间。另一种方式则是动态扩展大小，通过动态扩展大小既能够容纳足够多的元素，又能够节约内存空间。而集合正具备动态扩展大小这一特性，所以在这种情况下，集合就体现出了它的作用。<br>至于<strong>类型不定</strong>，考虑另一种情况</p>
+<p>作为一个简单的输入程序，采用数组的形式去保存用户的输入，当用户的输入超过数组可容纳的数量的时候便会抛出异常，这个问题如何解决呢？一种方式是将数组的数量分配的足够大，但是采取这种方式极有可能浪费内存空间。另一种方式则是动态扩展大小，通过动态扩展大小既能够容纳足够多的元素，又能够节约内存空间。而集合正具备动态扩展大小这一特性，所以在这种情况下，集合就体现出了它的作用。 至于<strong>类型不定</strong>，考虑另一种情况</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rookieyang.collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataArray</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String datas[];</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> COUNT = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataArray</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        datas = <span class="keyword">new</span> String[COUNT];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//也可自行对数组进行动态扩展，这里只是测试</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addData</span><span class="params">(String data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            datas[index] = data;</span><br><span class="line">            index++;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"超出最大的存储范围"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.rookieyang.collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataCollection</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; datas;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addData</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        datas.add(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看出对于数组而言在动态添加数据会略显麻烦，而且只能保存 String 类型数据，但对于采用集合而言，使用起来不仅简单而且其扩展性也强，我们可以根据自己的需求决定集合中保存何种类型数据，这就实现了代码的复用。<br>对于集合和数组而言，其主要区别如下</p>
+<p>可以看出对于数组而言在动态添加数据会略显麻烦，而且只能保存 String 类型数据，但对于采用集合而言，使用起来不仅简单而且其扩展性也强，我们可以根据自己的需求决定集合中保存何种类型数据，这就实现了代码的复用。 对于集合和数组而言，其主要区别如下</p>
 <ul>
 <li>数组是静态的，一个数组实例具有固定的大小，集合是动态的，可以根据实际需要动态扩展大小</li>
 <li>数组既可以保存基本类型，也可保存引用类型，集合只能保存引用类型，在保存基本类型的时候会自动装箱</li>
 </ul>
-<h2 id="集合整体框架分析"><a href="#集合整体框架分析" class="headerlink" title="集合整体框架分析"></a>集合整体框架分析</h2><p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/collections-all-structure.png" alt></p>
+<h2 id="集合整体框架分析">集合整体框架分析</h2>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/collections-all-structure.png"></p>
 <p>首先看下集合的整体框架图，对于集合而言主要分为两个部分：Collection 和 Map，其中 Collection 主要保存的是单个元素，而 Map 则可以将某些对象与其它一些对象存在的关系用 key-value 方式保存下来。接下来我们将就这两个部分展开分析。</p>
-<h3 id="Collection-接口"><a href="#Collection-接口" class="headerlink" title="Collection 接口"></a>Collection 接口</h3><h4 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h4><p>这里为了方便分析只展示了接口的继承结构</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/collection-structure.png" alt></p>
+<h3 id="collection-接口">Collection 接口</h3>
+<h4 id="结构分析">结构分析</h4>
+<p>这里为了方便分析只展示了接口的继承结构</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/collection-structure.png"></p>
 <p>首先查看 Iterable</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">            action.accept(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Itrable 接口中拥有一个 iterator 方法以及两个 1.8 添加的默认方法：</p>
@@ -638,113 +643,118 @@
 <li>forEach：根据给定的 action 处理每个元素</li>
 <li>spliterator：提供了一个用于并行遍历的迭代器，由于这里主要探讨结构设计，所以暂且不展开说明</li>
 </ul>
-<p>看到这里我产生了第一个疑问，为什么 Collection 不直接继承 Iterator 接口，而需要用 Iterable 进行包装之后再继承呢？<br>这里假设存在一个 CustomizeCollection 接口在包含了 Collection 接口方法的基础上继承了 Iterator 接口而不是 Iterable（或者是直接包含了 Collection 接口方法以及 Iterator 接口方法），那么当我们实现 CustomizeCollection 接口的时候所得到的 CustomizeClass 类结构将如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/customizeClass.png" alt><br>可以看到如果想实现 CustomizeCollection 则必须要实现 Iterator 接口方法，很显然采用这种方式可能导致在不同的 CustomizeCollection 接口实现类中存在相同的 Itrator 接口方法实现（遍历这一操作某些时候可能是通用的），这样一来就降低了<strong>代码的复用性</strong>，另外从<strong>单一职责</strong>的角度来考虑，CustomizeCollection 接口中揉合了集合元素的管理功能以及迭代器的功能，而采用 Iterable 包装之后则可以将这两个功能进行一定程度上的分割。</p>
+<p>看到这里我产生了第一个疑问，为什么 Collection 不直接继承 Iterator 接口，而需要用 Iterable 进行包装之后再继承呢？ 这里假设存在一个 CustomizeCollection 接口在包含了 Collection 接口方法的基础上继承了 Iterator 接口而不是 Iterable（或者是直接包含了 Collection 接口方法以及 Iterator 接口方法），那么当我们实现 CustomizeCollection 接口的时候所得到的 CustomizeClass 类结构将如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/customizeClass.png"> 可以看到如果想实现 CustomizeCollection 则必须要实现 Iterator 接口方法，很显然采用这种方式可能导致在不同的 CustomizeCollection 接口实现类中存在相同的 Itrator 接口方法实现（遍历这一操作某些时候可能是通用的），这样一来就降低了<strong>代码的复用性</strong>，另外从<strong>单一职责</strong>的角度来考虑，CustomizeCollection 接口中揉合了集合元素的管理功能以及迭代器的功能，而采用 Iterable 包装之后则可以将这两个功能进行一定程度上的分割。</p>
 <p>接着从 Collection 又延展出三个接口，这三个接口是对集合功能的具体化：</p>
 <ul>
 <li>Set 表示的是无序、不存在重复元素的集合</li>
 <li>List 表示的是一种有序、可重复元素的集合</li>
 <li>Queue 表示的是一种队列，其实队列也是一种有序的集合，但之所以会单独设计出一个接口的原因在于，Queue 接口去除了很多不需要的功能，使得接口本身更符合<strong>单一职责</strong>以及<strong>接口隔离</strong>原则。</li>
 </ul>
-<h4 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h4><p>Collection 接口的功能大致概括如下（暂不介绍 1.8 引入的默认方法）</p>
+<h4 id="功能分析">功能分析</h4>
+<p>Collection 接口的功能大致概括如下（暂不介绍 1.8 引入的默认方法）</p>
 <ul>
-<li>增加<ul>
+<li>增加
+<ul>
 <li>boolean add(E e) 增加单元元素</li>
 <li>boolean addAll(Collection&lt;? extends E&gt; c) 增加集合 c 的元素</li>
-</ul>
-</li>
-<li>删除<ul>
+</ul></li>
+<li>删除
+<ul>
 <li>boolean remove(Object o) 移除元素</li>
 <li>boolean removeAll(Collection&lt;?&gt; c) 移除集合 c 的元素</li>
 <li>void clear() 清空集合</li>
-</ul>
-</li>
-<li>查询<ul>
+</ul></li>
+<li>查询
+<ul>
 <li>boolean contains(Object o) 查询集合是否存在元素 o</li>
 <li>boolean containsAll(Collection&lt;?&gt; c)查询当前集合是否存在集合 c 中的所有元素</li>
 <li>boolean isEmpty() 查询是否集合为空</li>
 <li>int size() 查询集合的大小</li>
-</ul>
-</li>
-<li>其它<ul>
+</ul></li>
+<li>其它
+<ul>
 <li>Iterator<e> iterator() 返回迭代器</e></li>
 <li>boolean retainAll(Collection&lt;?&gt; c) 取当前集合和集合 c 的交集</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>Set 接口与 Colleciton 接口定义的方法完全一致</p>
 <p>List 接口在 Collectiion 接口基础上新增了一些与索引有关的方法</p>
 <ul>
-<li>增加<ul>
+<li>增加
+<ul>
 <li>void add(int index, E element) 在 index 处插入元素</li>
-</ul>
-</li>
-<li>删除<ul>
+</ul></li>
+<li>删除
+<ul>
 <li>E remove(int index) 删除 index 处的元素</li>
-</ul>
-</li>
-<li>修改<ul>
+</ul></li>
+<li>修改
+<ul>
 <li>E set(int index, E element) 修改 index 的元素为 element</li>
-</ul>
-</li>
-<li>查询<ul>
+</ul></li>
+<li>查询
+<ul>
 <li>E get(int index) 获取 index 处的元素</li>
 <li>int indexOf(Object o) 获取元素 o 第一次出现的 index</li>
 <li>int lastIndexOf(Object o) 获取元素 o 最后一次出现的 index</li>
-</ul>
-</li>
-<li>其它<ul>
+</ul></li>
+<li>其它
+<ul>
 <li>ListIterator<e> listIterator() 返回 ListIterator 类型的迭代器</e></li>
 <li>ListIterator<e> listIterator(int index) 返回从 index 开始的 ListIterator 类型的迭代器</e></li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>Queue 接口新增的方法如下</p>
 <ul>
-<li>出队<ul>
+<li>出队
+<ul>
 <li>E peek() 出队但是不删除元素，在队列为空的时候返回 null</li>
 <li>E element() 出队但是不删除元素，在队列为空的时候抛出异常</li>
 <li>E poll() 出队并且删除元素，在队列为空的时候返回null</li>
 <li>E remove() 出队并且删除元素，在队列为空的时候抛出异常</li>
-</ul>
-</li>
-<li>入队<ul>
+</ul></li>
+<li>入队
+<ul>
 <li>boolean offer(E e)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="Map-接口"><a href="#Map-接口" class="headerlink" title="Map 接口"></a>Map 接口</h3><h4 id="结构分析-1"><a href="#结构分析-1" class="headerlink" title="结构分析"></a>结构分析</h4><p>Map 是一个单一的接口，并没有在此基础上进行扩展，但在 Map 接口的内部有一个 Entry 接口：</p>
+<h3 id="map-接口">Map 接口</h3>
+<h4 id="结构分析-1">结构分析</h4>
+<p>Map 是一个单一的接口，并没有在此基础上进行扩展，但在 Map 接口的内部有一个 Entry 接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function">K <span class="title">getKey</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">V <span class="title">getValue</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">V <span class="title">setValue</span><span class="params">(V value)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到 Entry 里面封装的都是和 Map 中元素有关的操作，这一接口主要用来规定 Map 中用来存储 key-value 所需要提供的功能</p>
-<h4 id="功能分析-1"><a href="#功能分析-1" class="headerlink" title="功能分析"></a>功能分析</h4><p>Map 接口的功能大致如下：</p>
+<h4 id="功能分析-1">功能分析</h4>
+<p>Map 接口的功能大致如下：</p>
 <ul>
-<li>增加或修改<ul>
+<li>增加或修改
+<ul>
 <li>V put(K key, V value) 存储 key 和 value，如果 key 已经存在则会将原来的 value 替换为新的 value</li>
 <li>void putAll(Map&lt;? extends K, ? extends V&gt; m) 将 m 中的 key 和 value 添加到当前 Map 中</li>
-</ul>
-</li>
-<li>删除<ul>
+</ul></li>
+<li>删除
+<ul>
 <li>V remove(Object key) 移除指定的 key 以及关联的 value</li>
 <li>void clear() 清空 Map</li>
-</ul>
-</li>
-<li>查找<ul>
+</ul></li>
+<li>查找
+<ul>
 <li>V get(Object key) 获取 key 关联的 value</li>
 <li>boolean containsKey(Object key) 判断当前 Map 是否包含指定的 key</li>
 <li>boolean containsValue(Object value) 判断当前Map 是否包含指定的 value</li>
 <li>boolean isEmpty() 判断当前 Map 是否为空</li>
 <li>int size() 获取当前 Map 的大小</li>
-</ul>
-</li>
-<li>其它<ul>
+</ul></li>
+<li>其它
+<ul>
 <li>Set<k> keySet() 将 key 生成 Set 集合</k></li>
 <li>Collection<v> values() 将 value 生成集合</v></li>
-<li>Set<map.entry<k, v>&gt; entrySet() 将 Map 中保存的元素生成 Set 集合，一般用于遍历集合</map.entry<k,></li>
-</ul>
-</li>
+<li>Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet() 将 Map 中保存的元素生成 Set 集合，一般用于遍历集合</li>
+</ul></li>
 </ul>
 <p>从 Map 接口所提供的方法来看，大部分方法其实与 Collection 接口中无异，只是在 Collection 中是对单个元素进行操作，但是在 Map 接口中是对 key-value 这种关联元素进行操作。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Java 集合框架以 Colleciton 和 Map 为基础，高度抽象了对单个元素以及键值对的操作，而在此基础上为了减轻业务开发难度，集合框架又提供了多个实现类以供使用，尽管看起来错综复杂，但是只要了解核心的接口之间的继承关系便可对集合框架有个较为清晰的认识。</p>
+<h2 id="总结">总结</h2>
+<p>Java 集合框架以 Colleciton 和 Map 为基础，高度抽象了对单个元素以及键值对的操作，而在此基础上为了减轻业务开发难度，集合框架又提供了多个实现类以供使用，尽管看起来错综复杂，但是只要了解核心的接口之间的继承关系便可对集合框架有个较为清晰的认识。</p>
 
       
     </div>
@@ -897,7 +907,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1098,7 +1108,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合存在的意义以及与数组的区别"><span class="nav-number">2.</span> <span class="nav-text">集合存在的意义以及与数组的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合整体框架分析"><span class="nav-number">3.</span> <span class="nav-text">集合整体框架分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection-接口"><span class="nav-number">3.1.</span> <span class="nav-text">Collection 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构分析"><span class="nav-number">3.1.1.</span> <span class="nav-text">结构分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能分析"><span class="nav-number">3.1.2.</span> <span class="nav-text">功能分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map-接口"><span class="nav-number">3.2.</span> <span class="nav-text">Map 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构分析-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">结构分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能分析-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">功能分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合存在的意义以及与数组的区别"><span class="nav-number">2.</span> <span class="nav-text">集合存在的意义以及与数组的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合整体框架分析"><span class="nav-number">3.</span> <span class="nav-text">集合整体框架分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#collection-接口"><span class="nav-number">3.1.</span> <span class="nav-text">Collection 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构分析"><span class="nav-number">3.1.1.</span> <span class="nav-text">结构分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能分析"><span class="nav-number">3.1.2.</span> <span class="nav-text">功能分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-接口"><span class="nav-number">3.2.</span> <span class="nav-text">Map 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构分析-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">结构分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能分析-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">功能分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -1138,7 +1148,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">88k</span>
   
 
   
@@ -1147,7 +1157,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:23</span>
+    <span title="站点阅读时长">2:26</span>
   
 </div>
 
