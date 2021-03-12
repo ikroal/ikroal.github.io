@@ -159,7 +159,7 @@
   <meta name="description" content="时间能写出未来的结局">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ikroal&#39;s blog">
-<meta property="og:url" content="http://www.ikroal.xyz/tags/Graph-Processing/index.html">
+<meta property="og:url" content="http://www.ikroal.xyz/tags/图计算/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="时间能写出未来的结局">
 <meta property="og:locale" content="zh-CN">
@@ -175,7 +175,7 @@
 
   
   
-  <link rel="canonical" href="http://www.ikroal.xyz/tags/Graph-Processing/">
+  <link rel="canonical" href="http://www.ikroal.xyz/tags/图计算/">
 
 
 
@@ -185,7 +185,7 @@
   };
 </script>
 
-  <title>标签: Graph Processing | ikroal's blog</title>
+  <title>标签: 图计算 | ikroal's blog</title>
   
 
 
@@ -455,9 +455,35 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h2>Graph Processing<small>标签</small>
+        <h2>图计算<small>标签</small>
         </h2>
       </div>
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+          <a class="post-title-link" href="/2019/09/14/Giraph运行流程（一）/" itemprop="url">
+            
+              <span itemprop="name">Giraph 运行流程（一）</span>
+            
+          </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-09-14T09:34:09+08:00" content="2019-09-14">
+          09-14
+        </time>
+      </div>
+
+    </header>
+  </article>
+
 
       
         
@@ -588,7 +614,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -627,7 +653,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -800,7 +830,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -812,7 +842,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">88k</span>
+    <span title="站点总字数">97k</span>
   
 
   
@@ -821,7 +851,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:26</span>
+    <span title="站点阅读时长">2:41</span>
   
 </div>
 
@@ -1378,7 +1408,7 @@
       var isPost = ''.length > 0
       var isArchive = '' === 'true'
       var isCategory = ''.length > 0
-      var isTag = 'Graph Processing'.length > 0
+      var isTag = '图计算'.length > 0
 
       if (isPost) { //is article page
         var title = ''
@@ -1389,7 +1419,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("Giraph 编程实践及源码编译调试");titles.push("Giraph 环境搭建");titles.push("Giraph 简介");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("Giraph 运行流程（一）");titles.push("Giraph 编程实践及源码编译调试");titles.push("Giraph 环境搭建");titles.push("Giraph 简介");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
