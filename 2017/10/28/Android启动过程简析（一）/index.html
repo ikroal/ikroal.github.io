@@ -21,13 +21,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.ikroal.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.ikroal.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="问题 在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？ 此篇文章将针对 init 部分给出分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 启动过程简析（一）之 init 进程">
-<meta property="og:url" content="http://www.ikroal.xyz/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:url" content="http://www.ikroal.cn/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="问题 在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？ 此篇文章将针对 init 部分给出分析">
 <meta property="og:locale" content="zh_CN">
@@ -41,7 +41,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/zygote-value.png">
 
-<link rel="canonical" href="http://www.ikroal.xyz/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">
+<link rel="canonical" href="http://www.ikroal.cn/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">
 
 
 <script id="page-configurations">
@@ -219,7 +219,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://www.ikroal.cn/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
@@ -420,7 +420,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.ikroal.xyz/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" title="Android 启动过程简析（一）之 init 进程">http://www.ikroal.xyz/2017/10/28/Android启动过程简析（一）/</a>
+    <a href="http://www.ikroal.cn/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" title="Android 启动过程简析（一）之 init 进程">http://www.ikroal.cn/2017/10/28/Android启动过程简析（一）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -782,7 +782,7 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://www.ikroal.xyz/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/";
+    this.page.url = "http://www.ikroal.cn/2017/10/28/Android%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%AE%80%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/";
     this.page.identifier = "2017/10/28/Android启动过程简析（一）/";
     this.page.title = "Android 启动过程简析（一）之 init 进程";
     };

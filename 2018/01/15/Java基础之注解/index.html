@@ -21,41 +21,41 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.ikroal.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.ikroal.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="问题 关于注解首先请思考一下以下问题：  注解是什么？ 注解的主要使用场景？ 注解可以分为哪些类型？ 注解的处理过程？  接下来我们将对这几个问题进行探讨">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础之注解">
-<meta property="og:url" content="http://www.ikroal.xyz/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:url" content="http://www.ikroal.cn/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="问题 关于注解首先请思考一下以下问题：  注解是什么？ 注解的主要使用场景？ 注解可以分为哪些类型？ 注解的处理过程？  接下来我们将对这几个问题进行探讨">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//Override-error.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//Override-error.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8zywyj30el00qglf.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//deprecated-error.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//suppressWarning.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//SafeVarargs.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//deprecated-error.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//suppressWarning.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//SafeVarargs.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc97402j30ns00wglh.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//FunctionalInterface.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//FunctionalInterface.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc8exc7j30od01vgll.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//Documented.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//noDocumented.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//project-structure.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//META-INF.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//Elements.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//Filer.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//Messager.jpg">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//Element.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//Documented.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//noDocumented.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//project-structure.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//META-INF.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//Elements.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//Filer.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//Messager.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//Element.jpg">
 <meta property="article:published_time" content="2018-01-15T14:07:15.000Z">
 <meta property="article:modified_time" content="2019-05-13T08:50:21.904Z">
 <meta property="article:author" content="ikroal">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="注解">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.ikroal.xyz/.xyz//Override-error.jpg">
+<meta name="twitter:image" content="http://www.ikroal.cn/.cn//Override-error.jpg">
 
-<link rel="canonical" href="http://www.ikroal.xyz/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/">
+<link rel="canonical" href="http://www.ikroal.cn/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/">
 
 
 <script id="page-configurations">
@@ -233,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://www.ikroal.cn/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
@@ -410,7 +410,7 @@ Override的主要作用是：
 <li><p>帮助检查是否正确的复写了父类中的已有方法（如果不小心拼写错误或者方法签名对不上被覆盖的方法，编辑器都会发出警告信息）</p></li>
 <li><p>表示当前方法定义将覆盖超类的方法。</p>
 <p>如果没有正确的复写父类中的方法则会提示 <strong>Method does not override method from its superclass</strong>。</p>
-<p><img src="/.xyz//Override-error.jpg"></p>
+<p><img src="/.cn//Override-error.jpg"></p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8zywyj30el00qglf.jpg"></p></li>
 </ol></li>
 <li><p>Deprecated 在 FatherClass 增加如下方法：</p>
@@ -419,23 +419,23 @@ Override的主要作用是：
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> deprecatedMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个时候将会看到 deprecatedMethod() 显示红色，并且编辑器提示<strong>deprecatedMethod() 已经过时了</strong></p></li>
 </ol>
-<p><img src="/.xyz//deprecated-error.jpg"></p>
+<p><img src="/.cn//deprecated-error.jpg"></p>
 <ol start="3" type="1">
 <li><p>SuppressWarning 对 BaseAnnotationUse 中的 useDeprecatedMethod 方法进行如下修改</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings(&quot;deprecation&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> deprecatedMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过增加 SuppressWarning 抑制了 Deprecated 的警告，deprecatedMethod() 的红色将会消失</p></li>
 </ol>
-<p><img src="/.xyz//suppressWarning.jpg"></p>
+<p><img src="/.cn//suppressWarning.jpg"></p>
 <ol start="4" type="1">
 <li><p>SafeVarargs</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SafeVarargs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">faultyMethod</span><span class="params">(List&lt;String&gt;... listStrArray)</span> </span>&#123;</span><br><span class="line">	List[] listArray = listStrArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当把一个不带泛型的对象赋给一个带泛型的变量的时候，往往将会导致”堆污染“，所以在 Java 7 中增加了 SafeVarargs 用于抑制堆污染的警告，SafeVarargs 只能用在参数长度可变的方法或构造方法上，且方法必须声明为static或final，否则会出现编译错误。</p>
-<p><img src="/.xyz//SafeVarargs.jpg"></p>
+<p><img src="/.cn//SafeVarargs.jpg"></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc97402j30ns00wglh.jpg"></p></li>
 <li><p>FunctionalInterface</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseInterface</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>FunctionalInterface 是 Java 8 专门为 Lambda 表达式新增的，通过 FunctionalInterface 可以限制接口中只能存在一个抽象方法，如果在 BaseInterface 接口中新增抽象方法，编译时将会提示 BaseInterface 不是函数式接口。</p>
-<p><img src="/.xyz//FunctionalInterface.jpg"></p>
+<p><img src="/.cn//FunctionalInterface.jpg"></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc8exc7j30od01vgll.jpg"></p></li>
 </ol>
 <h3 id="元注解">元注解</h3>
@@ -502,10 +502,10 @@ Override的主要作用是：
 <li><p>Documented 对于使用被 <span class="citation" data-cites="Documented">@Documented</span> 修饰的注解和不带 <span class="citation" data-cites="Documented">@Documented</span> 修饰的注解，其区别如下：</p></li>
 </ol>
 <figure>
-<img src="/.xyz//Documented.jpg" alt="annotation_1"><figcaption>annotation_1</figcaption>
+<img src="/.cn//Documented.jpg" alt="annotation_1"><figcaption>annotation_1</figcaption>
 </figure>
 <figure>
-<img src="/.xyz//noDocumented.jpg" alt="annotation_2"><figcaption>annotation_2</figcaption>
+<img src="/.cn//noDocumented.jpg" alt="annotation_2"><figcaption>annotation_2</figcaption>
 </figure>
 <ol start="4" type="1">
 <li><p>Inherited</p>
@@ -561,11 +561,11 @@ Override的主要作用是：
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rookieyang.myannotationtwo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity_HelloWorld</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    Toast.makeText(context, <span class="string">&quot;HelloWorld&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>想要生成这个类文件需要获取到两点信息：<strong>包名和类名</strong>，通过包名可以使类文件生成在使用注解的包下，便于解析注解的时候加载类文件，通过类名加上 &quot;_HelloWorld&quot; 确保生成的类文件唯一存在，同时也达到了使用注解的类和生成的类绑定的效果。</p>
 <p>接下来需要创建两个 Module，其中一个定义了所有的注解，另外一个定义了 APT，之所以需要定义两个 Module 的原因，其一为了让工程结构更清晰，另一方面定义 APT 需要用到 javax 包。整体的工程结构如下图所示：</p>
-<p><img src="/.xyz//project-structure.jpg"></p>
+<p><img src="/.cn//project-structure.jpg"></p>
 <p>之后需要为 annotations-compiler 和 app 模块引入相关依赖</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">annotations-compiler 模块</span><br><span class="line">compile <span class="string">&#x27;com.google.auto.service:auto-service:1.0-rc3&#x27;</span></span><br><span class="line"><span class="function">compile <span class="title">project</span><span class="params">(path: <span class="string">&#x27;:annotations&#x27;</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">app 模块</span></span><br><span class="line"><span class="function">compile <span class="title">project</span><span class="params">(path: <span class="string">&#x27;:annotations&#x27;</span>)</span></span></span><br><span class="line"><span class="function">annotationProcessor <span class="title">project</span><span class="params">(<span class="string">&#x27;:annotations-compiler&#x27;</span>)</span></span></span><br></pre></td></tr></table></figure>
 <p>其中 auto-service 的作用是帮助我们生成下列文件，主要作用是声明注解处理器。</p>
-<p><img src="/.xyz//META-INF.jpg"></p>
+<p><img src="/.cn//META-INF.jpg"></p>
 <p>annotationProcessor 则是为模块指定注解处理器</p>
 <p>配置之后首先在 annotations 模块定义一个 HelloWorld 注解</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.CLASS)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> HelloWorld &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -574,13 +574,13 @@ Override的主要作用是：
 <p>接下来说下几个有助于理解注解处理器的点：</p>
 <ul>
 <li><p>Elements 是一个获取程序元素信息的接口，例如获取元素的包名、判断是否是重写方法，例如</p>
-<p><img src="/.xyz//Elements.jpg"></p></li>
+<p><img src="/.cn//Elements.jpg"></p></li>
 <li><p>Filer 则是一个支持通过注解处理器创建文件的接口，可以用于创建 Class文件、源文件、资源文件</p>
-<p><img src="/.xyz//Filer.jpg"></p></li>
+<p><img src="/.cn//Filer.jpg"></p></li>
 <li><p>Messager 则是为注解处理器提供的输出错误信息的接口。</p>
-<p><img src="/.xyz//Messager.jpg"></p></li>
+<p><img src="/.cn//Messager.jpg"></p></li>
 <li><p>Element 与 Elements 区别在于 Element 是获取单个程序元素信息的接口，而 Elements 可以获取整个程序的元素信息。除了 Element 之外，上述程序还可以看到 TypeElement，而 TypeElement 是一个继承了 Element 接口的接口，用于表示类元素。实际上 JDK 还提供了很多继承自 Element 的接口用于表示程序中的各项元素，具体的 Element 继承结构如下图所示：</p>
-<p><img src="/.xyz//Element.jpg"></p></li>
+<p><img src="/.cn//Element.jpg"></p></li>
 </ul>
 <p>在编写完注解处理器之后，最后在 App 模块中编写对应的调用代码即可</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//获得生成的类的 Class 对象</span></span><br><span class="line">    Class&lt;?&gt; helloClass = Class.forName(getPackageName() + <span class="string">&quot;.&quot;</span></span><br><span class="line">    + getClass().getSimpleName() + <span class="string">&quot;_HelloWorld&quot;</span>);</span><br><span class="line">    <span class="comment">//利用反射取得 show 方法，然后执行对应的方法即可</span></span><br><span class="line">    Method showMethod = helloClass.getMethod(<span class="string">&quot;show&quot;</span>, Context.class);</span><br><span class="line">    showMethod.invoke(<span class="keyword">this</span>, <span class="keyword">this</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -620,7 +620,7 @@ Override的主要作用是：
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.ikroal.xyz/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/" title="Java基础之注解">http://www.ikroal.xyz/2018/01/15/Java基础之注解/</a>
+    <a href="http://www.ikroal.cn/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/" title="Java基础之注解">http://www.ikroal.cn/2018/01/15/Java基础之注解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -982,7 +982,7 @@ Override的主要作用是：
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://www.ikroal.xyz/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/";
+    this.page.url = "http://www.ikroal.cn/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/";
     this.page.identifier = "2018/01/15/Java基础之注解/";
     this.page.title = "Java基础之注解";
     };

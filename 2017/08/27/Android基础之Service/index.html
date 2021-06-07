@@ -21,13 +21,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.ikroal.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.ikroal.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 基础之 Service">
-<meta property="og:url" content="http://www.ikroal.xyz/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/index.html">
+<meta property="og:url" content="http://www.ikroal.cn/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="Service 的含义及作用 Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service">
 <meta property="og:locale" content="zh_CN">
@@ -40,7 +40,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png">
 
-<link rel="canonical" href="http://www.ikroal.xyz/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/">
+<link rel="canonical" href="http://www.ikroal.cn/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/">
 
 
 <script id="page-configurations">
@@ -218,7 +218,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/">
+    <link itemprop="mainEntityOfPage" href="http://www.ikroal.cn/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
@@ -340,7 +340,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.ikroal.xyz/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/" title="Android 基础之 Service">http://www.ikroal.xyz/2017/08/27/Android基础之Service/</a>
+    <a href="http://www.ikroal.cn/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/" title="Android 基础之 Service">http://www.ikroal.cn/2017/08/27/Android基础之Service/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -702,7 +702,7 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://www.ikroal.xyz/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/";
+    this.page.url = "http://www.ikroal.cn/2017/08/27/Android%E5%9F%BA%E7%A1%80%E4%B9%8BService/";
     this.page.identifier = "2017/08/27/Android基础之Service/";
     this.page.title = "Android 基础之 Service";
     };

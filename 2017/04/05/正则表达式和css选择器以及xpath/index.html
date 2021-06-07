@@ -21,13 +21,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.ikroal.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.ikroal.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="正则表达式 正则表达式主要用于字符串匹配，使用正则表达式之前需要了解各个符号的含义，这里推荐 菜鸟教程，在了解语法之后我们可以通过 regex101 进行正则表达式的测试。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式和 CSS 选择器以及 XPath">
-<meta property="og:url" content="http://www.ikroal.xyz/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/index.html">
+<meta property="og:url" content="http://www.ikroal.cn/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="正则表达式 正则表达式主要用于字符串匹配，使用正则表达式之前需要了解各个符号的含义，这里推荐 菜鸟教程，在了解语法之后我们可以通过 regex101 进行正则表达式的测试。">
 <meta property="og:locale" content="zh_CN">
@@ -38,7 +38,7 @@
 <meta property="article:tag" content="字符匹配">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.ikroal.xyz/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/">
+<link rel="canonical" href="http://www.ikroal.cn/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/">
 
 
 <script id="page-configurations">
@@ -216,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/">
+    <link itemprop="mainEntityOfPage" href="http://www.ikroal.cn/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
@@ -348,7 +348,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.ikroal.xyz/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/" title="正则表达式和 CSS 选择器以及 XPath">http://www.ikroal.xyz/2017/04/05/正则表达式和css选择器以及xpath/</a>
+    <a href="http://www.ikroal.cn/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/" title="正则表达式和 CSS 选择器以及 XPath">http://www.ikroal.cn/2017/04/05/正则表达式和css选择器以及xpath/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -710,7 +710,7 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://www.ikroal.xyz/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/";
+    this.page.url = "http://www.ikroal.cn/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccss%E9%80%89%E6%8B%A9%E5%99%A8%E4%BB%A5%E5%8F%8Axpath/";
     this.page.identifier = "2017/04/05/正则表达式和css选择器以及xpath/";
     this.page.title = "正则表达式和 CSS 选择器以及 XPath";
     };

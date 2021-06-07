@@ -21,29 +21,29 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.ikroal.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.ikroal.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left"},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"输入关键字","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="前言 本文主要总结了如何利用 Giraph 提供的 API 实现图计算编程，并说明了将 Giraph 源码导入 IDEA 进行调试的过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Giraph 编程实践及源码编译调试">
-<meta property="og:url" content="http://www.ikroal.xyz/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/index.html">
+<meta property="og:url" content="http://www.ikroal.cn/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/index.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="前言 本文主要总结了如何利用 Giraph 提供的 API 实现图计算编程，并说明了将 Giraph 源码导入 IDEA 进行调试的过程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//maven-1.png">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//maven-2.png">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//build-success.png">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//select_hadoop2.png">
-<meta property="og:image" content="http://www.ikroal.xyz/.xyz//editConf.png">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//maven-1.png">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//maven-2.png">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//build-success.png">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//select_hadoop2.png">
+<meta property="og:image" content="http://www.ikroal.cn/.cn//editConf.png">
 <meta property="article:published_time" content="2019-09-07T00:36:03.000Z">
 <meta property="article:modified_time" content="2019-09-07T11:27:24.411Z">
 <meta property="article:author" content="ikroal">
 <meta property="article:tag" content="图计算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.ikroal.xyz/.xyz//maven-1.png">
+<meta name="twitter:image" content="http://www.ikroal.cn/.cn//maven-1.png">
 
-<link rel="canonical" href="http://www.ikroal.xyz/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/">
+<link rel="canonical" href="http://www.ikroal.cn/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/">
 
 
 <script id="page-configurations">
@@ -221,7 +221,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.ikroal.xyz/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="http://www.ikroal.cn/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
@@ -317,8 +317,8 @@
 <p>本部分通过实现最短路径算法说明 Giraph 的编程流程</p>
 <ol type="1">
 <li><p>创建 Maven 工程</p>
-<p><img src="/.xyz//maven-1.png"></p>
-<p><img src="/.xyz//maven-2.png"></p></li>
+<p><img src="/.cn//maven-1.png"></p>
+<p><img src="/.cn//maven-2.png"></p></li>
 <li><p>添加相关依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--添加 Giraph 依赖--&gt;</span>&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.giraph<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>giraph-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.0-hadoop2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--添加 Hadoop 依赖--&gt;</span>&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>创建 ShortestPathComputation 类</p>
@@ -368,10 +368,10 @@
 <li><p>编译源码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Phadoop_2 -DskipTests clean package</span><br></pre></td></tr></table></figure>
 <p>成功后将会输出</p>
-<p><img src="/.xyz//build-success.png"></p></li>
+<p><img src="/.cn//build-success.png"></p></li>
 <li><p>使用 IDEA 打开 giraph 源码目录</p>
 <p>在 Maven 的 Profies 页面选择 hadoop2 ( 默认是 hadoop1 )</p>
-<p><img src="/.xyz//select_hadoop2.png"></p></li>
+<p><img src="/.cn//select_hadoop2.png"></p></li>
 </ol>
 <h3 id="增加自定义入口">增加自定义入口</h3>
 <p>Giraph 提供了一个位于 giraph-core/src/main/java/org/apache/giraph 下的入口类 GiraphRunner。但该类比较繁琐并且不能自动删除输出文件，不太利于本地调试阅读 Giraph 的源码。因此最好是增加一个自定义的入口类。</p>
@@ -383,7 +383,7 @@
 <li><p>在 resources 文件夹创建 input 文件夹并放入编程实践中的测试数据 graph_data.txt</p></li>
 <li><p>验证</p>
 <p>修改配置并运行如果在 resources 文件夹下看到输出文件，证明添加自定义入口成功，此时可以进行断点调试</p>
-<p><img src="/.xyz//editConf.png"></p></li>
+<p><img src="/.cn//editConf.png"></p></li>
 </ul>
 <h3 id="问题">问题</h3>
 <ol type="1">
@@ -410,7 +410,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.ikroal.xyz/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/" title="Giraph 编程实践及源码编译调试">http://www.ikroal.xyz/2019/09/07/Giraph编程实践及源码调试/</a>
+    <a href="http://www.ikroal.cn/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/" title="Giraph 编程实践及源码编译调试">http://www.ikroal.cn/2019/09/07/Giraph编程实践及源码调试/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -771,7 +771,7 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://www.ikroal.xyz/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/";
+    this.page.url = "http://www.ikroal.cn/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/";
     this.page.identifier = "2019/09/07/Giraph编程实践及源码调试/";
     this.page.title = "Giraph 编程实践及源码编译调试";
     };
