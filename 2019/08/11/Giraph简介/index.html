@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Yesteryear:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -31,13 +31,13 @@
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="前言 本文主要阐述了 Giraph 由来及其作用，并根据 Giraph 的系统架构和计算模型简要介绍了 Giraph 的运行流程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//Giraph_Compute_Progress.png">
+<meta property="og:image" content="http://www.ikroal.cn/2019/08/11/Giraph%E7%AE%80%E4%BB%8B/Giraph_Compute_Progress.png">
 <meta property="article:published_time" content="2019-08-11T07:27:06.000Z">
 <meta property="article:modified_time" content="2019-09-07T11:27:06.359Z">
 <meta property="article:author" content="ikroal">
 <meta property="article:tag" content="图计算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.ikroal.cn/.cn//Giraph_Compute_Progress.png">
+<meta name="twitter:image" content="http://www.ikroal.cn/2019/08/11/Giraph%E7%AE%80%E4%BB%8B/Giraph_Compute_Progress.png">
 
 <link rel="canonical" href="http://www.ikroal.cn/2019/08/11/Giraph%E7%AE%80%E4%BB%8B/">
 
@@ -336,7 +336,7 @@
 <!--![](Giraph简介/Giraph_Bsp.png)-->
 <p>上图显示了 Superstep 的结构图，一个 Superstep 由<strong>局部计算</strong>、<strong>通讯</strong>、<strong>栅栏同步</strong> 三个部分构成。可以看到即使有部分的计算比较快，但最终还是会在栅栏同步这里停下等待其余的计算完成。在图计算中应用这种模型的好处是：可以解决图计算的同步问题，同步模型有利于推断程序语义（即利于编程），并且消除了死锁和数据竞争的问题。</p>
 <h3 id="计算过程">计算过程</h3>
-<p><img src="/.cn//Giraph_Compute_Progress.png"></p>
+<p><img src="/2019/08/11/Giraph%E7%AE%80%E4%BB%8B/Giraph_Compute_Progress.png"></p>
 <p>上图展示了一个计算图中顶点最大值的过程，其中深色的顶点表示本次 Superstep 结束之后将自己标记为不活跃状态（即不再需要进行计算），当所有顶点均处于不活跃状态的时候即表明计算结束。下面针对各个 Superstep 进行分析：</p>
 <ul>
 <li><p>Superstep0</p>

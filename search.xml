@@ -834,27 +834,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu 14.04下AVD的创建以及闪退问题</title>
-    <url>/2017/08/24/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BAVD%E7%9A%84%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%97%AA%E9%80%80/</url>
-    <content><![CDATA[<p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：<br></p>
-<blockquote>
-<p>An error occurred while creating the AVD. See idea.log for details</p>
-</blockquote>
-<p>在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sudo aptitude -f install lib32stdc++6 去解决依赖问题，这条语句使用一次可能并不能解决问题，实际当中我运行了三次才解决了依赖的冲突的问题，每一次运行的时候依次选择 no-&gt;yes-&gt;yes。具体要运行几次，必须看 lib32stdc++6 库是否安装成功。<span id="more"></span></p>
-<p>在经过上述的操作之后，虽然 AVD 可能能成功创建，但实际可能还是无法启动，无法启动的原因可能是需要安装 Intel's KVM，具体步骤可以参考<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3V3LWl0LWFjYS9zcGFjZXNjb3V0LWFuZHJvaWQvd2lraS8xLi1TZXR0aW5nLVVwLUFuZHJvaWQtU3R1ZGlvLW9uLVVidW50dSNpbnN0YWxsLWludGVscy1rdm0tZm9yLWJldHRlci1hdmQtcGVyZm9ybWFuY2U=">Setting Up Android Studio on Ubuntu<i class="fa fa-external-link-alt"></i></span>当中的 Install Intel's KVM for Better AVD Performance 部分，在这部分当中只需做到第七步即可，由于我使用的 AndroidStudio 2.3，无法找到第八步所说的选项。</p>
-<p>在安装好所需要的一切库之后，接下来的步骤如下： 1. 创建虚拟机，记下虚拟机名称 2. 进入到 Sdk 路径下的 tools 目录，执行以下指令 &gt; sudo chmod +x emulator &gt; ./emulator -avd 虚拟机名称 -qemu -m 2047 -enable-kvm</p>
-<p>在经过上述的两个步骤之后基本上是能够成功启动了的。</p>
-<hr>
-]]></content>
-      <categories>
-        <category>Android问题记录</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>工具问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>onOptionsItemSelected() 返回值的理解</title>
     <url>/2017/05/03/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95onOptionsItemSelected%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E7%90%86%E8%A7%A3/</url>
     <content><![CDATA[<p>首先查看官方 API 的解释：</p>
@@ -885,6 +864,27 @@
       </categories>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 14.04下AVD的创建以及闪退问题</title>
+    <url>/2017/08/24/Android%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BAVD%E7%9A%84%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%97%AA%E9%80%80/</url>
+    <content><![CDATA[<p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：<br></p>
+<blockquote>
+<p>An error occurred while creating the AVD. See idea.log for details</p>
+</blockquote>
+<p>在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sudo aptitude -f install lib32stdc++6 去解决依赖问题，这条语句使用一次可能并不能解决问题，实际当中我运行了三次才解决了依赖的冲突的问题，每一次运行的时候依次选择 no-&gt;yes-&gt;yes。具体要运行几次，必须看 lib32stdc++6 库是否安装成功。<span id="more"></span></p>
+<p>在经过上述的操作之后，虽然 AVD 可能能成功创建，但实际可能还是无法启动，无法启动的原因可能是需要安装 Intel's KVM，具体步骤可以参考<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3V3LWl0LWFjYS9zcGFjZXNjb3V0LWFuZHJvaWQvd2lraS8xLi1TZXR0aW5nLVVwLUFuZHJvaWQtU3R1ZGlvLW9uLVVidW50dSNpbnN0YWxsLWludGVscy1rdm0tZm9yLWJldHRlci1hdmQtcGVyZm9ybWFuY2U=">Setting Up Android Studio on Ubuntu<i class="fa fa-external-link-alt"></i></span>当中的 Install Intel's KVM for Better AVD Performance 部分，在这部分当中只需做到第七步即可，由于我使用的 AndroidStudio 2.3，无法找到第八步所说的选项。</p>
+<p>在安装好所需要的一切库之后，接下来的步骤如下： 1. 创建虚拟机，记下虚拟机名称 2. 进入到 Sdk 路径下的 tools 目录，执行以下指令 &gt; sudo chmod +x emulator &gt; ./emulator -avd 虚拟机名称 -qemu -m 2047 -enable-kvm</p>
+<p>在经过上述的两个步骤之后基本上是能够成功启动了的。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Android问题记录</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>工具问题</tag>
       </tags>
   </entry>
   <entry>
@@ -987,7 +987,7 @@
 <!--![](Giraph简介/Giraph_Bsp.png)-->
 <p>上图显示了 Superstep 的结构图，一个 Superstep 由<strong>局部计算</strong>、<strong>通讯</strong>、<strong>栅栏同步</strong> 三个部分构成。可以看到即使有部分的计算比较快，但最终还是会在栅栏同步这里停下等待其余的计算完成。在图计算中应用这种模型的好处是：可以解决图计算的同步问题，同步模型有利于推断程序语义（即利于编程），并且消除了死锁和数据竞争的问题。</p>
 <h3 id="计算过程">计算过程</h3>
-<p><img src="/.cn//Giraph_Compute_Progress.png"></p>
+<p><img src="/2019/08/11/Giraph%E7%AE%80%E4%BB%8B/Giraph_Compute_Progress.png"></p>
 <p>上图展示了一个计算图中顶点最大值的过程，其中深色的顶点表示本次 Superstep 结束之后将自己标记为不活跃状态（即不再需要进行计算），当所有顶点均处于不活跃状态的时候即表明计算结束。下面针对各个 Superstep 进行分析：</p>
 <ul>
 <li><p>Superstep0</p>
@@ -1035,8 +1035,8 @@
 <p>本部分通过实现最短路径算法说明 Giraph 的编程流程</p>
 <ol type="1">
 <li><p>创建 Maven 工程</p>
-<p><img src="/.cn//maven-1.png"></p>
-<p><img src="/.cn//maven-2.png"></p></li>
+<p><img src="/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/maven-1.png"></p>
+<p><img src="/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/maven-2.png"></p></li>
 <li><p>添加相关依赖</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--添加 Giraph 依赖--&gt;</span>&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.giraph<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>giraph-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.0-hadoop2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--添加 Hadoop 依赖--&gt;</span>&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>创建 ShortestPathComputation 类</p>
@@ -1086,10 +1086,10 @@
 <li><p>编译源码</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn -Phadoop_2 -DskipTests clean package</span><br></pre></td></tr></table></figure>
 <p>成功后将会输出</p>
-<p><img src="/.cn//build-success.png"></p></li>
+<p><img src="/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/build-success.png"></p></li>
 <li><p>使用 IDEA 打开 giraph 源码目录</p>
 <p>在 Maven 的 Profies 页面选择 hadoop2 ( 默认是 hadoop1 )</p>
-<p><img src="/.cn//select_hadoop2.png"></p></li>
+<p><img src="/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/select_hadoop2.png"></p></li>
 </ol>
 <h3 id="增加自定义入口">增加自定义入口</h3>
 <p>Giraph 提供了一个位于 giraph-core/src/main/java/org/apache/giraph 下的入口类 GiraphRunner。但该类比较繁琐并且不能自动删除输出文件，不太利于本地调试阅读 Giraph 的源码。因此最好是增加一个自定义的入口类。</p>
@@ -1101,7 +1101,7 @@
 <li><p>在 resources 文件夹创建 input 文件夹并放入编程实践中的测试数据 graph_data.txt</p></li>
 <li><p>验证</p>
 <p>修改配置并运行如果在 resources 文件夹下看到输出文件，证明添加自定义入口成功，此时可以进行断点调试</p>
-<p><img src="/.cn//editConf.png"></p></li>
+<p><img src="/2019/09/07/Giraph%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/editConf.png"></p></li>
 </ul>
 <h3 id="问题">问题</h3>
 <ol type="1">
@@ -1130,7 +1130,7 @@
 <h2 id="简介">简介</h2>
 <p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGUvcmVzZWFyY2gvcHVicy9wdWI1MQ==">The Google File System<i class="fa fa-external-link-alt"></i></span> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
 <h2 id="体系架构">体系架构</h2>
-<p><img src="/.cn//HDFS-Structure.png"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Structure.png"></p>
 <p>上图表明 HDFS 是一个标准的 master/slave 架构，主要由三个部分构成：</p>
 <ol type="1">
 <li>NameNode（master 节点）
@@ -1158,14 +1158,14 @@
 </ol>
 <h2 id="执行流程">执行流程</h2>
 <h3 id="读文件">读文件</h3>
-<p><img src="/.cn//HDFS-Read.jpg"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Read.jpg"></p>
 <p>读文件的过程可以概括为：</p>
 <ol type="1">
 <li>Client 向 NameNode 发起请求获取文件数据块位置信息</li>
 <li>Client 按照数据块距 Client 的远近依次进行连接然后读取数据</li>
 </ol>
 <h3 id="写文件">写文件</h3>
-<p><img src="/.cn//HDFS-Write.jpg"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Write.jpg"></p>
 <p>写文件的过程可以概括为：</p>
 <ol type="1">
 <li>Client 向 NameNode 发起写文件的请求获得可写的 DataNode 列表等信息</li>
@@ -1199,7 +1199,7 @@
 <h2 id="编程实例">编程实例</h2>
 <ol type="1">
 <li><p>IDEA 新建 Maven 项目</p>
-<p><img src="/.cn//maven-create.png"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/maven-create.png"></p>
 <p>勾选相关选项后，点击 next 填入项目相关信息即可</p></li>
 <li><p>pom.xml 中添加依赖</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> //根据 Hadoop 版本进行选择</span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-hdfs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
@@ -1216,9 +1216,9 @@
 <li><p>在工程文件夹的根目录下创建计划上传的文件（这里是 demo.txt），填入 Hello World！</p></li>
 <li><p>启动 Hadoop 然后运行程序查看结果</p>
 <p>通过 http://localhost:50070/explorer.html#/ 可以查看写入结果</p>
-<p><img src="/.cn//write.png"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/write.png"></p>
 <p>控制台则会输出上传文件的内容</p>
-<p><img src="/.cn//read.png"></p></li>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/read.png"></p></li>
 </ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
@@ -1635,37 +1635,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python 下 BeautifulSoup 的基本使用</title>
-    <url>/2017/04/05/Python%E4%B8%8BBeautifulSoup%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="beautifulsoup-简介">BeautifulSoup 简介</h2>
-<p>BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.<span id="more"></span></p>
-<h2 id="库的安装">库的安装</h2>
-<p>库的安装参考此篇文章 <a href="/2017/04/04/requests%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="requests 库的使用">requests 库的使用</a></p>
-<h2 id="基本使用">基本使用</h2>
-<ol type="1">
-<li><p>导入 BeautifulSoup<br> <code>from bs4 import BeautifulSoup</code></p></li>
-<li><p>创建文档对象<br> <code>soup = BeautifulSoup(html文档, 'html.parser')</code><br> 配合 Python 内置的 html 解析器，将 html 文档传入 BeautifulSoup 构造方法。</p></li>
-<li>获取数据<br>BeautifulSoup提供了如下几种方式搜索文档获取数据：
-<ul>
-<li><code>find_all()</code> 全文搜索<br> 返回文档中所有符合要求的数据。</li>
-<li><code>find()</code> 单次搜索<br> 返回文档中第一个符合要求的数据。</li>
-<li><code>select()</code> CSS选择器查找<br> <code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code></li>
-</ul>
-<p><code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如：<br> <code>soup.find_all(&quot;a&quot;, limit=2)</code><br> 同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如：<br> <code>titleList = soup.find_all(&quot;a&quot;, &#123;&quot;class&quot;: &quot;fz14&quot;&#125;)</code></p></li>
-</ol>
-<hr>
-<h2 id="参考资料">参考资料</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3J1bW15LmNvbS9zb2Z0d2FyZS9CZWF1dGlmdWxTb3VwL2JzNC9kb2MvaW5kZXguemguaHRtbA==">BeautifulSoup 文档<i class="fa fa-external-link-alt"></i></span> ​</p>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>数据处理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python 下 Excel 的读取与写入</title>
     <url>/2017/04/05/Python-%E4%B8%8BExcel-%E7%9A%84%E8%AF%BB%E5%8F%96%E4%B8%8E%E5%86%99%E5%85%A5/</url>
     <content><![CDATA[<h4 id="前言">前言</h4>
@@ -1694,6 +1663,37 @@
 <li><span class="exturl" data-url="aHR0cDovL3hsc3h3cml0ZXIucmVhZHRoZWRvY3MuaW8vaW5kZXguaHRtbCM=">xlsxwriter 文档<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cDovL3d3dy5qYjUxLm5ldC9hcnRpY2xlLzYzNDk3Lmh0bQ==">Python中使用第三方库xlutils来追加写入Excel文件示例<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>数据处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 下 BeautifulSoup 的基本使用</title>
+    <url>/2017/04/05/Python%E4%B8%8BBeautifulSoup%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="beautifulsoup-简介">BeautifulSoup 简介</h2>
+<p>BeautifulSoup 是一个可以从 HTML 或 XML 文件中提取数据的 Python 库.<span id="more"></span></p>
+<h2 id="库的安装">库的安装</h2>
+<p>库的安装参考此篇文章 <a href="/2017/04/04/requests%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" title="requests 库的使用">requests 库的使用</a></p>
+<h2 id="基本使用">基本使用</h2>
+<ol type="1">
+<li><p>导入 BeautifulSoup<br> <code>from bs4 import BeautifulSoup</code></p></li>
+<li><p>创建文档对象<br> <code>soup = BeautifulSoup(html文档, 'html.parser')</code><br> 配合 Python 内置的 html 解析器，将 html 文档传入 BeautifulSoup 构造方法。</p></li>
+<li>获取数据<br>BeautifulSoup提供了如下几种方式搜索文档获取数据：
+<ul>
+<li><code>find_all()</code> 全文搜索<br> 返回文档中所有符合要求的数据。</li>
+<li><code>find()</code> 单次搜索<br> 返回文档中第一个符合要求的数据。</li>
+<li><code>select()</code> CSS选择器查找<br> <code>soup.select(&quot;td[align] &gt; a[target=_blank]&quot;)</code></li>
+</ul>
+<p><code>find_all()</code> 中可以通过 <code>limit</code> 参数限制结果数量，如：<br> <code>soup.find_all(&quot;a&quot;, limit=2)</code><br> 同时上述的 <code>find_all()</code> 和 <code>find()</code> 也可配合 CSS 选择器进行使用，如：<br> <code>titleList = soup.find_all(&quot;a&quot;, &#123;&quot;class&quot;: &quot;fz14&quot;&#125;)</code></p></li>
+</ol>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3J1bW15LmNvbS9zb2Z0d2FyZS9CZWF1dGlmdWxTb3VwL2JzNC9kb2MvaW5kZXguemguaHRtbA==">BeautifulSoup 文档<i class="fa fa-external-link-alt"></i></span> ​</p>
 ]]></content>
       <categories>
         <category>Python基础</category>
@@ -3108,7 +3108,7 @@ Override的主要作用是：
 <li><p>帮助检查是否正确的复写了父类中的已有方法（如果不小心拼写错误或者方法签名对不上被覆盖的方法，编辑器都会发出警告信息）</p></li>
 <li><p>表示当前方法定义将覆盖超类的方法。</p>
 <p>如果没有正确的复写父类中的方法则会提示 <strong>Method does not override method from its superclass</strong>。</p>
-<p><img src="/.cn//Override-error.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/Override-error.jpg"></p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnhpc8zywyj30el00qglf.jpg"></p></li>
 </ol></li>
 <li><p>Deprecated 在 FatherClass 增加如下方法：</p>
@@ -3117,23 +3117,23 @@ Override的主要作用是：
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> deprecatedMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个时候将会看到 deprecatedMethod() 显示红色，并且编辑器提示<strong>deprecatedMethod() 已经过时了</strong></p></li>
 </ol>
-<p><img src="/.cn//deprecated-error.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/deprecated-error.jpg"></p>
 <ol start="3" type="1">
 <li><p>SuppressWarning 对 BaseAnnotationUse 中的 useDeprecatedMethod 方法进行如下修改</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings(&quot;deprecation&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDeprecatedMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> deprecatedMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过增加 SuppressWarning 抑制了 Deprecated 的警告，deprecatedMethod() 的红色将会消失</p></li>
 </ol>
-<p><img src="/.cn//suppressWarning.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/suppressWarning.jpg"></p>
 <ol start="4" type="1">
 <li><p>SafeVarargs</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SafeVarargs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">faultyMethod</span><span class="params">(List&lt;String&gt;... listStrArray)</span> </span>&#123;</span><br><span class="line">	List[] listArray = listStrArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当把一个不带泛型的对象赋给一个带泛型的变量的时候，往往将会导致”堆污染“，所以在 Java 7 中增加了 SafeVarargs 用于抑制堆污染的警告，SafeVarargs 只能用在参数长度可变的方法或构造方法上，且方法必须声明为static或final，否则会出现编译错误。</p>
-<p><img src="/.cn//SafeVarargs.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/SafeVarargs.jpg"></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc97402j30ns00wglh.jpg"></p></li>
 <li><p>FunctionalInterface</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseInterface</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>FunctionalInterface 是 Java 8 专门为 Lambda 表达式新增的，通过 FunctionalInterface 可以限制接口中只能存在一个抽象方法，如果在 BaseInterface 接口中新增抽象方法，编译时将会提示 BaseInterface 不是函数式接口。</p>
-<p><img src="/.cn//FunctionalInterface.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/FunctionalInterface.jpg"></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnhpc8exc7j30od01vgll.jpg"></p></li>
 </ol>
 <h3 id="元注解">元注解</h3>
@@ -3200,10 +3200,10 @@ Override的主要作用是：
 <li><p>Documented 对于使用被 <span class="citation" data-cites="Documented">@Documented</span> 修饰的注解和不带 <span class="citation" data-cites="Documented">@Documented</span> 修饰的注解，其区别如下：</p></li>
 </ol>
 <figure>
-<img src="/.cn//Documented.jpg" alt="annotation_1"><figcaption>annotation_1</figcaption>
+<img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/Documented.jpg" alt="annotation_1"><figcaption>annotation_1</figcaption>
 </figure>
 <figure>
-<img src="/.cn//noDocumented.jpg" alt="annotation_2"><figcaption>annotation_2</figcaption>
+<img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/noDocumented.jpg" alt="annotation_2"><figcaption>annotation_2</figcaption>
 </figure>
 <ol start="4" type="1">
 <li><p>Inherited</p>
@@ -3259,11 +3259,11 @@ Override的主要作用是：
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rookieyang.myannotationtwo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity_HelloWorld</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    Toast.makeText(context, <span class="string">&quot;HelloWorld&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>想要生成这个类文件需要获取到两点信息：<strong>包名和类名</strong>，通过包名可以使类文件生成在使用注解的包下，便于解析注解的时候加载类文件，通过类名加上 &quot;_HelloWorld&quot; 确保生成的类文件唯一存在，同时也达到了使用注解的类和生成的类绑定的效果。</p>
 <p>接下来需要创建两个 Module，其中一个定义了所有的注解，另外一个定义了 APT，之所以需要定义两个 Module 的原因，其一为了让工程结构更清晰，另一方面定义 APT 需要用到 javax 包。整体的工程结构如下图所示：</p>
-<p><img src="/.cn//project-structure.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/project-structure.jpg"></p>
 <p>之后需要为 annotations-compiler 和 app 模块引入相关依赖</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">annotations-compiler 模块</span><br><span class="line">compile <span class="string">&#x27;com.google.auto.service:auto-service:1.0-rc3&#x27;</span></span><br><span class="line"><span class="function">compile <span class="title">project</span><span class="params">(path: <span class="string">&#x27;:annotations&#x27;</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">app 模块</span></span><br><span class="line"><span class="function">compile <span class="title">project</span><span class="params">(path: <span class="string">&#x27;:annotations&#x27;</span>)</span></span></span><br><span class="line"><span class="function">annotationProcessor <span class="title">project</span><span class="params">(<span class="string">&#x27;:annotations-compiler&#x27;</span>)</span></span></span><br></pre></td></tr></table></figure>
 <p>其中 auto-service 的作用是帮助我们生成下列文件，主要作用是声明注解处理器。</p>
-<p><img src="/.cn//META-INF.jpg"></p>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/META-INF.jpg"></p>
 <p>annotationProcessor 则是为模块指定注解处理器</p>
 <p>配置之后首先在 annotations 模块定义一个 HelloWorld 注解</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.CLASS)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> HelloWorld &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3272,13 +3272,13 @@ Override的主要作用是：
 <p>接下来说下几个有助于理解注解处理器的点：</p>
 <ul>
 <li><p>Elements 是一个获取程序元素信息的接口，例如获取元素的包名、判断是否是重写方法，例如</p>
-<p><img src="/.cn//Elements.jpg"></p></li>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/Elements.jpg"></p></li>
 <li><p>Filer 则是一个支持通过注解处理器创建文件的接口，可以用于创建 Class文件、源文件、资源文件</p>
-<p><img src="/.cn//Filer.jpg"></p></li>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/Filer.jpg"></p></li>
 <li><p>Messager 则是为注解处理器提供的输出错误信息的接口。</p>
-<p><img src="/.cn//Messager.jpg"></p></li>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/Messager.jpg"></p></li>
 <li><p>Element 与 Elements 区别在于 Element 是获取单个程序元素信息的接口，而 Elements 可以获取整个程序的元素信息。除了 Element 之外，上述程序还可以看到 TypeElement，而 TypeElement 是一个继承了 Element 接口的接口，用于表示类元素。实际上 JDK 还提供了很多继承自 Element 的接口用于表示程序中的各项元素，具体的 Element 继承结构如下图所示：</p>
-<p><img src="/.cn//Element.jpg"></p></li>
+<p><img src="/2018/01/15/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E8%A7%A3/Element.jpg"></p></li>
 </ul>
 <p>在编写完注解处理器之后，最后在 App 模块中编写对应的调用代码即可</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//获得生成的类的 Class 对象</span></span><br><span class="line">    Class&lt;?&gt; helloClass = Class.forName(getPackageName() + <span class="string">&quot;.&quot;</span></span><br><span class="line">    + getClass().getSimpleName() + <span class="string">&quot;_HelloWorld&quot;</span>);</span><br><span class="line">    <span class="comment">//利用反射取得 show 方法，然后执行对应的方法即可</span></span><br><span class="line">    Method showMethod = helloClass.getMethod(<span class="string">&quot;show&quot;</span>, Context.class);</span><br><span class="line">    showMethod.invoke(<span class="keyword">this</span>, <span class="keyword">this</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3336,7 +3336,7 @@ Override的主要作用是：
 <p>org.apache.hadoop.mapreduce.JobSubmitter#submitJobInternal</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">JobStatus <span class="title">submitJobInternal</span><span class="params">(Job job, Cluster cluster)</span> </span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> ClassNotFoundException, InterruptedException, IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    ••••••</span><br><span class="line"></span><br><span class="line">    Configuration conf = job.getConfiguration();</span><br><span class="line">    addMRFrameworkToDistributedCache(conf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获得暂存目录， 默认情况下路径生成在 /tmp/hadoop/mapred/staging 下</span></span><br><span class="line">    Path jobStagingArea = JobSubmissionFiles.getStagingDir(cluster, conf);</span><br><span class="line">    ••••••</span><br><span class="line">    <span class="comment">//生成 Job ID</span></span><br><span class="line">    JobID jobId = submitClient.getNewJobID();</span><br><span class="line">    <span class="comment">//设置 Job ID</span></span><br><span class="line">    job.setJobID(jobId);</span><br><span class="line">    <span class="comment">//获得提交 Job 的目录</span></span><br><span class="line">    Path submitJobDir = <span class="keyword">new</span> Path(jobStagingArea, jobId.toString());</span><br><span class="line">    JobStatus status = <span class="keyword">null</span>;</span><br><span class="line">    ••••••</span><br><span class="line">    </span><br><span class="line">    ••••••</span><br><span class="line">    <span class="comment">//实际提交 Job</span></span><br><span class="line">    status = submitClient.submitJob(</span><br><span class="line">        jobId, submitJobDir.toString(), job.getCredentials());</span><br><span class="line">    ••••••</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 submitJobInternal 中，Hadoop 会通过 submitClient 实际提交 Job。submitClient 是一个 ClientProtocol 接口，其有两个实现，由于提交 Job 的时候 Hadoop 运行在 Standalone 模式下，所以这里 submitClient 的实现是 LocalJobRunner。</p>
-<p><img src="/.cn//ClientProtocol.png"></p>
+<p><img src="/2019/09/14/Giraph%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/ClientProtocol.png"></p>
 <h3 id="启动-maptask">启动 MapTask</h3>
 <p>org.apache.hadoop.mapred.LocalJobRunner#submitJob</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> org.apache.hadoop.mapreduce.<span class="function">JobStatus <span class="title">submitJob</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    org.apache.hadoop.mapreduce.JobID jobid, String jobSubmitDir,</span></span></span><br><span class="line"><span class="params"><span class="function">    Credentials credentials)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">  Job job = <span class="keyword">new</span> Job(JobID.downgrade(jobid), jobSubmitDir);</span><br><span class="line">  job.job.setCredentials(credentials);</span><br><span class="line">  <span class="keyword">return</span> job.status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3393,7 +3393,7 @@ Override的主要作用是：
 <p>org.apache.giraph.zk.ZooKeeperManager#createCandidateStamp</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Create a HDFS stamp for this task.  If another task already</span></span><br><span class="line"><span class="comment"> * created it, then this one will fail, which is fine.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createCandidateStamp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ••••••</span><br><span class="line">    fs.mkdirs(baseDirectory);</span><br><span class="line">    ••••••</span><br><span class="line">    fs.mkdirs(serverDirectory);</span><br><span class="line">    ••••••</span><br><span class="line">    <span class="keyword">if</span> (!fs.getFileStatus(baseDirectory).isDir()) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">        <span class="string">&quot;createCandidateStamp: &quot;</span> + baseDirectory +</span><br><span class="line">        <span class="string">&quot; is not a directory, but should be.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ••••••</span><br><span class="line">    <span class="comment">//根据 hostname 和 taskPartition 生成文件名</span></span><br><span class="line">    Path myCandidacyPath = <span class="keyword">new</span> Path(</span><br><span class="line">        taskDirectory, myHostname +</span><br><span class="line">        HOSTNAME_TASK_SEPARATOR + taskPartition);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ••••••</span><br><span class="line">        fs.createNewFile(myCandidacyPath);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        LOG.error(<span class="string">&quot;createCandidateStamp: Failed (maybe previous task &quot;</span> +</span><br><span class="line">            <span class="string">&quot;failed) to create filestamp &quot;</span> + myCandidacyPath, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 createCandidateStamp 方法中，每个 Task 会根据自己的 hostname 和 taskPartition 在 _bsp/_defaultZkManagerDir/_task 下创建对应文件，这些文件将会在系统选择某个 Task 启动 Zookeeper 服务时用到。具体结果如下图所示：</p>
-<p><img src="/.cn//Giraph-CandidateStamp.png"></p>
+<p><img src="/2019/09/14/Giraph%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/Giraph-CandidateStamp.png"></p>
 <p>图中 hostname 是 localhost 的原因在于，运行源码的时候 Hadoop 处于 Standalone 模式。</p>
 <p>在 createCandidateStamp 执行完成之后，ZooKeeperManager#setup 会接着调用 getZooKeeperServerList</p>
 <p>org.apache.giraph.zk.ZooKeeperManager#getZooKeeperServerList</p>

@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Yesteryear:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -31,18 +31,18 @@
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="前言 本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//HDFS-Structure.png">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//HDFS-Read.jpg">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//HDFS-Write.jpg">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//maven-create.png">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//write.png">
-<meta property="og:image" content="http://www.ikroal.cn/.cn//read.png">
+<meta property="og:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Structure.png">
+<meta property="og:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Read.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Write.jpg">
+<meta property="og:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/maven-create.png">
+<meta property="og:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/write.png">
+<meta property="og:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/read.png">
 <meta property="article:published_time" content="2019-05-11T11:52:59.000Z">
 <meta property="article:modified_time" content="2019-05-13T07:37:20.391Z">
 <meta property="article:author" content="ikroal">
 <meta property="article:tag" content="BigData">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.ikroal.cn/.cn//HDFS-Structure.png">
+<meta name="twitter:image" content="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Structure.png">
 
 <link rel="canonical" href="http://www.ikroal.cn/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/">
 
@@ -323,7 +323,7 @@
 <h2 id="简介">简介</h2>
 <p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGUvcmVzZWFyY2gvcHVicy9wdWI1MQ==">The Google File System<i class="fa fa-external-link-alt"></i></span> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
 <h2 id="体系架构">体系架构</h2>
-<p><img src="/.cn//HDFS-Structure.png"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Structure.png"></p>
 <p>上图表明 HDFS 是一个标准的 master/slave 架构，主要由三个部分构成：</p>
 <ol type="1">
 <li>NameNode（master 节点）
@@ -351,14 +351,14 @@
 </ol>
 <h2 id="执行流程">执行流程</h2>
 <h3 id="读文件">读文件</h3>
-<p><img src="/.cn//HDFS-Read.jpg"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Read.jpg"></p>
 <p>读文件的过程可以概括为：</p>
 <ol type="1">
 <li>Client 向 NameNode 发起请求获取文件数据块位置信息</li>
 <li>Client 按照数据块距 Client 的远近依次进行连接然后读取数据</li>
 </ol>
 <h3 id="写文件">写文件</h3>
-<p><img src="/.cn//HDFS-Write.jpg"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/HDFS-Write.jpg"></p>
 <p>写文件的过程可以概括为：</p>
 <ol type="1">
 <li>Client 向 NameNode 发起写文件的请求获得可写的 DataNode 列表等信息</li>
@@ -392,7 +392,7 @@
 <h2 id="编程实例">编程实例</h2>
 <ol type="1">
 <li><p>IDEA 新建 Maven 项目</p>
-<p><img src="/.cn//maven-create.png"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/maven-create.png"></p>
 <p>勾选相关选项后，点击 next 填入项目相关信息即可</p></li>
 <li><p>pom.xml 中添加依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> //根据 Hadoop 版本进行选择</span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-hdfs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
@@ -409,9 +409,9 @@
 <li><p>在工程文件夹的根目录下创建计划上传的文件（这里是 demo.txt），填入 Hello World！</p></li>
 <li><p>启动 Hadoop 然后运行程序查看结果</p>
 <p>通过 http://localhost:50070/explorer.html#/ 可以查看写入结果</p>
-<p><img src="/.cn//write.png"></p>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/write.png"></p>
 <p>控制台则会输出上传文件的内容</p>
-<p><img src="/.cn//read.png"></p></li>
+<p><img src="/2019/05/11/Hadoop%E5%9F%BA%E7%A1%80%E4%B9%8BHDFS/read.png"></p></li>
 </ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
