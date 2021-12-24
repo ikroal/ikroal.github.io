@@ -552,13 +552,6 @@
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Android-Activity/</loc>
-    <lastmod>2021-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.ikroal.cn/tags/Android-Service/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -580,6 +573,13 @@
   </url>
   
   <url>
+    <loc>https://www.ikroal.cn/tags/Android-Activity/</loc>
+    <lastmod>2021-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ikroal.cn/tags/Android-IPC/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -594,13 +594,6 @@
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Introduction/</loc>
-    <lastmod>2021-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.ikroal.cn/tags/HDFS/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -608,7 +601,7 @@
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Hadoop/</loc>
+    <loc>https://www.ikroal.cn/tags/Introduction/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -636,6 +629,13 @@
   </url>
   
   <url>
+    <loc>https://www.ikroal.cn/tags/%E9%9B%86%E5%90%88/</loc>
+    <lastmod>2021-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ikroal.cn/tags/Python-Library/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -657,14 +657,14 @@
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Neo4j/</loc>
+    <loc>https://www.ikroal.cn/tags/Hadoop/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/%E9%9B%86%E5%90%88/</loc>
+    <loc>https://www.ikroal.cn/tags/Neo4j/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -706,13 +706,6 @@
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/BootStrap/</loc>
-    <lastmod>2021-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.ikroal.cn/tags/HTML/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -720,7 +713,7 @@
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Deep-Learning/</loc>
+    <loc>https://www.ikroal.cn/tags/BootStrap/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -728,6 +721,13 @@
   
   <url>
     <loc>https://www.ikroal.cn/tags/Design-Pattern/</loc>
+    <lastmod>2021-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ikroal.cn/tags/Deep-Learning/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
