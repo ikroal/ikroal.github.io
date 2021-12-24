@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="vEjQ7qpz7uux5fXEjFnCsg5iWfvC0yvXSBQL1yFZBPc">
+  <meta name="msvalidate.01" content="D2B864D19843E49C4A4CDA3047A21270">
+  <meta name="baidu-site-verification" content="code-BFuWxKfMA2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Gallery 主要内容：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gallery 的三种实现方式">
+<meta property="og:url" content="https://www.ikroal.cn/posts/f8fbe2b4.html">
+<meta property="og:site_name" content="ikroal&#39;s blog">
+<meta property="og:description" content="Gallery 主要内容：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-result.png">
+<meta property="article:published_time" content="2017-05-08T11:17:49.000Z">
+<meta property="article:modified_time" content="2021-12-24T05:57:00.170Z">
+<meta property="article:author" content="ikroal">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Custom View">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png">
+
+
+<link rel="canonical" href="https://www.ikroal.cn/posts/f8fbe2b4.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.ikroal.cn/posts/f8fbe2b4.html","path":"posts/f8fbe2b4.html","title":"Gallery 的三种实现方式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Gallery 的三种实现方式 | ikroal's blog</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?4a3ebdba3cb748985cab4eace77056b2"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="ikroal's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ikroal's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">祝愿我们在抵达路的末端时,都不会后悔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gallery"><span class="nav-number">1.</span> <span class="nav-text">Gallery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#imageswitcher-%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">ImageSwitcher 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#horizontalscrollview-%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">HorizontalScrollView 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ikroal"
+      src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+  <p class="site-author-name" itemprop="name">ikroal</p>
+  <div class="site-description" itemprop="description">时间能写出未来的结局</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ikroal"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlrcm9hbEBvdXRsb29rLmNvbQ==" title="E-Mail → mailto:ikroal@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.ikroal.cn/posts/f8fbe2b4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+      <meta itemprop="name" content="ikroal">
+      <meta itemprop="description" content="时间能写出未来的结局">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ikroal's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gallery 的三种实现方式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-08 19:17:49" itemprop="dateCreated datePublished" datetime="2017-05-08T19:17:49+08:00">2017-05-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Archived/" itemprop="url" rel="index"><span itemprop="name">Archived</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/f8fbe2b4.html#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/f8fbe2b4.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="gallery">Gallery</h2>
+<p>主要内容：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-mind-mapping.png"></p>
+<span id="more"></span>
+<p>目标效果： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/gallery-result.png"></p>
+<h2 id="需求分析">需求分析</h2>
+<p>从目标效果上来看主要考虑以下几个点：</p>
+<ol type="1">
+<li>图片如何切换和切换动画
+<ul>
+<li>ImageSwitcher 提供了 setImageResource (int resid) 方法对下一个 ImageView 进行图片加载和切换，切换的动画效果需要自定义</li>
+<li>ViewPager 的切换和切换动画内部处理</li>
+<li>HorizontalScrollView 可以通过 smoothScrollBy (int dx, int dy) 方法进行平滑切换</li>
+</ul></li>
+<li>图片的切换方向
+<ul>
+<li>ImageSwitcher 的切换方向需要自己判断</li>
+<li>HorizontalScrollView 的切换方向虽然不用判断，但是滑动距离需要自己控制</li>
+<li>ViewPager 的切换方向无需处理</li>
+</ul></li>
+<li>确定切换时应该加载的图片
+<ul>
+<li>ImageSwitcher 和 HorizontalScrollView 加载图片需要自己判断</li>
+<li>ViewPager 的加载图片无需处理</li>
+</ul></li>
+<li>图片下方的圆点效果，与图片数量一致</li>
+<li>圆点和图片的同步切换</li>
+</ol>
+<h2 id="imageswitcher-实现">ImageSwitcher 实现</h2>
+<ol type="1">
+<li><p>ImageSwitcher 的特点 首先查看 ImageSwitcher 和 ViewSwitcher 的官方 API：</p>
+<blockquote>
+<p>ViewSwitcher that switches between two ImageViews when a new image is set on it. The views added to an ImageSwitcher must all be ImageViews.</p>
+</blockquote>
+<blockquote>
+<p>ViewAnimator that switches between two views, and has a factory from which these views are created. You can either use the factory to create the views, or add them yourself. A ViewSwitcher can only have two child views, of which only one is shown at a time.</p>
+</blockquote>
+<p>官方给出的 API 说明了，ImageSwitcher 里最多只能由两个 ImageView，同一时间只能显示一个，在两个 ImageView 之间能够设置视图切换动画，并且提供了 factory 用于创建两个 ImageView（当然也可以选择自行添加）。</p></li>
+<li><p>实现过程 首先我们需要在布局文件中添加 ImageSwitcher 控件：</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:app</span>=<span class="string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tools:context</span>=<span class="string">&quot;com.rookieyang.gallerytest.ImageSwitcherTest&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ImageSwitcher</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/imageSwitcher&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;30dp&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:id</span>=<span class="string">&quot;@+id/tipsLayout&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:layout_alignParentBottom</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:gravity</span>=<span class="string">&quot;center_horizontal&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure> &gt; 采用 FrameLayout 将圆点部分置于图片的上方，RelativeLayout 用于控制原点部分在底部，LinearLayout 中的属性设置用于将圆点水平居中放置。</p>
+<p>在添加完 ImageSwiter 之后，通过 <code>setFactory(ViewFactory factory)</code> 函数为 ImageSwiter 添加 ImageView：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mImageSwitcher.setFactory(<span class="keyword">new</span> ViewFactory() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">makeView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ImageView imageView = <span class="keyword">new</span> ImageView(ImageSwitcherTest.<span class="keyword">this</span>);</span><br><span class="line">        ImageSwitcher.LayoutParams layoutParams = <span class="keyword">new</span> ImageSwitcher.LayoutParams(</span><br><span class="line">            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);</span><br><span class="line">        imageView.setScaleType(ScaleType.CENTER_CROP);</span><br><span class="line">        imageView.setLayoutParams(layoutParams);</span><br><span class="line">        <span class="keyword">return</span> imageView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure> &gt; 这里为 ImageSwitcher 设置了一个 factory，在 setFactory(ViewFactory factory) 内部会执行两次 obtainView() 完成 View 的增加。</p>
+<p>上述过程只是完成了 ImageView 的添加，实际的图片还没有被加载，由于 ImageSwitcher 的限制，所以我们不能直接将 ImageView 一次性添加进去（这样性能也不高），可以选择用一个数组对图片资源进行保存，在调用 setImageResource() 时进行加载：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] mImageId = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;R.drawable.pic1, R.drawable.pic2, R.drawable.pic3&#125;;</span><br><span class="line">mImageSwitcher.setImageResource(mImageId[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure> 在解决了如何加载图片之后，还需要为图片下方添加圆点效果，圆点的个数由图片的个数决定，代码如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> ImageView[] mTips;</span><br><span class="line"></span><br><span class="line">mTips = <span class="keyword">new</span> ImageView[mImageId.length];</span><br><span class="line">LinearLayout tipsLinearLayout = (LinearLayout) findViewById(R.id.tipsLayout);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mImageId.length; i++) &#123;</span><br><span class="line">    mTips[i] = <span class="keyword">new</span> ImageView(<span class="keyword">this</span>);</span><br><span class="line">    LinearLayout.LayoutParams layoutParams = <span class="keyword">new</span> LayoutParams(</span><br><span class="line">        <span class="keyword">new</span> ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,</span><br><span class="line">            ViewGroup.LayoutParams.WRAP_CONTENT));</span><br><span class="line">    layoutParams.leftMargin = <span class="number">5</span>;</span><br><span class="line">    layoutParams.rightMargin = <span class="number">5</span>;</span><br><span class="line">    tipsLinearLayout.addView(mTips[i], layoutParams);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTipsImage(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setTipsImage</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mImageId.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == position) &#123;</span><br><span class="line">            mTips[i].setImageResource(R.drawable.page_indicator_focused);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mTips[i].setImageResource(R.drawable.page_indicator_unfocused);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 在完成上述步骤之后我们还需要完成的是让图片和圆点同时进行切换、确定切换方向和应该加载的图片以及切换的动画，对于图片的切换方向可以依据第一次按住屏幕和离开屏幕这两点的位置进行判断，而切换时加载的图片则可以用一个变量对当前图片序号进行保存，动画效果则可以定义四个动画（左进，左出，右进、右出）文件：</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--left_in--&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">translate</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:fromXDelta</span>=<span class="string">&quot;-100%p&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:toXDelta</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:duration</span>=<span class="string">&quot;500&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--left_out--&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">translate</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:fromXDelta</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:toXDelta</span>=<span class="string">&quot;-100%p&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:duration</span>=<span class="string">&quot;500&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--right_in--&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">translate</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:fromXDelta</span>=<span class="string">&quot;100%p&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:toXDelta</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:duration</span>=<span class="string">&quot;500&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--right_out--&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">translate</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:fromXDelta</span>=<span class="string">&quot;0&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:toXDelta</span>=<span class="string">&quot;100%p&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:duration</span>=<span class="string">&quot;500&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mDownX;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mCurrentPosition = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    mImageSwitcher.setOnTouchListener(<span class="keyword">new</span> OnTouchListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouch</span><span class="params">(View v, MotionEvent event)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">switch</span> (event.getAction()) &#123;</span><br><span class="line">                <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">                    mDownX = (<span class="keyword">int</span>) event.getX();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">                    <span class="keyword">int</span> upX = (<span class="keyword">int</span>) event.getX();</span><br><span class="line">                    <span class="keyword">if</span> (upX &gt; mDownX) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (mCurrentPosition &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                            mImageSwitcher.setInAnimation(ImageSwitcherTest.<span class="keyword">this</span>,</span><br><span class="line">                                R.anim.left_in);</span><br><span class="line">                            mImageSwitcher.setOutAnimation(ImageSwitcherTest.<span class="keyword">this</span>,</span><br><span class="line">                                R.anim.right_out);</span><br><span class="line">                            mCurrentPosition--;</span><br><span class="line">                            mImageSwitcher.setImageResource(mImageId[mCurrentPosition]);</span><br><span class="line">                            setTipsImage(mCurrentPosition);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (upX &lt; mDownX) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (mCurrentPosition &lt; mImageId.length - <span class="number">1</span>) &#123;</span><br><span class="line">                            mImageSwitcher.setInAnimation(ImageSwitcherTest.<span class="keyword">this</span>,</span><br><span class="line">                                R.anim.right_in);</span><br><span class="line">                            mImageSwitcher.setOutAnimation(ImageSwitcherTest.<span class="keyword">this</span>,</span><br><span class="line">                                R.anim.left_out);</span><br><span class="line">                            mCurrentPosition++;</span><br><span class="line">                            mImageSwitcher.setImageResource(mImageId[mCurrentPosition]);</span><br><span class="line">                            setTipsImage(mCurrentPosition);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    ​```</span><br><span class="line"></span><br><span class="line">## ViewPager 实现</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> ViewPager 的特点</span><br><span class="line"></span><br><span class="line">    &gt; ViewPager is most often used in conjunction with Fragment, which is a convenient way to supply and manage the lifecycle of each page. There are standard adapters implemented <span class="keyword">for</span> using fragments with the ViewPager, which cover the most common use cases. These are FragmentPagerAdapter and FragmentStatePagerAdapter; each of these classes have simple code showing how to build a full user <span class="class"><span class="keyword">interface</span> <span class="title">with</span> <span class="title">them</span>.</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">ViewPager</span> 一般结合 <span class="title">Fragment</span> 使用，每个页面就是一个 <span class="title">Fragment</span>，系统提供了 <span class="title">FragmentPagerAdapter</span> 和 <span class="title">FragmentStatePagerAdapter</span> 用于填充 <span class="title">ViewPager</span>。</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">2. 实现过程</span></span><br><span class="line"><span class="class">    首先向布局文件中添加 <span class="title">ViewPager</span> 控件：</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    ```<span class="title">XML</span></span></span><br><span class="line"><span class="class">    &lt;?<span class="title">xml</span> <span class="title">version</span></span>=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="line">    &lt;FrameLayout xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">      xmlns:tools=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="line">      android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">      android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">      tools:context=<span class="string">&quot;com.rookieyang.gallerytest.ViewPagerTest&quot;</span>&gt;</span><br><span class="line">    </span><br><span class="line">      &lt;android.support.v4.view.ViewPager</span><br><span class="line">        android:id=<span class="string">&quot;@+id/viewPager&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;match_parent&quot;</span> /&gt;</span><br><span class="line">    </span><br><span class="line">      &lt;RelativeLayout</span><br><span class="line">        android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_marginBottom=<span class="string">&quot;30dp&quot;</span>&gt;</span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">          android:id=<span class="string">&quot;@+id/tipsFragmentLayout&quot;</span></span><br><span class="line">          android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">          android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">          android:layout_alignParentBottom=<span class="string">&quot;true&quot;</span></span><br><span class="line">          android:gravity=<span class="string">&quot;center_horizontal&quot;</span></span><br><span class="line">          android:orientation=<span class="string">&quot;horizontal&quot;</span>/&gt;</span><br><span class="line">      &lt;/RelativeLayout&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure> 布局基本与 ImageSwitcher 一致，只是将 ImageSwitcher 控件替换为 ViewPager。 接下来需要将图片加载到 ViewPager 中去，可以利用 FragmentPagerAdapter 达到这一目的，由于 FragmentPagerAdapter 返回的是 Fragment，所以创建了 ImageFragment 类，用于将 Image 放置到 Fragment中，代码布局如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> View view;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> imageViewRes;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container,</span></span></span><br><span class="line"><span class="params"><span class="function">    Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Inflate the layout for this fragment</span></span><br><span class="line">    view = inflater.inflate(R.layout.fragment_image, container, <span class="keyword">false</span>);</span><br><span class="line">    <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityCreated</span><span class="params">(<span class="meta">@Nullable</span> Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onActivityCreated(savedInstanceState);</span><br><span class="line">    ImageView imageView = (ImageView) view.findViewById(R.id.viewPageImage);</span><br><span class="line">    imageView.setScaleType(ScaleType.CENTER_CROP);</span><br><span class="line">    imageView.setImageResource(imageViewRes);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImageView</span><span class="params">(<span class="keyword">int</span> imageViewRes)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.imageViewRes = imageViewRes;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tools:context</span>=<span class="string">&quot;com.rookieyang.gallerytest.ImageFragment&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/viewPageImage&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure> 接下来实现继承自 FragmentPagerAdapter 的 ImagePagerAdapter 类，代码如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImagePagerAdapter</span> <span class="keyword">extends</span> <span class="title">FragmentPagerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;ImageFragment&gt; mFragments;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ImagePagerAdapter</span><span class="params">(FragmentManager fm, List&lt;ImageFragment&gt; fragments)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(fm);</span><br><span class="line">        mFragments = fragments;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ImageFragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">&quot;getItem&quot;</span>, <span class="string">&quot;getItem: &quot;</span> + mFragments.get(position).getId());</span><br><span class="line">        <span class="keyword">return</span> mFragments.get(position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mFragments.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 在完成上述的步骤之后，利用保存图片资源的数组创建对应个数的 ImageFragment 并保存到 List 中，然后创建一个 ImagePagerAdapter 对象，替 ViewPager 设置适配器即可实现图片的加载和滑动。由于 ViewPager 内部处理了滑动方向和下一张图片加载判断的问题，所以只剩下图片与圆点的同步切换需要进行处理，代码如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">mImageIds = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;R.drawable.pic1, R.drawable.pic2, R.drawable.pic3&#125;;</span><br><span class="line">mTips = <span class="keyword">new</span> ImageView[mImageIds.length];</span><br><span class="line">mViewPager = (ViewPager) findViewById(R.id.viewPager);</span><br><span class="line">ViewGroup viewGroup = (ViewGroup) findViewById(R.id.tipsFragmentLayout);</span><br><span class="line">LinearLayout.LayoutParams layoutParams = <span class="keyword">new</span> LinearLayout.LayoutParams(</span><br><span class="line">    <span class="keyword">new</span> ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));</span><br><span class="line">layoutParams.rightMargin = <span class="number">5</span>;</span><br><span class="line">layoutParams.leftMargin = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mImageIds.length; i++) &#123;</span><br><span class="line">    ImageFragment imageFragment = <span class="keyword">new</span> ImageFragment();</span><br><span class="line">    imageFragment.setImageView(mImageIds[i]);</span><br><span class="line">    mImageFragments.add(imageFragment);</span><br><span class="line">    <span class="keyword">if</span> (mImageIds.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        mTips[i] = <span class="keyword">new</span> ImageView(<span class="keyword">this</span>);</span><br><span class="line">        mTips[i].setImageResource(R.drawable.page_indicator_unfocused);</span><br><span class="line">        viewGroup.addView(mTips[i], layoutParams);</span><br><span class="line">        mTips[mCurrentPosition].setImageResource(R.drawable.page_indicator_focused);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ImagePagerAdapter imagePagerAdapter = <span class="keyword">new</span> ImagePagerAdapter(</span><br><span class="line">    getSupportFragmentManager(), mImageFragments);</span><br><span class="line">mViewPager.setAdapter(imagePagerAdapter);</span><br><span class="line">mViewPager.addOnPageChangeListener(<span class="keyword">new</span> OnPageChangeListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPageScrolled</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">float</span> positionOffset,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">int</span> positionOffsetPixels)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPageSelected</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mImageIds.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mImageIds.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == position) &#123;</span><br><span class="line">                    mTips[i].setImageResource(R.drawable.page_indicator_focused);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    mTips[i].setImageResource(R.drawable.page_indicator_unfocused);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPageScrollStateChanged</span><span class="params">(<span class="keyword">int</span> state)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<h2 id="horizontalscrollview-实现">HorizontalScrollView 实现</h2>
+<ol type="1">
+<li><p>HorizontalScrollView 特点</p>
+<blockquote>
+<p>A HorizontalScrollView is a FrameLayout, meaning you should place one child in it containing the entire contents to scroll; this child may itself be a layout manager with a complex hierarchy of objects. A child that is often used is a LinearLayout in a horizontal orientation, presenting a horizontal array of top-level items that the user can scroll through.</p>
+</blockquote>
+<p>从这里可以了解到如果要实现上面的效果，那么应该在 HorizontalScrollView 放置一个 LinearLayout，然后 LinearLayout 内加载的是要显示的图片，由于是水平滑动，所以 LinearLayout 的方向也要是水平的。</p></li>
+<li><p>实现过程 依旧是添加了 HorizontalScrollView 控件，把放置 ImageSwwitcher 的部分替换为：</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">HorizontalScrollView</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:id</span>=<span class="string">&quot;@+id/horizontalScrollView&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:scrollbars</span>=<span class="string">&quot;none&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:id</span>=<span class="string">&quot;@+id/imageLayout&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">HorizontalScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure> &gt; 为了效果一致去掉了滚动条。</p>
+<p>添加完控件之后，就需要填充 HorizontalScrollView ，为了扩展性，所以创建了一个 HorizontalViewAdapter 类，代码如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HorizontalViewAdapter</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] mImageResIdList;</span><br><span class="line">    <span class="keyword">private</span> Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HorizontalViewAdapter</span><span class="params">(Context context, <span class="keyword">int</span>[] imageResIdList)</span> </span>&#123;</span><br><span class="line">        mContext = context;</span><br><span class="line">        mImageResIdList = imageResIdList;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mImageResIdList.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ImageView <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        ImageView imageView = <span class="keyword">new</span> ImageView(mContext);</span><br><span class="line"></span><br><span class="line">        WindowManager wm = (WindowManager) mContext.</span><br><span class="line">            getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">        DisplayMetrics displayMetrics = <span class="keyword">new</span> DisplayMetrics();</span><br><span class="line">        wm.getDefaultDisplay().getMetrics(displayMetrics);</span><br><span class="line">        <span class="keyword">int</span> width = displayMetrics.widthPixels;</span><br><span class="line">        <span class="keyword">int</span> height = displayMetrics.heightPixels;</span><br><span class="line">        Log.i(<span class="string">&quot;Adpter: &quot;</span>, String.valueOf(width));</span><br><span class="line"></span><br><span class="line">        LinearLayout.LayoutParams layoutParams = <span class="keyword">new</span> LayoutParams(</span><br><span class="line">            <span class="keyword">new</span> ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));</span><br><span class="line">        layoutParams.width = width;</span><br><span class="line">        layoutParams.height = height;</span><br><span class="line"></span><br><span class="line">        imageView.setLayoutParams(layoutParams);</span><br><span class="line">        imageView.setScaleType(ScaleType.CENTER_CROP);</span><br><span class="line">        imageView.setImageResource(mImageResIdList[position]);</span><br><span class="line">        <span class="keyword">return</span> imageView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里图片的长和宽会根据设备的分辨率进行指定，之所以不用 <code>match_parent</code> 的原因是这样会导致显示效果出问题。</p>
+</blockquote>
+<p>在创建完适配器之后，由于 HorizontalScrollView 没有设置适配器的方法，所以需要实现 <code>setAdapter()</code> 方法，代码如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdapter</span><span class="params">(HorizontalViewAdapter horizontalViewAdapter)</span> </span>&#123;</span><br><span class="line">    mTips = <span class="keyword">new</span> ImageView[mImageId.length];</span><br><span class="line">    LinearLayout imageLayout = (LinearLayout) findViewById(R.id.imageLayout);</span><br><span class="line">    LinearLayout tipsLinearLayout = (LinearLayout) findViewById(R.id.horizontalTipsLayout);</span><br><span class="line">    <span class="keyword">int</span> size = horizontalViewAdapter.getCount();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">        ImageView imageView = horizontalViewAdapter.getItem(i);</span><br><span class="line">        imageLayout.addView(imageView);</span><br><span class="line"></span><br><span class="line">        mTips[i] = <span class="keyword">new</span> ImageView(<span class="keyword">this</span>);</span><br><span class="line">        LinearLayout.LayoutParams layoutParams = <span class="keyword">new</span> LayoutParams(</span><br><span class="line">            <span class="keyword">new</span> ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,</span><br><span class="line">                ViewGroup.LayoutParams.WRAP_CONTENT));</span><br><span class="line">        layoutParams.leftMargin = <span class="number">5</span>;</span><br><span class="line">        layoutParams.rightMargin = <span class="number">5</span>;</span><br><span class="line">        tipsLinearLayout.addView(mTips[i], layoutParams);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实现 setAdapter() 方法之后，就可以在 onCreate() 方法中调用了，调用之后图片会被加载到布局中，这时候也可以滑动，但是由于滑动距离没有控制，所以并没有达到想要的效果，由于图片的长度取决于设备的分辨率，所以可以获取设备的长度作为滑动距离，为 HorizontalScrollView 设置监听事件，当触摸屏幕之后进行判断，确定实际滑动的方向，具体代码如下：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取图片滑动距离</span></span><br><span class="line">WindowManager wm = (WindowManager) getApplicationContext().</span><br><span class="line">    getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">DisplayMetrics displayMetrics = <span class="keyword">new</span> DisplayMetrics();</span><br><span class="line">wm.getDefaultDisplay().getMetrics(displayMetrics);</span><br><span class="line">mScrollX = displayMetrics.widthPixels;</span><br><span class="line"><span class="comment">//确定的滑动方向</span></span><br><span class="line"><span class="keyword">final</span> HorizontalScrollView horizontalScrollView = (HorizontalScrollView) findViewById(</span><br><span class="line">    R.id.horizontalScrollView);</span><br><span class="line">horizontalScrollView.setOnTouchListener(<span class="keyword">new</span> OnTouchListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouch</span><span class="params">(View v, MotionEvent event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (event.getAction()) &#123;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">                mDownX = (<span class="keyword">int</span>) event.getX();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">                <span class="keyword">int</span> upX = (<span class="keyword">int</span>) event.getX();</span><br><span class="line">                <span class="keyword">if</span> (upX &gt; mDownX) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (mCurrentPosition &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        mCurrentPosition--;</span><br><span class="line">                        horizontalScrollView.smoothScrollBy(-mScrollX, <span class="number">0</span>);</span><br><span class="line">                        setTipsImage(mCurrentPosition);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (upX &lt; mDownX) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (mCurrentPosition &lt; mImageId.length - <span class="number">1</span>) &#123;</span><br><span class="line">                        mCurrentPosition++;</span><br><span class="line">                        Log.i(<span class="string">&quot;onTouch: &quot;</span>, <span class="string">&quot;onTouch: &quot;</span> + mCurrentPosition);</span><br><span class="line">                        horizontalScrollView.smoothScrollBy(mScrollX, <span class="number">0</span>);</span><br><span class="line">                        setTipsImage(mCurrentPosition);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>HorizontalScrollView 的实现实际上并不完善，因为 ImageView 是一次性全部添加进去的，并没有做优化处理，在虚拟机上运行时，由于超过了堆内存会导致报错。</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ikroal
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.ikroal.cn/posts/f8fbe2b4.html" title="Gallery 的三种实现方式">https://www.ikroal.cn/posts/f8fbe2b4.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Custom-View/" rel="tag"># Custom View</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/c9eff4b4.html" rel="prev" title="onOptionsItemSelected() 返回值的理解">
+                  <i class="fa fa-chevron-left"></i> onOptionsItemSelected() 返回值的理解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/902ef14f.html" rel="next" title="AsyncTask 总结">
+                  AsyncTask 总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ikroal</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">82k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"ikroal","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

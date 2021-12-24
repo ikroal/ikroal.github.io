@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="vEjQ7qpz7uux5fXEjFnCsg5iWfvC0yvXSBQL1yFZBPc">
+  <meta name="msvalidate.01" content="D2B864D19843E49C4A4CDA3047A21270">
+  <meta name="baidu-site-verification" content="code-BFuWxKfMA2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="简介  D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="d3.js 绘制力导向图">
+<meta property="og:url" content="https://www.ikroal.cn/posts/42f7685.html">
+<meta property="og:site_name" content="ikroal&#39;s blog">
+<meta property="og:description" content="简介  D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-A6JxI-hyuww/WPCrNFzHKfI/AAAAAAAAANM/g8eygh02iYo/I/%25255BUNSET%25255D.png">
+<meta property="og:image" content="http://i.imgur.com/eqY9I4G.png">
+<meta property="article:published_time" content="2017-04-13T08:41:47.000Z">
+<meta property="article:modified_time" content="2021-12-24T05:57:00.152Z">
+<meta property="article:author" content="ikroal">
+<meta property="article:tag" content="d3.js">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-A6JxI-hyuww/WPCrNFzHKfI/AAAAAAAAANM/g8eygh02iYo/I/%25255BUNSET%25255D.png">
+
+
+<link rel="canonical" href="https://www.ikroal.cn/posts/42f7685.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.ikroal.cn/posts/42f7685.html","path":"posts/42f7685.html","title":"d3.js 绘制力导向图"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>d3.js 绘制力导向图 | ikroal's blog</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?4a3ebdba3cb748985cab4eace77056b2"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="ikroal's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ikroal's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">祝愿我们在抵达路的末端时,都不会后悔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E5%88%9D%E5%A7%8B%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.</span> <span class="nav-text">确定初始数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B8%83%E5%B1%80"><span class="nav-number">2.2.</span> <span class="nav-text">创建布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-svg"><span class="nav-number">2.3.</span> <span class="nav-text">创建 SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%92%8C%E7%BB%98%E5%88%B6"><span class="nav-number">2.4.</span> <span class="nav-text">转换数据和绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%AE%AD%E5%A4%B4%E5%92%8C%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97"><span class="nav-number">2.5.</span> <span class="nav-text">绘制箭头和添加文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="nav-number">2.6.</span> <span class="nav-text">更新数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ikroal"
+      src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+  <p class="site-author-name" itemprop="name">ikroal</p>
+  <div class="site-description" itemprop="description">时间能写出未来的结局</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ikroal"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlrcm9hbEBvdXRsb29rLmNvbQ==" title="E-Mail → mailto:ikroal@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.ikroal.cn/posts/42f7685.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+      <meta itemprop="name" content="ikroal">
+      <meta itemprop="description" content="时间能写出未来的结局">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ikroal's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          d3.js 绘制力导向图
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-13 16:41:47" itemprop="dateCreated datePublished" datetime="2017-04-13T16:41:47+08:00">2017-04-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Archived/" itemprop="url" rel="index"><span itemprop="name">Archived</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/42f7685.html#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/42f7685.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介">简介</h2>
+<blockquote>
+<p>D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="使用">使用</h2>
+<p>在 HTML 文件中引入：</p>
+<p><code>&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</code></p>
+<h3 id="确定初始数据">确定初始数据</h3>
+<p>初始数据为节点数据 nodes 和 连线数组 links，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [&#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Website&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;ebay&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Antiques&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Baby&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Books&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Business &amp; Industrial&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Cameras &amp; Photo&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Cell Phones &amp; Accessories&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Clothing, Shoes &amp; Accessories&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Coins &amp; Paper Money&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Collectibles&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Computers Tablets &amp; Networking&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Consumer Electronics&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Crafts&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;eBay Motors&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Everything Else&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Health &amp; Beauty&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Home &amp; Garden&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Jewelry &amp; Watches&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Musical Instruments &amp; Gear&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Sporting Goods&#x27;</span>&#125;];</span><br><span class="line">    <span class="keyword">var</span> links = [&#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;source&#x27;</span>: <span class="number">4</span>,</span><br><span class="line">        <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;source&#x27;</span>: <span class="number">8</span>,</span><br><span class="line">        <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">9</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">11</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;source&#x27;</span>: <span class="number">12</span>,</span><br><span class="line">        <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">13</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">14</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">15</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;source&#x27;</span>: <span class="number">16</span>,</span><br><span class="line">        <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">17</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">18</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;, &#123;<span class="string">&#x27;source&#x27;</span>: <span class="number">19</span>, <span class="string">&#x27;target&#x27;</span>: <span class="number">0</span>&#125;];</span><br></pre></td></tr></table></figure>
+<h3 id="创建布局">创建布局</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> force = d3.layout.force()</span><br><span class="line">   .charge(-<span class="number">300</span>).linkDistance(<span class="number">130</span>).size([width, height]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>d3.layout.force()</code> 创建一个力导向图布局。</li>
+<li><code>charge()</code> 设定节点的电荷数，负数则排斥，正数则吸引。</li>
+<li><code>linkDistance()</code> 设置连线的距离。</li>
+<li><code>size([x, y])</code> 设置力导向图的作用范围，用于指定重力中心为（x/2，y/2），所有节点的初始位置限定为 [0,x] 和 [0,y] 之间。</li>
+</ul>
+<h3 id="创建-svg">创建 SVG</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> svg = d3.select(<span class="string">&quot;#graph&quot;</span>).append(<span class="string">&quot;svg&quot;</span>)</span><br><span class="line">        .attr(<span class="string">&quot;width&quot;</span>, <span class="string">&quot;100%&quot;</span>).attr(<span class="string">&quot;height&quot;</span>, <span class="string">&quot;380px&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>append()</code> 用于添加元素</li>
+<li>设置 <code>svg</code> 的长宽</li>
+</ul>
+<h3 id="转换数据和绘制">转换数据和绘制</h3>
+<ul>
+<li><p>设定节点数组和连线数组之后开启布局计算 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">force.nodes(nodes).links(links).start();</span><br></pre></td></tr></table></figure></p></li>
+<li><p>绘制 绑定数组 nodes 和 links，分别添加节点的元素 &lt;circle&gt; 和连线的元素&lt;line&gt;。另外，还要添加文字元素 &lt;text&gt;。各元素的 CSS 样式分别为：node，link，nodeText。代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> link = svg.selectAll(<span class="string">&quot;.link&quot;</span>)</span><br><span class="line">            .data(links);</span><br><span class="line">link.enter()</span><br><span class="line">            .insert(<span class="string">&quot;line&quot;</span>, <span class="string">&quot;.link&quot;</span>)</span><br><span class="line">            .attr(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;link&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> node = svg.selectAll(<span class="string">&quot;.node&quot;</span>)</span><br><span class="line">            .data(nodes);</span><br><span class="line">node.enter()</span><br><span class="line">            .append(<span class="string">&quot;circle&quot;</span>)</span><br><span class="line">            .attr(<span class="string">&quot;class&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;node &quot;</span> + d.label</span><br><span class="line">            &#125;)</span><br><span class="line">            .attr(<span class="string">&quot;r&quot;</span>, <span class="number">25</span>)</span><br><span class="line">            .call(force.drag);</span><br><span class="line"><span class="keyword">var</span> text = svg.selectAll(<span class="string">&quot;.nodeText&quot;</span>)</span><br><span class="line">.data(nodes);</span><br><span class="line">text.enter()</span><br><span class="line">    .append(<span class="string">&quot;text&quot;</span>)</span><br><span class="line">    .attr(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;nodeText&quot;</span>)</span><br><span class="line">    .attr(<span class="string">&quot;x&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> d.x;</span><br><span class="line">    &#125;)</span><br><span class="line">    .attr(<span class="string">&quot;font-size&quot;</span>, <span class="string">&quot;10px&quot;</span>)</span><br><span class="line">    .attr(<span class="string">&quot;text-anchor&quot;</span>, <span class="string">&quot;middle&quot;</span>)</span><br><span class="line">    .attr(<span class="string">&quot;dy&quot;</span>, <span class="string">&quot;.3em&quot;</span>)</span><br><span class="line">    .attr(<span class="string">&quot;y&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> d.y;</span><br><span class="line">    &#125;).text(<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> act_title;</span><br><span class="line">    <span class="keyword">if</span> (d.title.length &gt; <span class="number">8</span>) &#123;</span><br><span class="line">        act_title = d.title.substring(<span class="number">0</span>, <span class="number">8</span>) + <span class="string">&quot;...&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> act_title;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> d.title;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>节点的选择集调用了 <code>call(force.drag)</code>，可以让节点支持鼠标拖拽。</li>
+<li>连线的选择集调用了 <code>insert(&quot;line&quot;, &quot;.link&quot;)</code>，可以确保力导向图进行更新（移除节点后增加节点）之后连线不会覆盖在节点上。</li>
+</ul></li>
+<li><p>在拖动节点之后，图形元素的坐标会发生变化，所以需要设置一个监听器进行更新，代码如下：</p>
+<p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">force.on(<span class="string">&quot;tick&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            link.attr(<span class="string">&quot;x1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> d.source.x;</span><br><span class="line">            &#125;)</span><br><span class="line">                .attr(<span class="string">&quot;y1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> d.source.y;</span><br><span class="line">                &#125;)</span><br><span class="line">                .attr(<span class="string">&quot;x2&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> d.target.x;</span><br><span class="line">                &#125;)</span><br><span class="line">                .attr(<span class="string">&quot;y2&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> d.target.y;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">            node.attr(<span class="string">&quot;transform&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;translate(&quot;</span> + d.x + <span class="string">&quot;,&quot;</span> + d.y + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">                text.attr(<span class="string">&quot;x&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> d.x;</span><br><span class="line">            &#125;)</span><br><span class="line">                .attr(<span class="string">&quot;y&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> d.y;</span><br><span class="line">                &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<pre><code> * `force.on()` 可为三种事件设定监听器，start，tick，end。其中，start 是刚开始运动，end 是运动停止，tick 是表示运动的每一步。
+ * 选择集 node，link，text 上都绑定了数据，当每一次 tick 事件发生时，被绑定的数据被更新，`function(d)` 中的 d 也都更新了。</code></pre>
+<p>增加样式：</p>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.node</span> &#123;</span></span><br><span class="line"><span class="css">        stroke: <span class="number">#222</span>;</span></span><br><span class="line"><span class="css">        stroke-<span class="attribute">width</span>: <span class="number">1.5px</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.link</span> &#123;</span></span><br><span class="line"><span class="css">        stroke: <span class="number">#707071</span>;</span></span><br><span class="line"><span class="css">        stroke-<span class="attribute">opacity</span>: .<span class="number">6</span>;</span></span><br><span class="line"><span class="css">        stroke-<span class="attribute">width</span>: <span class="number">1px</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.node</span><span class="selector-class">.Website</span> &#123;</span></span><br><span class="line"><span class="css">        fill: <span class="number">#ff756e</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.node</span><span class="selector-class">.Sort</span> &#123;</span></span><br><span class="line"><span class="css">        fill: <span class="number">#de9bf9</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.nodeText</span> &#123;</span></span><br><span class="line"><span class="css">        fill: <span class="number">#ffffff</span></span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure>
+<img src="https://lh3.googleusercontent.com/-A6JxI-hyuww/WPCrNFzHKfI/AAAAAAAAANM/g8eygh02iYo/I/%25255BUNSET%25255D.png" alt="效果"><figcaption>效果</figcaption>
+</figure></li>
+</ul>
+<h3 id="绘制箭头和添加文字">绘制箭头和添加文字</h3>
+<ul>
+<li><p>绘制箭头需要用到 SVG 中的标记（marker）。标记 <marker> 写在 <defs></defs> 中，defs 用于定义可重复利用的元素。定义箭头代码如下：</marker></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defs = svg.append(<span class="string">&quot;defs&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> arrowMarker = defs.append(<span class="string">&quot;marker&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;arrow&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;markerUnits&quot;</span>, <span class="string">&quot;strokeWidth&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;markerWidth&quot;</span>, <span class="string">&quot;10&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;markerHeight&quot;</span>, <span class="string">&quot;10&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;viewBox&quot;</span>, <span class="string">&quot;-0 -5 10 10&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;refX&quot;</span>, <span class="string">&quot;35&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;refY&quot;</span>, <span class="string">&quot;0&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;orient&quot;</span>, <span class="string">&quot;auto&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrow_path = <span class="string">&#x27;M 0,-5 L 10 ,0 L 0,5 L5,0 L0,-5&#x27;</span>;</span><br><span class="line"></span><br><span class="line">arrowMarker.append(<span class="string">&quot;path&quot;</span>)</span><br><span class="line">  .attr(<span class="string">&quot;d&quot;</span>, arrow_path)</span><br><span class="line">  .attr(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;#a6a6a6&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>refX, refY</code> 指的是图形元素和 <code>marker</code> 连接的位置坐标，这里圆的半径设置为 25，箭头的顶点到底部垂直距离为 10，所以设置为（35，0）则箭头的顶端刚好在圆上。</li>
+<li><code>markerUnits</code> 标记大小的基准，有两个值，即 strokeWidth（线的宽度）和 userSpaceOnUse（线前端的大小）。</li>
+<li><code>markerWidth，markerHeight</code> 标识的大小。</li>
+<li><code>orient</code> 绘制方向，可设定为 auto（自动确认方向和角度值）。</li>
+<li><code>id</code> 标识的 id 号。</li>
+<li>粉红色框是 viewBox 范围，黑色为 arrow_path 的轨迹： <img src="http://i.imgur.com/eqY9I4G.png" alt="arro"></li>
+<li><code>link.attr('marker-end', 'url(#arrow)');</code>可以为连接线添加箭头。</li>
+</ul></li>
+<li><p>为连接线增加文字，首先需要定义 &lt;path&gt; 确定文字放在连接线路径上，再定义 &lt;text&gt;，之后在 &lt;text&gt; 添加 &lt;textPath&gt; 引用路径，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义文字路径</span></span><br><span class="line"><span class="keyword">var</span> linkpaths = svg.selectAll(<span class="string">&quot;.linkpath&quot;</span>)</span><br><span class="line">            .data(links_data);</span><br><span class="line">linkpaths.enter()</span><br><span class="line">            .append(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">            .attr(<span class="string">&#x27;d&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&#x27;M &#x27;</span> + d.source.x + <span class="string">&#x27; &#x27;</span> + d.source.y + <span class="string">&#x27; L &#x27;</span> + d.target.x + <span class="string">&#x27; &#x27;</span> + d.target.y</span><br><span class="line">            &#125;)</span><br><span class="line">            .attr(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;linkpath&#x27;</span>)</span><br><span class="line">            .attr(<span class="string">&#x27;fill-opacity&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">            .attr(<span class="string">&#x27;stroke-opacity&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">            .attr(<span class="string">&#x27;fill&#x27;</span>, <span class="string">&#x27;#ffffff&#x27;</span>)</span><br><span class="line">            .attr(<span class="string">&#x27;stroke&#x27;</span>, <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">            .attr(<span class="string">&#x27;id&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&#x27;linkpath&#x27;</span> + i;</span><br><span class="line">            &#125;)</span><br><span class="line">            .style(<span class="string">&quot;pointer-events&quot;</span>, <span class="string">&quot;none&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义 &lt;text&gt;            </span></span><br><span class="line"><span class="keyword">var</span> linklabels = svg.selectAll(<span class="string">&quot;.linklabel&quot;</span>)</span><br><span class="line">        .data(links_data);</span><br><span class="line">linklabels.enter()</span><br><span class="line">        .append(<span class="string">&#x27;text&#x27;</span>)</span><br><span class="line">        .style(<span class="string">&quot;pointer-events&quot;</span>, <span class="string">&quot;none&quot;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;linklabel&#x27;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;id&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;linklabel&#x27;</span> + i;</span><br><span class="line">        &#125;)</span><br><span class="line">        .attr(<span class="string">&#x27;dx&#x27;</span>, <span class="number">50</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;dy&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;font-size&#x27;</span>, <span class="number">5</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;fill&#x27;</span>, <span class="string">&#x27;#aaa&#x27;</span>);</span><br><span class="line"><span class="comment">//增加 &lt;textPath&gt; 引用 path</span></span><br><span class="line">linklabels.append(<span class="string">&#x27;textPath&#x27;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;xlink:href&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;#linkpath&#x27;</span> + i</span><br><span class="line">        &#125;)</span><br><span class="line">        .style(<span class="string">&quot;pointer-events&quot;</span>, <span class="string">&quot;none&quot;</span>)</span><br><span class="line">        .text(<span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;BELONG&#x27;</span>;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>pointer-events</code> 设置为 none 则不在接收鼠标事件，设置为 all 则在指针在元素中或边缘时接收鼠标事件。</li>
+<li>上述代码只是确保了初始时文字在连接线路径上，所以还需要设置对上述元素的坐标更新。在 <code>force.on()</code> 中增加如下代码：</li>
+</ul>
+<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">linkpaths.attr(<span class="string">&#x27;d&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = <span class="string">&#x27;M &#x27;</span> + d.source.x + <span class="string">&#x27; &#x27;</span> + d.source.y + <span class="string">&#x27; L &#x27;</span> + d.target.x + <span class="string">&#x27; &#x27;</span> + d.target.y;</span><br><span class="line">    <span class="keyword">return</span> path</span><br><span class="line">&#125;);</span><br><span class="line">    </span><br><span class="line">linklabels.attr(<span class="string">&#x27;transform&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d, i</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (d.target.x &lt; d.source.x) &#123;</span><br><span class="line">        bbox = <span class="built_in">this</span>.getBBox();</span><br><span class="line">        <span class="comment">//确保文字不会倒置</span></span><br><span class="line">        rx = bbox.x + bbox.width / <span class="number">2</span>;</span><br><span class="line">        ry = bbox.y + bbox.height / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;rotate(180 &#x27;</span> + rx + <span class="string">&#x27; &#x27;</span> + ry + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;rotate(0)&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure> ### 缩放和拖动 要同时支持鼠标缩放以及拖动，必须处理这两者的事件冲突，代码如下：</p></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zoom = d3.behavior.zoom()</span><br><span class="line">        .scaleExtent([<span class="number">1</span>, <span class="number">10</span>])</span><br><span class="line">        .on(<span class="string">&quot;zoom&quot;</span>, <span class="function"><span class="keyword">function</span> <span class="title">zoomed</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            d3.select(<span class="built_in">this</span>).attr(<span class="string">&quot;transform&quot;</span>,</span><br><span class="line">                <span class="string">&quot;translate(&quot;</span> + d3.event.translate + <span class="string">&quot;)scale(&quot;</span> + d3.event.scale + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">svg.call(d3.behavior.zoom().on(<span class="string">&quot;zoom&quot;</span>, redraw))</span><br><span class="line">        .append(<span class="string">&#x27;g&#x27;</span>);</span><br><span class="line">force.drag()</span><br><span class="line">        .on(<span class="string">&quot;dragstart&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//在拖动节点的时候阻止事件冒泡</span></span><br><span class="line">            d3.event.sourceEvent.stopPropagation();</span><br><span class="line">        &#125;);</span><br><span class="line"><span class="comment">// 缩放之后重绘</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">redraw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   svg.attr(<span class="string">&quot;transform&quot;</span>, <span class="string">&quot;translate(&quot;</span> + d3.event.translate + <span class="string">&quot;)&quot;</span> + <span class="string">&quot; scale(&quot;</span> + d3.event.scale + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dragstart</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">   d3.select(<span class="built_in">this</span>).classed(<span class="string">&quot;fixed&quot;</span>, d.fixed = <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>g 元素</code> 是用来分组用的，它能把多个元素放在一组里，对 <g> 标记实施的样式和渲染会作用到这个分组内的所有元素上。组内的所有元素都会继承 <g> 标记上的所有属性。</g></g></li>
+<li><code>fixed</code> 设置为 true 时，顶点固定不动。</li>
+</ul>
+<h3 id="更新数据">更新数据</h3>
+<p>有时候需要更新数据，更新后力导向图也会跟着变化。由于上述的选择集通过 <code>data()</code> 将数据与元素进行绑定，而绑定的情况分为以下三种： * update：数组长度 = 元素数量 * enter：数组长度 &gt; 元素数量 * exit：数组长度 &lt; 元素数量 所以在更新数据的时候需要分别对这三种情况进行处理，对于 enter 这种没有足够的元素的处理办法是添加元素，对于 exit 这种存在多余元素的处理办法是删除元素，而对于 update 则是进行内容修改。 以节点的更新数据为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = svg.selectAll(<span class="string">&quot;.node&quot;</span>)</span><br><span class="line">    .data(nodes_data);</span><br><span class="line"><span class="comment">//节点数据内容修改</span></span><br><span class="line">node.attr(<span class="string">&quot;class&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;node &quot;</span> + d.label</span><br><span class="line">&#125;)</span><br><span class="line">    .on(<span class="string">&quot;dblclick&quot;</span>, dblclick)</span><br><span class="line">    .attr(<span class="string">&quot;r&quot;</span>, <span class="number">25</span>)</span><br><span class="line">    .call(force.drag)</span><br><span class="line">    .on(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">        keys = d3.keys(d);</span><br><span class="line">        delete_key = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;index&quot;</span>, <span class="string">&quot;weight&quot;</span>, <span class="string">&quot;px&quot;</span>, <span class="string">&quot;py&quot;</span>, <span class="string">&quot;fixed&quot;</span>];</span><br><span class="line">        info = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; delete_key.length; i++) &#123;</span><br><span class="line">            keys.removeByValue(delete_key[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; keys.length; j++) &#123;</span><br><span class="line">            info.push(d[keys[j]])</span><br><span class="line">        &#125;</span><br><span class="line">        showinfo(d.label, keys, info);</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="comment">//增加不足的元素</span></span><br><span class="line">node.enter()</span><br><span class="line">    .append(<span class="string">&quot;circle&quot;</span>)</span><br><span class="line">    .attr(<span class="string">&quot;class&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;node &quot;</span> + d.label</span><br><span class="line">    &#125;)</span><br><span class="line">    .on(<span class="string">&quot;dblclick&quot;</span>, dblclick)</span><br><span class="line">    .attr(<span class="string">&quot;r&quot;</span>, <span class="number">25</span>)</span><br><span class="line">    .call(force.drag)</span><br><span class="line">    .on(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">        keys = d3.keys(d);</span><br><span class="line">        delete_key = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;index&quot;</span>, <span class="string">&quot;weight&quot;</span>, <span class="string">&quot;px&quot;</span>, <span class="string">&quot;py&quot;</span>, <span class="string">&quot;fixed&quot;</span>];</span><br><span class="line">        info = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; delete_key.length; i++) &#123;</span><br><span class="line">            keys.removeByValue(delete_key[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; keys.length; j++) &#123;</span><br><span class="line">            info.push(d[keys[j]])</span><br><span class="line">        &#125;</span><br><span class="line">        showinfo(d.label, keys, info);</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="comment">//删除多余元素</span></span><br><span class="line">node.exit().remove();</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<p><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHpobHp6L2FydGljbGUvZGV0YWlscy8zNjg2OTU2Nw==">理解 update, enter, exit 的使用<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ikroal
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.ikroal.cn/posts/42f7685.html" title="d3.js 绘制力导向图">https://www.ikroal.cn/posts/42f7685.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/d3-js/" rel="tag"># d3.js</a>
+              <a href="/tags/Web/" rel="tag"># Web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/b1f8568d.html" rel="prev" title="Python 下 Flask 结合 Neo4j 构建管理系统（四）">
+                  <i class="fa fa-chevron-left"></i> Python 下 Flask 结合 Neo4j 构建管理系统（四）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/4321ef0c.html" rel="next" title="d3.js 绘制柱形图">
+                  d3.js 绘制柱形图 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ikroal</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">82k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"ikroal","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

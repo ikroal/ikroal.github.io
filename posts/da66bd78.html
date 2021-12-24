@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="vEjQ7qpz7uux5fXEjFnCsg5iWfvC0yvXSBQL1yFZBPc">
+  <meta name="msvalidate.01" content="D2B864D19843E49C4A4CDA3047A21270">
+  <meta name="baidu-site-verification" content="code-BFuWxKfMA2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="问题 在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？ 此篇文章将针对 init 部分给出分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 启动过程简析（一）之 init 进程">
+<meta property="og:url" content="https://www.ikroal.cn/posts/da66bd78.html">
+<meta property="og:site_name" content="ikroal&#39;s blog">
+<meta property="og:description" content="问题 在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？ 此篇文章将针对 init 部分给出分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/zygote-value.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/zygote-process.png">
+<meta property="article:published_time" content="2017-10-28T05:51:42.000Z">
+<meta property="article:modified_time" content="2021-12-24T05:57:00.172Z">
+<meta property="article:author" content="ikroal">
+<meta property="article:tag" content="SourceCode Analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ikroal/blog-images/master/zygote-value.png">
+
+
+<link rel="canonical" href="https://www.ikroal.cn/posts/da66bd78.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.ikroal.cn/posts/da66bd78.html","path":"posts/da66bd78.html","title":"Android 启动过程简析（一）之 init 进程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Android 启动过程简析（一）之 init 进程 | ikroal's blog</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?4a3ebdba3cb748985cab4eace77056b2"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="ikroal's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ikroal's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">祝愿我们在抵达路的末端时,都不会后悔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">启动流程简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">init 启动流程分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E8%BF%90%E8%A1%8C-bootloader"><span class="nav-number">3.1.</span> <span class="nav-text">加载运行 BootLoader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init-%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%AF%E5%8A%A8"><span class="nav-number">3.2.</span> <span class="nav-text">init 进程的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#android-init-language"><span class="nav-number">3.2.1.</span> <span class="nav-text">Android Init Language</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init.rc-%E8%A7%A3%E6%9E%90"><span class="nav-number">3.2.2.</span> <span class="nav-text">init.rc 解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#actionparser-%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">3.2.3.</span> <span class="nav-text">ActionParser 解析过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#serviceparser-%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">3.2.4.</span> <span class="nav-text">ServiceParser 解析过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#actions-%E7%9A%84%E8%A7%A6%E5%8F%91"><span class="nav-number">3.2.5.</span> <span class="nav-text">Actions 的触发</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thanks"><span class="nav-number">5.</span> <span class="nav-text">Thanks</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ikroal"
+      src="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+  <p class="site-author-name" itemprop="name">ikroal</p>
+  <div class="site-description" itemprop="description">时间能写出未来的结局</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ikroal"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmlrcm9hbEBvdXRsb29rLmNvbQ==" title="E-Mail → mailto:ikroal@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lrcm9hbA==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.ikroal.cn/posts/da66bd78.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
+      <meta itemprop="name" content="ikroal">
+      <meta itemprop="description" content="时间能写出未来的结局">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ikroal's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android 启动过程简析（一）之 init 进程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-28 13:51:42" itemprop="dateCreated datePublished" datetime="2017-10-28T13:51:42+08:00">2017-10-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/da66bd78.html#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/da66bd78.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="问题">问题</h2>
+<p>在进入到 Android 启动过程之前先让我们思考以下几个问题 1. Android 系统的启动过程是怎样的？ 2. init 、zygote 进程是什么？在系统启动的过程中各自发挥了什么作用？ 3. AMS、PMS 等这些服务是如何被启动的？ 4. Launcher 是如何被启动的？</p>
+<p>此篇文章将针对 init 部分给出分析<span id="more"></span></p>
+<h2 id="启动流程简述">启动流程简述</h2>
+<p>在了解 init 部分之前，首先简单介绍下系统的启动流程以便抓住主线，当我们通过电源键开启系统的时候，系统首先会加载 bootloader 程序到 RAM 中，然后通过 bootloader 将内核程序加载到 RAM 中，之后内核程序会创建init 进程，在 init 进程中会创建 zygote 进程，而 zygote 进程则会创建 DVM 并且启动 SystemServer 进程，通过SystemServer 系统会启动一系列的服务，包括常见的 AMS、PMS 等，最后再通过 AMS 进入到我们熟知的 Launcher 程序。 所以整个流程的关键点在于 <strong>init 进程如何创建 zygote、zygote 进程如何创建 SystemServer、SystemServer 进程如何启动 AMS、AMS 如何启动 Launcher。</strong></p>
+<h2 id="init-启动流程分析">init 启动流程分析</h2>
+<p>由于 bootloader 和内核不是关心的重点，所以这里只是简单介绍它们的作用。</p>
+<h3 id="加载运行-bootloader">加载运行 BootLoader</h3>
+<p>在电源上电之后，CPU 中的操作控制器将发出控制信号，将程序计数器（PC）的内容送至地址寄存器（AR），之后启动对主存的读操作，最终将 BootLoader 加载到 RAM 当中。然后 BootLoader 开始执行，主要负责硬件的初始化，将内核程序加载到内存。</p>
+<h3 id="init-进程的启动">init 进程的启动</h3>
+<p>内核启动之后将会初始化软硬件环境，加载驱动程序，挂载根文件系统，然后创建 init 进程，init 作为系统中的第一个用户进程，其进程号为 1，在创建 init 进程之时，系统会执行位于 <strong>system/core/init </strong>下的 init.cpp 程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">   ...</span><br><span class="line">    <span class="comment">//创建用户空间目录并挂载</span></span><br><span class="line">    <span class="keyword">if</span> (is_first_stage) &#123;</span><br><span class="line">        <span class="built_in">mount</span>(<span class="string">&quot;tmpfs&quot;</span>, <span class="string">&quot;/dev&quot;</span>, <span class="string">&quot;tmpfs&quot;</span>, MS_NOSUID, <span class="string">&quot;mode=0755&quot;</span>);</span><br><span class="line">        <span class="built_in">mkdir</span>(<span class="string">&quot;/dev/pts&quot;</span>, <span class="number">0755</span>);</span><br><span class="line">        <span class="built_in">mkdir</span>(<span class="string">&quot;/dev/socket&quot;</span>, <span class="number">0755</span>);</span><br><span class="line">        <span class="built_in">mount</span>(<span class="string">&quot;devpts&quot;</span>, <span class="string">&quot;/dev/pts&quot;</span>, <span class="string">&quot;devpts&quot;</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">define</span> MAKE_STR(x) __STRING(x)</span></span><br><span class="line">        <span class="built_in">mount</span>(<span class="string">&quot;proc&quot;</span>, <span class="string">&quot;/proc&quot;</span>, <span class="string">&quot;proc&quot;</span>, <span class="number">0</span>, <span class="string">&quot;hidepid=2,gid=&quot;</span> <span class="built_in">MAKE_STR</span>(AID_READPROC));</span><br><span class="line">        <span class="built_in">mount</span>(<span class="string">&quot;sysfs&quot;</span>, <span class="string">&quot;/sys&quot;</span>, <span class="string">&quot;sysfs&quot;</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   ...</span><br><span class="line"></span><br><span class="line">    <span class="built_in">signal_handler_init</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">property_load_boot_defaults</span>();</span><br><span class="line">    <span class="built_in">export_oem_lock_status</span>();</span><br><span class="line">    <span class="comment">//启动属性服务</span></span><br><span class="line">    <span class="built_in">start_property_service</span>();</span><br><span class="line">  	</span><br><span class="line">   ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> BuiltinFunctionMap function_map;</span><br><span class="line">    Action::<span class="built_in">set_function_map</span>(&amp;function_map);</span><br><span class="line"></span><br><span class="line">    Parser&amp; parser = Parser::<span class="built_in">GetInstance</span>();</span><br><span class="line">    parser.<span class="built_in">AddSectionParser</span>(<span class="string">&quot;service&quot;</span>,std::make_unique&lt;ServiceParser&gt;());</span><br><span class="line">    parser.<span class="built_in">AddSectionParser</span>(<span class="string">&quot;on&quot;</span>, std::make_unique&lt;ActionParser&gt;());</span><br><span class="line">    parser.<span class="built_in">AddSectionParser</span>(<span class="string">&quot;import&quot;</span>, std::make_unique&lt;ImportParser&gt;());</span><br><span class="line">    <span class="comment">//解析 init.rc 文件</span></span><br><span class="line">    parser.<span class="built_in">ParseConfig</span>(<span class="string">&quot;/init.rc&quot;</span>);</span><br><span class="line">   ...</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到 init 进程主要做了三件事情：<strong>创建用户空间文件夹并挂载、启动属性服务、解析位于 system文件夹下的 init.rc 文件</strong>。 这里我们主要关注解析 init.rc 文件的过程，因为 zygote 进程就是在这个过程中创建的。</p>
+<h4 id="android-init-language">Android Init Language</h4>
+<p>由于 init.rc 是一个用 Android 初始化语言（AIL）编写的文件，为了更好的理解 rc 文件的解析过程需要了解一部分 AIL 语法。 AIL 主要有五种类型语句 Actions、Commands、Services、Options、Imports，在 AIL 中每个部分(语句块)表示为一个 Section，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">on boot</span><br><span class="line">    ifup lo</span><br><span class="line">    hostname localhost</span><br><span class="line">    domainname localdomain</span><br></pre></td></tr></table></figure>
+<p>五种语句中只有 Actions、Services、Import 可以用于确定一个 Section。其中 Actions 由一系列 command 组成，Actions 拥有一个 trigger 用于确定何时执行这些命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">on &lt;trigger&gt;</span><br><span class="line">    &lt;command&gt;</span><br><span class="line">    &lt;command&gt;</span><br><span class="line">    &lt;command&gt;</span><br><span class="line"> </span><br><span class="line">on early-init //触发器 early-init</span><br><span class="line">    write /proc/1/oom_score_adj -1000 //command</span><br><span class="line">    write /proc/sys/kernel/sysrq 0</span><br></pre></td></tr></table></figure>
+<p>Services 由一些 option 组成，其在初始化的时候启动，并可以在退出后重启（可选）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">service &lt;name&gt; &lt;pathname&gt; [ &lt;argument&gt; ]*  //服务名、执行路径、参数</span><br><span class="line">        &lt;option&gt;  </span><br><span class="line">        &lt;option&gt; </span><br><span class="line">        </span><br><span class="line">service ueventd /sbin/ueventd </span><br><span class="line">    class core</span><br><span class="line">    critical</span><br><span class="line">    seclabel u:r:ueventd:s0</span><br></pre></td></tr></table></figure>
+<p>Services 定义了自身的服务名、执行路径以及执行时传入的参数，option 用于指定何时和怎样启动 service，关于何时启动这里进行一下说明，Actions 中有一条命令是 class_start <服务类别名> 用于启动所有未运行的相同类别的 service，而 option 可以通过 class <类别名> 对 service 的类别名进行指定。<strong>所以 service 的启动一般是通过 action 触发之后执行 class_start 命令进行启动的。</strong> AIL 的介绍就到这了，<strong>如果想要详细了解请阅读 system/core/init 下的 readme.txt 文件</strong></类别名></服务类别名></p>
+<h4 id="init.rc-解析">init.rc 解析</h4>
+<p>system/core/rootdir/init.rc 现在接着分析 init.rc 文件，在文件的首部可以看到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> /init.environ.rc</span><br><span class="line"><span class="keyword">import</span> /init.usb.rc</span><br><span class="line"><span class="keyword">import</span> /init.$&#123;ro.hardware&#125;.rc</span><br><span class="line"><span class="keyword">import</span> /init.usb.configfs.rc</span><br><span class="line"><span class="keyword">import</span> /init.$&#123;ro.zygote&#125;.rc</span><br></pre></td></tr></table></figure>
+<p>在这里可以看到需要启动的 zygote，但是与其它引入的 rc 文件相比 zygote 部分并没有使用确定的值，而是使用 ${ro.zygote} 变量去替代，这是因为从 Android 在 5.0 以后开始支持 64 位程序，所以需要根据系统中 ro.zygote 属性的值动态引入。ro.zygote 的值可以通过 adb shell getprop 进行查询，我的手机查询结果是：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/zygote-value.png"></p>
+<p>这说明手机会启动两个 zygote 进程，对应的执行程序分别是 app_process64 (主模式)、app_process32，通过 adb shell ps | grep zygote 可以看到确实存在两个 zygote 进程</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/zygote-process.png"></p>
+<p>接着查看与 init.rc 同一目录下的 init.zygote64_32.rc 文件 system/core/rootdir/init.zygote64_32.rc</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">service zygote /system/bin/app_process64 -Xzygote /system/bin --zygote --start-system-server --socket-name=zygote</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">main</span></span></span><br><span class="line"><span class="class">    <span class="title">socket</span> <span class="title">zygote</span> <span class="title">stream</span> 660 <span class="title">root</span> <span class="title">system</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">write</span> /<span class="title">sys</span>/<span class="title">android_power</span>/<span class="title">request_state</span> <span class="title">wake</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">write</span> /<span class="title">sys</span>/<span class="title">power</span>/<span class="title">state</span> <span class="title">on</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">audioserver</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">cameraserver</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">media</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">netd</span></span></span><br><span class="line"><span class="class">    <span class="title">writepid</span> /<span class="title">dev</span>/<span class="title">cpuset</span>/<span class="title">foreground</span>/<span class="title">tasks</span> /<span class="title">sys</span>/<span class="title">fs</span>/<span class="title">cgroup</span>/<span class="title">stune</span>/<span class="title">foreground</span>/<span class="title">tasks</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">service</span> <span class="title">zygote_secondary</span> /<span class="title">system</span>/<span class="title">bin</span>/<span class="title">app_process32</span> -<span class="title">Xzygote</span> /<span class="title">system</span>/<span class="title">bin</span> --<span class="title">zygote</span> --<span class="title">socket</span>-<span class="title">name</span></span>=zygote_secondary</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">main</span></span></span><br><span class="line"><span class="class">    <span class="title">socket</span> <span class="title">zygote_secondary</span> <span class="title">stream</span> 660 <span class="title">root</span> <span class="title">system</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">zygote</span></span></span><br><span class="line"><span class="class">    <span class="title">writepid</span> /<span class="title">dev</span>/<span class="title">cpuset</span>/<span class="title">foreground</span>/<span class="title">tasks</span> /<span class="title">dev</span>/<span class="title">stune</span>/<span class="title">foreground</span>/<span class="title">tasks</span></span></span><br></pre></td></tr></table></figure>
+<p>前文说过 service 的启动和类别名相关，这里两个 zygote service 的类别名都是 main，所以要想知道 zygote 怎么被启动的我们可以在 init.rc 中搜索 class_start main，可以发现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">on nonencrypted</span><br><span class="line">    # A/B update verifier that marks a successful boot.</span><br><span class="line">    exec - root -- /system/bin/update_verifier nonencrypted</span><br><span class="line">    class_start main</span><br><span class="line">    class_start late_start</span><br></pre></td></tr></table></figure>
+<p>从这里我们可以了解到当 nonencrypted 这个触发器被触发的时候 zygote 就会被启动，所以启动 zygote 的问题就转变为<strong>这个触发器什么时候执行？class_start 对应的处理函数是什么？</strong>要想知道答案，必须回到 init.cpp 的解析过程当中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Parser&amp; parser = Parser::<span class="built_in">GetInstance</span>();</span><br><span class="line">parser.<span class="built_in">AddSectionParser</span>(<span class="string">&quot;service&quot;</span>,std::make_unique&lt;ServiceParser&gt;());</span><br><span class="line">parser.<span class="built_in">AddSectionParser</span>(<span class="string">&quot;on&quot;</span>, std::make_unique&lt;ActionParser&gt;());</span><br><span class="line">parser.<span class="built_in">AddSectionParser</span>(<span class="string">&quot;import&quot;</span>, std::make_unique&lt;ImportParser&gt;());</span><br><span class="line">parser.<span class="built_in">ParseConfig</span>(<span class="string">&quot;/init.rc&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>init.rc 交由一个 Parser 对象进行解析，而 Parser 的实现在 system/core/init/init_parser.cpp 文件中，让我们进入到 init_parser.cpp 中查看 AddSectionParser 的实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Parser::AddSectionParser</span><span class="params">(<span class="keyword">const</span> std::string&amp; name,</span></span></span><br><span class="line"><span class="params"><span class="function">                              std::unique_ptr&lt;SectionParser&gt; parser)</span> </span>&#123;</span><br><span class="line">    section_parsers_[name] = std::<span class="built_in">move</span>(parser);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//init_parser.h 中 section_parsers_ 的定义</span></span><br><span class="line">std::map&lt;std::string, std::unique_ptr&lt;SectionParser&gt;&gt; section_parsers_;</span><br></pre></td></tr></table></figure>
+<p>可以看到每一个 parser 最终被保存在 section_parsers_ 中，section_parsers_ 是什么？查看 init_parser.h 中的定义可以知道，section_parsers_ 是一个 map 集合，所以 section_parsers_ 的作用是将 parser 与对应的 Section 进行绑定。 在添加完所有的 parser 之后就会调用 Parser 的 ParseConfig 方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Parser::ParseConfig</span><span class="params">(<span class="keyword">const</span> std::string&amp; path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">is_dir</span>(path.<span class="built_in">c_str</span>())) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ParseConfigDir</span>(path);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">ParseConfigFile</span>(path);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ParseConfig 中会对 path 进行判断，如果是目录则调用 ParseConfigDir 进行递归然后再通过 ParseConfigFile 进行解析。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Parser::ParseConfigDir</span><span class="params">(<span class="keyword">const</span> std::string&amp; path)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">INFO</span>(<span class="string">&quot;Parsing directory %s...\n&quot;</span>, path.<span class="built_in">c_str</span>());</span><br><span class="line">    <span class="function">std::unique_ptr&lt;DIR, <span class="title">int</span><span class="params">(*)</span><span class="params">(DIR*)</span>&gt; <span class="title">config_dir</span><span class="params">(opendir(path.c_str()), closedir)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (!config_dir) &#123;</span><br><span class="line">        <span class="built_in">ERROR</span>(<span class="string">&quot;Could not import directory &#x27;%s&#x27;\n&quot;</span>, path.<span class="built_in">c_str</span>());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dirent* current_file;</span><br><span class="line">    <span class="keyword">while</span> ((current_file = <span class="built_in">readdir</span>(config_dir.<span class="built_in">get</span>()))) &#123;</span><br><span class="line">        std::string current_path =</span><br><span class="line">            android::base::<span class="built_in">StringPrintf</span>(<span class="string">&quot;%s/%s&quot;</span>, path.<span class="built_in">c_str</span>(), current_file-&gt;d_name);</span><br><span class="line">        <span class="comment">// Ignore directories and only process regular files.</span></span><br><span class="line">        <span class="keyword">if</span> (current_file-&gt;d_type == DT_REG) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">ParseConfigFile</span>(current_path)) &#123; <span class="comment">//调用 ParseConfigFile 进行解析</span></span><br><span class="line">                <span class="built_in">ERROR</span>(<span class="string">&quot;could not import file &#x27;%s&#x27;\n&quot;</span>, current_path.<span class="built_in">c_str</span>());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终在 ParseConfigFile 中通过 ParseData 进行解析</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Parser::ParseConfigFile</span><span class="params">(<span class="keyword">const</span> std::string&amp; path)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">INFO</span>(<span class="string">&quot;Parsing file %s...\n&quot;</span>, path.<span class="built_in">c_str</span>());</span><br><span class="line">    Timer t;</span><br><span class="line">    std::string data;</span><br><span class="line">  <span class="comment">//从 rc 文件中读取内容保存在 data 中</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">read_file</span>(path.<span class="built_in">c_str</span>(), &amp;data)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data.<span class="built_in">push_back</span>(<span class="string">&#x27;\n&#x27;</span>); <span class="comment">// <span class="doctag">TODO:</span> fix parse_config.</span></span><br><span class="line">    <span class="built_in">ParseData</span>(path, data); <span class="comment">//调用 ParseData 进行解析</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ParseData 解析过程如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Parser::ParseData</span><span class="params">(<span class="keyword">const</span> std::string&amp; filename, <span class="keyword">const</span> std::string&amp; data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//<span class="doctag">TODO:</span> Use a parser with const input and remove this copy</span></span><br><span class="line">    <span class="function">std::vector&lt;<span class="keyword">char</span>&gt; <span class="title">data_copy</span><span class="params">(data.begin(), data.end())</span></span>; <span class="comment">//将 rc 中的内容保存在 vector 中便于逐个字符进行解析</span></span><br><span class="line">    data_copy.<span class="built_in">push_back</span>(<span class="string">&#x27;\0&#x27;</span>);</span><br><span class="line">  </span><br><span class="line">    parse_state state;</span><br><span class="line">    state.filename = filename.<span class="built_in">c_str</span>();</span><br><span class="line">    state.line = <span class="number">0</span>;</span><br><span class="line">    state.ptr = &amp;data_copy[<span class="number">0</span>];</span><br><span class="line">    state.nexttoken = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    SectionParser* section_parser = <span class="literal">nullptr</span>;</span><br><span class="line">    std::vector&lt;std::string&gt; args; <span class="comment">//存放的是每行的内容</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="built_in"><span class="keyword">switch</span></span> (<span class="built_in">next_token</span>(&amp;state)) &#123;</span><br><span class="line">        <span class="keyword">case</span> T_EOF:</span><br><span class="line">            <span class="keyword">if</span> (section_parser) &#123;</span><br><span class="line">                section_parser-&gt;<span class="built_in">EndSection</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">case</span> T_NEWLINE:</span><br><span class="line">            state.line++;</span><br><span class="line">            <span class="comment">//如果 args 为空则不进行解析（rc 文件中间存在空行，所以需要判断）</span></span><br><span class="line">            <span class="keyword">if</span> (args.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//判断是不是一个 section 的起始位置（通过能不能获得解析器，可以判断 args[0] 是不是 service、on、import 其中一个）</span></span><br><span class="line">            <span class="keyword">if</span> (section_parsers_.<span class="built_in">count</span>(args[<span class="number">0</span>])) &#123;</span><br><span class="line">                <span class="keyword">if</span> (section_parser) &#123;</span><br><span class="line">                  <span class="comment">//如果上次存在解析则结束解析</span></span><br><span class="line">                    section_parser-&gt;<span class="built_in">EndSection</span>();</span><br><span class="line">                &#125;</span><br><span class="line">              <span class="comment">//取出对应的解析器</span></span><br><span class="line">                section_parser = section_parsers_[args[<span class="number">0</span>]].<span class="built_in">get</span>();</span><br><span class="line">                std::string ret_err;</span><br><span class="line">              <span class="comment">//进行 Section 解析</span></span><br><span class="line">                <span class="keyword">if</span> (!section_parser-&gt;<span class="built_in">ParseSection</span>(args, &amp;ret_err)) &#123;</span><br><span class="line">                    <span class="built_in">parse_error</span>(&amp;state, <span class="string">&quot;%s\n&quot;</span>, ret_err.<span class="built_in">c_str</span>());</span><br><span class="line">                    section_parser = <span class="literal">nullptr</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (section_parser) &#123; <span class="comment">//不是的话说明 args 中是一个 section 的子块，则进行 Line 解析</span></span><br><span class="line">                std::string ret_err;</span><br><span class="line">                <span class="keyword">if</span> (!section_parser-&gt;<span class="built_in">ParseLineSection</span>(args, state.filename,</span><br><span class="line">                                                      state.line, &amp;ret_err)) &#123;</span><br><span class="line">                    <span class="built_in">parse_error</span>(&amp;state, <span class="string">&quot;%s\n&quot;</span>, ret_err.<span class="built_in">c_str</span>());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//解析完成后清空</span></span><br><span class="line">            args.<span class="built_in">clear</span>();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> T_TEXT:</span><br><span class="line">            args.<span class="built_in">emplace_back</span>(state.text);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ParseData 中通过调用 system/core/init/parser.cpp 中的 next_token 函数对 rc 内容进行分析，如果是 T_TEXT 则会保存在 args 中，如果是 T_NEWLINE 则会交由对应的解析器进行解析。init.rc 的大致解析过程如此，但是到这里我们依旧没能找到所需要的答案，所以需要继续查看 ActionParser 和 ServiceParser 的解析过程。</p>
+<h4 id="actionparser-解析过程">ActionParser 解析过程</h4>
+<p>ActionParser 位于 system/core/init/action.cpp 中，从前面的解析过程来看，最后的解析总是调用了对应 parser 的 ParseSection、ParseLineSection 以及 EndSection，所以我们主要看下这两个部分 ParseSection 的主要工作是创建 Action 对象，为对象添加触发器，并将 action_ 移动至当前 Action 对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ActionParser::ParseSection</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span></span></span><br><span class="line"><span class="params"><span class="function">                                std::string* err)</span> </span>&#123;</span><br><span class="line">    <span class="function">std::vector&lt;std::string&gt; <span class="title">triggers</span><span class="params">(args.begin() + <span class="number">1</span>, args.end())</span></span>;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> action = std::make_unique&lt;Action&gt;(<span class="literal">false</span>);</span><br><span class="line">  <span class="comment">//为 action 增加触发器</span></span><br><span class="line">    <span class="keyword">if</span> (!action-&gt;<span class="built_in">InitTriggers</span>(triggers, err)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//将 aciton_ 指针移动到当前的 action</span></span><br><span class="line">    action_ = std::<span class="built_in">move</span>(action);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//action_ 在 action.h 中的定义</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  std::unique_ptr&lt;Action&gt; action_;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>ParseLineSection 的主要工作为查找对应 command 的处理函数，将创建的 Command 对象添加到到commands_，由于 commands_ 是 Action 的一个域，所以实际上 ParseLineSection 在填充当前 Action 对象的域。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ActionParser::ParseLineSection</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span></span></span><br><span class="line"><span class="params"><span class="function">                                    <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">int</span> line,</span></span></span><br><span class="line"><span class="params"><span class="function">                                    std::string* err)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">  <span class="comment">//将解析的 command 增加到当前 action 的 commands_ 中</span></span><br><span class="line">    <span class="keyword">return</span> action_ ? action_-&gt;<span class="built_in">AddCommand</span>(args, filename, line, err) : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Action::AddCommand</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span></span></span><br><span class="line"><span class="params"><span class="function">                        <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">int</span> line, std::string* err)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">  <span class="comment">//查找对应的 command 的处理函数</span></span><br><span class="line">    <span class="keyword">auto</span> function = function_map_-&gt;<span class="built_in">FindFunction</span>(args[<span class="number">0</span>], args.<span class="built_in">size</span>() - <span class="number">1</span>, err);</span><br><span class="line">    <span class="keyword">if</span> (!function) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">AddCommand</span>(function, args, filename, line);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Action::AddCommand</span><span class="params">(BuiltinFunction f,</span></span></span><br><span class="line"><span class="params"><span class="function">                        <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span></span></span><br><span class="line"><span class="params"><span class="function">                        <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">int</span> line)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//commands_ 增加 command 和对应的处理函数</span></span><br><span class="line">    commands_.<span class="built_in">emplace_back</span>(f, args, filename, line);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//commands_ 在 action.h 中的定义</span></span><br><span class="line">std::vector&lt;Command&gt; commands_;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Command 在 action.h 中的定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Command</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Command</span>(BuiltinFunction f, <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span><br><span class="line">            <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">int</span> line);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">InvokeFunc</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">std::string <span class="title">BuildCommandString</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">std::string <span class="title">BuildSourceString</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    BuiltinFunction func_;</span><br><span class="line">    std::vector&lt;std::string&gt; args_;</span><br><span class="line">    std::string filename_;</span><br><span class="line">    <span class="keyword">int</span> line_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>EndSection 的主要工作是将解析完成的 action （域填充完毕的 Action 对象）添加到 ActionManager 的 acitons_ 中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ActionParser::EndSection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (action_ &amp;&amp; action_-&gt;<span class="built_in">NumCommands</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        ActionManager::<span class="built_in">GetInstance</span>().<span class="built_in">AddAction</span>(std::<span class="built_in">move</span>(action_));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ActionManager::AddAction</span><span class="params">(std::unique_ptr&lt;Action&gt; action)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (old_action_it != actions_.<span class="built_in">end</span>()) &#123;</span><br><span class="line">        (*old_action_it)-&gt;<span class="built_in">CombineAction</span>(*action);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//将解析之后的 action 对象增加到 actions_ 链表中，用于遍历执行。</span></span><br><span class="line">        actions_.<span class="built_in">emplace_back</span>(std::<span class="built_in">move</span>(action));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ActionManager 在 action.h 中的定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ActionManager</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> ActionManager&amp; <span class="title">GetInstance</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">AddAction</span><span class="params">(std::unique_ptr&lt;Action&gt; action)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">QueueEventTrigger</span><span class="params">(<span class="keyword">const</span> std::string&amp; trigger)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">QueuePropertyTrigger</span><span class="params">(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> std::string&amp; value)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">QueueAllPropertyTriggers</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">QueueBuiltinAction</span><span class="params">(BuiltinFunction func, <span class="keyword">const</span> std::string&amp; name)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ExecuteOneCommand</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">HasMoreCommands</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DumpState</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">ActionManager</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">ActionManager</span>(ActionManager <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="keyword">operator</span>=(ActionManager <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</span><br><span class="line"></span><br><span class="line">    std::vector&lt;std::unique_ptr&lt;Action&gt;&gt; actions_; <span class="comment">//actions_ 的定义</span></span><br><span class="line">    std::queue&lt;std::unique_ptr&lt;Trigger&gt;&gt; trigger_queue_;</span><br><span class="line">    std::queue&lt;<span class="keyword">const</span> Action*&gt; current_executing_actions_;</span><br><span class="line">    std::<span class="keyword">size_t</span> current_command_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通过以上分析我们能够知道 class_start 的处理函数和 function_map_ 相关，查看 function_map_ 在 action.h 中的定义可以看到</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> KeywordMap&lt;BuiltinFunction&gt;* function_map_;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_function_map</span><span class="params">(<span class="keyword">const</span> KeywordMap&lt;BuiltinFunction&gt;* function_map)</span> </span>&#123;</span><br><span class="line">    function_map_ = function_map;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以要想知道处理函数是什么只需要知道 set_function_map 在哪里调用？让我们再次回到 init.cpp 中，可以看到</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> BuiltinFunctionMap function_map;</span><br><span class="line">Action::<span class="built_in">set_function_map</span>(&amp;function_map);</span><br></pre></td></tr></table></figure>
+<p>接下来需要找到 BuiltinFunctionMap，BuiltinFunctionMap 的实现我们可以在 builtins.cpp 中找到，其具体的实现 system/core/init/builtins.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BuiltinFunctionMap::Map&amp; <span class="title">BuiltinFunctionMap::map</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constexpr</span> std::<span class="keyword">size_t</span> kMax = std::numeric_limits&lt;std::<span class="keyword">size_t</span>&gt;::<span class="built_in">max</span>();</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Map builtin_functions = &#123;</span><br><span class="line">        ...</span><br><span class="line">        &#123;<span class="string">&quot;class_start&quot;</span>,             &#123;<span class="number">1</span>,     <span class="number">1</span>,    do_class_start&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;class_stop&quot;</span>,              &#123;<span class="number">1</span>,     <span class="number">1</span>,    do_class_stop&#125;&#125;,</span><br><span class="line">        ...</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> builtin_functions;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里就可以确定 class_start 对应的处理函数是 do_class_start，do_class_start 也可在 builtins.cpp 中找到。 简单总结下解析 Action 的过程，<strong>实际上是创建一个 Action 对象，然后为 Action 对象添加 Trigger 以及对应的 Command，其中在添加 Command 的过程中还为 Command 指定了处理函数，最后在将 Action 对象增加到 ActionManager vector 类型的 actions_ 链表当中去。</strong></p>
+<h4 id="serviceparser-解析过程">ServiceParser 解析过程</h4>
+<p>与前文一致，接着看那三个函数 ParseSection 的主要工作是创建 Service 对象，将 service_ 移动至当前 Service 对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ServiceParser::ParseSection</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 std::string* err)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">  <span class="comment">//获取服务名</span></span><br><span class="line">    <span class="keyword">const</span> std::string&amp; name = args[<span class="number">1</span>];</span><br><span class="line">    ...</span><br><span class="line">  <span class="comment">//保存服务名外的参数（如执行路径等）</span></span><br><span class="line">    <span class="function">std::vector&lt;std::string&gt; <span class="title">str_args</span><span class="params">(args.begin() + <span class="number">2</span>, args.end())</span></span>;</span><br><span class="line">  <span class="comment">//将 service_ 指针指向当前 Service 对象</span></span><br><span class="line">    service_ = std::make_unique&lt;Service&gt;(name, <span class="string">&quot;default&quot;</span>, str_args);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//service_ 在 service.h 中的定义</span></span><br><span class="line">std::unique_ptr&lt;Service&gt; service_;</span><br></pre></td></tr></table></figure>
+<p>ParseLineSection 的主要工作是为 Service 中每个 option 指定处理函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ServiceParser::ParseLineSection</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args,</span></span></span><br><span class="line"><span class="params"><span class="function">                                     <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">int</span> line,</span></span></span><br><span class="line"><span class="params"><span class="function">                                     std::string* err)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">  <span class="comment">//为 Service 中的每一个 Option 指定处理函数</span></span><br><span class="line">    <span class="keyword">return</span> service_ ? service_-&gt;<span class="built_in">HandleLine</span>(args, err) : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Service::HandleLine</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args, std::string* err)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> OptionHandlerMap handler_map;</span><br><span class="line">  <span class="comment">//寻找对应 option 的处理函数</span></span><br><span class="line">    <span class="keyword">auto</span> handler = handler_map.<span class="built_in">FindFunction</span>(args[<span class="number">0</span>], args.<span class="built_in">size</span>() - <span class="number">1</span>, err);</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>-&gt;*handler)(args, err);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>EndSection 的主要工作是将解析完成的 service （域填充完毕的 Service 对象）添加到 ServiceManager 的 services_ 中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ServiceParser::EndSection() &#123;</span><br><span class="line">    <span class="keyword">if</span> (service_) &#123;</span><br><span class="line">        ServiceManager::GetInstance().AddService(std::move(service_));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> ServiceManager::AddService(std::unique_ptr&lt;Service&gt; service) &#123;</span><br><span class="line">    Service* old_service = FindServiceByName(service-&gt;name());</span><br><span class="line">    <span class="keyword">if</span> (old_service) &#123;</span><br><span class="line">        ERROR(<span class="string">&quot;ignored duplicate definition of service &#x27;%s&#x27;&quot;</span>,</span><br><span class="line">              service-&gt;name().c_str());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">//将解析之后 service 对象增加到 services_ 链表中</span></span><br><span class="line">    services_.emplace_back(std::move(service));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ServiceManager 在 service.h 中的定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServiceManager</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> ServiceManager&amp; GetInstance();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">AddService</span><span class="params">(std::unique_ptr&lt;Service&gt; service)</span></span>;</span><br><span class="line">    Service* MakeExecOneshotService(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args);</span><br><span class="line">    Service* FindServiceByName(<span class="keyword">const</span> std::string&amp; name) <span class="keyword">const</span>;</span><br><span class="line">    Service* FindServiceByPid(pid_t pid) <span class="keyword">const</span>;</span><br><span class="line">    Service* FindServiceByKeychord(<span class="keyword">int</span> keychord_id) <span class="keyword">const</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ForEachService</span><span class="params">(std::function&lt;<span class="keyword">void</span>(Service*)</span>&gt; callback) <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ForEachServiceInClass</span><span class="params">(<span class="keyword">const</span> std::string&amp; classname,</span></span></span><br><span class="line"><span class="params"><span class="function">                               <span class="keyword">void</span> (*func)</span><span class="params">(Service* svc)</span>) <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ForEachServiceWithFlags</span><span class="params">(unsigned matchflags,</span></span></span><br><span class="line"><span class="params"><span class="function">                             <span class="keyword">void</span> (*func)</span><span class="params">(Service* svc)</span>) <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ReapAnyOutstandingChildren</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RemoveService</span><span class="params">(<span class="keyword">const</span> Service&amp; svc)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DumpState</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ServiceManager();</span><br><span class="line">    <span class="function">bool <span class="title">ReapOneProcess</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> exec_count_; <span class="comment">// Every service needs a unique name.</span></span><br><span class="line">    std::vector&lt;std::unique_ptr&lt;Service&gt;&gt; services_; <span class="comment">//services_ 的定义</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对应的可以看下 option 的处理函数，虽然 OptionHandlerMap 与启动 zygote 无关，但是还是看下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Service::OptionHandlerMap::Map&amp; Service::OptionHandlerMap::<span class="built_in">map</span>() <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">constexpr</span> std::<span class="keyword">size_t</span> kMax = std::numeric_limits&lt;std::<span class="keyword">size_t</span>&gt;::<span class="built_in">max</span>();</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Map option_handlers = &#123;</span><br><span class="line">        &#123;<span class="string">&quot;class&quot;</span>,       &#123;<span class="number">1</span>,     <span class="number">1</span>,    &amp;Service::HandleClass&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;console&quot;</span>,     &#123;<span class="number">0</span>,     <span class="number">0</span>,    &amp;Service::HandleConsole&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;critical&quot;</span>,    &#123;<span class="number">0</span>,     <span class="number">0</span>,    &amp;Service::HandleCritical&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;disabled&quot;</span>,    &#123;<span class="number">0</span>,     <span class="number">0</span>,    &amp;Service::HandleDisabled&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;group&quot;</span>,       &#123;<span class="number">1</span>,     NR_SVC_SUPP_GIDS + <span class="number">1</span>, &amp;Service::HandleGroup&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;ioprio&quot;</span>,      &#123;<span class="number">2</span>,     <span class="number">2</span>,    &amp;Service::HandleIoprio&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;keycodes&quot;</span>,    &#123;<span class="number">1</span>,     kMax, &amp;Service::HandleKeycodes&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;oneshot&quot;</span>,     &#123;<span class="number">0</span>,     <span class="number">0</span>,    &amp;Service::HandleOneshot&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;onrestart&quot;</span>,   &#123;<span class="number">1</span>,     kMax, &amp;Service::HandleOnrestart&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;seclabel&quot;</span>,    &#123;<span class="number">1</span>,     <span class="number">1</span>,    &amp;Service::HandleSeclabel&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;setenv&quot;</span>,      &#123;<span class="number">2</span>,     <span class="number">2</span>,    &amp;Service::HandleSetenv&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;socket&quot;</span>,      &#123;<span class="number">3</span>,     <span class="number">6</span>,    &amp;Service::HandleSocket&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;user&quot;</span>,        &#123;<span class="number">1</span>,     <span class="number">1</span>,    &amp;Service::HandleUser&#125;&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;writepid&quot;</span>,    &#123;<span class="number">1</span>,     kMax, &amp;Service::HandleWritepid&#125;&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> option_handlers;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与解析 Action 类似，<strong>在整个过程中先创建 Service 对象，解析出 Service 的名字和对应的参数添加到对象当中，并且给每个 Option 指定了相应的处理函数</strong> 到这里 rc 文件的解析就结束了，通过 rc 文件的解析使得每个 action 都有了对应的执行函数，<strong>所以接下来的问题是这些 action 是如何被触发的（也即是 command 命令是如何被执行的）？</strong></p>
+<h4 id="actions-的触发">Actions 的触发</h4>
+<p>让我们继续回到 init.cpp 中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ActionManager&amp; am = ActionManager::<span class="built_in">GetInstance</span>();</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!waiting_for_exec) &#123;</span><br><span class="line">        am.<span class="built_in">ExecuteOneCommand</span>();</span><br><span class="line">        <span class="built_in">restart_processes</span>();</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到 action 的 command 的执行是通过 ActionManager 的 ExecuteOneCommand 函数，而ActionManager 的 ExecuteOneCommand 最终调用了 Action 的 ExecuteOneCommand system/core/init/action.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ActionManager::ExecuteOneCommand</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//循环等待，直到队列中不为空</span></span><br><span class="line">    <span class="keyword">while</span> (current_executing_actions_.<span class="built_in">empty</span>() &amp;&amp; !trigger_queue_.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="comment">//遍历 actions_</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; action : actions_) &#123;</span><br><span class="line">            <span class="keyword">if</span> (trigger_queue_.<span class="built_in">front</span>()-&gt;<span class="built_in">CheckTriggers</span>(*action)) &#123;</span><br><span class="line">                <span class="comment">//将 action 加入到 current_executing_actions_ 中</span></span><br><span class="line">                current_executing_actions_.<span class="built_in">emplace</span>(action.<span class="built_in">get</span>());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        trigger_queue_.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="comment">//每次只执行一个 action</span></span><br><span class="line">    <span class="keyword">auto</span> action = current_executing_actions_.<span class="built_in">front</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (current_command_ == <span class="number">0</span>) &#123;</span><br><span class="line">        std::string trigger_name = action-&gt;<span class="built_in">BuildTriggersString</span>();</span><br><span class="line">        <span class="built_in">INFO</span>(<span class="string">&quot;processing action (%s)\n&quot;</span>, trigger_name.<span class="built_in">c_str</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//执行 action 的 command</span></span><br><span class="line">    action-&gt;<span class="built_in">ExecuteOneCommand</span>(current_command_);</span><br><span class="line">  </span><br><span class="line">    ++current_command_;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Action::ExecuteOneCommand</span><span class="params">(std::<span class="keyword">size_t</span> command)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">  <span class="comment">//执行 action 对象中保存的 command</span></span><br><span class="line">    <span class="built_in">ExecuteCommand</span>(commands_[command]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Action::ExecuteCommand</span><span class="params">(<span class="keyword">const</span> Command&amp; command)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    Timer t;</span><br><span class="line">  <span class="comment">//调用 command 对应的处理函数</span></span><br><span class="line">    <span class="keyword">int</span> result = command.<span class="built_in">InvokeFunc</span>();</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述分析可以知道，init 进程最终进入到无限循环中，然后按照 ActionManager 中 actions_ 保存的 action 顺序依次对每个 Action 进行处理，而在这个过程中 system/core/init/builtins.cpp 下用于启动 zygote 的 do_class_start 函数将会被执行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">do_class_start</span><span class="params">(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</span> </span>&#123;</span><br><span class="line">    ServiceManager::<span class="built_in">GetInstance</span>().</span><br><span class="line">        <span class="built_in">ForEachServiceInClass</span>(args[<span class="number">1</span>], [] (Service* s) &#123; s-&gt;<span class="built_in">StartIfNotDisabled</span>(); &#125;);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>do_class_start 函数中调用 Service 的 StartIfNotDisabled，StartIfNotDisabled 在 service.cpp 的实现如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Service::StartIfNotDisabled</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!(flags_ &amp; SVC_DISABLED)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Start</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        flags_ |= SVC_DISABLED_START;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>StartIfNotDisabled 最终调用了 Service 的 Start 函数，Start 函数创建了 zygote 的进程，并且执行了 init.zygote64_32.rc 中定义的执行路径下的文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Service::Start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ....</span><br><span class="line">   <span class="comment">//创建子进程</span></span><br><span class="line">    <span class="keyword">pid_t</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">       <span class="comment">//执行对应 service 对应的执行文件，args_[0].c_str() 就是执行路径</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">execve</span>(args_[<span class="number">0</span>].<span class="built_in">c_str</span>(), (<span class="keyword">char</span>**) &amp;strs[<span class="number">0</span>], (<span class="keyword">char</span>**) ENV) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">ERROR</span>(<span class="string">&quot;cannot execve(&#x27;%s&#x27;): %s\n&quot;</span>, args_[<span class="number">0</span>].<span class="built_in">c_str</span>(), <span class="built_in">strerror</span>(errno));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        _exit(<span class="number">127</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ....</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在完成这一切之后将会进入 frameworks/base/cmds/app_process/app_main.cpp 中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* <span class="keyword">const</span> argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (zygote) &#123;</span><br><span class="line">      <span class="comment">//启动 zygote</span></span><br><span class="line">        runtime.<span class="built_in">start</span>(<span class="string">&quot;com.android.internal.os.ZygoteInit&quot;</span>, args, zygote);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (className) &#123;</span><br><span class="line">        runtime.<span class="built_in">start</span>(<span class="string">&quot;com.android.internal.os.RuntimeInit&quot;</span>, args, zygote);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(stderr, <span class="string">&quot;Error: no class name or --zygote supplied.\n&quot;</span>);</span><br><span class="line">        <span class="built_in">app_usage</span>();</span><br><span class="line">        <span class="built_in">LOG_ALWAYS_FATAL</span>(<span class="string">&quot;app_process: no class name or --zygote supplied.&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到 zygote 最终在 app_main 的 main 函数中被启动。</p>
+<h2 id="总结">总结</h2>
+<p>到这里我们就能够回答对 init 部分相关的问题了 1. init 的作用 init 是系统中的第一个用户进程，它的主要作用是<strong>创建用户空间文件夹并挂载、启动属性服务、解析 init.rc 文件并启动 zygote 进程</strong>。 2. init 启动 zygote 的过程 init 进程通过解析 init.rc 文件将 action 保存在 ActionManager 的 actions_ 链表中，然后通过遍历 actions_ 链表，执行 action 命令对应的处理函数，从而转至 builtins.cpp 的 do_class_start 函数，之后通过 Service 的 StartIfNotDisabled 调用 Service 的 Start 函数，最终通过 Start 函数创建 zygote 进程，执行对应的 app_main.cpp 文件启动 zygote。</p>
+<h2 id="thanks">Thanks</h2>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2F1Z2FtZWxhL2FydGljbGUvZGV0YWlscy81MjEzMzE4Ng==">Android7.0 init进程源码分析<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9uZ2JvY2hlbjEyMjMvYXJ0aWNsZS9kZXRhaWxzLzU2MzMxNjkw">Android Init Language(android初始化语言)<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaXRhY2hpODUvYXJ0aWNsZS9kZXRhaWxzLzU0NzgzNTA2">Android系统启动流程（一）解析init进程启动过程<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ikroal
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.ikroal.cn/posts/da66bd78.html" title="Android 启动过程简析（一）之 init 进程">https://www.ikroal.cn/posts/da66bd78.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/SourceCode-Analysis/" rel="tag"># SourceCode Analysis</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/undefined.html" rel="prev" title="Android 基础之 Selector 的用法">
+                  <i class="fa fa-chevron-left"></i> Android 基础之 Selector 的用法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/32f3dbe6.html" rel="next" title="Android 启动过程简析（二）之 zygote 进程">
+                  Android 启动过程简析（二）之 zygote 进程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ikroal</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">82k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"ikroal","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
