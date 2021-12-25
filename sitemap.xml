@@ -524,14 +524,14 @@
 
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Android-View/</loc>
+    <loc>https://www.ikroal.cn/tags/Android-Problem/</loc>
     <lastmod>2021-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.ikroal.cn/tags/Android-Problem/</loc>
+    <loc>https://www.ikroal.cn/tags/Android-View/</loc>
     <lastmod>2021-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -616,6 +616,13 @@
   
   <url>
     <loc>https://www.ikroal.cn/tags/Java/</loc>
+    <lastmod>2021-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ikroal.cn/tags/Thread/</loc>
     <lastmod>2021-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -721,13 +728,6 @@
   
   <url>
     <loc>https://www.ikroal.cn/tags/Design-Pattern/</loc>
-    <lastmod>2021-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ikroal.cn/tags/Thread/</loc>
     <lastmod>2021-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
