@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.ikroal.cn/posts/a023eb3a.html</loc>
+    
+    <lastmod>2022-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ikroal.cn/posts/fed3b37a.html</loc>
     
     <lastmod>2021-12-24</lastmod>
@@ -517,7 +526,7 @@
 
   <url>
     <loc>https://www.ikroal.cn/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -525,217 +534,224 @@
   
   <url>
     <loc>https://www.ikroal.cn/tags/Android-Problem/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Android-View/</loc>
-    <lastmod>2021-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ikroal.cn/tags/Android-Component/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/SourceCode-Analysis/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ikroal.cn/tags/Android-Component/</loc>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Android-Activity/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Android-Service/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Android/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Custom-View/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Android-IPC/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Deploy/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Introduction/</loc>
-    <lastmod>2021-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ikroal.cn/tags/HDFS/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Hadoop/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ikroal.cn/tags/HDFS/</loc>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Java/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Thread/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/AWT/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Python-Library/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Python/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Flask/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Neo4j/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Scrapy/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Python-Base/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Drawble/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/BootStrap/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Web/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/d3-js/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/HTML/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Deep-Learning/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/Design-Pattern/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/tags/%E6%B3%A8%E8%A7%A3/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ikroal.cn/tags/summary/</loc>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -744,42 +760,49 @@
   
   <url>
     <loc>https://www.ikroal.cn/categories/Archived/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/categories/Android/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/categories/Giraph/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/categories/Hadoop/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/categories/Reading-Notes/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.ikroal.cn/categories/Java/</loc>
-    <lastmod>2021-12-25</lastmod>
+    <lastmod>2022-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ikroal.cn/categories/Thinking/</loc>
+    <lastmod>2022-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

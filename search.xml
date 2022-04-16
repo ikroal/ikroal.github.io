@@ -99,29 +99,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android 基础之 BroastCasts</title>
-    <url>/posts/8c278f8c.html</url>
-    <content><![CDATA[<h4 id="broadcasts-定义及其作用">BroadCasts 定义及其作用</h4>
-<p>BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。 <span id="more"></span> #### BroadCasts 的分类 1. 按作用范围来分： * 全局广播 * 本地广播 本地主要为了解决全局广播的安全性问题，由于全局广播是面向系统中所有应用的，所以当携带一些关键数据时可能会导致数据的泄漏。 2. 按接收顺序来分： * 标准广播 标准广播在发出之后，所有相关的广播接收器几乎能够一次性接收到该条广播。 * 有序广播 有序广播发出后，同一时间只有一个广播接收器能够接收到这条广播消息，只有当该广播接收器当中的处理逻辑处理完成之后，广播才能向下传递，并且优先级高的广播能够截断正在传递的广播。如果多个应用程序设置的优先级别相同，则谁先注册的广播，谁就可以优先接收到广播。</p>
-<h4 id="broadcasts-的使用">BroadCasts 的使用</h4>
-<p>广播机制的使用方法大体按照如下步骤：</p>
-<ol type="1">
-<li>创建广播接收器 Android 系统提供了一个 BroadCastReciver 的抽象类，所以需要创建自己的广播接收器，然后重写当中的 onReceive 方法，在当中编写事件的处理逻辑。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForceReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(<span class="keyword">final</span> Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(context);</span><br><span class="line">        builder.setTitle(<span class="string">&quot;提示&quot;</span>);</span><br><span class="line">        builder.setMessage(<span class="string">&quot;已经被退出&quot;</span>);</span><br><span class="line">        builder.setCancelable(<span class="keyword">false</span>);</span><br><span class="line">        builder.setPositiveButton(<span class="string">&quot;OK&quot;</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">                ActivityCollector.finishActivities();</span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(context, LoginActivity.class);</span><br><span class="line">                context.startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>注册广播 为了进行广播的接收还需要对需要接收的广播进行注册，注册方式可以分为两种： 第一种是动态注册，如果是全局广播则在 Activity 中直接调用 registerReceiver 方法即可，该方法主要接收两个参数，一个是 BroadCastReceiver，第二个则是 IntentFilter。如果是本地广播则需要借助系统提供的 LocalBroadCastManager 去进行注册，方法名与注册全局广播的方法名一致。 全局广播： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">&quot;com.rookieyang.forcelogin&quot;</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure> 本地广播： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">&quot;com.rookieyang.forcelogin&quot;</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(<span class="keyword">this</span>);</span><br><span class="line">localBroadcastManager.registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure> 第二种是静态注册，静态注册可以实现在程序未启动的情况下接收到广播，静态注册的广播是全局广播。 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.BootCompleteReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.BOOT_COMPLETED&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure> &gt; 监听系统的开机广播是需要添加权限的，动态注册相比较于静态注册而言更为灵活，但是静态注册能够实现在应用未启动的情况下接收广播。而且动态注册的广播最后必须要取消注册。</li>
-<li>发送广播 发送广播需要主要通过 Intent 传递信息，如果是是系统广播则不需要我们去编码去发送广播，如果是自定义的广播，发送标准广播则调用 sendBroadCast 方法，发送有序广播则调用 sendOrderedBroadcast 方法。如果是本地广播则和上文一致需要借助 LocalBroadCastManager 进行发送，本地广播没有有序广播。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">&quot;com.rookieyang.forcelogin&quot;</span>);</span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"><span class="comment">//sendOrderedBroadcast(intent);</span></span><br><span class="line">localBroadcastManager.sendBroadcast();</span><br></pre></td></tr></table></figure></li>
-<li>接收处理 接收处理在广播接收器的 onReceive 方法中进行，创建广播接收器中已经说明，在此不再赘述。</li>
-<li>取消注册 静态注册的不需要我们编码去取消注册，对于动态注册的则需要编码去取消注册，如果是全局广播则调用 unregisterReceiver 方法即可，如果是本地广播则调用 LocalBroadCastManager 对象的该方法即可。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">unregisterReceiver(forceReceiver);</span><br><span class="line">localBroadcastManager.unregisterReceiver(forceReceiver);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Android Component</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android启动过程简析（三）之 SystemServer 进程</title>
     <url>/posts/62e007c4.html</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
@@ -208,6 +185,29 @@
       </categories>
       <tags>
         <tag>SourceCode Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 基础之 BroastCasts</title>
+    <url>/posts/8c278f8c.html</url>
+    <content><![CDATA[<h4 id="broadcasts-定义及其作用">BroadCasts 定义及其作用</h4>
+<p>BroadCasts 是一种广播机制，类似于发布-订阅这种机制，当发生一些事件的时候，系统或程序就会发送（发布）一些相关的广播，而注册（订阅）了这些广播的程序就会通过广播接收器去响应这些广播。 <span id="more"></span> #### BroadCasts 的分类 1. 按作用范围来分： * 全局广播 * 本地广播 本地主要为了解决全局广播的安全性问题，由于全局广播是面向系统中所有应用的，所以当携带一些关键数据时可能会导致数据的泄漏。 2. 按接收顺序来分： * 标准广播 标准广播在发出之后，所有相关的广播接收器几乎能够一次性接收到该条广播。 * 有序广播 有序广播发出后，同一时间只有一个广播接收器能够接收到这条广播消息，只有当该广播接收器当中的处理逻辑处理完成之后，广播才能向下传递，并且优先级高的广播能够截断正在传递的广播。如果多个应用程序设置的优先级别相同，则谁先注册的广播，谁就可以优先接收到广播。</p>
+<h4 id="broadcasts-的使用">BroadCasts 的使用</h4>
+<p>广播机制的使用方法大体按照如下步骤：</p>
+<ol type="1">
+<li>创建广播接收器 Android 系统提供了一个 BroadCastReciver 的抽象类，所以需要创建自己的广播接收器，然后重写当中的 onReceive 方法，在当中编写事件的处理逻辑。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForceReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(<span class="keyword">final</span> Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(context);</span><br><span class="line">        builder.setTitle(<span class="string">&quot;提示&quot;</span>);</span><br><span class="line">        builder.setMessage(<span class="string">&quot;已经被退出&quot;</span>);</span><br><span class="line">        builder.setCancelable(<span class="keyword">false</span>);</span><br><span class="line">        builder.setPositiveButton(<span class="string">&quot;OK&quot;</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">                ActivityCollector.finishActivities();</span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(context, LoginActivity.class);</span><br><span class="line">                context.startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>注册广播 为了进行广播的接收还需要对需要接收的广播进行注册，注册方式可以分为两种： 第一种是动态注册，如果是全局广播则在 Activity 中直接调用 registerReceiver 方法即可，该方法主要接收两个参数，一个是 BroadCastReceiver，第二个则是 IntentFilter。如果是本地广播则需要借助系统提供的 LocalBroadCastManager 去进行注册，方法名与注册全局广播的方法名一致。 全局广播： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">&quot;com.rookieyang.forcelogin&quot;</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure> 本地广播： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">&quot;com.rookieyang.forcelogin&quot;</span>);</span><br><span class="line">forceReceiver = <span class="keyword">new</span> ForceReceiver();</span><br><span class="line">LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(<span class="keyword">this</span>);</span><br><span class="line">localBroadcastManager.registerReceiver(forceReceiver, intentFilter);</span><br></pre></td></tr></table></figure> 第二种是静态注册，静态注册可以实现在程序未启动的情况下接收到广播，静态注册的广播是全局广播。 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.BootCompleteReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.BOOT_COMPLETED&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure> &gt; 监听系统的开机广播是需要添加权限的，动态注册相比较于静态注册而言更为灵活，但是静态注册能够实现在应用未启动的情况下接收广播。而且动态注册的广播最后必须要取消注册。</li>
+<li>发送广播 发送广播需要主要通过 Intent 传递信息，如果是是系统广播则不需要我们去编码去发送广播，如果是自定义的广播，发送标准广播则调用 sendBroadCast 方法，发送有序广播则调用 sendOrderedBroadcast 方法。如果是本地广播则和上文一致需要借助 LocalBroadCastManager 进行发送，本地广播没有有序广播。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">&quot;com.rookieyang.forcelogin&quot;</span>);</span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"><span class="comment">//sendOrderedBroadcast(intent);</span></span><br><span class="line">localBroadcastManager.sendBroadcast();</span><br></pre></td></tr></table></figure></li>
+<li>接收处理 接收处理在广播接收器的 onReceive 方法中进行，创建广播接收器中已经说明，在此不再赘述。</li>
+<li>取消注册 静态注册的不需要我们编码去取消注册，对于动态注册的则需要编码去取消注册，如果是全局广播则调用 unregisterReceiver 方法即可，如果是本地广播则调用 LocalBroadCastManager 对象的该方法即可。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">unregisterReceiver(forceReceiver);</span><br><span class="line">localBroadcastManager.unregisterReceiver(forceReceiver);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Android Component</tag>
       </tags>
   </entry>
   <entry>
@@ -802,31 +802,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HorizontalScrollView 和 ViewPager 触控冲突解决</title>
-    <url>/posts/3dd05df.html</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>当 HorizontalScrollView 和 ViewPager 一起使用的时候会出现滑动冲突的问题<span id="more"></span></p>
-<h2 id="解决过程">解决过程</h2>
-<p>要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalScrollView 可以正常滑动，但是 ViewPager 却不能正常滑动，而这个时候我们期望的是边缘滑动时，HorizontalScrollView 响应事件，非边缘滑动时，ViewPager 响应事件，为了达到这一目的我们需要重写 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 函数，具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    mXPoint = ev.getRawX();</span><br><span class="line">    <span class="keyword">if</span> (mXPoint &gt; <span class="number">100</span> &amp;&amp; mXPoint &lt; mMenuWidth) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过限定滑动的屏幕范围决定是否事件在这一层被处理，在这样处理之后 HorizontalScrollView 和 ViewPager 都能正确响应了，但是当 HorizontalScrollView 滑动至终点时，屏幕中间的部分却不能够正确响应 HorizontalScrollView 的滑动事件，所以我们需要做进一步处理，判断 HorizontalScrollView 是否滑动至终点，所以在 <code>onTouchEvent</code> 事件中利用一个 <code>flag</code> 的标志位去判断是否滑动至终点，具体代码如下： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> action = ev.getAction();</span><br><span class="line">    <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">        <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">            <span class="keyword">int</span> scollX = getScrollX();</span><br><span class="line">            <span class="keyword">if</span> (scollX &gt; mMenuHaltWidth) &#123;                    　</span><br><span class="line">                <span class="keyword">this</span>.scrollTo(mMenuWidth, <span class="number">0</span>);</span><br><span class="line">                sMenuFlag = <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;                    </span><br><span class="line">                <span class="keyword">this</span>.scrollTo(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">                sMenuFlag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 　<code>onInterceptTouchEvent()</code> 函数判断条件变为：<br> 　<code>if (mXPoint &gt; 100 &amp;&amp; mXPoint &lt; mMenuWidth &amp;&amp; sMenuFlag == false)</code></p>
-<h2 id="最终效果">最终效果</h2>
-<p><img src="http://i.imgur.com/Dz86zGW.gif"></p>
-<hr>
-<h2 id="参考资料">参考资料</h2>
-<ol type="1">
-<li><span class="exturl" data-url="aHR0cDovL3d3dy4yY3RvLmNvbS9rZi8yMDE0MTIvMzYzMTI4Lmh0bWw=" title="Android 控件的触摸事件传递与处理">Android 控件的触摸事件传递与处理<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS96aHV5cDEwMTUvcC80NTc5Mzc0Lmh0bWw=" title="Android 触摸事件处理机制">Android 触摸事件处理机制<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Android Problem</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>onOptionsItemSelected() 返回值的理解</title>
     <url>/posts/c9eff4b4.html</url>
     <content><![CDATA[<p>首先查看官方 API 的解释：</p>
@@ -860,17 +835,22 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu 14.04下AVD的创建以及闪退问题</title>
-    <url>/posts/37766bd1.html</url>
-    <content><![CDATA[<p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：<br></p>
-<blockquote>
-<p>An error occurred while creating the AVD. See idea.log for details</p>
-</blockquote>
-<p>在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sudo aptitude -f install lib32stdc++6 去解决依赖问题，这条语句使用一次可能并不能解决问题，实际当中我运行了三次才解决了依赖的冲突的问题，每一次运行的时候依次选择 no-&gt;yes-&gt;yes。具体要运行几次，必须看 lib32stdc++6 库是否安装成功。<span id="more"></span></p>
-<p>在经过上述的操作之后，虽然 AVD 可能能成功创建，但实际可能还是无法启动，无法启动的原因可能是需要安装 Intel's KVM，具体步骤可以参考<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3V3LWl0LWFjYS9zcGFjZXNjb3V0LWFuZHJvaWQvd2lraS8xLi1TZXR0aW5nLVVwLUFuZHJvaWQtU3R1ZGlvLW9uLVVidW50dSNpbnN0YWxsLWludGVscy1rdm0tZm9yLWJldHRlci1hdmQtcGVyZm9ybWFuY2U=">Setting Up Android Studio on Ubuntu<i class="fa fa-external-link-alt"></i></span>当中的 Install Intel's KVM for Better AVD Performance 部分，在这部分当中只需做到第七步即可，由于我使用的 AndroidStudio 2.3，无法找到第八步所说的选项。</p>
-<p>在安装好所需要的一切库之后，接下来的步骤如下： 1. 创建虚拟机，记下虚拟机名称 2. 进入到 Sdk 路径下的 tools 目录，执行以下指令 &gt; sudo chmod +x emulator &gt; ./emulator -avd 虚拟机名称 -qemu -m 2047 -enable-kvm</p>
-<p>在经过上述的两个步骤之后基本上是能够成功启动了的。</p>
+    <title>HorizontalScrollView 和 ViewPager 触控冲突解决</title>
+    <url>/posts/3dd05df.html</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>当 HorizontalScrollView 和 ViewPager 一起使用的时候会出现滑动冲突的问题<span id="more"></span></p>
+<h2 id="解决过程">解决过程</h2>
+<p>要了解 HorizontalScrollView 和 ViewPager 触控冲突的原因，首先需要了解Android 触摸事件处理的的机制，在了解后可以知道，当 HorizontalScrollView 内层嵌套使用 ViewPager 时，由于触摸事件被 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 拦截导致事件不能向下层传递，所以当滑动屏幕时，HorizontalScrollView 可以正常滑动，但是 ViewPager 却不能正常滑动，而这个时候我们期望的是边缘滑动时，HorizontalScrollView 响应事件，非边缘滑动时，ViewPager 响应事件，为了达到这一目的我们需要重写 HorizontalScrollView 的 <code>onInterceptTouchEvent()</code> 函数，具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    mXPoint = ev.getRawX();</span><br><span class="line">    <span class="keyword">if</span> (mXPoint &gt; <span class="number">100</span> &amp;&amp; mXPoint &lt; mMenuWidth) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过限定滑动的屏幕范围决定是否事件在这一层被处理，在这样处理之后 HorizontalScrollView 和 ViewPager 都能正确响应了，但是当 HorizontalScrollView 滑动至终点时，屏幕中间的部分却不能够正确响应 HorizontalScrollView 的滑动事件，所以我们需要做进一步处理，判断 HorizontalScrollView 是否滑动至终点，所以在 <code>onTouchEvent</code> 事件中利用一个 <code>flag</code> 的标志位去判断是否滑动至终点，具体代码如下： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> action = ev.getAction();</span><br><span class="line">    <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">        <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">            <span class="keyword">int</span> scollX = getScrollX();</span><br><span class="line">            <span class="keyword">if</span> (scollX &gt; mMenuHaltWidth) &#123;                    　</span><br><span class="line">                <span class="keyword">this</span>.scrollTo(mMenuWidth, <span class="number">0</span>);</span><br><span class="line">                sMenuFlag = <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;                    </span><br><span class="line">                <span class="keyword">this</span>.scrollTo(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">                sMenuFlag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 　<code>onInterceptTouchEvent()</code> 函数判断条件变为：<br> 　<code>if (mXPoint &gt; 100 &amp;&amp; mXPoint &lt; mMenuWidth &amp;&amp; sMenuFlag == false)</code></p>
+<h2 id="最终效果">最终效果</h2>
+<p><img src="http://i.imgur.com/Dz86zGW.gif"></p>
 <hr>
+<h2 id="参考资料">参考资料</h2>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cDovL3d3dy4yY3RvLmNvbS9rZi8yMDE0MTIvMzYzMTI4Lmh0bWw=" title="Android 控件的触摸事件传递与处理">Android 控件的触摸事件传递与处理<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS96aHV5cDEwMTUvcC80NTc5Mzc0Lmh0bWw=" title="Android 触摸事件处理机制">Android 触摸事件处理机制<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
 ]]></content>
       <categories>
         <category>Archived</category>
@@ -949,6 +929,26 @@
       </categories>
       <tags>
         <tag>Deploy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 14.04下AVD的创建以及闪退问题</title>
+    <url>/posts/37766bd1.html</url>
+    <content><![CDATA[<p>在 Ubuntu 14.04 下创建 Android 虚拟机时可能会出现下列错误：<br></p>
+<blockquote>
+<p>An error occurred while creating the AVD. See idea.log for details</p>
+</blockquote>
+<p>在网上查找之后很多人建议使用 sudo apt-get install lib32stdc++6 这条命令，但是实际上采用这条命令去安装会出现依赖冲突的问题，所以需要借助 sudo aptitude -f install lib32stdc++6 去解决依赖问题，这条语句使用一次可能并不能解决问题，实际当中我运行了三次才解决了依赖的冲突的问题，每一次运行的时候依次选择 no-&gt;yes-&gt;yes。具体要运行几次，必须看 lib32stdc++6 库是否安装成功。<span id="more"></span></p>
+<p>在经过上述的操作之后，虽然 AVD 可能能成功创建，但实际可能还是无法启动，无法启动的原因可能是需要安装 Intel's KVM，具体步骤可以参考<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3V3LWl0LWFjYS9zcGFjZXNjb3V0LWFuZHJvaWQvd2lraS8xLi1TZXR0aW5nLVVwLUFuZHJvaWQtU3R1ZGlvLW9uLVVidW50dSNpbnN0YWxsLWludGVscy1rdm0tZm9yLWJldHRlci1hdmQtcGVyZm9ybWFuY2U=">Setting Up Android Studio on Ubuntu<i class="fa fa-external-link-alt"></i></span>当中的 Install Intel's KVM for Better AVD Performance 部分，在这部分当中只需做到第七步即可，由于我使用的 AndroidStudio 2.3，无法找到第八步所说的选项。</p>
+<p>在安装好所需要的一切库之后，接下来的步骤如下： 1. 创建虚拟机，记下虚拟机名称 2. 进入到 Sdk 路径下的 tools 目录，执行以下指令 &gt; sudo chmod +x emulator &gt; ./emulator -avd 虚拟机名称 -qemu -m 2047 -enable-kvm</p>
+<p>在经过上述的两个步骤之后基本上是能够成功启动了的。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Android Problem</tag>
       </tags>
   </entry>
   <entry>
@@ -1110,6 +1110,57 @@
       </categories>
       <tags>
         <tag>SourceCode Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop 基础之生态圈</title>
+    <url>/posts/2b10faae.html</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
+<span id="more"></span>
+<h2 id="hadoop-生态系统">Hadoop 生态系统</h2>
+<p>Hadoop 生态系统是指以 <strong>分布式的文件系统 HDFS</strong>、<strong>分布式的计算框架 MapReduce</strong> 以及<strong>资源管理器 YARN</strong>为基础构成的分布式数据处理系统，其结构图如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png"></p>
+<p>下面将对图中各项组件做一个介绍</p>
+<h3 id="hdfs">HDFS</h3>
+<p>HDFS 是 Google 于 2003 发表的 分布式文件系统 GFS 论文的开源实现版本，主要目的是使用普通商业电脑解决大量数据的存储以及读取速度问题，在 GFS 出现之前一般主要在<strong>单台计算机</strong>用 RAID 来提高数据存储量和读取速度。但是采用 RAID 一方面成本比较高（需求太高时可能只有超级计算机才能满足），另一方面数据量过大时可能超级计算机也无法满足需求。所以这个时候就需要采取<strong>分布式</strong>的方式去满足扩大存储（多台机器多个磁盘）和增加读取速度的需求（多台机器可以同时读）。</p>
+<h3 id="mapreduce">MapReduce</h3>
+<p>MapReduce 是一个分布式的计算框架，在 MapReduce 出现之前就已经有了分布式计算这个概念。但是大多数分布式计算只能专门用于处理一类运算，而 Google 在大量实践中总结出了一个通用的编程模型： <code>map</code> 和 <code>reduce</code>。其中 <code>map</code> 是指分开计算的过程，而 <code>reduce</code> 是指合并结果的过程。而在这一编程模型添加的一系列机制和操作构成了 MapReduce。MapReduce 大大降低了分布式计算的门槛，对于开发人员而言只需要编写一系列 <code>map</code> 和 <code>reduce</code> 函数即可完成所需的分布式计算过程。</p>
+<h3 id="yarn">YARN</h3>
+<p>YARN 是一个资源管理框架，主要作用是负责集群的资源调度和作业任务管理。YARN 的出现源于 Hadoop 不能满足统一使用集群资源的需求，因为 Hadoop1 中集群的资源调度和任务管理与 MapReduce 的执行过程是耦合在一起的，而后续出现的 Spark、Storm 等分布式计算系统其架构和执行过程与 MapReduce 不同，无法直接向 Hadoop 申请集群资源。所以为了实现集群资源的统一管理，在 Hadoop2 中对 MapReduce 进行了一个解耦，抽离出了 YARN 这个框架。</p>
+<h3 id="zookeeper">ZooKeeper</h3>
+<p>Zookeeper 主要作用是提供一个分布式、高可用的协调服务，解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。</p>
+<h3 id="pig">Pig</h3>
+<p>虽然 MapReduce 极大的简化了分布式计算编程的门槛，但是 Yahoo 的工程师依然觉得 MapReduce 编程太过麻烦，所以他们便开发了 Pig 这个脚本语言用于描述对大数据集的操作。这样就可以通过编译 Pig 脚本生成对应的 MapReduce 程序。</p>
+<h3 id="hive">Hive</h3>
+<p>为了方便使用 SQL 的工程师使用 MapReduce，Facebook 的工程师开发了 Hive，通过 Hive 熟悉数据库的工程师可以无门槛的使用 MapReduce。</p>
+<h3 id="mahout">Mahout</h3>
+<p>Mahout 的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。Mahout 现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。</p>
+<h3 id="tez">Tez</h3>
+<p>Tez 是 Apache 最新开源的支持 DAG 作业的计算框架，它直接源于 MapReduce 框架，核心思想是将 Map 和 Reduce 两个操作进一步拆分，即 Map 被拆分成 Input、Processor、Sort、Merge和Output， Reduce 被拆分成 Input、Shuffle、Sort、Merge、Processor 和 Output 等。</p>
+<h3 id="hase">Hase</h3>
+<p>HBase 是一个建立在 HDFS 之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。</p>
+<h3 id="flume">Flume</h3>
+<p>Cloudera 开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。</p>
+<h3 id="sqoop">Sqoop</h3>
+<p>Sqoop 是 SQL-to-Hadoop 的缩写，主要用于传统数据库和 Hadoop 之前传输数据。数据的导入和导出本质上是Mapreduce 程序，充分利用了 MR 的并行化和容错性。</p>
+<h3 id="ambari">Ambari</h3>
+<p>Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个 web 工具。</p>
+<h2 id="总结">总结</h2>
+<p>总的来说 HDFS 、MapReduce 以及 YARN 是 Hadoop 的核心组件，而我们学习 Hadoop 最好从核心组件开始学习其原理机制，再逐渐往上层进行了解。</p>
+<h2 id="thanks">Thanks</h2>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1X2JlbGlmL2FydGljbGUvZGV0YWlscy84MzA1ODc5OA==">Hadoop生态圈总结——大数据<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pjYl9kYXRhL2FydGljbGUvZGV0YWlscy84MDQwMjQxMQ==">hadoop生态圈各个组件简介<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3JpZG1peC9wLzUxMDI2OTQuaHRtbA==">大数据技术Hadoop入门理论系列之一----hadoop生态圈介绍<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aW1lLmdlZWtiYW5nLm9yZy9jb2x1bW4vaW50cm8vMTMz">从0开始学大数据---极客时间<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -1358,57 +1409,6 @@
       </categories>
       <tags>
         <tag>Deploy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hadoop 基础之生态圈</title>
-    <url>/posts/2b10faae.html</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
-<span id="more"></span>
-<h2 id="hadoop-生态系统">Hadoop 生态系统</h2>
-<p>Hadoop 生态系统是指以 <strong>分布式的文件系统 HDFS</strong>、<strong>分布式的计算框架 MapReduce</strong> 以及<strong>资源管理器 YARN</strong>为基础构成的分布式数据处理系统，其结构图如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png"></p>
-<p>下面将对图中各项组件做一个介绍</p>
-<h3 id="hdfs">HDFS</h3>
-<p>HDFS 是 Google 于 2003 发表的 分布式文件系统 GFS 论文的开源实现版本，主要目的是使用普通商业电脑解决大量数据的存储以及读取速度问题，在 GFS 出现之前一般主要在<strong>单台计算机</strong>用 RAID 来提高数据存储量和读取速度。但是采用 RAID 一方面成本比较高（需求太高时可能只有超级计算机才能满足），另一方面数据量过大时可能超级计算机也无法满足需求。所以这个时候就需要采取<strong>分布式</strong>的方式去满足扩大存储（多台机器多个磁盘）和增加读取速度的需求（多台机器可以同时读）。</p>
-<h3 id="mapreduce">MapReduce</h3>
-<p>MapReduce 是一个分布式的计算框架，在 MapReduce 出现之前就已经有了分布式计算这个概念。但是大多数分布式计算只能专门用于处理一类运算，而 Google 在大量实践中总结出了一个通用的编程模型： <code>map</code> 和 <code>reduce</code>。其中 <code>map</code> 是指分开计算的过程，而 <code>reduce</code> 是指合并结果的过程。而在这一编程模型添加的一系列机制和操作构成了 MapReduce。MapReduce 大大降低了分布式计算的门槛，对于开发人员而言只需要编写一系列 <code>map</code> 和 <code>reduce</code> 函数即可完成所需的分布式计算过程。</p>
-<h3 id="yarn">YARN</h3>
-<p>YARN 是一个资源管理框架，主要作用是负责集群的资源调度和作业任务管理。YARN 的出现源于 Hadoop 不能满足统一使用集群资源的需求，因为 Hadoop1 中集群的资源调度和任务管理与 MapReduce 的执行过程是耦合在一起的，而后续出现的 Spark、Storm 等分布式计算系统其架构和执行过程与 MapReduce 不同，无法直接向 Hadoop 申请集群资源。所以为了实现集群资源的统一管理，在 Hadoop2 中对 MapReduce 进行了一个解耦，抽离出了 YARN 这个框架。</p>
-<h3 id="zookeeper">ZooKeeper</h3>
-<p>Zookeeper 主要作用是提供一个分布式、高可用的协调服务，解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。</p>
-<h3 id="pig">Pig</h3>
-<p>虽然 MapReduce 极大的简化了分布式计算编程的门槛，但是 Yahoo 的工程师依然觉得 MapReduce 编程太过麻烦，所以他们便开发了 Pig 这个脚本语言用于描述对大数据集的操作。这样就可以通过编译 Pig 脚本生成对应的 MapReduce 程序。</p>
-<h3 id="hive">Hive</h3>
-<p>为了方便使用 SQL 的工程师使用 MapReduce，Facebook 的工程师开发了 Hive，通过 Hive 熟悉数据库的工程师可以无门槛的使用 MapReduce。</p>
-<h3 id="mahout">Mahout</h3>
-<p>Mahout 的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。Mahout 现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。</p>
-<h3 id="tez">Tez</h3>
-<p>Tez 是 Apache 最新开源的支持 DAG 作业的计算框架，它直接源于 MapReduce 框架，核心思想是将 Map 和 Reduce 两个操作进一步拆分，即 Map 被拆分成 Input、Processor、Sort、Merge和Output， Reduce 被拆分成 Input、Shuffle、Sort、Merge、Processor 和 Output 等。</p>
-<h3 id="hase">Hase</h3>
-<p>HBase 是一个建立在 HDFS 之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。</p>
-<h3 id="flume">Flume</h3>
-<p>Cloudera 开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。</p>
-<h3 id="sqoop">Sqoop</h3>
-<p>Sqoop 是 SQL-to-Hadoop 的缩写，主要用于传统数据库和 Hadoop 之前传输数据。数据的导入和导出本质上是Mapreduce 程序，充分利用了 MR 的并行化和容错性。</p>
-<h3 id="ambari">Ambari</h3>
-<p>Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个 web 工具。</p>
-<h2 id="总结">总结</h2>
-<p>总的来说 HDFS 、MapReduce 以及 YARN 是 Hadoop 的核心组件，而我们学习 Hadoop 最好从核心组件开始学习其原理机制，再逐渐往上层进行了解。</p>
-<h2 id="thanks">Thanks</h2>
-<ol type="1">
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1X2JlbGlmL2FydGljbGUvZGV0YWlscy84MzA1ODc5OA==">Hadoop生态圈总结——大数据<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pjYl9kYXRhL2FydGljbGUvZGV0YWlscy84MDQwMjQxMQ==">hadoop生态圈各个组件简介<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3JpZG1peC9wLzUxMDI2OTQuaHRtbA==">大数据技术Hadoop入门理论系列之一----hadoop生态圈介绍<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly90aW1lLmdlZWtiYW5nLm9yZy9jb2x1bW4vaW50cm8vMTMz">从0开始学大数据---极客时间<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -1997,6 +1997,39 @@
       </tags>
   </entry>
   <entry>
+    <title>Python 下用 Scrapy 采集知网期刊数据（四）</title>
+    <url>/posts/b12686d5.html</url>
+    <content><![CDATA[<p>在<a href="/posts/undefined.html" title="Python 下用 Scrapy 采集知网期刊数据（三）">Python 下用 Scrapy 采集知网期刊数据（三）</a>中采集了所需数据，接下来该进行的就是数据的存储和导出。 <span id="more"></span></p>
+<h2 id="数据存储">数据存储</h2>
+<ol type="1">
+<li>创建 MySql 表 <img src="http://i.imgur.com/OJF8SjS.png" alt="表格"> <img src="http://i.imgur.com/WpN2v4x.png" alt="表格"></li>
+<li>导入 pymysql 库 <code>import pymysql</code></li>
+<li>配置 MySql 在 <code>setting.py</code> 文件中写入下列配置代码： <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># start MySQL database configure setting</span><br><span class="line">MYSQL_HOST = &#x27;localhost&#x27;</span><br><span class="line">MYSQL_DBNAME = &#x27;数据库名&#x27;</span><br><span class="line">MYSQL_USER = &#x27;登录名&#x27;</span><br><span class="line">MYSQL_PASSWD = &#x27;密码&#x27;</span><br><span class="line"># end of MySQL database configure setting</span><br></pre></td></tr></table></figure></li>
+<li><p>编写 item pipeline</p>
+<blockquote>
+<p>每个 item pipeline 组件(有时称之为 “Item Pipeline” )是实现了简单方法的Python类。他们接收到Item并通过它执行一些行为，同时也决定此Item是否继续通过pipeline，或是被丢弃而不再进行处理。</p>
+</blockquote>
+<p>以采集引证文献的 item pipeline 为例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CnkiPipeline</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.connect = pymysql.connect(</span><br><span class="line">            host=settings.MYSQL_HOST,</span><br><span class="line">            db=settings.MYSQL_DBNAME,</span><br><span class="line">            user=settings.MYSQL_USER,</span><br><span class="line">            passwd=settings.MYSQL_PASSWD,</span><br><span class="line">            charset=<span class="string">&#x27;utf8&#x27;</span>,</span><br><span class="line">            use_unicode=<span class="literal">True</span>)</span><br><span class="line">        self.cursor = self.connect.cursor()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span>(<span class="params">self, item, spider</span>):</span></span><br><span class="line">        <span class="keyword">if</span> item.__class__ == Quote:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                self.cursor.execute(<span class="string">&quot;&quot;&quot;select * from reference where literature_title = %s and quote_title = %s AND literature_author = %s</span></span><br><span class="line"><span class="string">                                      AND literature_journalName = %s AND literature_time = %s&quot;&quot;&quot;</span>,</span><br><span class="line">                                    (item[<span class="string">&quot;paper_title&quot;</span>], <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>]), item[<span class="string">&#x27;paper_author&#x27;</span>],</span><br><span class="line">                                    item[<span class="string">&#x27;paper_journalName&#x27;</span>], item[<span class="string">&#x27;paper_time&#x27;</span>]))</span><br><span class="line">                ret = self.cursor.fetchone()</span><br><span class="line">                <span class="keyword">if</span> ret:</span><br><span class="line">                    self.cursor.execute(</span><br><span class="line">                        <span class="string">&quot;&quot;&quot;update reference set literature_title = %s,literature_author = %s, literature_journalName = %s,</span></span><br><span class="line"><span class="string">                          literature_time = %s,quote_title = %s</span></span><br><span class="line"><span class="string">                          where literature_title = %s and quote_title = %s AND literature_author = %s&quot;&quot;&quot;</span>,</span><br><span class="line">                        (<span class="built_in">str</span>(item[<span class="string">&#x27;paper_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_author&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_journalName&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_time&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_author&#x27;</span>])))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.cursor.execute(</span><br><span class="line">                        <span class="string">&quot;&quot;&quot;insert into reference(literature_title,literature_author,literature_journalName,</span></span><br><span class="line"><span class="string">                          literature_time,quote_title)</span></span><br><span class="line"><span class="string">                          value (%s,%s,%s,%s,%s)&quot;&quot;&quot;</span>,</span><br><span class="line">                        (<span class="built_in">str</span>(item[<span class="string">&#x27;paper_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_author&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_journalName&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_time&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>])))</span><br><span class="line">                self.connect.commit()</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> error:</span><br><span class="line">                log(error)</span><br><span class="line">            <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure> item pipeline 中需要判断 item 的类型是否是需要被处理的类型，进而进行查询判断该条记录是否在数据库中存在，如果存在则进行更新，否则进行插入。</li>
+<li><p>爬取结果 <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/spider-result.png"> <img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3d83h4iqj31ic086ac9.jpg"></p></li>
+</ol>
+<h2 id="数据导出">数据导出</h2>
+<p>为了将数据导出为 Excel 格式，利用到了<code>xlrd</code>，<code>xlsxwriter</code>，<code>xlutils</code> 库，导出代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> connect.cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">        <span class="comment"># Create a new record</span></span><br><span class="line">        sql_quote = <span class="string">&quot;select * from periodical_data where journalName = %s and publicationDate = %s ORDER BY referenceNum DESC&quot;</span></span><br><span class="line">        sql_reference = <span class="string">&quot;select * from reference where quote_title = %s&quot;</span></span><br><span class="line">        cursor.execute(sql_quote, (title, publicationDate))</span><br><span class="line">        results = cursor.fetchall()</span><br><span class="line">        <span class="comment">#oneup 用于记录引用数在每年一次以上的文献数，onelow 用于记录引用数在每年一次以下的文献数，noone 用于记录没有被引用的文献数</span></span><br><span class="line">        oneup=<span class="number">0</span></span><br><span class="line">        onelow=<span class="number">0</span></span><br><span class="line">        noone=<span class="number">0</span></span><br><span class="line">        endrows=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">            reference=<span class="string">&quot;&quot;</span></span><br><span class="line">            years=[]</span><br><span class="line">            resultwork = xlrd.open_workbook(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line">            sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</span><br><span class="line">            old_excel = copy.copy(resultwork)</span><br><span class="line">            sheet_write = old_excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">            rows = sheet1.nrows</span><br><span class="line">            cols = sheet1.ncols</span><br><span class="line">            quote_title = result[<span class="string">&#x27;title&#x27;</span>]</span><br><span class="line">            <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>] != <span class="string">&quot;0&quot;</span>:</span><br><span class="line">                cursor.execute(sql_reference, quote_title)</span><br><span class="line">                reference = cursor.fetchall()</span><br><span class="line">            <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>]:</span><br><span class="line">                <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>] &gt; (<span class="number">2016</span>-<span class="built_in">int</span>(year)):</span><br><span class="line">                    <span class="keyword">if</span> oneup == <span class="number">0</span>:</span><br><span class="line">                        sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;引用每年一次以上&quot;</span>)</span><br><span class="line">                        rows = rows + <span class="number">1</span></span><br><span class="line">                    oneup = oneup + <span class="number">1</span></span><br><span class="line">                    sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">                    sheet_write.write(rows, <span class="number">1</span>, result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">2</span>, result[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">3</span>, result[<span class="string">&#x27;journalName&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">4</span>, result[<span class="string">&#x27;publicationDate&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">5</span>, result[<span class="string">&#x27;referenceNum&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">6</span>, result[<span class="string">&#x27;downloadNum&#x27;</span>])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">if</span> onelow == <span class="number">0</span>:</span><br><span class="line">                        sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;引用每年一次以下&quot;</span>)</span><br><span class="line">                        rows = rows + <span class="number">1</span></span><br><span class="line">                    onelow = onelow + <span class="number">1</span></span><br><span class="line">                    sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">                    sheet_write.write(rows, <span class="number">1</span>, result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">2</span>, result[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">3</span>, result[<span class="string">&#x27;journalName&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">4</span>, result[<span class="string">&#x27;publicationDate&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">5</span>, result[<span class="string">&#x27;referenceNum&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">6</span>, result[<span class="string">&#x27;downloadNum&#x27;</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> noone == <span class="number">0</span>:</span><br><span class="line">                    sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;没有引用&quot;</span>)</span><br><span class="line">                    rows = rows + <span class="number">1</span></span><br><span class="line">                noone = noone + <span class="number">1</span></span><br><span class="line">                sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">                sheet_write.write(rows, <span class="number">1</span>, result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">2</span>, result[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">3</span>, result[<span class="string">&#x27;journalName&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">4</span>, result[<span class="string">&#x27;publicationDate&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">5</span>, result[<span class="string">&#x27;referenceNum&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">6</span>, result[<span class="string">&#x27;downloadNum&#x27;</span>])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(reference)):</span><br><span class="line">                sheet_write.write(rows + row + <span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;0&quot;</span>)</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">1</span>, reference[row][<span class="string">&#x27;literature_title&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">2</span>, reference[row][<span class="string">&#x27;literature_author&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">3</span>, reference[row][<span class="string">&#x27;literature_journalName&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">4</span>, reference[row][<span class="string">&#x27;literature_time&#x27;</span>])</span><br><span class="line">                years.append(reference[row][<span class="string">&#x27;literature_time&#x27;</span>])</span><br><span class="line">            c = Counter(years)</span><br><span class="line">            <span class="built_in">print</span>(c.most_common(<span class="number">1</span>))</span><br><span class="line">            <span class="built_in">print</span>(result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">            <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>]:</span><br><span class="line">                <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>] &gt; (<span class="number">2016</span>-<span class="built_in">int</span>(year)):</span><br><span class="line">                    <span class="keyword">if</span> c.most_common(<span class="number">1</span>):</span><br><span class="line">                        <span class="keyword">for</span> most <span class="keyword">in</span> c.most_common(<span class="number">1</span>):</span><br><span class="line">                            most_year = <span class="built_in">str</span>(most).split(<span class="string">&quot;,&quot;</span>)[<span class="number">0</span>].split(<span class="string">&quot;(&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">                            most_time = <span class="built_in">str</span>(most).split(<span class="string">&quot;,&quot;</span>)[<span class="number">1</span>].split(<span class="string">&quot;)&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">                            sheet_write.write(rows, <span class="number">7</span>, most_year)</span><br><span class="line">                            sheet_write.write(rows, <span class="number">8</span>, most_time)</span><br><span class="line">            old_excel.save(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line">            endrows = rows + <span class="built_in">len</span>(reference) + <span class="number">2</span></span><br><span class="line">        resultwork = xlrd.open_workbook(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line">        sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</span><br><span class="line">        old_excel = copy.copy(resultwork)</span><br><span class="line">        sheet_write = old_excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">        sheet_write.write(endrows, <span class="number">0</span>, <span class="string">&quot;每年引用次数一次以上百分比：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">float</span>(oneup)/<span class="built_in">len</span>(results)))</span><br><span class="line">        sheet_write.write(endrows+<span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;每年引用次数一次以下百分比：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">float</span>(onelow) / <span class="built_in">len</span>(results)))</span><br><span class="line">        sheet_write.write(endrows+<span class="number">2</span>, <span class="number">0</span>, <span class="string">&quot;每年没有引用百分比：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">float</span>(noone) / <span class="built_in">len</span>(results)))</span><br><span class="line">        old_excel.save(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    connect.close()</span><br></pre></td></tr></table></figure>
+<p>导出效果： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/output-result.png"></p>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2Muc2NyYXB5Lm9yZy9lbi9tYXN0ZXIvaW50cm8vdHV0b3JpYWwuaHRtbA==">Scrapy 文档<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Scrapy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 下用 Scrapy 采集知网期刊数据（二）</title>
     <url>/posts/undefined.html</url>
     <content><![CDATA[<h4 id="需求">需求</h4>
@@ -2053,39 +2086,6 @@
 <p>为了尽可能保证采集数据的完整性，需要配置 <code>setting.py</code> 文件加入如下代码： <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 当访问异常时是否进行重试</span><br><span class="line">RETRY_ENABLED = True</span><br><span class="line"># 当遇到以下 http 状态码时进行重试</span><br><span class="line">RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 403, 404, 408]</span><br><span class="line"># 重试次数</span><br><span class="line">RETRY_TIMES = 5</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h4 id="参考资料">参考资料</h4>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2Muc2NyYXB5Lm9yZy9lbi9tYXN0ZXIvaW50cm8vdHV0b3JpYWwuaHRtbA==">Scrapy 文档<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python 下用 Scrapy 采集知网期刊数据（四）</title>
-    <url>/posts/b12686d5.html</url>
-    <content><![CDATA[<p>在<a href="/posts/undefined.html" title="Python 下用 Scrapy 采集知网期刊数据（三）">Python 下用 Scrapy 采集知网期刊数据（三）</a>中采集了所需数据，接下来该进行的就是数据的存储和导出。 <span id="more"></span></p>
-<h2 id="数据存储">数据存储</h2>
-<ol type="1">
-<li>创建 MySql 表 <img src="http://i.imgur.com/OJF8SjS.png" alt="表格"> <img src="http://i.imgur.com/WpN2v4x.png" alt="表格"></li>
-<li>导入 pymysql 库 <code>import pymysql</code></li>
-<li>配置 MySql 在 <code>setting.py</code> 文件中写入下列配置代码： <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># start MySQL database configure setting</span><br><span class="line">MYSQL_HOST = &#x27;localhost&#x27;</span><br><span class="line">MYSQL_DBNAME = &#x27;数据库名&#x27;</span><br><span class="line">MYSQL_USER = &#x27;登录名&#x27;</span><br><span class="line">MYSQL_PASSWD = &#x27;密码&#x27;</span><br><span class="line"># end of MySQL database configure setting</span><br></pre></td></tr></table></figure></li>
-<li><p>编写 item pipeline</p>
-<blockquote>
-<p>每个 item pipeline 组件(有时称之为 “Item Pipeline” )是实现了简单方法的Python类。他们接收到Item并通过它执行一些行为，同时也决定此Item是否继续通过pipeline，或是被丢弃而不再进行处理。</p>
-</blockquote>
-<p>以采集引证文献的 item pipeline 为例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CnkiPipeline</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.connect = pymysql.connect(</span><br><span class="line">            host=settings.MYSQL_HOST,</span><br><span class="line">            db=settings.MYSQL_DBNAME,</span><br><span class="line">            user=settings.MYSQL_USER,</span><br><span class="line">            passwd=settings.MYSQL_PASSWD,</span><br><span class="line">            charset=<span class="string">&#x27;utf8&#x27;</span>,</span><br><span class="line">            use_unicode=<span class="literal">True</span>)</span><br><span class="line">        self.cursor = self.connect.cursor()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span>(<span class="params">self, item, spider</span>):</span></span><br><span class="line">        <span class="keyword">if</span> item.__class__ == Quote:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                self.cursor.execute(<span class="string">&quot;&quot;&quot;select * from reference where literature_title = %s and quote_title = %s AND literature_author = %s</span></span><br><span class="line"><span class="string">                                      AND literature_journalName = %s AND literature_time = %s&quot;&quot;&quot;</span>,</span><br><span class="line">                                    (item[<span class="string">&quot;paper_title&quot;</span>], <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>]), item[<span class="string">&#x27;paper_author&#x27;</span>],</span><br><span class="line">                                    item[<span class="string">&#x27;paper_journalName&#x27;</span>], item[<span class="string">&#x27;paper_time&#x27;</span>]))</span><br><span class="line">                ret = self.cursor.fetchone()</span><br><span class="line">                <span class="keyword">if</span> ret:</span><br><span class="line">                    self.cursor.execute(</span><br><span class="line">                        <span class="string">&quot;&quot;&quot;update reference set literature_title = %s,literature_author = %s, literature_journalName = %s,</span></span><br><span class="line"><span class="string">                          literature_time = %s,quote_title = %s</span></span><br><span class="line"><span class="string">                          where literature_title = %s and quote_title = %s AND literature_author = %s&quot;&quot;&quot;</span>,</span><br><span class="line">                        (<span class="built_in">str</span>(item[<span class="string">&#x27;paper_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_author&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_journalName&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_time&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_author&#x27;</span>])))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.cursor.execute(</span><br><span class="line">                        <span class="string">&quot;&quot;&quot;insert into reference(literature_title,literature_author,literature_journalName,</span></span><br><span class="line"><span class="string">                          literature_time,quote_title)</span></span><br><span class="line"><span class="string">                          value (%s,%s,%s,%s,%s)&quot;&quot;&quot;</span>,</span><br><span class="line">                        (<span class="built_in">str</span>(item[<span class="string">&#x27;paper_title&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_author&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_journalName&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;paper_time&#x27;</span>]),</span><br><span class="line">                         <span class="built_in">str</span>(item[<span class="string">&#x27;quote_title&#x27;</span>])))</span><br><span class="line">                self.connect.commit()</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> error:</span><br><span class="line">                log(error)</span><br><span class="line">            <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure> item pipeline 中需要判断 item 的类型是否是需要被处理的类型，进而进行查询判断该条记录是否在数据库中存在，如果存在则进行更新，否则进行插入。</li>
-<li><p>爬取结果 <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/spider-result.png"> <img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3d83h4iqj31ic086ac9.jpg"></p></li>
-</ol>
-<h2 id="数据导出">数据导出</h2>
-<p>为了将数据导出为 Excel 格式，利用到了<code>xlrd</code>，<code>xlsxwriter</code>，<code>xlutils</code> 库，导出代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> connect.cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">        <span class="comment"># Create a new record</span></span><br><span class="line">        sql_quote = <span class="string">&quot;select * from periodical_data where journalName = %s and publicationDate = %s ORDER BY referenceNum DESC&quot;</span></span><br><span class="line">        sql_reference = <span class="string">&quot;select * from reference where quote_title = %s&quot;</span></span><br><span class="line">        cursor.execute(sql_quote, (title, publicationDate))</span><br><span class="line">        results = cursor.fetchall()</span><br><span class="line">        <span class="comment">#oneup 用于记录引用数在每年一次以上的文献数，onelow 用于记录引用数在每年一次以下的文献数，noone 用于记录没有被引用的文献数</span></span><br><span class="line">        oneup=<span class="number">0</span></span><br><span class="line">        onelow=<span class="number">0</span></span><br><span class="line">        noone=<span class="number">0</span></span><br><span class="line">        endrows=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">            reference=<span class="string">&quot;&quot;</span></span><br><span class="line">            years=[]</span><br><span class="line">            resultwork = xlrd.open_workbook(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line">            sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</span><br><span class="line">            old_excel = copy.copy(resultwork)</span><br><span class="line">            sheet_write = old_excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">            rows = sheet1.nrows</span><br><span class="line">            cols = sheet1.ncols</span><br><span class="line">            quote_title = result[<span class="string">&#x27;title&#x27;</span>]</span><br><span class="line">            <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>] != <span class="string">&quot;0&quot;</span>:</span><br><span class="line">                cursor.execute(sql_reference, quote_title)</span><br><span class="line">                reference = cursor.fetchall()</span><br><span class="line">            <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>]:</span><br><span class="line">                <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>] &gt; (<span class="number">2016</span>-<span class="built_in">int</span>(year)):</span><br><span class="line">                    <span class="keyword">if</span> oneup == <span class="number">0</span>:</span><br><span class="line">                        sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;引用每年一次以上&quot;</span>)</span><br><span class="line">                        rows = rows + <span class="number">1</span></span><br><span class="line">                    oneup = oneup + <span class="number">1</span></span><br><span class="line">                    sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">                    sheet_write.write(rows, <span class="number">1</span>, result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">2</span>, result[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">3</span>, result[<span class="string">&#x27;journalName&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">4</span>, result[<span class="string">&#x27;publicationDate&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">5</span>, result[<span class="string">&#x27;referenceNum&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">6</span>, result[<span class="string">&#x27;downloadNum&#x27;</span>])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">if</span> onelow == <span class="number">0</span>:</span><br><span class="line">                        sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;引用每年一次以下&quot;</span>)</span><br><span class="line">                        rows = rows + <span class="number">1</span></span><br><span class="line">                    onelow = onelow + <span class="number">1</span></span><br><span class="line">                    sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">                    sheet_write.write(rows, <span class="number">1</span>, result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">2</span>, result[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">3</span>, result[<span class="string">&#x27;journalName&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">4</span>, result[<span class="string">&#x27;publicationDate&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">5</span>, result[<span class="string">&#x27;referenceNum&#x27;</span>])</span><br><span class="line">                    sheet_write.write(rows, <span class="number">6</span>, result[<span class="string">&#x27;downloadNum&#x27;</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> noone == <span class="number">0</span>:</span><br><span class="line">                    sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;没有引用&quot;</span>)</span><br><span class="line">                    rows = rows + <span class="number">1</span></span><br><span class="line">                noone = noone + <span class="number">1</span></span><br><span class="line">                sheet_write.write(rows, <span class="number">0</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">                sheet_write.write(rows, <span class="number">1</span>, result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">2</span>, result[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">3</span>, result[<span class="string">&#x27;journalName&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">4</span>, result[<span class="string">&#x27;publicationDate&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">5</span>, result[<span class="string">&#x27;referenceNum&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows, <span class="number">6</span>, result[<span class="string">&#x27;downloadNum&#x27;</span>])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(reference)):</span><br><span class="line">                sheet_write.write(rows + row + <span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;0&quot;</span>)</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">1</span>, reference[row][<span class="string">&#x27;literature_title&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">2</span>, reference[row][<span class="string">&#x27;literature_author&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">3</span>, reference[row][<span class="string">&#x27;literature_journalName&#x27;</span>])</span><br><span class="line">                sheet_write.write(rows+row+<span class="number">1</span>, <span class="number">4</span>, reference[row][<span class="string">&#x27;literature_time&#x27;</span>])</span><br><span class="line">                years.append(reference[row][<span class="string">&#x27;literature_time&#x27;</span>])</span><br><span class="line">            c = Counter(years)</span><br><span class="line">            <span class="built_in">print</span>(c.most_common(<span class="number">1</span>))</span><br><span class="line">            <span class="built_in">print</span>(result[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">            <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>]:</span><br><span class="line">                <span class="keyword">if</span> result[<span class="string">&#x27;referenceNum&#x27;</span>] &gt; (<span class="number">2016</span>-<span class="built_in">int</span>(year)):</span><br><span class="line">                    <span class="keyword">if</span> c.most_common(<span class="number">1</span>):</span><br><span class="line">                        <span class="keyword">for</span> most <span class="keyword">in</span> c.most_common(<span class="number">1</span>):</span><br><span class="line">                            most_year = <span class="built_in">str</span>(most).split(<span class="string">&quot;,&quot;</span>)[<span class="number">0</span>].split(<span class="string">&quot;(&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">                            most_time = <span class="built_in">str</span>(most).split(<span class="string">&quot;,&quot;</span>)[<span class="number">1</span>].split(<span class="string">&quot;)&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">                            sheet_write.write(rows, <span class="number">7</span>, most_year)</span><br><span class="line">                            sheet_write.write(rows, <span class="number">8</span>, most_time)</span><br><span class="line">            old_excel.save(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line">            endrows = rows + <span class="built_in">len</span>(reference) + <span class="number">2</span></span><br><span class="line">        resultwork = xlrd.open_workbook(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line">        sheet1 = resultwork.sheet_by_index(<span class="number">0</span>)</span><br><span class="line">        old_excel = copy.copy(resultwork)</span><br><span class="line">        sheet_write = old_excel.get_sheet(<span class="number">0</span>)</span><br><span class="line">        sheet_write.write(endrows, <span class="number">0</span>, <span class="string">&quot;每年引用次数一次以上百分比：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">float</span>(oneup)/<span class="built_in">len</span>(results)))</span><br><span class="line">        sheet_write.write(endrows+<span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;每年引用次数一次以下百分比：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">float</span>(onelow) / <span class="built_in">len</span>(results)))</span><br><span class="line">        sheet_write.write(endrows+<span class="number">2</span>, <span class="number">0</span>, <span class="string">&quot;每年没有引用百分比：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">float</span>(noone) / <span class="built_in">len</span>(results)))</span><br><span class="line">        old_excel.save(year + title + <span class="string">&quot;.xls&quot;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    connect.close()</span><br></pre></td></tr></table></figure>
-<p>导出效果： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/output-result.png"></p>
-<hr>
-<h2 id="参考资料">参考资料</h2>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kb2Muc2NyYXB5Lm9yZy9lbi9tYXN0ZXIvaW50cm8vdHV0b3JpYWwuaHRtbA==">Scrapy 文档<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
@@ -3432,6 +3432,301 @@ Override的主要作用是：
       </categories>
       <tags>
         <tag>SourceCode Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>这有一份秋招指南，请注意查收</title>
+    <url>/posts/a023eb3a.html</url>
+    <content><![CDATA[<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/6EFFD135-4AFA-4BF9-A76B-F91EA95E78A9_2/yWysYTGUj3vBOWmlUTnH33agfGyXuYLwPWVPgPpO5jIz/IMG_20220224_111648.jpeg"></p>
+<span id="more"></span>
+<h1 id="前言">前言</h1>
+<p>拖延许久，终于下定决定来完成这份秋招指南。写份指南的想法最早萌生自与实验室同学关于秋招话题的一些探讨，最初的目的是希望通过介绍一些经验来防止同学们在秋招过程中犯下与我相似的错误。然而，在整理构思这份指南的过程中，我发现这份指南在介绍经验外也帮助我完成了一次阶段性的总结。</p>
+<h1 id="食用说明">食用说明</h1>
+<blockquote>
+<p>本部分介绍了指南的组织结构，说明了每个部分关注的重点，以便读者针对性地进行阅读。值得注意的是，本指南的内容均为个人观点，请读者批判性地来吸收。</p>
+</blockquote>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/FA9ED7F8-4BD3-46A6-84A8-86187E185DA3_2/N1eFNrpztQ89dRA1DvJH8d5GKyH0UsMeMQHx3TJIKn0z/FA9ED7F8-4BD3-46A6-84A8-86187E185DA3_2.png"></p>
+<p>按照事件发生的时间顺序，秋招指南由四部分组成，每部分关注的重点如下：</p>
+<ul>
+<li><p>前期准备</p>
+<p>充足的准备是成功开始。在条件允许的情况下，我们至少应当在秋招启动（提前批一般在7月份）的一两个月前开始复习。在这个过程中，我们一方面需要对计算机相关的理论知识进行复习。另一方面，我们也需要对参与过的实践项目进行梳理，并且加强算法题的训练。<strong>针对理论知识的复习</strong>，我在这一部分尽可能给出了每一科目核心知识的思维导图，该思维导图对知识间的逻辑关系（也可理解为技术的演变路线）进行了梳理。借助这些思维导图，希望大家能够更有条理地来学习这些知识。<strong>而针对实践项目的梳理和算法题的训练</strong>，我介绍了自己的梳理思路，并提供了一些算法题训练的材料。</p></li>
+<li><p>简历制作与投递</p>
+<p>在进行了一定程度的准备后，我们可以开始制作简历并投递一些小公司的岗位，用以检验自己当前的准备方案是否存在问题等。在投递岗位时，简历决定了留给招聘方的第一印象，而岗位的选择会影响后续应聘的成功率。因此，在这一部分，我主要说明了<strong>制作简历和岗位选择时需要考虑的一些因素。</strong></p></li>
+<li><p>应聘</p>
+<p>在投递简历并通过筛选之后，我们将进入由笔试和面试组成的应聘环节。通常，笔试和面试包含多轮，每轮都有各自的侧重点。<strong>对于这些侧重点，应聘部分将予以介绍，并说明其中隐藏的一些坑。</strong></p></li>
+<li><p>薪酬谈判与Offer选择</p>
+<p>在秋招结束时，每个人或多或少会接收到多个Offer，这时将面临后续的薪酬谈判和Offer选择的问题。针对这些问题，我会说明<strong>一些薪酬谈判中值得关注的点，并介绍了Offer选择时需要考虑的一些因素。</strong></p></li>
+</ul>
+<h1 id="前期准备">前期准备</h1>
+<p>在前期准备中，我们需要对理论知识和实践内容进行复习和梳理。理论知识除了包括数据结构、编程语言和操作系统等常见的专业课外，还会涉及到研究方向的知识。而实践部分主要包括我们平常所参与的项目，以及为了应对笔试所进行的算法训练。可以看到，前期准备所涉及的内容不仅多而且杂，这意味着如果我们在准备时没有一个清晰的思路，会很容易陷入到混乱的状态。一种值得推荐的准备思路是<strong>先复习理论与实践部分的核心知识，即秋招过程中频繁考察的知识点，然后在此基础上逐步扩充外围知识。值得注意的是，在复习过程中应当着重梳理各个知识点间的逻辑，以减轻记忆的负担。</strong></p>
+<h2 id="理论">理论</h2>
+<h3 id="基础知识">基础知识</h3>
+<h4 id="数据结构与算法">数据结构与算法</h4>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/8A47974C-4B5F-4C3D-BA5E-0D8438E797E6_2/yyqVoNSAZlO5Mac76CjdKhHl0AjkbJtssfRAJc0rHuwz/8A47974C-4B5F-4C3D-BA5E-0D8438E797E6_2.png"></p>
+<p>在准备基础知识的复习时，推荐从数据结构与算法部分开始。因为一旦完成数据结构与算法的复习，我们便可以开启算法题的训练。对于数据结构，复习的重点在于掌握栈、队列、散列表、二叉树和图的两种物理结构实现，即数组和链表结构。其中，对于栈、队列和散列表，我们在前期时可只掌握数组的实现方式，因为这种方式最常用。</p>
+<p>对于算法，<strong>首先</strong>关注查找类的算法，这类算法的思想可以分为以下四种：</p>
+<ol type="1">
+<li>若待查找记录未按关键字排序，可对这些待排序记录进行遍历查找</li>
+<li>若记录已按关键字排序，则可对有序记录进行二路或多路查找</li>
+<li>对于待查找的记录，通过哈希函数建立关键字到记录的映射关系，然后基于这种映射关系来查找。</li>
+<li>若待查找记录未按关键字排序，可在关键字基础上建立有序的索引（本质上就是一种排序），然后对索引进行二路或多路查找。</li>
+</ol>
+<p>这四种思想结合不同逻辑或物理结构的数据则会出现不同的实现。例如，对于二路查找，如果数据按线性结构组织并以数组形式存储，则对应我们所熟知的二分查找，而如果是链式存储则为跳表。在复习查找类算法时，<strong>重点</strong>放在树和图的遍历算法上，并且了解查找树的分类和演变过程。除此之外，我们还需要了解常见的索引以及这些索引之间的区别。值得指的是，索引的内容与数据库存在重叠，可以关联学习。</p>
+<p><strong>其次</strong>，我们需要关注排序类的算法，需重点掌握的算法已经用颜色进行标识。对于这些算法，我们需要了解其应用场景。例如，当需要稳定排序时应当使用何种排序算法？当待排序记录逆序时使用何种算法排序更快？</p>
+<p><strong>最后</strong>，我们还需要着重关注字符串匹配、动态规划、贪心以及图的相关算法。值得说明的是，图的相关算法在秋招的笔试过程中出现频率相当高，因此一定要熟练掌握。</p>
+<p>除了具体的算法实现外，在面试过程中，面试官或许还会问及算法的复杂度，因此复杂度的计算也得掌握。</p>
+<p><strong>书籍与材料推荐：</strong></p>
+<blockquote>
+<p>本指南涉及的网络资源将放入网盘进行共享，文章最后会给出链接。</p>
+</blockquote>
+<ol type="1">
+<li>大话数据结构——强烈推荐，书籍内部的逻辑性很强</li>
+<li>轻松学算法</li>
+</ol>
+<h4 id="编程语言">编程语言</h4>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/72F20720-2A40-48FC-888F-EEDE5A8C3904_2/bF6MmvPWhivHNf5xwX30OQsOtXpuizondaegaY4qEcIz/Java.png"></p>
+<p>编程语言作为面试必考点也是复习的重中之重，由于我应聘时投递的岗位大多与Java语言相关，所以这一部分将介绍与Java相关的复习内容。这块的复习内容大概可以分为四块：</p>
+<ul>
+<li><p>Java基础</p>
+<p>根据去年的经验，这一块内容问的相当少，可能现在人都很卷，八股文背的很溜，所以就不问太基础的了。</p></li>
+<li><p>容器</p>
+<p>主要考察的是思维导图上列出的这些容器类，除了需要掌握这些类之间的区别，还要掌握一些涉及源码的问题。例如，HashMap的底层数据结构、put和get过程等。</p></li>
+<li><p>JVM</p>
+<p>在复习时，我们首先需要弄清楚JVM的内存区域，然后进一步了解堆内存的分配和回收。关于内存回收，主要关心三个问题：</p>
+<ul>
+<li>如何判断对象是否需要回收，即如何判断对象已死？</li>
+<li>具体的回收算法是怎样的？这些算法之间的演变过程是怎样的？</li>
+<li>何时进行回收？哪些情况可以触发回收操作</li>
+</ul>
+<p>而对于分配过程，在堆内存分代的情况下，需要弄清JVM如何决定对象所属的代，以及代之间的转换规则。除此之外，我们还需关注JVM加载类的过程和双亲委托机制。</p></li>
+<li><p>并发编程</p>
+<p>这一块的内容是复习的难点，为了降低难度，我在初步的梳理后将这块内容划分为了五部分：</p>
+<ul>
+<li><p>并发编程基础：涉及线程的创建与使用，还有线程状态的转换</p></li>
+<li><p>线程的管理：这一部分的内容主要是线程池，需要理解线程池的作用，并掌握线程池的使用，以及各项参数的含义</p>
+<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzNTYwNjIzMTYxMzUy">线程池的使用🔗<i class="fa fa-external-link-alt"></i></span></p></li>
+<li><p>线程的安全性：并发访问共享变量会带来安全问题，即程序的预期结果可能会与实际结果不一致。该问题是否出现与三种特性相关，即原子性、可见性和有序性。这一块的内容基本围绕这三种特性展开，复习重点在理解这三种特性为什么会导致安全性问题，以及相应的解决方案是什么？</p>
+<p>推荐阅读：</p>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81ODg1NTU5OQ==">Java并发之原子性、有序性、可见性<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pa3JvYWwubm90aW9uLnNpdGUvZTU0YjcxNjU0NDU4NDVjNGIwYTQ5NmUzM2NiY2VjNjI=">对有序性的一些理解<i class="fa fa-external-link-alt"></i></span></li>
+</ol></li>
+<li><p>由保证安全性而带来的性能问题：保证线程安全性的一个方法是加锁，但加锁会影响程序的性能，所以这块的内容主要围绕着如何降低锁对程序的性能影响展开。这块的复习重点在弄清楚优化性能的各种方案，并了解各种锁之间的区别。</p>
+<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly90ZWNoLm1laXR1YW4uY29tLzIwMTgvMTEvMTUvamF2YS1sb2NrLmh0bWw=">不可不说的Java“锁”事<i class="fa fa-external-link-alt"></i></span></p></li>
+<li><p>线程之间的协同：主要是一些工具类，明白这些工具类的区别就可以。</p></li>
+</ul>
+<p>上述内容介绍的是涉及Java的并发编程，但对于其它语言而言，一些框架性的内容也是适用的。例如，其它语言也会面临线程的管理以及安全性问题，并且与安全性相关的因素也会涉及原子性等。<strong>因此，我个人觉得并发编程这块的内容在复习其它编程语言时是可以借鉴的。</strong></p></li>
+</ul>
+<p><strong>书籍与材料推荐</strong></p>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0N5QzIwMTgvQ1MtTm90ZXM=">CS-Notes<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qYXZhZ3VpZGUuY24v">JavaGuide<i class="fa fa-external-link-alt"></i></span></li>
+<li>Java并发编程实战</li>
+</ol>
+<blockquote>
+<p>1和2两个材料是大多数人的八股文来源，在记忆这些八股文时，我们应当提升思考的深度。即使大家都在背八股文，但我们也需要说出一些不一样的东西，以和其他人区分开来。例如，在考察并发编程的内容时，面试官或许会问及进程和线程的区别是什么？很多人会答进程的切换开销比线程的切换开销大，但并不会给出解释。此时，我们可以引申至内存地址转换上，进一步解释为什么进程开销会高于线程的切换开销，这样就能体现我们思考的深度。</p>
+</blockquote>
+<h4 id="操作系统">操作系统</h4>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/713B728B-FCD6-469E-B536-DC3EB840AEB8_2/5FK2kdwxy8am6xw6Lb9NScsmYkWh5d2PAKS6CJ5MGZQz/713B728B-FCD6-469E-B536-DC3EB840AEB8_2.png"></p>
+<p>操作系统这一块的内容也是考察比较多的，主要包括进程管理、内存管理、文件管理和设备管理。其中，<strong>进程管理和内存管理是考察的重点</strong>。对于进程管理而言，我们需要了解以下内容：</p>
+<ul>
+<li><p>进程的状态以及状态之间的转换条件</p></li>
+<li><p>进程的调度算法：围绕提高系统的吞入量和保证响应速度这两个目标来理解调度算法的设计。</p></li>
+<li><p>进程的协同：重点弄清楚通信和同步的方式，以及这些方式之间存在什么关系。此外，由于进程同步涉及加锁，还需要了解死锁的产生和解决方式。</p>
+<p>推荐阅读：</p>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xMDQ3MTM0NjM=">进程通信1<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xNjUyMjQxNzU=">进程通信2<i class="fa fa-external-link-alt"></i></span></li>
+</ol></li>
+</ul>
+<p>至于内存管理，我们可以从内存管理的三个目标（隔离、透明、效率）出发来了解内存管理技术的演变。在这一过程中，我们应当思考为什么要从直接操作物理内存转向虚拟内存？虚拟地址如何转化为实际的物理地址？连续分配虚拟内存会导致什么问题？分段是如何解决这一问题的？分页解决了分段的什么问题，以及产生了什么问题？能否获得超过物理内存的寻址空间？</p>
+<p><strong>推荐的书籍</strong>：操作系统导论</p>
+<blockquote>
+<p>操作系统导论这本书是目前我读过的最通俗易懂的操作系统书籍，在阅读内存管理相关章节时会给我一种娓娓道来的感觉。强烈推荐阅读这本书，你将从书中找到我上面提的所有问题的答案。</p>
+</blockquote>
+<h4 id="计算机网络">计算机网络</h4>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/C32531A1-5353-4EF0-ADC8-8DD7BD440DD0_2/SR60kOamyy5aqewb8uYXf3jld80IKBjjZvy7yLgxgcEz/C32531A1-5353-4EF0-ADC8-8DD7BD440DD0_2.png"></p>
+<p>计算机网络部分最频繁问及的内容可能是涉及TCP协议的内容。这块的内容我们可以从TCP本身的特性出来来理解它的内部逻辑，首先需要了解TCP是一种具备可靠传输特性的协议，并从这一特性出发来思考TCP如何从停等协议发展到连续ARQ协议。然后，我们需要了解连续ARQ协议存在什么问题？为什么TCP需要进行流量控制？在此基础之上，我们需要思考流量控制和拥塞控制的区别是什么？最后，我们还需要关注TCP建立和断开连接的过程，即三次握手和四次挥手。</p>
+<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvbFU1dVBmaEZFQ3JYLTBfaE1MOThCUQ==">这一篇TCP总结请收下<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="数据库">数据库</h4>
+<p>数据库这块的内容我当时复习的不多，大多数面试官在考察数据库时会涉及SQL语句的编写。但是如果你说平时接触不多，只会写简单的SQL语句而不会写复杂的，对方也会表示理解。所以，这一块的内容可能要求并不高。对于这块内容，我简单介绍一些当时了解的内容：</p>
+<ul>
+<li><p>基本的SQL语法和关系模型</p>
+<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yMDAyODY3Mg==">数据库第一二三范式到底在说什么？<i class="fa fa-external-link-alt"></i></span></p></li>
+<li><p>事务处理相关：主要包括ACID和隔离级别等</p>
+<p>这里简单梳理下ACID的逻辑，在ACID中，C是事务处理的目标，也即一个事务的执行最终要保证数据的一致性。导致不一致的原因有两种：多个事务之间的干扰；故障。要避免因事务之间的干扰而带来的不一致，数据库需要保证事务的隔离性（I）。而要避免故障带来的不一致，数据库需保证事务原子性（A）和持久性（D）。</p>
+<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0N5QzIwMTgvQ1MtTm90ZXMvYmxvYi9tYXN0ZXIvbm90ZXMvJUU2JTk1JUIwJUU2JThEJUFFJUU1JUJBJTkzJUU3JUIzJUJCJUU3JUJCJTlGJUU1JThFJTlGJUU3JTkwJTg2Lm1kIyVFNCVCQSU4QyVFNSVCOSVCNiVFNSU4RiU5MSVFNCVCOCU4MCVFOCU4NyVCNCVFNiU4MCVBNyVFOSU5NyVBRSVFOSVBMiU5OA==">事务处理<i class="fa fa-external-link-alt"></i></span></p></li>
+<li><p>索引：一些常见的索引和适用场景。</p>
+<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yNjc2NjQ1OQ==">索引的本质是排序<i class="fa fa-external-link-alt"></i></span></p></li>
+</ul>
+<h4 id="设计模式">设计模式</h4>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/997C1756-D007-4E2E-B697-68FEDE26E980_2/SnxOVqr5mx3eqhS8AIUCuzNul5VbgfBISbJIYzeHB6Yz/997C1756-D007-4E2E-B697-68FEDE26E980_2.png"></p>
+<p>设计模式这块考察很少，除非你简历上提及，否则面试官基本不会问。这块的内容建议在有空闲的情况下额外了解，并且选取一些设计模式的进行了解，而不需要全部了解。需要强调的是，作为经典且常见的设计模式，单例模式是必须了解的，并且要了解它的6种写法，以及其中一些写法存在的问题。</p>
+<p>在前文中，我提及在复习过程中应当着重梳理各个知识点间的逻辑，但这样讲是不具体的，对于梳理知识点间的逻辑这件事是缺乏进一步解释的。接下来，我将以设计模式为例来进一步解释梳理逻辑这件事。</p>
+<p>对于设计模式，其实我很早之前便了解到它分为三种模式，即创建型、结构型以及行为型。但是我一直是死记硬背的，而没有思考过为什么设计模式会分为这三种？为什么不是两种或四种。换句话说，这三种模式的关系是怎样的？在这次复习时，我发现了这块逻辑的缺失，所以针对性地对这个问题进行了思考。目前思考的结论是设计模式被划分为三种这件事与面向对象编程有关。设计模式的目的是希望通过一些模板来规范我们的编码方式，以产生更多易于维护的代码。当前，我们在编程时主要采用的面向对象的编程思想，那么设计模式在提供这些模板时势必会考虑到这一点。而在面向对象编程中，对象是绝对的核心，我们在编程过程中总不可避免的涉及到对象创建、组合与使用。所以，设计模式在提供模板时应该是从这个维度出发进行了拆解，最终形成了规范对象创建过程的创建型模式、对象组合的结构型模式以及对象使用的行为型模式。</p>
+<p>借助上面的例子，我想表达的是在复习时如果发现一些内容需要死记硬背时，不妨问一下自己是不是有什么逻辑没有想清楚，是不是遗漏了什么问题。实际上，很多问题是值得思考的，例如，为什么隔离级别是四种。想清楚这些问题除了能加深我们的理解，还能让我们在面对面试官时回答出一些他从未听过的内容，这样能够提高印象分。</p>
+<h3 id="领域知识">领域知识</h3>
+<p>对于领域知识这块，由于大家的研究方向是不尽相同的，所以复习的内容存在很大差异。这也意味着指南的这块内容参考价值并不大。但考虑研究方向也可能重合，我还是决定简单介绍一下与分布式计算系统方向相关的复习内容，包括整体的复习框架以及一些常见的面试题。希望能为一些分布式计算系统方向的同学提供一些参考。</p>
+<p>在复习分布式计算系统时，我主要复习了Hadoop、Spark和Flink等系统，每个系统大致包括四个部分：</p>
+<ul>
+<li><p>设计思想</p>
+<p>这部分需要<strong>弄清楚系统解决了什么问题，采用了什么思想来解决这些问题</strong>。例如，对于构成Hadoop的文件系统HDFS，它需要解决大文件的存储、文件系统容错以及大文件的并发读写问题。在解决这些问题时，HDFS对大文件进行分块，以实现对逻辑层面的大文件进行物理存储。而为了防止分块数据丢失的问题，HDFS对分块进行了冗余存储。至于最后的大文件并发读写问题，由于HDFS的主要应用场景是读多写少的场景，所以HDFS通过一次写入多次读取的方式来避免读写冲突。</p></li>
+<li><p>体系架构</p>
+<p>体系架构部分需要弄清楚系统由哪些组件构成，各个组件的作用是什么？对于分布式计算系统而言，其组件的功能会涉及到作业管理和资源管理。作业管理主要包括任务分配、执行以及监控，而资源管理主要包括资源的监控和分配。</p>
+<p>特别地，系统或许会有多种部署模式，不同模式会导致架构上的一些细微差异，因此需要弄清楚这些差异。例如，Spark会有Standalone和Yarn模式，并且每种模式还可以细分为Client和Cluster方式。此外，我们还需要弄清楚应用程序的执行流程，即提交一个作业后，组件是如何交互的。</p></li>
+<li><p>工作原理</p>
+<p>根据系统类型不同，工作原理的内容也会有所不同：</p>
+<ul>
+<li>对于HDFS而言，我们需要弄清楚它如何对文件进行分块以及如何选择分块的副本位置。另外，还需要熟悉其读写过程。</li>
+<li>对于Yarn而言，主要需要了解它的三种资源分配策略</li>
+<li>对于MapReduce、Spark以及Flink这类计算系统而言，我们需要弄清楚数据的输入、处理和输出过程。值得说明的，由于这类系统的处理过程通常由多个任务完成，这些任务间会存在数据传输，该过程会影响性能。所以，面试官很喜欢考察与数据传输相关的内容。例如，Spark的shuffle过程是怎样的？如果出现了数据倾斜该怎么优化？</li>
+</ul></li>
+<li><p>容错机制</p>
+<p>对于容错机制，我们需要了解系统在组件发生故障后对组件所采取的恢复策略。进一步地，故障往往会导致计算结果丢失，如果不对其进行处理会导致计算结果不正确。因此，我们也需要了解保证结果正确性的相关机制。例如，Spark的RDD机制以及Flink的Chandy-Lamport算法。</p></li>
+</ul>
+<p>接下来，我列举一些秋招过程中接触的有代表性的面试题：</p>
+<ul>
+<li><p>Hadoop</p>
+<ul>
+<li>HDFS的原理，解决了什么问题？具体的方案是什么？</li>
+<li>谈谈对Map/Reduce的理解，为什么一定要划分成两个阶段</li>
+<li>Reduce如何确定要去哪些Mapper所在的节点去拉取数据</li>
+<li>Yarn资源分配和应用启动</li>
+</ul></li>
+<li><p>Spark</p>
+<ul>
+<li><p>Spark三种算子（创建、转换、行动算子）的区别</p></li>
+<li><p>Spark应用程序的执行过程，以及资源是如何分配的</p></li>
+<li><p>Spark中宽依赖和窄依赖的区别是什么？</p></li>
+<li><p>Spark的Shuffle过程，处理数据倾斜的方法</p>
+<p>推荐阅读：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYXRhZWxlbWVudC50b3AvMjAyMS8wMS8xOC9zcGFyay1zaHVmZmxlLWludGVybmFsLw==">Spark Shuffle Internal<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90ZWNoLm1laXR1YW4uY29tLzIwMTYvMDUvMTIvc3BhcmstdHVuaW5nLXByby5odG1s">Spark性能优化指南——高级篇<i class="fa fa-external-link-alt"></i></span></li>
+</ul></li>
+</ul></li>
+<li><p>Flink</p>
+<ul>
+<li>对于水位线的理解，为什么需要水位线？水位线是如何设置的？</li>
+<li>Flink为什么会比Spark Streaming实时性更好？</li>
+<li>Flink的检查点机制</li>
+</ul></li>
+</ul>
+<h2 id="实践">实践</h2>
+<h3 id="算法训练">算法训练</h3>
+<p>对于算法题的训练，本人并非专业的ACM选手，也没有充足的时间来进行相关的训练和总结，所以我无法提供一些专业的意见，而只能从自身的经历出发来谈谈关于这件事的一些业余理解。如果你也是一名业余选手，希望这些理解能对你有一定的帮助</p>
+<p>受到一些因素的影响，在秋招期间我实际能用于复习的时间仅仅只有一个多月，这使得我没有充足的时间来刷题。换句说话，我需要在有限的时间内尽可能提高解题能力。考虑再三后，我觉得大部分的算法题都是基础算法的变体，所以当时制定的策略是将基本算法弄熟，即数据结构与算法部分介绍的那些算法。然后，在这个基础上选择一些有代表性的题目来进行练习，比如LeetCode上的剑指Offer题库，用以检验是否掌握了这些算法的应用场景。此外，我也同步在看比较出名的刷题教程，<span class="exturl" data-url="aHR0cHM6Ly9sYWJ1bGFkb25nLmdpdGh1Yi5pby9hbGdvLw==">labuladong 的算法小抄<i class="fa fa-external-link-alt"></i></span>，来学习一些常见的解题技巧。通过上述的这些手段，在后续的笔试中，我虽然不能达到全AC的境界，但是却能通过大部分的笔试进入到面试环节。从这一点看，这也算是达到了我最初的目的。然而，我依然任务上述策略只是时间不充裕下的一种权宜之计，更可取的方法还是需要尽可能早的开始练习，并且采用像「<span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvVlZlRkNhb2hTZHpXVUNfQlFHbGhKZw==">如何科学的打开 Leetcode？<i class="fa fa-external-link-alt"></i></span>」这篇文章中所提及方法来刷题。</p>
+<h3 id="项目梳理">项目梳理</h3>
+<p>作为面试的重点，面试官往往会要求我们向他介绍所参与的项目，然后他会根据我们的描述和他的理解不断地抛出问题。在这个过程中，清晰地向面试官传达你对项目的理解是至关重要的，因为这体现了你的总结能力和沟通能力。</p>
+<p>然而，我们在面试时难免会紧张，临场发挥很可能导致马失前蹄。因此，在梳理项目时，我认为是有必要通过一个框架来保证描述的逻辑性。一般来说，好的项目介绍需要包括三点：<strong>做了什么；为什么要做这件事情；以及这样做之后有什么效果</strong>。此外，对于缺乏你背景的面试官，你可能需要在介绍的开头插入一小段的背景介绍，以帮助面试官理解。注意不要太长，这样会让面试官觉得你很啰嗦。</p>
+<p>除了上面提到的框架外，对于描述过程中出现的每个技术点，我们都需要有充足的了解。否则，面试官会怀疑这个项目是不是你做的，或者认为你的技术深度不够。</p>
+<h1 id="简历制作与投递">简历制作与投递</h1>
+<p>在完成一部分内容的复习后，我们应当制作自己的简历，并投递一些小公司的岗位来测试自己的复习效果。对于简历的制作，我们首先需要了解简历本身的意义，然后有针对性地完成制作过程。而对于岗位的投递，我们需要了解一些常见的投递渠道以及岗位选择所需考虑的因素。</p>
+<h2 id="简历的意义">简历的意义</h2>
+<p>在面试官对你进行面试之前，他唯一能够了解你的渠道便是简历。所以，简历实际上决定了面试官对你的第一印象。一个好的印象肯定会对面试有所帮助，那如何留下一个好的印象呢？我觉得可以从面试官的目的来考虑这件事情，面试官的目的肯定是希望招聘到一个能胜任岗位职责或者暂时不能胜任但有培养潜力的人。因此，我们制作简历时应当尽可能展示一些可以证明自己足够优秀的信息。例如，ACM的竞赛奖、好的实习经历等等。并且，对于这些信息，我们需要突出显示，以让面试官第一时间注意到。</p>
+<h2 id="简历的内容">简历的内容</h2>
+<p>一般来说，一份简历需要包括下列的信息：</p>
+<ul>
+<li><p>基本信息</p>
+<p>基本信息包括姓名、年龄以及联系方式。此外，如果平时有写博客或者Github有好的项目，也可以放在这块。</p></li>
+<li><p>教育经历</p>
+<p>教育经历包括学校、学院和专业。此外，对于研究方向和学分绩排名也可以进行标注，前提是学分绩排名足够高。</p></li>
+<li><p>实践经验</p>
+<p>在介绍实践经验时，我们需要提供项目的起止时间、名称以及在此项目中承担的角色。然后，我们需要简略描述下这个项目做了啥以及我们在其中负责什么内容，取得了什么成果。注意，简历中的项目描述不要太长，因为太长的描述会让人失去了解的欲望，而且也会模糊其它部分的重要信息。</p></li>
+<li><p>实习</p>
+<p>实习这块主要介绍下时间、公司和岗位，然后说明下你参与了哪些项目，以及获得的成果。</p></li>
+<li><p>奖项</p>
+<p>将你获得的奖学金、各种竞赛成果写上去，但要注意竞赛成果是否有含金量。</p></li>
+<li><p>专业技能</p>
+<p>专业技能这块主要目的是向面试官展示你的技术栈。通过这块的内容，面试官不但可以判断你和这个岗位是否契合，还能在后续的面试中进行针对性的提问。在填写这块的内容时，我们需要确保填写的技术点是与岗位相关的，不要填写“会画画”这样的无关内容。此外，我们列出的技术点要是具体的，而不是宽泛的。例如，熟悉Java的并发编程技术会比熟悉Java更具体。值得说明的是，这块的内容不要太多，只需要列出五六项即可。</p></li>
+</ul>
+<p>下图提供了一个简历的示例，大家可以参考这个来制作简历，同时也不妨根据自己的想法来优化信息的描述和顺序。对于信息的描述，我们应尽可能的精简，以防简历超出一页。此外，我们还可以对一些信息加粗，以进行强调。而对于信息的排序，我们需要考虑哪些重要信息要优先呈现。例如，如果你有一段阿里的实习经历，那么就可以把实习经历放在教育背景下方。如果没有什么重要的奖项荣誉，则可以把这块内容放在最下方，弱化存在感。</p>
+<blockquote>
+<p>在后续的资源链接中，我会提供一些简历模板，大家可以自行取用。另外，大家也可以去<span class="exturl" data-url="aHR0cHM6Ly93d3cuNTAwZC5tZS8=">五百丁<i class="fa fa-external-link-alt"></i></span>这个网站在线制作自己的简历。</p>
+</blockquote>
+<blockquote>
+<p>⚠️投递的简历请务必使用PDF格式。</p>
+</blockquote>
+<p><img src="https://res.craft.do/user/full/1ae7c81f-976a-6137-e5f0-8e6e6e91b9f5/doc/73C7CEB7-7670-4319-ABF4-02469D939DEB/D322A3AE-4122-4E54-9EA3-76FDBFED5F19_2/AlZhKFBPxuYWoNysAe2EbjwTOB0XRHLtexKav169uGkz/D322A3AE-4122-4E54-9EA3-76FDBFED5F19_2.jpeg"></p>
+<h2 id="投递简历">投递简历</h2>
+<p>制作完简历后，我们可以考虑去投递一些岗位了。在这里，我分享下常见的投递渠道、对于岗位选择的一些看法以及投递简历时一些隐藏的坑。</p>
+<h3 id="投递渠道">投递渠道</h3>
+<p>在去年投递的时候，我大概接触了下面四种投递渠道：</p>
+<ul>
+<li><p>直接投递</p>
+<p>在投递之前，我们可以通过牛客网的<span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL2pvYnMvc2Nob29sL3NjaGVkdWxl">校招日程<i class="fa fa-external-link-alt"></i></span>这个网站或者是<strong>校招巴士</strong>这个公众号来了解哪些公司目前处于招聘状态，然后通过对应的官网直接投递自己的简历。但这种做法会存在不少的弊端，比如无法了解更为详细的进度信息、对于腾讯这样采用大类投递的公司无法控制自己应聘的具体部门。所以，直接投递这种方式更适合一些你不太在乎的公司。</p></li>
+<li><p>校友内推</p>
+<p>每年招聘季的时候都会很热闹，很多学院的校友都会通过辅导员发布招聘信息，这个时候你可以通过他们的渠道来投递简历，这种投递方式一般会将你的简历推到具体的某个部门。另外，如果你有内推人的联系方式，还可以让他帮你获取一些内部的处理动态，甚至在面试后帮你获取一些面评的信息。<strong>这种方式是最值得推荐的</strong>。</p></li>
+<li><p>一些论坛找人内推</p>
+<p>受到部门方向和部门工作地点的影响，我们也会遇到找不到校友内推的情况。此时，我们可以去牛客网和脉脉上搜索一些部门HR或者部门工程师发布的内推信息，然后通过他们将简历定向推送到希望进入的部门。<strong>这种方式与第二种方式一样值得推荐。</strong></p></li>
+</ul>
+<h3 id="岗位选择">岗位选择</h3>
+<p>岗位的选择大致需要考虑这些因素：</p>
+<ul>
+<li><p>岗位方向</p>
+<p>一般来说，我们最好选择与研究方向相匹配的岗位，这样会更有优势一些。当然，完全匹配只是一种理想情况，大多数情况下我们只要保证选择的岗位和我们的研究方向有关联即可。例如，我的研究方向是分布式图计算系统的容错技术，这个方向也会要求我学习其它的分布式计算系统。所以，我在投递简历的时候会投递分布式计算系统的开发工程师。</p></li>
+<li><p>业务的核心度</p>
+<p>在选择岗位时，要考虑所属部门业务的核心程度，企业的核心业务一般来说获得的资源会更多一些，而且遭遇大规模裁员的概率更低一些。这样对自己日后的发展也有保障。</p></li>
+<li><p>招聘人数</p>
+<p>有些企业在发布岗位时也会同步发布岗位的需求人数，此时，我们应该尽可能选择人数多一些的岗位。对于没有发布需求人数的岗位，如果你有熟悉的内推人，不妨打听一下。</p></li>
+<li><p>城市</p>
+<p>经过去年的教训之后，我觉得最好不要太过于拘泥于哪座城市，而是要更看重前三个因素。在去年秋招的过程中，我一直将自己的岗位所在地限制在珠三角，所以像京东、小米这些公司的招聘都无法参与。秋招还是得以拿到offer为第一目标，最好不要采取一些降低成功率的做法。这里再额外补充一个小点，选择岗位时最好是选择自己学校的影响力能覆盖到的区域，这样会降低你面试的难度。</p></li>
+</ul>
+<p>总的来说，选择岗位时要尽可能选择需求量大和与自己研究方向有关联的岗位，并且岗位最好属于核心部门。</p>
+<h3 id="一些隐含的坑">一些隐含的坑</h3>
+<p>有些公司会提供两次投递机会，例如，字节和OPPO，但是在投递时不要一次性投递两个岗位。如果一次性投递两个岗位，在你在走其中一个岗位的流程时，另一个岗位的流程会卡住。如果卡住太久，HR会直接结束掉这个岗位，这样会平白无故地失去一次投递机会。</p>
+<p>在提前批时，许多公司会宣扬面试结果不会影响正式批的投递，但实际的情况是有些公司会有影响，例如，字节。因为面试记录都有存档，后面的面试官能看到你的面试记录。所以在投递时，最好多了解下，不要一不小心掉到坑里。</p>
+<h1 id="应聘">应聘</h1>
+<h2 id="笔试">笔试</h2>
+<ul>
+<li><p>素质评测</p>
+<p>大部分公司都不会设置这个环节，不用刻意去准备，自由发挥就好。</p></li>
+<li><p>算法题</p>
+<p>算法题这个部分我简单说明一下存在的风险，在你提交代码后，许多公司会用代码检测系统来检测你和其它人的代码相似度。一般情况下，只要你自己写的代码，系统都不会判定为相似代码。然而，某些公司会出那种附带模板代码以及代码注释的算法题。一旦模板题是简单题，你的思路会很容易与他人重合，写出的代码就会存在一定的相似。在这种情况下，检测系统可能会将你的代码判定为相似代码，从而导致不可控事情的出现。去年在应聘腾讯TEG部门的网络研发部就因为这种情况被面试官搞了心态，这应该是整个秋招中最糟糕的一次面试体验了。<strong>所以，在做一些简单的模板题时，请尽可能删除模板代码上的注释，变量方法命名不要太常规，以避免被定位成相似代码，然后被怀疑作弊。</strong></p></li>
+</ul>
+<h2 id="面试">面试</h2>
+<p>如果你投递的公司采用大类招聘，在接到<strong>第一次面试邀请</strong>时一定要问清楚部门，弄清楚和你的技术栈存不存在重叠。如果存在很大差异，最好不要接受面试邀请，因为你很大概率被刷，这样就浪费了一次机会。然后，你就只能泡池子，等人来捞你了。并且，如果你面试表现不好，还会影响到被其它部门捞简历的概率。</p>
+<p>一旦接受了面试邀请，我们就需要准备一个固定的1-2分钟的自我介绍模板，随后的面试开场基本都是自我介绍。这份自我介绍模板需要介绍下自己的姓名、求学经历以及在这个过程中所取得的一些成绩。例如：我叫XXX，XXXX年毕业于A大学，本科学的是B专业。在XXXX年后，我来到了B大学，从事的研究方向是D。在这期间我参与了KKK项目，负责了系统代码的修改和论文的撰写，目前论文已经发表至E会议。</p>
+<p>在大多数情况下，我们会经历三轮面试，这三轮的面试侧重点各有不同，我们可以根据这些来有针对性地进行复习。</p>
+<ul>
+<li><p>一轮</p>
+<p>在大部分情况下，这一轮的面试官会是你未来的同事，他会考察你的理论知识，以确定你的基础是否牢固。所以，在准备第一轮面试时需要对高频的理论知识考点进行温习，例如，进程和线程的区别、TCP的三次握手和四次挥手等。</p></li>
+<li><p>二轮</p>
+<p>在考察基础知识后，二轮的面试通常会派出你未来的直接leader来考察你的项目，确定你的实战能力。所以在准备这一轮时需要对楚项目所涉及的知识点重新进行梳理，设想一些可能出现的问题。</p></li>
+<li><p>三轮：</p>
+<p>进入三轮之后，派出的面试官会是部门的总监，此时会考察你的思维方式、学习能力等软实力，设置的许多问题都是开放式的。对于这一轮，我只能说看造化。</p></li>
+</ul>
+<p>在三轮面试中，我们都会涉及到现场编码的环节，很多面试官会固定从几个题目中挑选出一个题目来考察我们。想要知道哪些考题是高频的，我们可以通过<span class="exturl" data-url="aHR0cHM6Ly9jb2RldG9wLmNjL2hvbWU=">CodeTop<i class="fa fa-external-link-alt"></i></span>这个网站来进行查询。根据我自己的经验来看，这个网站还是有作用的，因为我曾经通过这个网站压中过算法题。</p>
+<h2 id="复盘">复盘</h2>
+<p>在面试过程，我们会面对很多问题，这些问题有些是我们知道的，有些是我们不知道的。对于这些不知道的问题，在面试结束之后我们要及时记录，并查找到相关答案进行总结。然而，如果我们在面试结束后进行总结将会面临到一个问题，面试的时间过长会导致我们遗忘一些问题。所以，我建议如果面试时可以录音，不妨录下整个面试过程，这样能方便后续的总结。</p>
+<h1 id="薪酬谈判与offer选择">薪酬谈判与Offer选择</h1>
+<p>通常，我们在秋招的尾声会收获到很多Offer，后续我们会涉及到跟HR的谈薪问题以及Offer的选择问题。这里，我分享一下我的经验。</p>
+<p>对于薪资的谈判，在你手握多个Offer的情况下，某一家公司会率先给你开出它的报价，这个时候你可以去跟其它公司进行沟通，告诉它们有一家公司已经给我开出了薪资，并向它们了解下上报的薪资。之后，这些公司的HR肯定会来和你沟通，询问那家公司给你开出的薪资是多少。此时，你不能报出确切的数字和详细的薪酬方案，一方面这是出于保密的义务，另一方面是掌握主动权。报出的数字可以适量的上浮一些，如果对方想争取你，自然就会为你争取这个薪资。另外，对于HR的一些话术我们需要提防。例如，HR可能会跟你说，这个城市的生活水准低一些，所以我们的报价会低一些。这个时候一定要守住自己底线，不要陷入话术。</p>
+<p>而对于Offer的选择，我们需要从两个方面进行考虑：</p>
+<ul>
+<li><p>工作层面</p>
+<p>这一层面主要涉及到平台、岗位方向以及薪资等。这三个因素，我会优先考虑岗位方向。在现在越来越卷的大环境下，我认为应当选择那种门槛相对比较高的，竞争没那么激烈的岗位。这样我们的未来发展会更持久。例如，我当时获得了大数据系统开发和数据库内核开发两种Offer，尽管我没有做过数据库内核开发。但是考虑到今年学院的数据库选手薪资都特别高，并且数据库内核开发的难度要高于大数据系统开发，再加之大数据系统开发有很多Java选手在卷。所以，我最终选择了数据库内核开发这个领域。</p>
+<p>第二个考虑的因素是平台，平台越大，接触到牛人的机会越大，这样我们能进一步成长的可能性越大。</p>
+<p>第三个考虑的则是薪资，在前两个因素大致对等的情况下，选薪资高的。</p></li>
+<li><p>生活层面</p>
+<p>生活层面主要考虑定居的问题，定居一方面需要考虑房价，另一方面还需要考虑离家的距离。当然，如果你有男（女）朋友，还得考虑下对方的意见。</p></li>
+</ul>
+<h1 id="一些题外话">一些题外话</h1>
+<p>这份秋招指南原本计划是在去年年底完成的，然而在拖延症的作用下，直到今年四月份才彻底完稿。对于这件事是有些遗憾的，看来需要改进的地方还有很多。总的来说，这份指南基本上对我去年秋招过程中的所思所想做了一个总结，也可以算作研究生生涯的一个告别，我终于将遗留的事情清理掉了，可以继续往前走了。希望这份指南能给后来参加秋招的你们带来一些帮助，也希望各位能拿到满意的Offer。</p>
+<h1 id="秋招资源">秋招资源</h1>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYWxpeXVuZHJpdmUuY29tL3MvcE1KZXhtU3Fydmo=">秋招资源<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+<hr>
+<blockquote>
+<p>如果文中的内容有误，请通过邮箱ikroal@outlook.com与我联系🙏</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Thinking</category>
+      </categories>
+      <tags>
+        <tag>summary</tag>
       </tags>
   </entry>
 </search>
