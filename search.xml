@@ -415,76 +415,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android 基础之 LayoutInflater 总结</title>
-    <url>/posts/63cc5c0e.html</url>
-    <content><![CDATA[<h4 id="layoutinflater-的获取">LayoutInflater 的获取</h4>
-<p>获取 LayoutInflater 的方式一般有三种：</p>
-<ol type="1">
-<li>getLayoutInflater()</li>
-<li>LayoutInflater.from(Context context)</li>
-<li>context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)</li>
-</ol>
-<p>这三种获取方式本质上都是一样的</p>
-<ul>
-<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p></li>
-<li><p>LayoutInflater.from(Context context) 内部通过以下代码获取 LayoutInflater。<span id="more"></span></p>
-<p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LayoutInflater <span class="title">from</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    LayoutInflater LayoutInflater =</span><br><span class="line">            (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line">    <span class="keyword">if</span> (LayoutInflater == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError(<span class="string">&quot;LayoutInflater not found.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> LayoutInflater;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
-</ul>
-<p><strong>结论：所以这三种方式最终都调用了 Context.getSystemService()</strong></p>
-<h4 id="layoutinflater-的-inflater-方法">LayoutInflater 的 inflater 方法</h4>
-<p>inflater 作为 LayoutInflater 中最常用的方法，用于从 xml 的布局文件得到一个 View 对象，加载到 Activity 用于动态创建布局。inflater 总共重载了 4 种调用方式： 1. public View inflate(<span class="citation" data-cites="LayoutRes">@LayoutRes</span> int resource, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root) 2. public View inflate(<span class="citation" data-cites="LayoutRes">@LayoutRes</span> int resource, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root, boolean attachToRoot) 3. public View inflate(XmlPullParser parser, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root) 4. public View inflate(XmlPullParser parser, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root, boolean attachToRoot)</p>
-<p>对于构造函数的使用而言，有如下注意事项：</p>
-<ul>
-<li>root 填充的根视图</li>
-<li>attachToRoot 决定是否将载入的视图附加到根视图上，如果为 false 则仅用于为 XML 中的根视图创建正确的 LayoutParams 的子类</li>
-<li>前三个 inflater 方法最终都会调用第四个 inflater 方法，采用了 pull 解析</li>
-<li>避免将 null 作为 ViewGroup 传入</li>
-<li>当不需要将返回的 View 添加入 ViewGroup 时应该设置attachToRoot 为 false</li>
-<li>避免在 View 已经被添加入 ViewGroup 时将 attachToRoot 设置为 True</li>
-<li>自定义 View 时非常适合将 attachToRoot 设置为 True</li>
-</ul>
-<h4 id="layoutinflater-基本使用">LayoutInflater 基本使用</h4>
-<p>由于 LayoutInflater 主要用于布局填充，所以主要涉及到的是 inflater 方法，inflater 返回了一个 View，其调用方式是：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line">View view = inflater.inflate(R.layout.first_fragment, container, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="参考资料">参考资料</h4>
-<ol type="1">
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY2hlbmdkYXpoaS5jb20vaW5kZXgucGhwLzExMA==">深入理解 LayoutInflater.inflate()<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ3VvbGluX2Jsb2cvYXJ0aWNsZS9kZXRhaWxzLzEyOTIxODg5Lw==">Android LayoutInflater 原理分析，带你一步步深入了解 View (一)<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cDovL3d3dy4yY3RvLmNvbS9rZi8yMDE0MDcvMzEzMDU0Lmh0bWw=">LayoutInflater——80%的Android程序员对它并不了解甚至错误使用<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Android View</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android 基础之 Service</title>
-    <url>/posts/cbbb364f.html</url>
-    <content><![CDATA[<h4 id="service-的含义及作用">Service 的含义及作用</h4>
-<p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通过绑定启动的时候是可控的，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。<span id="more"></span> 另外关于 Service，官网上还有如下的提示： &gt; 服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
-<h4 id="service-的生命周期">Service 的生命周期</h4>
-<p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png"></p>
-<h4 id="service-的基本使用">Service 的基本使用</h4>
-<ol type="1">
-<li>创建服务 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。</li>
-<li>运行服务 运行服务主要方法有两种，一种是调用 startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。</li>
-<li>服务中处理事件 startService 启动服务，事件的处理一般在服务的 onStartCommand 方法进行的，bindService 绑定服务之后，将会在 ServiceConnection 的 onServiceConnected 中返回一个 Binder 对象，利用返回的 Binder 对象可以调用相关的事件处理方法。</li>
-<li>停止服务 服务的运行条件是服务被绑定或者被启动，所以想让服务不运行则需要破坏这两个条件，可以通过调用 stopService 和 unbindService 实现。</li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Android Service</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AsyncTask 总结</title>
     <url>/posts/902ef14f.html</url>
     <content><![CDATA[<h2 id="asynctask-的作用">AsyncTask 的作用</h2>
@@ -529,6 +459,53 @@
       </categories>
       <tags>
         <tag>SourceCode Analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 基础之 LayoutInflater 总结</title>
+    <url>/posts/63cc5c0e.html</url>
+    <content><![CDATA[<h4 id="layoutinflater-的获取">LayoutInflater 的获取</h4>
+<p>获取 LayoutInflater 的方式一般有三种：</p>
+<ol type="1">
+<li>getLayoutInflater()</li>
+<li>LayoutInflater.from(Context context)</li>
+<li>context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)</li>
+</ol>
+<p>这三种获取方式本质上都是一样的</p>
+<ul>
+<li><p>getLayoutInflater() 通过 getWindow().getLayoutInflater() 进行获取，getWindow() 获取的是 PhoneWindow，然后 PhoneWindow 通过 mLayoutInflater = LayoutInflater.from(context) 获取 LayoutInflater。</p></li>
+<li><p>LayoutInflater.from(Context context) 内部通过以下代码获取 LayoutInflater。<span id="more"></span></p>
+<p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LayoutInflater <span class="title">from</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    LayoutInflater LayoutInflater =</span><br><span class="line">            (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line">    <span class="keyword">if</span> (LayoutInflater == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError(<span class="string">&quot;LayoutInflater not found.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> LayoutInflater;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<p><strong>结论：所以这三种方式最终都调用了 Context.getSystemService()</strong></p>
+<h4 id="layoutinflater-的-inflater-方法">LayoutInflater 的 inflater 方法</h4>
+<p>inflater 作为 LayoutInflater 中最常用的方法，用于从 xml 的布局文件得到一个 View 对象，加载到 Activity 用于动态创建布局。inflater 总共重载了 4 种调用方式： 1. public View inflate(<span class="citation" data-cites="LayoutRes">@LayoutRes</span> int resource, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root) 2. public View inflate(<span class="citation" data-cites="LayoutRes">@LayoutRes</span> int resource, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root, boolean attachToRoot) 3. public View inflate(XmlPullParser parser, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root) 4. public View inflate(XmlPullParser parser, <span class="citation" data-cites="Nullable">@Nullable</span> ViewGroup root, boolean attachToRoot)</p>
+<p>对于构造函数的使用而言，有如下注意事项：</p>
+<ul>
+<li>root 填充的根视图</li>
+<li>attachToRoot 决定是否将载入的视图附加到根视图上，如果为 false 则仅用于为 XML 中的根视图创建正确的 LayoutParams 的子类</li>
+<li>前三个 inflater 方法最终都会调用第四个 inflater 方法，采用了 pull 解析</li>
+<li>避免将 null 作为 ViewGroup 传入</li>
+<li>当不需要将返回的 View 添加入 ViewGroup 时应该设置attachToRoot 为 false</li>
+<li>避免在 View 已经被添加入 ViewGroup 时将 attachToRoot 设置为 True</li>
+<li>自定义 View 时非常适合将 attachToRoot 设置为 True</li>
+</ul>
+<h4 id="layoutinflater-基本使用">LayoutInflater 基本使用</h4>
+<p>由于 LayoutInflater 主要用于布局填充，所以主要涉及到的是 inflater 方法，inflater 返回了一个 View，其调用方式是：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line">View view = inflater.inflate(R.layout.first_fragment, container, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="参考资料">参考资料</h4>
+<ol type="1">
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY2hlbmdkYXpoaS5jb20vaW5kZXgucGhwLzExMA==">深入理解 LayoutInflater.inflate()<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ3VvbGluX2Jsb2cvYXJ0aWNsZS9kZXRhaWxzLzEyOTIxODg5Lw==">Android LayoutInflater 原理分析，带你一步步深入了解 View (一)<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy4yY3RvLmNvbS9rZi8yMDE0MDcvMzEzMDU0Lmh0bWw=">LayoutInflater——80%的Android程序员对它并不了解甚至错误使用<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Android View</tag>
       </tags>
   </entry>
   <entry>
@@ -666,6 +643,29 @@
       <tags>
         <tag>Android</tag>
         <tag>Custom View</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 基础之 Service</title>
+    <url>/posts/cbbb364f.html</url>
+    <content><![CDATA[<h4 id="service-的含义及作用">Service 的含义及作用</h4>
+<p>Service 是一个可以在后台执行长时间运行操作而不需要提供用户界面的应用组件，也就是说 Service 是为了去处理那些不需要和用户交互但又耗时的操作。但是如果 Service 只是为了执行那些耗时的操作的话，其实只用线程也可以达到同样的目的，之所以需要单独用 Service 来进行实现的原因在于 Service 相较之线程而言优先级比较高，并且 Service 通过绑定启动的时候是可控的，如果系统不是极端不够用，一般而言是不会杀死 Service，但是线程可能存在被系统回收的可能性，所以 Service 的可靠性要比线程高。<span id="more"></span> 另外关于 Service，官网上还有如下的提示： &gt; 服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。 这意味着，如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应在服务内创建新线程来完成这项工作。通过使用单独的线程，可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互</p>
+<h4 id="service-的生命周期">Service 的生命周期</h4>
+<p>Service 的生命周期主要和服务的使用方式有关，使用服务主要分为启动和绑定两种方式，其生命周期如下图所示： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/service-life-cycle.png"></p>
+<h4 id="service-的基本使用">Service 的基本使用</h4>
+<ol type="1">
+<li>创建服务 系统提供了一个 Service 抽象类，所以我们自己实现一个继承自 Service 的类，然后在 AndroidManifest.xml 注册即可。</li>
+<li>运行服务 运行服务主要方法有两种，一种是调用 startService()，第二种则是 bindService()。实际上这两个方法可以同时调用。</li>
+<li>服务中处理事件 startService 启动服务，事件的处理一般在服务的 onStartCommand 方法进行的，bindService 绑定服务之后，将会在 ServiceConnection 的 onServiceConnected 中返回一个 Binder 对象，利用返回的 Binder 对象可以调用相关的事件处理方法。</li>
+<li>停止服务 服务的运行条件是服务被绑定或者被启动，所以想让服务不运行则需要破坏这两个条件，可以通过调用 stopService 和 unbindService 实现。</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Android Service</tag>
       </tags>
   </entry>
   <entry>
@@ -1113,54 +1113,117 @@
       </tags>
   </entry>
   <entry>
-    <title>Hadoop 基础之生态圈</title>
-    <url>/posts/2b10faae.html</url>
+    <title>Hadoop 基础之 HDFS 入门</title>
+    <url>/posts/abb7faac.html</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
-<p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
+<p>本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。</p>
 <span id="more"></span>
-<h2 id="hadoop-生态系统">Hadoop 生态系统</h2>
-<p>Hadoop 生态系统是指以 <strong>分布式的文件系统 HDFS</strong>、<strong>分布式的计算框架 MapReduce</strong> 以及<strong>资源管理器 YARN</strong>为基础构成的分布式数据处理系统，其结构图如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png"></p>
-<p>下面将对图中各项组件做一个介绍</p>
-<h3 id="hdfs">HDFS</h3>
-<p>HDFS 是 Google 于 2003 发表的 分布式文件系统 GFS 论文的开源实现版本，主要目的是使用普通商业电脑解决大量数据的存储以及读取速度问题，在 GFS 出现之前一般主要在<strong>单台计算机</strong>用 RAID 来提高数据存储量和读取速度。但是采用 RAID 一方面成本比较高（需求太高时可能只有超级计算机才能满足），另一方面数据量过大时可能超级计算机也无法满足需求。所以这个时候就需要采取<strong>分布式</strong>的方式去满足扩大存储（多台机器多个磁盘）和增加读取速度的需求（多台机器可以同时读）。</p>
-<h3 id="mapreduce">MapReduce</h3>
-<p>MapReduce 是一个分布式的计算框架，在 MapReduce 出现之前就已经有了分布式计算这个概念。但是大多数分布式计算只能专门用于处理一类运算，而 Google 在大量实践中总结出了一个通用的编程模型： <code>map</code> 和 <code>reduce</code>。其中 <code>map</code> 是指分开计算的过程，而 <code>reduce</code> 是指合并结果的过程。而在这一编程模型添加的一系列机制和操作构成了 MapReduce。MapReduce 大大降低了分布式计算的门槛，对于开发人员而言只需要编写一系列 <code>map</code> 和 <code>reduce</code> 函数即可完成所需的分布式计算过程。</p>
-<h3 id="yarn">YARN</h3>
-<p>YARN 是一个资源管理框架，主要作用是负责集群的资源调度和作业任务管理。YARN 的出现源于 Hadoop 不能满足统一使用集群资源的需求，因为 Hadoop1 中集群的资源调度和任务管理与 MapReduce 的执行过程是耦合在一起的，而后续出现的 Spark、Storm 等分布式计算系统其架构和执行过程与 MapReduce 不同，无法直接向 Hadoop 申请集群资源。所以为了实现集群资源的统一管理，在 Hadoop2 中对 MapReduce 进行了一个解耦，抽离出了 YARN 这个框架。</p>
-<h3 id="zookeeper">ZooKeeper</h3>
-<p>Zookeeper 主要作用是提供一个分布式、高可用的协调服务，解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。</p>
-<h3 id="pig">Pig</h3>
-<p>虽然 MapReduce 极大的简化了分布式计算编程的门槛，但是 Yahoo 的工程师依然觉得 MapReduce 编程太过麻烦，所以他们便开发了 Pig 这个脚本语言用于描述对大数据集的操作。这样就可以通过编译 Pig 脚本生成对应的 MapReduce 程序。</p>
-<h3 id="hive">Hive</h3>
-<p>为了方便使用 SQL 的工程师使用 MapReduce，Facebook 的工程师开发了 Hive，通过 Hive 熟悉数据库的工程师可以无门槛的使用 MapReduce。</p>
-<h3 id="mahout">Mahout</h3>
-<p>Mahout 的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。Mahout 现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。</p>
-<h3 id="tez">Tez</h3>
-<p>Tez 是 Apache 最新开源的支持 DAG 作业的计算框架，它直接源于 MapReduce 框架，核心思想是将 Map 和 Reduce 两个操作进一步拆分，即 Map 被拆分成 Input、Processor、Sort、Merge和Output， Reduce 被拆分成 Input、Shuffle、Sort、Merge、Processor 和 Output 等。</p>
-<h3 id="hase">Hase</h3>
-<p>HBase 是一个建立在 HDFS 之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。</p>
-<h3 id="flume">Flume</h3>
-<p>Cloudera 开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。</p>
-<h3 id="sqoop">Sqoop</h3>
-<p>Sqoop 是 SQL-to-Hadoop 的缩写，主要用于传统数据库和 Hadoop 之前传输数据。数据的导入和导出本质上是Mapreduce 程序，充分利用了 MR 的并行化和容错性。</p>
-<h3 id="ambari">Ambari</h3>
-<p>Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个 web 工具。</p>
-<h2 id="总结">总结</h2>
-<p>总的来说 HDFS 、MapReduce 以及 YARN 是 Hadoop 的核心组件，而我们学习 Hadoop 最好从核心组件开始学习其原理机制，再逐渐往上层进行了解。</p>
+<h2 id="简介">简介</h2>
+<p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGUvcmVzZWFyY2gvcHVicy9wdWI1MQ==">The Google File System<i class="fa fa-external-link-alt"></i></span> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
+<h2 id="体系架构">体系架构</h2>
+<p><img src="/posts/abb7faac/HDFS-Structure.png"></p>
+<p>上图表明 HDFS 是一个标准的 master/slave 架构，主要由三个部分构成：</p>
+<ol type="1">
+<li>NameNode（master 节点）
+<ul>
+<li>元数据（MetaData）的管理，其中元数据由<strong>文件路径名</strong>、<strong>数据块ID</strong>以及<strong>存储位置</strong>等信息构成</li>
+<li>管理 HDFS 的名字空间。</li>
+</ul></li>
+<li>SecondaryNameNode
+<ul>
+<li>定期合并 NameNode 的 edit logs（对文件系统的改动序列） 到 fsimage（对整个文件系统的快照），并拷贝修改后的 fsimage 到 NameNode。</li>
+<li>提供一个 NameNode 的检查点（切忌认为是 NameNode 的备份），可用于 NameNode 的故障恢复。</li>
+</ul></li>
+<li>DataNode（slave 节点）
+<ul>
+<li>提供文件存储和进行数据块操作。</li>
+<li>周期性的向 NameNode 汇报块信息。</li>
+</ul></li>
+</ol>
+<p>这里对图中出现的一些概念进行说明：</p>
+<ol type="1">
+<li><p>Replication（副本）</p>
+<p>为了保证数据的高可用，HDFS 会对写入的数据进行冗余存储，默认情况下会保存 3 份。</p></li>
+<li><p>Blocks</p>
+<p>Block 是最基本的存储和操作单位（默认情况下为 128M），这里的 Block 不是指物理 Block ，而是指文件系统的 Block，其大小一般是物理 Block 的整数倍。</p></li>
+</ol>
+<h2 id="执行流程">执行流程</h2>
+<h3 id="读文件">读文件</h3>
+<p><img src="/posts/abb7faac/HDFS-Read.jpg"></p>
+<p>读文件的过程可以概括为：</p>
+<ol type="1">
+<li>Client 向 NameNode 发起请求获取文件数据块位置信息</li>
+<li>Client 按照数据块距 Client 的远近依次进行连接然后读取数据</li>
+</ol>
+<h3 id="写文件">写文件</h3>
+<p><img src="/posts/abb7faac/HDFS-Write.jpg"></p>
+<p>写文件的过程可以概括为：</p>
+<ol type="1">
+<li>Client 向 NameNode 发起写文件的请求获得可写的 DataNode 列表等信息</li>
+<li>Client 根据 HDFS 设定的分块大小对文件进行分块</li>
+<li>Client 和 NameNode 分配的 DataNode 构成 pipeline 并进行数据写入</li>
+<li>写入完成之后，NameNode 接收来自 DataNode 的消息进行元数据的更新</li>
+</ol>
+<h2 id="常用命令">常用命令</h2>
+<h3 id="文件操作">文件操作</h3>
+<ol type="1">
+<li><p>列出文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -ls &lt;path&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -mkdir &lt;path&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>上传文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -put &lt;localsrc&gt; &lt;dst&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>输出文件内容</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -cat &lt;src&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>文件复制到本地</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -get &lt;src&gt; &lt;localdst&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>删除文件和目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -rm &lt;src&gt;</span><br><span class="line">hdfs dfs -rmdir &lt;dir&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="管理">管理</h3>
+<ol type="1">
+<li><p>查看统计信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfsadmin -report</span><br></pre></td></tr></table></figure></li>
+<li><p>进入和退出安全模式（该模式不允许文件系统有任何修改）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfsadmin -safemode enter</span><br><span class="line">hdfs dfsadmin -safemode leave</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="编程实例">编程实例</h2>
+<ol type="1">
+<li><p>IDEA 新建 Maven 项目</p>
+<p><img src="/posts/abb7faac/maven-create.png"></p>
+<p>勾选相关选项后，点击 next 填入项目相关信息即可</p></li>
+<li><p>pom.xml 中添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> //根据 Hadoop 版本进行选择</span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-hdfs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>读写文件</p>
+<p>创建 Sample 类编写相应的读写函数</p>
+<ul>
+<li><p>Sample 类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataInputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataOutputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ikroal</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>&#123;</span><br><span class="line">    <span class="comment">//默认的 HDFS 地址</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_FS = <span class="string">&quot;hdfs://localhost:9000&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PATH = DEFAULT_FS + <span class="string">&quot;/tmp/demo.txt&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_FILE = <span class="string">&quot;demo.txt&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        FileSystem fs = <span class="keyword">null</span>;</span><br><span class="line">        conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, DEFAULT_FS); <span class="comment">//配置 HDFS 地址</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fs = FileSystem.get(conf);</span><br><span class="line">            write(fs, DEFAULT_FILE, PATH);</span><br><span class="line">            read(fs, PATH);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fs != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    fs.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>write 函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件写入</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> inputPath 待写入文件路径</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> outPath HDFS 的写入路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(FileSystem fileSystem, String inputPath, String outPath)</span> </span>&#123;</span><br><span class="line">    FSDataOutputStream outputStream = <span class="keyword">null</span>;</span><br><span class="line">    FileInputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        outputStream = fileSystem.create(<span class="keyword">new</span> Path(outPath)); <span class="comment">//获得 HDFS 的写入流</span></span><br><span class="line">        inputStream = <span class="keyword">new</span> FileInputStream(inputPath); <span class="comment">//读取本地文件</span></span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        <span class="keyword">while</span> ((data = inputStream.read()) != -<span class="number">1</span>) &#123; <span class="comment">//写入操作</span></span><br><span class="line">            outputStream.write(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (outputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                outputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>read 函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件读取</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> path HDFS 上待读取文件路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(FileSystem fileSystem, String path)</span> </span>&#123;</span><br><span class="line">    FSDataInputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">    BufferedReader reader = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        inputStream = fileSystem.open(<span class="keyword">new</span> Path(path)); <span class="comment">//获取 HDFS 读取流</span></span><br><span class="line">        reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream));</span><br><span class="line">        String content;</span><br><span class="line">        <span class="keyword">while</span> ((content = reader.readLine()) != <span class="keyword">null</span>) &#123; <span class="comment">//读取并输出到控制台</span></span><br><span class="line">            System.out.println(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">                reader.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>在工程文件夹的根目录下创建计划上传的文件（这里是 demo.txt），填入 Hello World！</p></li>
+<li><p>启动 Hadoop 然后运行程序查看结果</p>
+<p>通过 http://localhost:50070/explorer.html#/ 可以查看写入结果</p>
+<p><img src="/posts/abb7faac/write.png"></p>
+<p>控制台则会输出上传文件的内容</p>
+<p><img src="/posts/abb7faac/read.png"></p></li>
+</ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1X2JlbGlmL2FydGljbGUvZGV0YWlscy84MzA1ODc5OA==">Hadoop生态圈总结——大数据<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pjYl9kYXRhL2FydGljbGUvZGV0YWlscy84MDQwMjQxMQ==">hadoop生态圈各个组件简介<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3JpZG1peC9wLzUxMDI2OTQuaHRtbA==">大数据技术Hadoop入门理论系列之一----hadoop生态圈介绍<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly90aW1lLmdlZWtiYW5nLm9yZy9jb2x1bW4vaW50cm8vMTMz">从0开始学大数据---极客时间<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY29kZU9mTGlmZS9wLzUzNzUxMjAuaHRtbA==">初步掌握HDFS的架构及原理<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JpbmdkdWFubGJkL2FydGljbGUvZGV0YWlscy81MTkxNDU1MCN0MjM=">深入理解HDFS：Hadoop分布式文件系统<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3doZHhqYncvYXJ0aWNsZS9kZXRhaWxzLzgxMDcyMjA3">HDFS读写流程（史上最精炼详细）<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcWluZ3l1bnpvbmcvcC84NTQ4ODA2Lmh0bWw=">Hadoop学习之路（十一）HDFS的读写详解<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
 ]]></content>
       <categories>
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Hadoop</tag>
+        <tag>HDFS</tag>
       </tags>
   </entry>
   <entry>
@@ -1298,117 +1361,54 @@
       </tags>
   </entry>
   <entry>
-    <title>Hadoop 基础之 HDFS 入门</title>
-    <url>/posts/abb7faac.html</url>
+    <title>Hadoop 基础之生态圈</title>
+    <url>/posts/2b10faae.html</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
-<p>本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。</p>
+<p>本文主要目的是介绍 Hadoop 的基本架构以及衍生出来的各种工具，以期对 Hadoop 有个整体的认识。</p>
 <span id="more"></span>
-<h2 id="简介">简介</h2>
-<p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGUvcmVzZWFyY2gvcHVicy9wdWI1MQ==">The Google File System<i class="fa fa-external-link-alt"></i></span> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
-<h2 id="体系架构">体系架构</h2>
-<p><img src="/posts/abb7faac/HDFS-Structure.png"></p>
-<p>上图表明 HDFS 是一个标准的 master/slave 架构，主要由三个部分构成：</p>
-<ol type="1">
-<li>NameNode（master 节点）
-<ul>
-<li>元数据（MetaData）的管理，其中元数据由<strong>文件路径名</strong>、<strong>数据块ID</strong>以及<strong>存储位置</strong>等信息构成</li>
-<li>管理 HDFS 的名字空间。</li>
-</ul></li>
-<li>SecondaryNameNode
-<ul>
-<li>定期合并 NameNode 的 edit logs（对文件系统的改动序列） 到 fsimage（对整个文件系统的快照），并拷贝修改后的 fsimage 到 NameNode。</li>
-<li>提供一个 NameNode 的检查点（切忌认为是 NameNode 的备份），可用于 NameNode 的故障恢复。</li>
-</ul></li>
-<li>DataNode（slave 节点）
-<ul>
-<li>提供文件存储和进行数据块操作。</li>
-<li>周期性的向 NameNode 汇报块信息。</li>
-</ul></li>
-</ol>
-<p>这里对图中出现的一些概念进行说明：</p>
-<ol type="1">
-<li><p>Replication（副本）</p>
-<p>为了保证数据的高可用，HDFS 会对写入的数据进行冗余存储，默认情况下会保存 3 份。</p></li>
-<li><p>Blocks</p>
-<p>Block 是最基本的存储和操作单位（默认情况下为 128M），这里的 Block 不是指物理 Block ，而是指文件系统的 Block，其大小一般是物理 Block 的整数倍。</p></li>
-</ol>
-<h2 id="执行流程">执行流程</h2>
-<h3 id="读文件">读文件</h3>
-<p><img src="/posts/abb7faac/HDFS-Read.jpg"></p>
-<p>读文件的过程可以概括为：</p>
-<ol type="1">
-<li>Client 向 NameNode 发起请求获取文件数据块位置信息</li>
-<li>Client 按照数据块距 Client 的远近依次进行连接然后读取数据</li>
-</ol>
-<h3 id="写文件">写文件</h3>
-<p><img src="/posts/abb7faac/HDFS-Write.jpg"></p>
-<p>写文件的过程可以概括为：</p>
-<ol type="1">
-<li>Client 向 NameNode 发起写文件的请求获得可写的 DataNode 列表等信息</li>
-<li>Client 根据 HDFS 设定的分块大小对文件进行分块</li>
-<li>Client 和 NameNode 分配的 DataNode 构成 pipeline 并进行数据写入</li>
-<li>写入完成之后，NameNode 接收来自 DataNode 的消息进行元数据的更新</li>
-</ol>
-<h2 id="常用命令">常用命令</h2>
-<h3 id="文件操作">文件操作</h3>
-<ol type="1">
-<li><p>列出文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -ls &lt;path&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>创建目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -mkdir &lt;path&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>上传文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -put &lt;localsrc&gt; &lt;dst&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>输出文件内容</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -cat &lt;src&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>文件复制到本地</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -get &lt;src&gt; &lt;localdst&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>删除文件和目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfs -rm &lt;src&gt;</span><br><span class="line">hdfs dfs -rmdir &lt;dir&gt;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="管理">管理</h3>
-<ol type="1">
-<li><p>查看统计信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfsadmin -report</span><br></pre></td></tr></table></figure></li>
-<li><p>进入和退出安全模式（该模式不允许文件系统有任何修改）</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs dfsadmin -safemode enter</span><br><span class="line">hdfs dfsadmin -safemode leave</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="编程实例">编程实例</h2>
-<ol type="1">
-<li><p>IDEA 新建 Maven 项目</p>
-<p><img src="/posts/abb7faac/maven-create.png"></p>
-<p>勾选相关选项后，点击 next 填入项目相关信息即可</p></li>
-<li><p>pom.xml 中添加依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> //根据 Hadoop 版本进行选择</span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-hdfs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>读写文件</p>
-<p>创建 Sample 类编写相应的读写函数</p>
-<ul>
-<li><p>Sample 类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataInputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataOutputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ikroal</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>&#123;</span><br><span class="line">    <span class="comment">//默认的 HDFS 地址</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_FS = <span class="string">&quot;hdfs://localhost:9000&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PATH = DEFAULT_FS + <span class="string">&quot;/tmp/demo.txt&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_FILE = <span class="string">&quot;demo.txt&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        FileSystem fs = <span class="keyword">null</span>;</span><br><span class="line">        conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, DEFAULT_FS); <span class="comment">//配置 HDFS 地址</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fs = FileSystem.get(conf);</span><br><span class="line">            write(fs, DEFAULT_FILE, PATH);</span><br><span class="line">            read(fs, PATH);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fs != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    fs.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>write 函数</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件写入</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> inputPath 待写入文件路径</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> outPath HDFS 的写入路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(FileSystem fileSystem, String inputPath, String outPath)</span> </span>&#123;</span><br><span class="line">    FSDataOutputStream outputStream = <span class="keyword">null</span>;</span><br><span class="line">    FileInputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        outputStream = fileSystem.create(<span class="keyword">new</span> Path(outPath)); <span class="comment">//获得 HDFS 的写入流</span></span><br><span class="line">        inputStream = <span class="keyword">new</span> FileInputStream(inputPath); <span class="comment">//读取本地文件</span></span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        <span class="keyword">while</span> ((data = inputStream.read()) != -<span class="number">1</span>) &#123; <span class="comment">//写入操作</span></span><br><span class="line">            outputStream.write(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (outputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                outputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>read 函数</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件读取</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> path HDFS 上待读取文件路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(FileSystem fileSystem, String path)</span> </span>&#123;</span><br><span class="line">    FSDataInputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">    BufferedReader reader = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        inputStream = fileSystem.open(<span class="keyword">new</span> Path(path)); <span class="comment">//获取 HDFS 读取流</span></span><br><span class="line">        reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream));</span><br><span class="line">        String content;</span><br><span class="line">        <span class="keyword">while</span> ((content = reader.readLine()) != <span class="keyword">null</span>) &#123; <span class="comment">//读取并输出到控制台</span></span><br><span class="line">            System.out.println(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">                reader.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p>在工程文件夹的根目录下创建计划上传的文件（这里是 demo.txt），填入 Hello World！</p></li>
-<li><p>启动 Hadoop 然后运行程序查看结果</p>
-<p>通过 http://localhost:50070/explorer.html#/ 可以查看写入结果</p>
-<p><img src="/posts/abb7faac/write.png"></p>
-<p>控制台则会输出上传文件的内容</p>
-<p><img src="/posts/abb7faac/read.png"></p></li>
-</ol>
+<h2 id="hadoop-生态系统">Hadoop 生态系统</h2>
+<p>Hadoop 生态系统是指以 <strong>分布式的文件系统 HDFS</strong>、<strong>分布式的计算框架 MapReduce</strong> 以及<strong>资源管理器 YARN</strong>为基础构成的分布式数据处理系统，其结构图如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Hadoop%E6%9E%B6%E6%9E%84%E5%9B%BE2.0.png"></p>
+<p>下面将对图中各项组件做一个介绍</p>
+<h3 id="hdfs">HDFS</h3>
+<p>HDFS 是 Google 于 2003 发表的 分布式文件系统 GFS 论文的开源实现版本，主要目的是使用普通商业电脑解决大量数据的存储以及读取速度问题，在 GFS 出现之前一般主要在<strong>单台计算机</strong>用 RAID 来提高数据存储量和读取速度。但是采用 RAID 一方面成本比较高（需求太高时可能只有超级计算机才能满足），另一方面数据量过大时可能超级计算机也无法满足需求。所以这个时候就需要采取<strong>分布式</strong>的方式去满足扩大存储（多台机器多个磁盘）和增加读取速度的需求（多台机器可以同时读）。</p>
+<h3 id="mapreduce">MapReduce</h3>
+<p>MapReduce 是一个分布式的计算框架，在 MapReduce 出现之前就已经有了分布式计算这个概念。但是大多数分布式计算只能专门用于处理一类运算，而 Google 在大量实践中总结出了一个通用的编程模型： <code>map</code> 和 <code>reduce</code>。其中 <code>map</code> 是指分开计算的过程，而 <code>reduce</code> 是指合并结果的过程。而在这一编程模型添加的一系列机制和操作构成了 MapReduce。MapReduce 大大降低了分布式计算的门槛，对于开发人员而言只需要编写一系列 <code>map</code> 和 <code>reduce</code> 函数即可完成所需的分布式计算过程。</p>
+<h3 id="yarn">YARN</h3>
+<p>YARN 是一个资源管理框架，主要作用是负责集群的资源调度和作业任务管理。YARN 的出现源于 Hadoop 不能满足统一使用集群资源的需求，因为 Hadoop1 中集群的资源调度和任务管理与 MapReduce 的执行过程是耦合在一起的，而后续出现的 Spark、Storm 等分布式计算系统其架构和执行过程与 MapReduce 不同，无法直接向 Hadoop 申请集群资源。所以为了实现集群资源的统一管理，在 Hadoop2 中对 MapReduce 进行了一个解耦，抽离出了 YARN 这个框架。</p>
+<h3 id="zookeeper">ZooKeeper</h3>
+<p>Zookeeper 主要作用是提供一个分布式、高可用的协调服务，解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。</p>
+<h3 id="pig">Pig</h3>
+<p>虽然 MapReduce 极大的简化了分布式计算编程的门槛，但是 Yahoo 的工程师依然觉得 MapReduce 编程太过麻烦，所以他们便开发了 Pig 这个脚本语言用于描述对大数据集的操作。这样就可以通过编译 Pig 脚本生成对应的 MapReduce 程序。</p>
+<h3 id="hive">Hive</h3>
+<p>为了方便使用 SQL 的工程师使用 MapReduce，Facebook 的工程师开发了 Hive，通过 Hive 熟悉数据库的工程师可以无门槛的使用 MapReduce。</p>
+<h3 id="mahout">Mahout</h3>
+<p>Mahout 的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。Mahout 现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。</p>
+<h3 id="tez">Tez</h3>
+<p>Tez 是 Apache 最新开源的支持 DAG 作业的计算框架，它直接源于 MapReduce 框架，核心思想是将 Map 和 Reduce 两个操作进一步拆分，即 Map 被拆分成 Input、Processor、Sort、Merge和Output， Reduce 被拆分成 Input、Shuffle、Sort、Merge、Processor 和 Output 等。</p>
+<h3 id="hase">Hase</h3>
+<p>HBase 是一个建立在 HDFS 之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。</p>
+<h3 id="flume">Flume</h3>
+<p>Cloudera 开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。</p>
+<h3 id="sqoop">Sqoop</h3>
+<p>Sqoop 是 SQL-to-Hadoop 的缩写，主要用于传统数据库和 Hadoop 之前传输数据。数据的导入和导出本质上是Mapreduce 程序，充分利用了 MR 的并行化和容错性。</p>
+<h3 id="ambari">Ambari</h3>
+<p>Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个 web 工具。</p>
+<h2 id="总结">总结</h2>
+<p>总的来说 HDFS 、MapReduce 以及 YARN 是 Hadoop 的核心组件，而我们学习 Hadoop 最好从核心组件开始学习其原理机制，再逐渐往上层进行了解。</p>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY29kZU9mTGlmZS9wLzUzNzUxMjAuaHRtbA==">初步掌握HDFS的架构及原理<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JpbmdkdWFubGJkL2FydGljbGUvZGV0YWlscy81MTkxNDU1MCN0MjM=">深入理解HDFS：Hadoop分布式文件系统<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3doZHhqYncvYXJ0aWNsZS9kZXRhaWxzLzgxMDcyMjA3">HDFS读写流程（史上最精炼详细）<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcWluZ3l1bnpvbmcvcC84NTQ4ODA2Lmh0bWw=">Hadoop学习之路（十一）HDFS的读写详解<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1X2JlbGlmL2FydGljbGUvZGV0YWlscy84MzA1ODc5OA==">Hadoop生态圈总结——大数据<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pjYl9kYXRhL2FydGljbGUvZGV0YWlscy84MDQwMjQxMQ==">hadoop生态圈各个组件简介<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3JpZG1peC9wLzUxMDI2OTQuaHRtbA==">大数据技术Hadoop入门理论系列之一----hadoop生态圈介绍<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aW1lLmdlZWtiYW5nLm9yZy9jb2x1bW4vaW50cm8vMTMz">从0开始学大数据---极客时间<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
 ]]></content>
       <categories>
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>HDFS</tag>
+        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -2168,47 +2168,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android 基础之 Selector 的用法</title>
-    <url>/posts/undefined.html</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。<span id="more"></span></p>
-<h2 id="drawable-selector">Drawable-selector</h2>
-<ol type="1">
-<li><p>首先需要在 res/drawable 文件夹下新建一个 Drawable Resource File 文件，填入文件名即可，创建之后的文件内容如下：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>在 selector 标签下新建一个 item 标签，item 标签表示一种状态，如果不指明状态，那么控件在任何状态下都会加载 item 内的 样式，常用的状态设置如下所示：</p>
-<ul>
-<li>android:state_pressed 设置为 true 时代表按压控件的时候使用 item 样式</li>
-<li>android:state_selected 设置为 true 时代表控件被选中的时候使用 item 样式</li>
-<li>android:state_checked 设置为 true 时代表控件处于 checked 状态的时候使用 item 样式</li>
-</ul></li>
-<li><p>接下来在 item 内部创建 shape 标签用于指定绘制的图形类别，总共有四种图形可以选择分别是：rectangle、oval、line、ring。在确定需要绘制的 shape 类型之后，就可以在 shape 标签内部对 shape 的各项属性进行配置，总共有六种标签属性。</p>
-<ul>
-<li>size 用来设置 shape 的大小</li>
-<li>solid 用来设置填充 shape 的颜色</li>
-<li>corners 用来设置 shape 的角度</li>
-<li>stroke 用来给 shape 描边，可以描成虚线或实线</li>
-<li>padding 设置内边距</li>
-<li>gradient 设置 shape 的渐变颜色</li>
-</ul></li>
-<li><p>设置好相应的属性之后就可以通过设置控件的 android:drawble 属性进行使用了，这里给出一个例子</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">&quot;rectangle&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">&quot;5dp&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">&quot;1dp&quot;</span> <span class="attr">android:color</span>=<span class="string">&quot;#00faff&quot;</span> <span class="attr">android:dashGap</span>=<span class="string">&quot;10dp&quot;</span> 	<span class="attr">android:dashWidth</span>=<span class="string">&quot;10dp&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">&quot;150dp&quot;</span> <span class="attr">android:height</span>=<span class="string">&quot;150dp&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">&quot;#bcb7b7&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">&quot;oval&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">&quot;360dp&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">&quot;1dp&quot;</span> <span class="attr">android:color</span>=<span class="string">&quot;#00fcb5&quot;</span> <span class="attr">android:dashGap</span>=<span class="string">&quot;10dp&quot;</span> 			<span class="attr">android:dashWidth</span>=<span class="string">&quot;10dp&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">&quot;300dp&quot;</span> <span class="attr">android:height</span>=<span class="string">&quot;300dp&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">&quot;#ffff&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上述代码绘制了两种状态，一种是默认状态下的圆，白色填充、虚线描边、半径是 300dp。另一种是被按下的状态，灰色填充、虚线描边、长和宽与圆一致。具体效果如下图所示： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/selector-circle.png"><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/selector-square.png"></p></li>
-</ol>
-<h2 id="color-selector">Color-selector</h2>
-<p>Color-selector 定义在 res文件夹下，使用过程基本与 Drawable-selector 一致，不同在于 Color-selector 只是用于定义控件的颜色，所以只需要配置 item 标签的 color 属性即可，具体的例子如下：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">&quot;#000000&quot;</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">&quot;#ffff&quot;</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>通过指定 item 的状态和颜色，即可做到按压和松开时控件的颜色变化。</p>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Drawble</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>BootStrap-FileInput 的基本使用</title>
     <url>/posts/2eda95da.html</url>
     <content><![CDATA[<h4 id="安装与引入">安装与引入</h4>
@@ -2757,6 +2716,47 @@ f(x)=x
       </categories>
       <tags>
         <tag>Design Pattern</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 基础之 Selector 的用法</title>
+    <url>/posts/undefined.html</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>Selector（选择器）常常被用作控件的背景，是一种状态列表，一般分为 Drawable-selector 和 Color-selector，接下来分别说说这两者的使用方法。<span id="more"></span></p>
+<h2 id="drawable-selector">Drawable-selector</h2>
+<ol type="1">
+<li><p>首先需要在 res/drawable 文件夹下新建一个 Drawable Resource File 文件，填入文件名即可，创建之后的文件内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>在 selector 标签下新建一个 item 标签，item 标签表示一种状态，如果不指明状态，那么控件在任何状态下都会加载 item 内的 样式，常用的状态设置如下所示：</p>
+<ul>
+<li>android:state_pressed 设置为 true 时代表按压控件的时候使用 item 样式</li>
+<li>android:state_selected 设置为 true 时代表控件被选中的时候使用 item 样式</li>
+<li>android:state_checked 设置为 true 时代表控件处于 checked 状态的时候使用 item 样式</li>
+</ul></li>
+<li><p>接下来在 item 内部创建 shape 标签用于指定绘制的图形类别，总共有四种图形可以选择分别是：rectangle、oval、line、ring。在确定需要绘制的 shape 类型之后，就可以在 shape 标签内部对 shape 的各项属性进行配置，总共有六种标签属性。</p>
+<ul>
+<li>size 用来设置 shape 的大小</li>
+<li>solid 用来设置填充 shape 的颜色</li>
+<li>corners 用来设置 shape 的角度</li>
+<li>stroke 用来给 shape 描边，可以描成虚线或实线</li>
+<li>padding 设置内边距</li>
+<li>gradient 设置 shape 的渐变颜色</li>
+</ul></li>
+<li><p>设置好相应的属性之后就可以通过设置控件的 android:drawble 属性进行使用了，这里给出一个例子</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">&quot;rectangle&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">&quot;5dp&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">&quot;1dp&quot;</span> <span class="attr">android:color</span>=<span class="string">&quot;#00faff&quot;</span> <span class="attr">android:dashGap</span>=<span class="string">&quot;10dp&quot;</span> 	<span class="attr">android:dashWidth</span>=<span class="string">&quot;10dp&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">&quot;150dp&quot;</span> <span class="attr">android:height</span>=<span class="string">&quot;150dp&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">&quot;#bcb7b7&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">&quot;oval&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:radius</span>=<span class="string">&quot;360dp&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stroke</span> <span class="attr">android:width</span>=<span class="string">&quot;1dp&quot;</span> <span class="attr">android:color</span>=<span class="string">&quot;#00fcb5&quot;</span> <span class="attr">android:dashGap</span>=<span class="string">&quot;10dp&quot;</span> 			<span class="attr">android:dashWidth</span>=<span class="string">&quot;10dp&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">size</span> <span class="attr">android:width</span>=<span class="string">&quot;300dp&quot;</span> <span class="attr">android:height</span>=<span class="string">&quot;300dp&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">&quot;#ffff&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述代码绘制了两种状态，一种是默认状态下的圆，白色填充、虚线描边、半径是 300dp。另一种是被按下的状态，灰色填充、虚线描边、长和宽与圆一致。具体效果如下图所示： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/selector-circle.png"><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/selector-square.png"></p></li>
+</ol>
+<h2 id="color-selector">Color-selector</h2>
+<p>Color-selector 定义在 res文件夹下，使用过程基本与 Drawable-selector 一致，不同在于 Color-selector 只是用于定义控件的颜色，所以只需要配置 item 标签的 color 属性即可，具体的例子如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">&quot;#000000&quot;</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">&quot;#ffff&quot;</span> <span class="attr">android:state_pressed</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过指定 item 的状态和颜色，即可做到按压和松开时控件的颜色变化。</p>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Drawble</tag>
       </tags>
   </entry>
   <entry>
@@ -3706,7 +3706,7 @@ Override的主要作用是：
 <ul>
 <li><p>工作层面</p>
 <p>这一层面主要涉及到平台、岗位方向以及薪资等。这三个因素，我会优先考虑岗位方向。在现在越来越卷的大环境下，我认为应当选择那种门槛相对比较高的，竞争没那么激烈的岗位。这样我们的未来发展会更持久。例如，我当时获得了大数据系统开发和数据库内核开发两种Offer，尽管我没有做过数据库内核开发。但是考虑到今年学院的数据库选手薪资都特别高，并且数据库内核开发的难度要高于大数据系统开发，再加之大数据系统开发有很多Java选手在卷。所以，我最终选择了数据库内核开发这个领域。</p>
-<p>第二个考虑的因素是平台，平台越大，接触到牛人的机会越大，这样我们能进一步成长的可能性越大。</p>
+<p>第二个考虑的因素是平台，平台越大，接触到牛人的机会越多，这样我们能进一步成长的可能性越大。</p>
 <p>第三个考虑的则是薪资，在前两个因素大致对等的情况下，选薪资高的。</p></li>
 <li><p>生活层面</p>
 <p>生活层面主要考虑定居的问题，定居一方面需要考虑房价，另一方面还需要考虑离家的距离。当然，如果你有男（女）朋友，还得考虑下对方的意见。</p></li>
