@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -19,11 +18,12 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="显示图片的视图控件  GridView 添加方式：">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="显示图片的视图控件  GridView 添加方式：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用视图显示图片和菜单">
 <meta property="og:url" content="https://www.ikroal.cn/posts/4ebfc566.html">
@@ -52,6 +52,7 @@
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
   <script async src="https://hm.baidu.com/hm.js?4a3ebdba3cb748985cab4eace77056b2"></script>
+
 
 
 
@@ -95,11 +96,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -253,11 +250,16 @@ public class CallBack extends WebViewClient {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
       <meta itemprop="name" content="ikroal">
-      <meta itemprop="description" content="I have been to me">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ikroal's blog">
+      <meta itemprop="description" content="I have been to me">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用视图显示图片和菜单 | ikroal's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -274,13 +276,13 @@ public class CallBack extends WebViewClient {
 
       <time title="创建时间：2016-05-27 22:38:07" itemprop="dateCreated datePublished" datetime="2016-05-27T22:38:07+08:00">2016-05-27</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -292,19 +294,12 @@ public class CallBack extends WebViewClient {
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数">
+    <span id="/posts/4ebfc566.html" class="post-meta-item leancloud_visitors" data-flag-title="使用视图显示图片和菜单" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
+      <span class="leancloud-visitors-count"></span>
     </span>
   
   <span class="post-meta-item">
@@ -347,7 +342,7 @@ public class CallBack extends WebViewClient {
         <h4 id="显示图片的视图控件">显示图片的视图控件</h4>
 <ul>
 <li><p>GridView 添加方式：<span id="more"></span> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GridView</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:id</span>=<span class="string">&quot;@+id/gridview&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:numColumns</span>=<span class="string">&quot;auto_fit&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:verticalSpacing</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:horizontalSpacing</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:columnWidth</span>=<span class="string">&quot;90dp&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:stretchMode</span>=<span class="string">&quot;columnWidth&quot;</span>/&gt;</span>//缩放与列宽同步</span><br></pre></td></tr></table></figure> 其中 <code>verticalSpacing</code> 表示 grid 元素之间的竖直距离，<code>horizontalSpacing</code> 表示 grid 元素之间的水平距离。 常用方法:</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gridView.setAdapter(<span class="keyword">new</span> ImageAdapter(<span class="keyword">this</span>));</span><br><span class="line">gridView.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(getBaseContext(), <span class="string">&quot;pic&quot;</span> + (position + <span class="number">1</span>) + <span class="string">&quot;selected&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gridView.setAdapter(<span class="keyword">new</span> <span class="title class_">ImageAdapter</span>(<span class="built_in">this</span>));</span><br><span class="line">gridView.setOnItemClickListener(<span class="keyword">new</span> <span class="title class_">AdapterView</span>.OnItemClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="type">int</span> position, <span class="type">long</span> id)</span> &#123;</span><br><span class="line">        Toast.makeText(getBaseContext(), <span class="string">&quot;pic&quot;</span> + (position + <span class="number">1</span>) + <span class="string">&quot;selected&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>显示效果：</p></li>
 </ul>
 <p><img src="http://i.imgur.com/LDQw3gn.png"></p>
@@ -356,7 +351,7 @@ public class CallBack extends WebViewClient {
 <p>常用方法：</p>
 <ul>
 <li><p><code>CreateMenu(Menu menu)</code> 创建菜单项</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">  MenuItem mnu1 = menu.add(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;Item 1&quot;</span>);</span><br><span class="line">  &#123;</span><br><span class="line">      mnu1.setAlphabeticShortcut(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  MenuItem mnu2 = menu.add(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;Item 2&quot;</span>);</span><br><span class="line">  &#123;</span><br><span class="line">      mnu2.setAlphabeticShortcut(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> <code>add()</code> 方法中4个参数：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">CreateMenu</span><span class="params">(Menu menu)</span> &#123;</span><br><span class="line">  <span class="type">MenuItem</span> <span class="variable">mnu1</span> <span class="operator">=</span> menu.add(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;Item 1&quot;</span>);</span><br><span class="line">  &#123;</span><br><span class="line">      mnu1.setAlphabeticShortcut(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="type">MenuItem</span> <span class="variable">mnu2</span> <span class="operator">=</span> menu.add(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;Item 2&quot;</span>);</span><br><span class="line">  &#123;</span><br><span class="line">      mnu2.setAlphabeticShortcut(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> <code>add()</code> 方法中4个参数：</p>
 <ol type="1">
 <li>groupId 菜单项所在的组的标识符，0 表示不在一个组中。</li>
 <li>itemId 唯一的菜单项ID</li>
@@ -364,13 +359,13 @@ public class CallBack extends WebViewClient {
 <li>title 菜单项显示的文本</li>
 </ol></li>
 <li><p><code>MenuChoice(MenuItem item)</code> 用于判断菜单项是否被选中</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">MenuChoice</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (item.getItemId()) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">          Toast.makeText(<span class="keyword">this</span>, <span class="string">&quot;You clicked on Item1&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">          Toast.makeText(<span class="keyword">this</span>, <span class="string">&quot;You clicked on Item2&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;=</span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">MenuChoice</span><span class="params">(MenuItem item)</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (item.getItemId()) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">          Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;You clicked on Item1&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">          Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;You clicked on Item2&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;=</span><br></pre></td></tr></table></figure></p></li>
 <li><p><code>onCreateOptionsMenu()</code> 当 MENU 按钮按下时调用</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span> <span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreateOptionsMenu(menu);</span><br><span class="line">  CreateMenu(menu);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onCreateOptionsMenu</span> <span class="params">(Menu menu)</span> &#123;</span><br><span class="line">  <span class="built_in">super</span>.onCreateOptionsMenu(menu);</span><br><span class="line">  CreateMenu(menu);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
 <li><p><code>onOptionsItemSelected()</code> 选择菜单时调用</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span> <span class="params">(MenuItem item)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> MenuChoice(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onOptionsItemSelected</span> <span class="params">(MenuItem item)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> MenuChoice(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
 <li><p><code>setOnCreateContextMenuListener</code> 设置上下文菜单 通过设置 <code>setOnCreateContextMenuListener</code> 方法，然后实现 <code>onCreateContextMenu</code> 方法即可。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateContextMenu</span><span class="params">(ContextMenu menu,</span></span></span><br><span class="line"><span class="params"><span class="function">	View view, ContextMenuInfo menuInfo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreateContextMenu(menu, view, menuInfo);</span><br><span class="line">    CreateMenu(menu);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure> 　　实现效果如图： <img src="http://i.imgur.com/SzABy68.png"></p></li>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreateContextMenu</span><span class="params">(ContextMenu menu,</span></span><br><span class="line"><span class="params">  View view, ContextMenuInfo menuInfo)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onCreateContextMenu(menu, view, menuInfo);</span><br><span class="line">    CreateMenu(menu);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure> 　　实现效果如图： <img src="http://i.imgur.com/SzABy68.png"></p></li>
 </ul>
 <hr>
 <h4 id="webview">WebView</h4>
@@ -378,7 +373,7 @@ public class CallBack extends WebViewClient {
 <li><p>添加 WebView</p>
 <p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">WebView</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:id</span>=<span class="string">&quot;@+id/webview&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></p></li>
 <li><p>避免启动设备的 Web 浏览器 实现 WebViewClient 类重写 <code>shouldOverrideUrlLoading</code></p>
-<h2 id="section"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">webView.setWebViewClient(<span class="keyword">new</span> CallBack());</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallBack</span> <span class="keyword">extends</span> <span class="title">WebViewClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></h2></li>
+<h2 id="section"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">webView.setWebViewClient(<span class="keyword">new</span> <span class="title class_">CallBack</span>());</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CallBack</span> <span class="keyword">extends</span> <span class="title class_">WebViewClient</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></h2></li>
 </ul>
 
     </div>
@@ -466,24 +461,6 @@ public class CallBack extends WebViewClient {
     <span title="站点阅读时长">1:26</span>
   </span>
 </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
   <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
   </div>
 
@@ -503,13 +480,10 @@ public class CallBack extends WebViewClient {
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyBkPdQIjvx2fttf4sN-zuqw36x-MfF85f4","projectId":"ikroal-blog"}</script>
-  <script src="/js/third-party/statistics/firestore.js"></script>
 
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"lGUiA6EaajPmCnIkNS0xdRYp-9Nh9j0Va","app_key":"6AkHD2oa9CcaBmFCDbWDcGE8","server_url":"https://lguia6ea.lc-cn-e1-shared.com","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"ikroal","count":true,"i18n":{"disqus":"disqus"}}</script>

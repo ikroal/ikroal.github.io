@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.0.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -19,29 +18,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="前言 本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ikroal.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言 本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop 基础之 HDFS 入门">
 <meta property="og:url" content="https://www.ikroal.cn/posts/abb7faac.html">
 <meta property="og:site_name" content="ikroal&#39;s blog">
 <meta property="og:description" content="前言 本文主要介绍了 HDFS 的体系架构以及其执行流程，并给出了读写操作的编程实例，希望对 HDFS 有个初步的认识。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.ikroal.cn/posts/abb7faac/HDFS-Structure.png">
-<meta property="og:image" content="https://www.ikroal.cn/posts/abb7faac/HDFS-Read.jpg">
-<meta property="og:image" content="https://www.ikroal.cn/posts/abb7faac/HDFS-Write.jpg">
-<meta property="og:image" content="https://www.ikroal.cn/posts/abb7faac/maven-create.png">
-<meta property="og:image" content="https://www.ikroal.cn/posts/abb7faac/write.png">
-<meta property="og:image" content="https://www.ikroal.cn/posts/abb7faac/read.png">
+<meta property="og:image" content="https://www.ikroal.cn/posts/HDFS-Structure.png">
+<meta property="og:image" content="https://www.ikroal.cn/posts/HDFS-Read.jpg">
+<meta property="og:image" content="https://www.ikroal.cn/posts/HDFS-Write.jpg">
+<meta property="og:image" content="https://www.ikroal.cn/posts/maven-create.png">
+<meta property="og:image" content="https://www.ikroal.cn/posts/write.png">
+<meta property="og:image" content="https://www.ikroal.cn/posts/read.png">
 <meta property="article:published_time" content="2019-05-11T11:52:59.000Z">
 <meta property="article:modified_time" content="2021-12-24T05:57:00.114Z">
 <meta property="article:author" content="ikroal">
 <meta property="article:tag" content="HDFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.ikroal.cn/posts/abb7faac/HDFS-Structure.png">
+<meta name="twitter:image" content="https://www.ikroal.cn/posts/HDFS-Structure.png">
 
 
 <link rel="canonical" href="https://www.ikroal.cn/posts/abb7faac.html">
@@ -56,6 +56,7 @@
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
   <script async src="https://hm.baidu.com/hm.js?4a3ebdba3cb748985cab4eace77056b2"></script>
+
 
 
 
@@ -99,11 +100,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -243,11 +240,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11755265?v=3&s=460">
       <meta itemprop="name" content="ikroal">
-      <meta itemprop="description" content="I have been to me">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ikroal's blog">
+      <meta itemprop="description" content="I have been to me">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hadoop 基础之 HDFS 入门 | ikroal's blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -264,13 +266,13 @@
 
       <time title="创建时间：2019-05-11 19:52:59" itemprop="dateCreated datePublished" datetime="2019-05-11T19:52:59+08:00">2019-05-11</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-24 13:57:00" itemprop="dateModified" datetime="2021-12-24T13:57:00+08:00">2021-12-24</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -282,19 +284,12 @@
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数">
+    <span id="/posts/abb7faac.html" class="post-meta-item leancloud_visitors" data-flag-title="Hadoop 基础之 HDFS 入门" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
+      <span class="leancloud-visitors-count"></span>
     </span>
   
   <span class="post-meta-item">
@@ -340,7 +335,7 @@
 <h2 id="简介">简介</h2>
 <p>HDFS (Hadoop Distributed File System) 是一个运行在商业 PC 上的分布式文件系统，其设计思想源自于 Google 2003 年发布的论文 <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGUvcmVzZWFyY2gvcHVicy9wdWI1MQ==">The Google File System<i class="fa fa-external-link-alt"></i></span> 。HDFS的主要目的是为了解决大规模数据存储和管理的问题。</p>
 <h2 id="体系架构">体系架构</h2>
-<p><img src="/posts/abb7faac/HDFS-Structure.png"></p>
+<p><img src="/posts/HDFS-Structure.png"></p>
 <p>上图表明 HDFS 是一个标准的 master/slave 架构，主要由三个部分构成：</p>
 <ol type="1">
 <li>NameNode（master 节点）
@@ -368,14 +363,14 @@
 </ol>
 <h2 id="执行流程">执行流程</h2>
 <h3 id="读文件">读文件</h3>
-<p><img src="/posts/abb7faac/HDFS-Read.jpg"></p>
+<p><img src="/posts/HDFS-Read.jpg"></p>
 <p>读文件的过程可以概括为：</p>
 <ol type="1">
 <li>Client 向 NameNode 发起请求获取文件数据块位置信息</li>
 <li>Client 按照数据块距 Client 的远近依次进行连接然后读取数据</li>
 </ol>
 <h3 id="写文件">写文件</h3>
-<p><img src="/posts/abb7faac/HDFS-Write.jpg"></p>
+<p><img src="/posts/HDFS-Write.jpg"></p>
 <p>写文件的过程可以概括为：</p>
 <ol type="1">
 <li>Client 向 NameNode 发起写文件的请求获得可写的 DataNode 列表等信息</li>
@@ -409,7 +404,7 @@
 <h2 id="编程实例">编程实例</h2>
 <ol type="1">
 <li><p>IDEA 新建 Maven 项目</p>
-<p><img src="/posts/abb7faac/maven-create.png"></p>
+<p><img src="/posts/maven-create.png"></p>
 <p>勾选相关选项后，点击 next 填入项目相关信息即可</p></li>
 <li><p>pom.xml 中添加依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> //根据 Hadoop 版本进行选择</span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-hdfs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
@@ -417,18 +412,18 @@
 <p>创建 Sample 类编写相应的读写函数</p>
 <ul>
 <li><p>Sample 类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataInputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataOutputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ikroal</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>&#123;</span><br><span class="line">    <span class="comment">//默认的 HDFS 地址</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_FS = <span class="string">&quot;hdfs://localhost:9000&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PATH = DEFAULT_FS + <span class="string">&quot;/tmp/demo.txt&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_FILE = <span class="string">&quot;demo.txt&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        FileSystem fs = <span class="keyword">null</span>;</span><br><span class="line">        conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, DEFAULT_FS); <span class="comment">//配置 HDFS 地址</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fs = FileSystem.get(conf);</span><br><span class="line">            write(fs, DEFAULT_FILE, PATH);</span><br><span class="line">            read(fs, PATH);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fs != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    fs.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataInputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataOutputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ikroal</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sample</span> &#123;</span><br><span class="line">    <span class="comment">//默认的 HDFS 地址</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">DEFAULT_FS</span> <span class="operator">=</span> <span class="string">&quot;hdfs://localhost:9000&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PATH</span> <span class="operator">=</span> DEFAULT_FS + <span class="string">&quot;/tmp/demo.txt&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">DEFAULT_FILE</span> <span class="operator">=</span> <span class="string">&quot;demo.txt&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Configuration</span> <span class="variable">conf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Configuration</span>();</span><br><span class="line">        <span class="type">FileSystem</span> <span class="variable">fs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, DEFAULT_FS); <span class="comment">//配置 HDFS 地址</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fs = FileSystem.get(conf);</span><br><span class="line">            write(fs, DEFAULT_FILE, PATH);</span><br><span class="line">            read(fs, PATH);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fs != <span class="literal">null</span>) &#123;</span><br><span class="line">                    fs.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>write 函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件写入</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> inputPath 待写入文件路径</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> outPath HDFS 的写入路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(FileSystem fileSystem, String inputPath, String outPath)</span> </span>&#123;</span><br><span class="line">    FSDataOutputStream outputStream = <span class="keyword">null</span>;</span><br><span class="line">    FileInputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        outputStream = fileSystem.create(<span class="keyword">new</span> Path(outPath)); <span class="comment">//获得 HDFS 的写入流</span></span><br><span class="line">        inputStream = <span class="keyword">new</span> FileInputStream(inputPath); <span class="comment">//读取本地文件</span></span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        <span class="keyword">while</span> ((data = inputStream.read()) != -<span class="number">1</span>) &#123; <span class="comment">//写入操作</span></span><br><span class="line">            outputStream.write(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (outputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                outputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件写入</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> inputPath 待写入文件路径</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> outPath HDFS 的写入路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(FileSystem fileSystem, String inputPath, String outPath)</span> &#123;</span><br><span class="line">    <span class="type">FSDataOutputStream</span> <span class="variable">outputStream</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        outputStream = fileSystem.create(<span class="keyword">new</span> <span class="title class_">Path</span>(outPath)); <span class="comment">//获得 HDFS 的写入流</span></span><br><span class="line">        inputStream = <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(inputPath); <span class="comment">//读取本地文件</span></span><br><span class="line">        <span class="type">int</span> data;</span><br><span class="line">        <span class="keyword">while</span> ((data = inputStream.read()) != -<span class="number">1</span>) &#123; <span class="comment">//写入操作</span></span><br><span class="line">            outputStream.write(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (outputStream != <span class="literal">null</span>) &#123;</span><br><span class="line">                outputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="literal">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>read 函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件读取</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> path HDFS 上待读取文件路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(FileSystem fileSystem, String path)</span> </span>&#123;</span><br><span class="line">    FSDataInputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">    BufferedReader reader = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        inputStream = fileSystem.open(<span class="keyword">new</span> Path(path)); <span class="comment">//获取 HDFS 读取流</span></span><br><span class="line">        reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream));</span><br><span class="line">        String content;</span><br><span class="line">        <span class="keyword">while</span> ((content = reader.readLine()) != <span class="keyword">null</span>) &#123; <span class="comment">//读取并输出到控制台</span></span><br><span class="line">            System.out.println(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">                reader.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 进行文件读取</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> path HDFS 上待读取文件路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">read</span><span class="params">(FileSystem fileSystem, String path)</span> &#123;</span><br><span class="line">    <span class="type">FSDataInputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        inputStream = fileSystem.open(<span class="keyword">new</span> <span class="title class_">Path</span>(path)); <span class="comment">//获取 HDFS 读取流</span></span><br><span class="line">        reader = <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(inputStream));</span><br><span class="line">        String content;</span><br><span class="line">        <span class="keyword">while</span> ((content = reader.readLine()) != <span class="literal">null</span>) &#123; <span class="comment">//读取并输出到控制台</span></span><br><span class="line">            System.out.println(content);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="literal">null</span>) &#123;</span><br><span class="line">                inputStream.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (reader != <span class="literal">null</span>) &#123;</span><br><span class="line">                reader.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul></li>
 <li><p>在工程文件夹的根目录下创建计划上传的文件（这里是 demo.txt），填入 Hello World！</p></li>
 <li><p>启动 Hadoop 然后运行程序查看结果</p>
 <p>通过 http://localhost:50070/explorer.html#/ 可以查看写入结果</p>
-<p><img src="/posts/abb7faac/write.png"></p>
+<p><img src="/posts/write.png"></p>
 <p>控制台则会输出上传文件的内容</p>
-<p><img src="/posts/abb7faac/read.png"></p></li>
+<p><img src="/posts/read.png"></p></li>
 </ol>
 <h2 id="thanks">Thanks</h2>
 <ol type="1">
@@ -523,24 +518,6 @@
     <span title="站点阅读时长">1:26</span>
   </span>
 </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
   <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
   </div>
 
@@ -560,13 +537,10 @@
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyBkPdQIjvx2fttf4sN-zuqw36x-MfF85f4","projectId":"ikroal-blog"}</script>
-  <script src="/js/third-party/statistics/firestore.js"></script>
 
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"lGUiA6EaajPmCnIkNS0xdRYp-9Nh9j0Va","app_key":"6AkHD2oa9CcaBmFCDbWDcGE8","server_url":"https://lguia6ea.lc-cn-e1-shared.com","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
 <script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"ikroal","count":true,"i18n":{"disqus":"disqus"}}</script>
