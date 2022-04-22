@@ -22,8 +22,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Problem</tag>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -95,7 +94,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -118,7 +117,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Component</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -204,10 +203,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>Archived</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -238,10 +237,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>Archived</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -411,7 +410,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Activity</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -455,10 +454,10 @@
 <p>​</p>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>Archived</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -505,7 +504,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -528,7 +527,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Service</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -579,7 +578,6 @@
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Custom View</tag>
       </tags>
   </entry>
   <entry>
@@ -644,7 +642,6 @@
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Custom View</tag>
       </tags>
   </entry>
   <entry>
@@ -665,7 +662,6 @@
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Custom View</tag>
       </tags>
   </entry>
   <entry>
@@ -702,7 +698,7 @@
 <li><p><code>Spinner</code>：</p>
 <p><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Spinner</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:id</span>=<span class="string">&quot;@+id/spinner&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:drawSelectorOnTop</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>设置列表和判断选择</p>
-<h2 id="section-1"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="type">Spinner</span> <span class="variable">spinner</span> <span class="operator">=</span> (Spinner) findViewById(R.id.spinner);</span><br><span class="line"> ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> <span class="title class_">ArrayAdapter</span>&lt;String&gt;(<span class="built_in">this</span>,</span><br><span class="line">android.R.layout.simple_spinner_item, prisidents);</span><br><span class="line"> spinner.setAdapter(adapter);<span class="comment">//设置列表项</span></span><br><span class="line"> spinner.setOnItemSelectedListener(<span class="keyword">new</span> <span class="title class_">OnItemSelectedListener</span>() &#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onItemSelected</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="type">int</span> position, <span class="type">long</span> id)</span> &#123;</span><br><span class="line">  <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> parent.getSelectedItemPosition();</span><br><span class="line">  Toast.makeText(BasicViews6Activity.<span class="built_in">this</span>, <span class="string">&quot;you have selected item :&quot;</span> + prisidents[index], Toast.LENGTH_SHORT).show();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onNothingSelected</span><span class="params">(AdapterView&lt;?&gt; parent)</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"> &#125;);<span class="comment">//判断哪一项被选择了</span></span><br></pre></td></tr></table></figure></h2></li>
+<h2 id="section-1"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Spinner</span> <span class="variable">spinner</span> <span class="operator">=</span> (Spinner) findViewById(R.id.spinner);</span><br><span class="line">ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> <span class="title class_">ArrayAdapter</span>&lt;String&gt;(<span class="built_in">this</span>,</span><br><span class="line">  android.R.layout.simple_spinner_item, prisidents);</span><br><span class="line">spinner.setAdapter(adapter);<span class="comment">//设置列表项</span></span><br><span class="line">spinner.setOnItemSelectedListener(<span class="keyword">new</span> <span class="title class_">OnItemSelectedListener</span>() &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onItemSelected</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="type">int</span> position, <span class="type">long</span> id)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> parent.getSelectedItemPosition();</span><br><span class="line">    Toast.makeText(BasicViews6Activity.<span class="built_in">this</span>, <span class="string">&quot;you have selected item :&quot;</span> + prisidents[index], Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onNothingSelected</span><span class="params">(AdapterView&lt;?&gt; parent)</span> &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;);<span class="comment">//判断哪一项被选择了</span></span><br></pre></td></tr></table></figure></h2></li>
 </ul></li>
 </ol>
 <h4 id="特殊碎片">特殊碎片</h4>
@@ -724,7 +720,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -795,10 +791,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android IPC</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -823,7 +819,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Problem</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -856,7 +852,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Problem</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -876,7 +872,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android Problem</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -891,7 +887,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -945,10 +941,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Giraph</category>
+        <category>BigData</category>
       </categories>
       <tags>
-        <tag>Deploy</tag>
+        <tag>Giraph</tag>
       </tags>
   </entry>
   <entry>
@@ -1010,10 +1006,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Giraph</category>
+        <category>BigData</category>
       </categories>
       <tags>
-        <tag>Introduction</tag>
+        <tag>Giraph</tag>
       </tags>
   </entry>
   <entry>
@@ -1106,10 +1102,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Giraph</category>
+        <category>BigData</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Giraph</tag>
       </tags>
   </entry>
   <entry>
@@ -1354,10 +1350,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Hadoop</category>
+        <category>BigData</category>
       </categories>
       <tags>
-        <tag>Deploy</tag>
+        <tag>Hadoop</tag>
       </tags>
   </entry>
   <entry>
@@ -1448,7 +1444,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Thread</tag>
       </tags>
   </entry>
   <entry>
@@ -1463,7 +1458,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>AWT</tag>
       </tags>
   </entry>
   <entry>
@@ -1624,7 +1618,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>集合</tag>
       </tags>
   </entry>
   <entry>
@@ -1661,7 +1654,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Python Library</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1691,7 +1684,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Python Library</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1731,35 +1724,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Flask</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python 下 Flask 结合 Neo4j 构建管理系统（二）</title>
-    <url>/posts/4bcbecba.html</url>
-    <content><![CDATA[<h4 id="neo4j-简介">Neo4j 简介</h4>
-<blockquote>
-<p>Neo4j 是一个高性能的，NOSQL 图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的 Java 持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。</p>
-</blockquote>
-<span id="more"></span>
-<h4 id="安装">安装</h4>
-<p>进入<span class="exturl" data-url="aHR0cHM6Ly9uZW80ai5jb20vZG93bmxvYWQv">Neo4j 下载地址<i class="fa fa-external-link-alt"></i></span>选择社区版进行下载安装。</p>
-<h4 id="使用">使用</h4>
-<p>Neo4j 提供了 Cypher 查询语言对数据库数据进行操作，在使用 Neo4j 之前必须先了解 Cypher，可以参考官方提供了一些例程和开发文档： <span class="exturl" data-url="aHR0cHM6Ly9uZW80ai5jb20vZGV2ZWxvcGVyL2N5cGhlci1xdWVyeS1sYW5ndWFnZS8=">Intro to Cypher<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9uZW80ai5jb20vZG9jcy9kZXZlbG9wZXItbWFudWFsLzMuMS8=">The Neo4j Developer Manual v3.1<i class="fa fa-external-link-alt"></i></span> 第一个介绍了 Cypher 的一些基本概念方便去理解 Cypher 语言，第二个则是一份开发者文档，详细介绍了各操作的含义以及一些示例语句。 在了解 Cypher 后，就可以利用 Neo4j 控制台做一些基本的查询测试： * 首先需要开启服务器： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Neo4j-start.png"> * 在开启服务器后进入 <code>http://localhost:7474</code> 第一次进入需要设置密码 * 在主界面中选择 <code>Jump into code</code>，之后选择 <code>Movie Graph</code> 中的 Create a graph，则可以看到一个 Neo4j 官方提供的构造数据图的代码，点击之后运行即可。 <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-main.png"> <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-execute.png"> <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-result.png"></p>
-<ul>
-<li><p>在创建了数据图之后，点击左侧的第一个导航栏，可以看见数据图的各项信息。</p>
-<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-slidebar.png"></p></li>
-<li><p>查询 这里以查询节点 <code>name</code> 属性为 Audrey Tautou 到节点 <code>title</code> 属性为 As Good as It Gets 且节点关系为 <code>ACTED_IN</code> 间隔不超过 5 的最短路径为例，在输入框中输入如下代码：</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (you &#123;name:&quot;Audrey Tautou&quot;&#125;)</span><br><span class="line">MATCH (expert &#123;title:&quot;As Good as It Gets&quot;&#125;)</span><br><span class="line">MATCH path = shortestPath( (you)-[:ACTED_IN*..5]-(expert) )</span><br><span class="line">RETURN path</span><br></pre></td></tr></table></figure> 运行之后结果如下： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/query-result.png"></p></li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Neo4j</tag>
       </tags>
   </entry>
   <entry>
@@ -1805,8 +1769,33 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Flask</tag>
-        <tag>Neo4j</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 下 Flask 结合 Neo4j 构建管理系统（二）</title>
+    <url>/posts/4bcbecba.html</url>
+    <content><![CDATA[<h4 id="neo4j-简介">Neo4j 简介</h4>
+<blockquote>
+<p>Neo4j 是一个高性能的，NOSQL 图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的 Java 持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。</p>
+</blockquote>
+<span id="more"></span>
+<h4 id="安装">安装</h4>
+<p>进入<span class="exturl" data-url="aHR0cHM6Ly9uZW80ai5jb20vZG93bmxvYWQv">Neo4j 下载地址<i class="fa fa-external-link-alt"></i></span>选择社区版进行下载安装。</p>
+<h4 id="使用">使用</h4>
+<p>Neo4j 提供了 Cypher 查询语言对数据库数据进行操作，在使用 Neo4j 之前必须先了解 Cypher，可以参考官方提供了一些例程和开发文档： <span class="exturl" data-url="aHR0cHM6Ly9uZW80ai5jb20vZGV2ZWxvcGVyL2N5cGhlci1xdWVyeS1sYW5ndWFnZS8=">Intro to Cypher<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9uZW80ai5jb20vZG9jcy9kZXZlbG9wZXItbWFudWFsLzMuMS8=">The Neo4j Developer Manual v3.1<i class="fa fa-external-link-alt"></i></span> 第一个介绍了 Cypher 的一些基本概念方便去理解 Cypher 语言，第二个则是一份开发者文档，详细介绍了各操作的含义以及一些示例语句。 在了解 Cypher 后，就可以利用 Neo4j 控制台做一些基本的查询测试： * 首先需要开启服务器： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/Neo4j-start.png"> * 在开启服务器后进入 <code>http://localhost:7474</code> 第一次进入需要设置密码 * 在主界面中选择 <code>Jump into code</code>，之后选择 <code>Movie Graph</code> 中的 Create a graph，则可以看到一个 Neo4j 官方提供的构造数据图的代码，点击之后运行即可。 <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-main.png"> <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-execute.png"> <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-result.png"></p>
+<ul>
+<li><p>在创建了数据图之后，点击左侧的第一个导航栏，可以看见数据图的各项信息。</p>
+<p><img src="https://raw.githubusercontent.com/ikroal/blog-images/master/neo4j-slidebar.png"></p></li>
+<li><p>查询 这里以查询节点 <code>name</code> 属性为 Audrey Tautou 到节点 <code>title</code> 属性为 As Good as It Gets 且节点关系为 <code>ACTED_IN</code> 间隔不超过 5 的最短路径为例，在输入框中输入如下代码：</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MATCH (you &#123;name:&quot;Audrey Tautou&quot;&#125;)</span><br><span class="line">MATCH (expert &#123;title:&quot;As Good as It Gets&quot;&#125;)</span><br><span class="line">MATCH path = shortestPath( (you)-[:ACTED_IN*..5]-(expert) )</span><br><span class="line">RETURN path</span><br></pre></td></tr></table></figure> 运行之后结果如下： <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/query-result.png"></p></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1843,25 +1832,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Flask</tag>
-        <tag>Neo4j</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python 下 json 模块</title>
-    <url>/posts/1aa5044d.html</url>
-    <content><![CDATA[<p>Python 下的 json 模块主要有 4 个函数：<span id="more"></span></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#dict 转成 str </span></span><br><span class="line">json.dump()</span><br><span class="line"><span class="comment">#将 json 数据保存到文件</span></span><br><span class="line">json.dumps()</span><br><span class="line"><span class="comment">#str 转成 dict </span></span><br><span class="line">json.load()</span><br><span class="line"><span class="comment">#从文件中读取 json 数据</span></span><br><span class="line">json.loads()</span><br></pre></td></tr></table></figure>
-<p>将 Json 数据写入文件：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  data_result_file = <span class="string">&quot;data_result.json&quot;</span></span><br><span class="line">  <span class="keyword">with</span> <span class="built_in">open</span>(data_result_file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">      data_json = json.loads(results.data)</span><br><span class="line">      json.dump(data_json, f, indent=<span class="number">4</span>)</span><br><span class="line"><span class="keyword">except</span> IOError:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;文件不存在&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>由于 <code>json.dump()</code> 产生的是 <code>str</code> 对象，不是 <code>bytes</code> 对象，所以写入时文件权限不能设置为 <code>wb</code>，否则会出现 <code>TypeError: a bytes-like object is required, not ‘str'</code>。</p>
-<hr>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Python Library</tag>
       </tags>
   </entry>
   <entry>
@@ -1890,7 +1860,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Python Library</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1932,7 +1902,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Scrapy</tag>
       </tags>
   </entry>
   <entry>
@@ -1993,7 +1962,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Scrapy</tag>
       </tags>
   </entry>
   <entry>
@@ -2060,7 +2028,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Scrapy</tag>
       </tags>
   </entry>
   <entry>
@@ -2093,7 +2060,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Scrapy</tag>
       </tags>
   </entry>
   <entry>
@@ -2164,7 +2130,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Python Base</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -2205,7 +2171,6 @@
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Drawble</tag>
       </tags>
   </entry>
   <entry>
@@ -2245,8 +2210,74 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>BootStrap</tag>
-        <tag>Web</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>d3.js 绘制柱形图</title>
+    <url>/posts/4321ef0c.html</url>
+    <content><![CDATA[<p>在<a href="/posts/42f7685.html" title="d3.js 绘制力导向图">d3.js 绘制力导向图</a>中已经说明了如何绘制力导向图以及数据更新。本次将说明如何绘制带坐标轴的柱形图。<span id="more"></span></p>
+<h2 id="确定初始数据">确定初始数据</h2>
+<p>初始数据如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [&#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;lslamic&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;GOODS&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;VINTAGE OLD HAND MADE BEAUTY SILVER BROOCH PIN RED ENAMEL LEAF SIAM STERLING&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Website&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;ebay&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Antiques&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Baby&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Books&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Business &amp; Industrial&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Cameras &amp; Photo&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Cell Phones &amp; Accessories&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Clothing, Shoes &amp; Accessories&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Coins &amp; Paper Money&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Collectibles&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Computers Tablets &amp; Networking&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Consumer Electronics&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Crafts&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;eBay Motors&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Everything Else&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Health &amp; Beauty&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Home &amp; Garden&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Jewelry &amp; Watches&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Musical Instruments &amp; Gear&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Sporting Goods&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Antiquities&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Architectural &amp; Garden&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Asian Antiques&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Decorative Arts&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Linens &amp; Textiles (Pre-1930)&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Maritime&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Periods &amp; Styles&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Primitives&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Science &amp; Medicine (Pre-1930)&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Silver&#x27;</span>&#125;];</span><br></pre></td></tr></table></figure>
+<p>初始数据中每个数据具有不同的类别，本次的目的是统计不同类别的数据出现次数并进行绘制，数据处理代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dataset = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">var</span> node = nodes[i];</span><br><span class="line">  dataset[node[<span class="string">&#x27;label&#x27;</span>]] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; nodes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nodes[j][<span class="string">&#x27;label&#x27;</span>] == node[<span class="string">&#x27;label&#x27;</span>])</span><br><span class="line">          dataset[node[<span class="string">&#x27;label&#x27;</span>]] += <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> data = [];</span><br><span class="line"><span class="keyword">var</span> labels = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> dataset) &#123;</span><br><span class="line">  data.<span class="title function_">push</span>(dataset[key]);</span><br><span class="line">  labels.<span class="title function_">push</span>(key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>dataset</code> 用于将数据进行分类统计。</li>
+<li><code>data</code> 保存每个分类出现次数。</li>
+<li><code>labels</code> 保存分类名称，作为 x 轴的刻度。</li>
+</ul>
+<h2 id="创建-svg">创建 SVG</h2>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> width = <span class="number">420</span>, height = <span class="number">420</span>;</span><br><span class="line"><span class="keyword">var</span> svg = d3.<span class="title function_">select</span>(<span class="string">&quot;#graph&quot;</span>).<span class="title function_">append</span>(<span class="string">&quot;svg&quot;</span>)</span><br><span class="line">        .<span class="title function_">attr</span>(<span class="string">&quot;width&quot;</span>, width)</span><br><span class="line">        .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, height);</span><br></pre></td></tr></table></figure>
+<h2 id="绘制坐标轴">绘制坐标轴</h2>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> padding = &#123;<span class="attr">top</span>: <span class="number">20</span>, <span class="attr">right</span>: <span class="number">20</span>, <span class="attr">bottom</span>: <span class="number">20</span>, <span class="attr">left</span>: <span class="number">30</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> xAxisWidth = width - <span class="number">2</span> * padding.<span class="property">left</span>;</span><br><span class="line"><span class="keyword">var</span> yAxiWidth = height - <span class="number">2</span> * padding.<span class="property">bottom</span>;</span><br><span class="line"><span class="keyword">var</span> xAxisScale = d3.<span class="property">scale</span>.<span class="title function_">ordinal</span>()</span><br><span class="line">            .<span class="title function_">domain</span>(d3.<span class="title function_">range</span>(labels.<span class="property">length</span>))</span><br><span class="line">            .<span class="title function_">rangeRoundBands</span>([<span class="number">0</span>, xAxisWidth]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yAxisScale = d3.<span class="property">scale</span>.<span class="title function_">linear</span>()</span><br><span class="line">    .<span class="title function_">domain</span>([<span class="number">0</span>, d3.<span class="title function_">max</span>(data)])</span><br><span class="line">    .<span class="title function_">range</span>([yAxiWidth, <span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xAxis = d3.<span class="property">svg</span>.<span class="title function_">axis</span>()</span><br><span class="line">    .<span class="title function_">scale</span>(xAxisScale)</span><br><span class="line">    .<span class="title function_">orient</span>(<span class="string">&quot;bottom&quot;</span>)</span><br><span class="line">    .<span class="title function_">tickFormat</span>(<span class="keyword">function</span> (<span class="params">d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> labels[d];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yAxis = d3.<span class="property">svg</span>.<span class="title function_">axis</span>()</span><br><span class="line">    .<span class="title function_">scale</span>(yAxisScale)</span><br><span class="line">    .<span class="title function_">orient</span>(<span class="string">&quot;left&quot;</span>);</span><br><span class="line"></span><br><span class="line">svg.<span class="title function_">append</span>(<span class="string">&quot;g&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;axis&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;transform&quot;</span>, <span class="string">&quot;translate(&quot;</span> + padding.<span class="property">left</span> + <span class="string">&quot;,&quot;</span> +</span><br><span class="line">        (height - padding.<span class="property">bottom</span>) + <span class="string">&quot;)&quot;</span>)</span><br><span class="line">    .<span class="title function_">call</span>(xAxis);</span><br><span class="line"></span><br><span class="line">svg.<span class="title function_">append</span>(<span class="string">&quot;g&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;axis&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;transform&quot;</span>, <span class="string">&quot;translate(&quot;</span> + padding.<span class="property">left</span> + <span class="string">&quot;,&quot;</span> +</span><br><span class="line">        (height - yAxiWidth - padding.<span class="property">bottom</span>) + <span class="string">&quot;)&quot;</span>)</span><br><span class="line">    .<span class="title function_">call</span>(yAxis);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>xAxisWidth，yAxiWidth</code> 代表 x 轴和 y 轴的长度。</li>
+<li><code>padding</code> x 轴和 y 轴的外边距。</li>
+<li><code>xAxisScale，yAxisScale</code> x 轴和 y 轴的比例尺。</li>
+<li><code>ordinal().domain()</code> 设定或获取定义域。</li>
+<li><code>ordinal.rangeRoundBands(interval[, padding[, outerPadding]])</code> 接收一个连续的区间，然后根据定义域中离散值的数量将其分段，分段结果会取整。</li>
+<li><code>tickFormat()</code> 用于设定文字格式的刻度。</li>
+</ul>
+<p>这样添加之后的坐标轴，样式会比较丑，所以还需要给坐标轴增加如下样式：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-class">.axis</span> path,</span><br><span class="line">    <span class="selector-class">.axis</span> line &#123;</span><br><span class="line">        fill: none;</span><br><span class="line">        stroke: black;</span><br><span class="line">        shape-rendering: crispEdges;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.axis</span> text &#123;</span><br><span class="line">        <span class="attribute">font-family</span>: sans-serif;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">11px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="绘制矩形">绘制矩形</h2>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//0.05 用于设置矩形之间的间隔，由于 rangeRoundBands 选取的范围远小于 xAxisWidth，所以矩形之间的间隔远大于 0.05，该参数未起作用。</span></span><br><span class="line"><span class="keyword">var</span> xScale = d3.<span class="property">scale</span>.<span class="title function_">ordinal</span>()</span><br><span class="line">            .<span class="title function_">domain</span>(d3.<span class="title function_">range</span>(labels.<span class="property">length</span>))</span><br><span class="line">            .<span class="title function_">rangeRoundBands</span>([<span class="number">0</span>, <span class="number">100</span>], <span class="number">0.05</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yScale = d3.<span class="property">scale</span>.<span class="title function_">linear</span>()</span><br><span class="line">    .<span class="title function_">domain</span>([<span class="number">0</span>, d3.<span class="title function_">max</span>(data)])</span><br><span class="line">    .<span class="title function_">range</span>([<span class="number">0</span>, yAxiWidth]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rect = svg.<span class="title function_">selectAll</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">data</span>(data);</span><br><span class="line"></span><br><span class="line">rect.<span class="title function_">enter</span>()</span><br><span class="line">    .<span class="title function_">append</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;x&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        x = xAxisWidth / (<span class="number">2</span> * labels.<span class="property">length</span>) * (<span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">            - xScale.<span class="title function_">rangeBand</span>() / <span class="number">2</span> + padding.<span class="property">left</span>;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> height - padding.<span class="property">bottom</span> - <span class="title function_">yScale</span>(d);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;width&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> xScale.<span class="title function_">rangeBand</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, yScale)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;steelblue&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>xScale</code> 用于控制矩形宽度， <code>yScale</code> 用于控制矩形高度。这样做可以使得矩形的宽度和高度自由伸缩。</li>
+</ul>
+<h2 id="给矩形增加文字描述">给矩形增加文字描述</h2>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> text = svg.<span class="title function_">selectAll</span>(<span class="string">&quot;text&quot;</span>)</span><br><span class="line">            .<span class="title function_">data</span>(data);</span><br><span class="line">text.<span class="title function_">enter</span>().<span class="title function_">append</span>(<span class="string">&quot;text&quot;</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;x&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                x = xAxisWidth / (<span class="number">2</span> * labels.<span class="property">length</span>) * (<span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">                    - xScale.<span class="title function_">rangeBand</span>() / <span class="number">2</span> + padding.<span class="property">left</span>;</span><br><span class="line">                <span class="keyword">return</span> x;</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> height - padding.<span class="property">bottom</span> - <span class="title function_">yScale</span>(d);</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;dx&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> xScale.<span class="title function_">rangeBand</span>() / <span class="number">4</span>;</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;dy&quot;</span>, -<span class="number">2</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;text-anchor&quot;</span>, <span class="string">&quot;begin&quot;</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;font-size&quot;</span>, <span class="number">14</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;#000000&quot;</span>)</span><br><span class="line">            .<span class="title function_">text</span>(<span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> d;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>text</code> 元素的坐标是矩形的坐标，<code>dx，dy</code> 设定了方向上的偏移量。所以最终文字位于矩形正上方。</li>
+</ul>
+<h2 id="柱形图动画">柱形图动画</h2>
+<p>给柱形图增加动画，需要将代码修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> rect = svg.<span class="title function_">selectAll</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">data</span>(data);</span><br><span class="line">rect.<span class="title function_">enter</span>()</span><br><span class="line">    .<span class="title function_">append</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> height - padding.<span class="property">bottom</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, <span class="number">0</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;red&quot;</span>)</span><br><span class="line">    .<span class="title function_">transition</span>()</span><br><span class="line">    .<span class="title function_">duration</span>(<span class="number">3000</span>)</span><br><span class="line">    .<span class="title function_">ease</span>(<span class="string">&quot;bounce&quot;</span>)</span><br><span class="line">    .<span class="title function_">delay</span>(<span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">200</span> * i;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;x&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        x = xAxisWidth / (<span class="number">2</span> * labels.<span class="property">length</span>) * (<span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">            - xScale.<span class="title function_">rangeBand</span>() / <span class="number">2</span> + padding.<span class="property">left</span>;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> height - padding.<span class="property">bottom</span> - <span class="title function_">yScale</span>(d);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;width&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> xScale.<span class="title function_">rangeBand</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, yScale)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;steelblue&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上述代码设置了两个 <code>fill</code> 属性，在添加了 <code>transition()</code> 之后，D3 会自动对颜色之间的值进行线性插值，最终在动画中会看到平滑的颜色变化。</li>
+<li><code>duration()</code> 动画持续时间。</li>
+<li><code>ease()</code> 指定转变方式，常用的转变方式有：
+<ul>
+<li>linear 普通的线性变化。</li>
+<li>circle 慢慢地到达变换的最终状态。<br>
+</li>
+<li>elastic 带有弹跳的到达最终状态。</li>
+<li>bounce 在最终状态处弹跳几次。</li>
+</ul></li>
+<li><code>delay()</code> 指定延时。</li>
+</ul>
+<h4 id="最终效果">最终效果</h4>
+<p><img src="http://i.imgur.com/4WazYv3.png" alt="柱形图效果"> <img src="http://i.imgur.com/7fT9upS.png" alt="坐标轴"></p>
+<hr>
+<h4 id="参考资料">参考资料</h4>
+<p><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHpobHp6L2FydGljbGUvZGV0YWlscy8zNTk4NTkwNw==">如何让图表动起来<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2QzL2QzLTMueC1hcGktcmVmZXJlbmNlL2Jsb2IvbWFzdGVyL09yZGluYWwtU2NhbGVzLm1k">d3-3.x-api-reference<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -2333,100 +2364,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Web</tag>
-        <tag>d3.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>d3.js 绘制柱形图</title>
-    <url>/posts/4321ef0c.html</url>
-    <content><![CDATA[<p>在<a href="/posts/42f7685.html" title="d3.js 绘制力导向图">d3.js 绘制力导向图</a>中已经说明了如何绘制力导向图以及数据更新。本次将说明如何绘制带坐标轴的柱形图。<span id="more"></span></p>
-<h2 id="确定初始数据">确定初始数据</h2>
-<p>初始数据如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [&#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;lslamic&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;GOODS&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;VINTAGE OLD HAND MADE BEAUTY SILVER BROOCH PIN RED ENAMEL LEAF SIAM STERLING&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Website&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;ebay&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Antiques&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Baby&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Books&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Business &amp; Industrial&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Cameras &amp; Photo&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Cell Phones &amp; Accessories&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Clothing, Shoes &amp; Accessories&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Coins &amp; Paper Money&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Collectibles&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Computers Tablets &amp; Networking&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Consumer Electronics&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Crafts&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;eBay Motors&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Everything Else&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Health &amp; Beauty&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Home &amp; Garden&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Jewelry &amp; Watches&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Musical Instruments &amp; Gear&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Sporting Goods&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Antiquities&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Architectural &amp; Garden&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Asian Antiques&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Decorative Arts&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Linens &amp; Textiles (Pre-1930)&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Maritime&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Periods &amp; Styles&#x27;</span>&#125;, &#123;</span><br><span class="line">        <span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Primitives&#x27;</span></span><br><span class="line">    &#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Science &amp; Medicine (Pre-1930)&#x27;</span>&#125;, &#123;<span class="string">&#x27;label&#x27;</span>: <span class="string">&#x27;Sort&#x27;</span>, <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;Silver&#x27;</span>&#125;];</span><br></pre></td></tr></table></figure>
-<p>初始数据中每个数据具有不同的类别，本次的目的是统计不同类别的数据出现次数并进行绘制，数据处理代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dataset = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">var</span> node = nodes[i];</span><br><span class="line">  dataset[node[<span class="string">&#x27;label&#x27;</span>]] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; nodes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nodes[j][<span class="string">&#x27;label&#x27;</span>] == node[<span class="string">&#x27;label&#x27;</span>])</span><br><span class="line">          dataset[node[<span class="string">&#x27;label&#x27;</span>]] += <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> data = [];</span><br><span class="line"><span class="keyword">var</span> labels = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> dataset) &#123;</span><br><span class="line">  data.<span class="title function_">push</span>(dataset[key]);</span><br><span class="line">  labels.<span class="title function_">push</span>(key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>dataset</code> 用于将数据进行分类统计。</li>
-<li><code>data</code> 保存每个分类出现次数。</li>
-<li><code>labels</code> 保存分类名称，作为 x 轴的刻度。</li>
-</ul>
-<h2 id="创建-svg">创建 SVG</h2>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> width = <span class="number">420</span>, height = <span class="number">420</span>;</span><br><span class="line"><span class="keyword">var</span> svg = d3.<span class="title function_">select</span>(<span class="string">&quot;#graph&quot;</span>).<span class="title function_">append</span>(<span class="string">&quot;svg&quot;</span>)</span><br><span class="line">        .<span class="title function_">attr</span>(<span class="string">&quot;width&quot;</span>, width)</span><br><span class="line">        .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, height);</span><br></pre></td></tr></table></figure>
-<h2 id="绘制坐标轴">绘制坐标轴</h2>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> padding = &#123;<span class="attr">top</span>: <span class="number">20</span>, <span class="attr">right</span>: <span class="number">20</span>, <span class="attr">bottom</span>: <span class="number">20</span>, <span class="attr">left</span>: <span class="number">30</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> xAxisWidth = width - <span class="number">2</span> * padding.<span class="property">left</span>;</span><br><span class="line"><span class="keyword">var</span> yAxiWidth = height - <span class="number">2</span> * padding.<span class="property">bottom</span>;</span><br><span class="line"><span class="keyword">var</span> xAxisScale = d3.<span class="property">scale</span>.<span class="title function_">ordinal</span>()</span><br><span class="line">            .<span class="title function_">domain</span>(d3.<span class="title function_">range</span>(labels.<span class="property">length</span>))</span><br><span class="line">            .<span class="title function_">rangeRoundBands</span>([<span class="number">0</span>, xAxisWidth]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yAxisScale = d3.<span class="property">scale</span>.<span class="title function_">linear</span>()</span><br><span class="line">    .<span class="title function_">domain</span>([<span class="number">0</span>, d3.<span class="title function_">max</span>(data)])</span><br><span class="line">    .<span class="title function_">range</span>([yAxiWidth, <span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xAxis = d3.<span class="property">svg</span>.<span class="title function_">axis</span>()</span><br><span class="line">    .<span class="title function_">scale</span>(xAxisScale)</span><br><span class="line">    .<span class="title function_">orient</span>(<span class="string">&quot;bottom&quot;</span>)</span><br><span class="line">    .<span class="title function_">tickFormat</span>(<span class="keyword">function</span> (<span class="params">d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> labels[d];</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yAxis = d3.<span class="property">svg</span>.<span class="title function_">axis</span>()</span><br><span class="line">    .<span class="title function_">scale</span>(yAxisScale)</span><br><span class="line">    .<span class="title function_">orient</span>(<span class="string">&quot;left&quot;</span>);</span><br><span class="line"></span><br><span class="line">svg.<span class="title function_">append</span>(<span class="string">&quot;g&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;axis&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;transform&quot;</span>, <span class="string">&quot;translate(&quot;</span> + padding.<span class="property">left</span> + <span class="string">&quot;,&quot;</span> +</span><br><span class="line">        (height - padding.<span class="property">bottom</span>) + <span class="string">&quot;)&quot;</span>)</span><br><span class="line">    .<span class="title function_">call</span>(xAxis);</span><br><span class="line"></span><br><span class="line">svg.<span class="title function_">append</span>(<span class="string">&quot;g&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;axis&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;transform&quot;</span>, <span class="string">&quot;translate(&quot;</span> + padding.<span class="property">left</span> + <span class="string">&quot;,&quot;</span> +</span><br><span class="line">        (height - yAxiWidth - padding.<span class="property">bottom</span>) + <span class="string">&quot;)&quot;</span>)</span><br><span class="line">    .<span class="title function_">call</span>(yAxis);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>xAxisWidth，yAxiWidth</code> 代表 x 轴和 y 轴的长度。</li>
-<li><code>padding</code> x 轴和 y 轴的外边距。</li>
-<li><code>xAxisScale，yAxisScale</code> x 轴和 y 轴的比例尺。</li>
-<li><code>ordinal().domain()</code> 设定或获取定义域。</li>
-<li><code>ordinal.rangeRoundBands(interval[, padding[, outerPadding]])</code> 接收一个连续的区间，然后根据定义域中离散值的数量将其分段，分段结果会取整。</li>
-<li><code>tickFormat()</code> 用于设定文字格式的刻度。</li>
-</ul>
-<p>这样添加之后的坐标轴，样式会比较丑，所以还需要给坐标轴增加如下样式：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-class">.axis</span> path,</span><br><span class="line">    <span class="selector-class">.axis</span> line &#123;</span><br><span class="line">        fill: none;</span><br><span class="line">        stroke: black;</span><br><span class="line">        shape-rendering: crispEdges;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.axis</span> text &#123;</span><br><span class="line">        <span class="attribute">font-family</span>: sans-serif;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">11px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="绘制矩形">绘制矩形</h2>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//0.05 用于设置矩形之间的间隔，由于 rangeRoundBands 选取的范围远小于 xAxisWidth，所以矩形之间的间隔远大于 0.05，该参数未起作用。</span></span><br><span class="line"><span class="keyword">var</span> xScale = d3.<span class="property">scale</span>.<span class="title function_">ordinal</span>()</span><br><span class="line">            .<span class="title function_">domain</span>(d3.<span class="title function_">range</span>(labels.<span class="property">length</span>))</span><br><span class="line">            .<span class="title function_">rangeRoundBands</span>([<span class="number">0</span>, <span class="number">100</span>], <span class="number">0.05</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> yScale = d3.<span class="property">scale</span>.<span class="title function_">linear</span>()</span><br><span class="line">    .<span class="title function_">domain</span>([<span class="number">0</span>, d3.<span class="title function_">max</span>(data)])</span><br><span class="line">    .<span class="title function_">range</span>([<span class="number">0</span>, yAxiWidth]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rect = svg.<span class="title function_">selectAll</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">data</span>(data);</span><br><span class="line"></span><br><span class="line">rect.<span class="title function_">enter</span>()</span><br><span class="line">    .<span class="title function_">append</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;x&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        x = xAxisWidth / (<span class="number">2</span> * labels.<span class="property">length</span>) * (<span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">            - xScale.<span class="title function_">rangeBand</span>() / <span class="number">2</span> + padding.<span class="property">left</span>;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> height - padding.<span class="property">bottom</span> - <span class="title function_">yScale</span>(d);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;width&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> xScale.<span class="title function_">rangeBand</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, yScale)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;steelblue&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>xScale</code> 用于控制矩形宽度， <code>yScale</code> 用于控制矩形高度。这样做可以使得矩形的宽度和高度自由伸缩。</li>
-</ul>
-<h2 id="给矩形增加文字描述">给矩形增加文字描述</h2>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> text = svg.<span class="title function_">selectAll</span>(<span class="string">&quot;text&quot;</span>)</span><br><span class="line">            .<span class="title function_">data</span>(data);</span><br><span class="line">text.<span class="title function_">enter</span>().<span class="title function_">append</span>(<span class="string">&quot;text&quot;</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;x&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                x = xAxisWidth / (<span class="number">2</span> * labels.<span class="property">length</span>) * (<span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">                    - xScale.<span class="title function_">rangeBand</span>() / <span class="number">2</span> + padding.<span class="property">left</span>;</span><br><span class="line">                <span class="keyword">return</span> x;</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> height - padding.<span class="property">bottom</span> - <span class="title function_">yScale</span>(d);</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;dx&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> xScale.<span class="title function_">rangeBand</span>() / <span class="number">4</span>;</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;dy&quot;</span>, -<span class="number">2</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;text-anchor&quot;</span>, <span class="string">&quot;begin&quot;</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;font-size&quot;</span>, <span class="number">14</span>)</span><br><span class="line">            .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;#000000&quot;</span>)</span><br><span class="line">            .<span class="title function_">text</span>(<span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> d;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>text</code> 元素的坐标是矩形的坐标，<code>dx，dy</code> 设定了方向上的偏移量。所以最终文字位于矩形正上方。</li>
-</ul>
-<h2 id="柱形图动画">柱形图动画</h2>
-<p>给柱形图增加动画，需要将代码修改为：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> rect = svg.<span class="title function_">selectAll</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">data</span>(data);</span><br><span class="line">rect.<span class="title function_">enter</span>()</span><br><span class="line">    .<span class="title function_">append</span>(<span class="string">&quot;rect&quot;</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> height - padding.<span class="property">bottom</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, <span class="number">0</span>)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;red&quot;</span>)</span><br><span class="line">    .<span class="title function_">transition</span>()</span><br><span class="line">    .<span class="title function_">duration</span>(<span class="number">3000</span>)</span><br><span class="line">    .<span class="title function_">ease</span>(<span class="string">&quot;bounce&quot;</span>)</span><br><span class="line">    .<span class="title function_">delay</span>(<span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">200</span> * i;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;x&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        x = xAxisWidth / (<span class="number">2</span> * labels.<span class="property">length</span>) * (<span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">            - xScale.<span class="title function_">rangeBand</span>() / <span class="number">2</span> + padding.<span class="property">left</span>;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;y&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> height - padding.<span class="property">bottom</span> - <span class="title function_">yScale</span>(d);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;width&quot;</span>, <span class="keyword">function</span> (<span class="params">d, i</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> xScale.<span class="title function_">rangeBand</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;height&quot;</span>, yScale)</span><br><span class="line">    .<span class="title function_">attr</span>(<span class="string">&quot;fill&quot;</span>, <span class="string">&quot;steelblue&quot;</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上述代码设置了两个 <code>fill</code> 属性，在添加了 <code>transition()</code> 之后，D3 会自动对颜色之间的值进行线性插值，最终在动画中会看到平滑的颜色变化。</li>
-<li><code>duration()</code> 动画持续时间。</li>
-<li><code>ease()</code> 指定转变方式，常用的转变方式有：
-<ul>
-<li>linear 普通的线性变化。</li>
-<li>circle 慢慢地到达变换的最终状态。<br>
-</li>
-<li>elastic 带有弹跳的到达最终状态。</li>
-<li>bounce 在最终状态处弹跳几次。</li>
-</ul></li>
-<li><code>delay()</code> 指定延时。</li>
-</ul>
-<h4 id="最终效果">最终效果</h4>
-<p><img src="http://i.imgur.com/4WazYv3.png" alt="柱形图效果"> <img src="http://i.imgur.com/7fT9upS.png" alt="坐标轴"></p>
-<hr>
-<h4 id="参考资料">参考资料</h4>
-<p><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHpobHp6L2FydGljbGUvZGV0YWlscy8zNTk4NTkwNw==">如何让图表动起来<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2QzL2QzLTMueC1hcGktcmVmZXJlbmNlL2Jsb2IvbWFzdGVyL09yZGluYWwtU2NhbGVzLm1k">d3-3.x-api-reference<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>d3.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 requests 获取 Discuz 论坛验证码</title>
-    <url>/posts/b2073700.html</url>
-    <content><![CDATA[<h2 id="requests-库的安装">requests 库的安装</h2>
-<p>Mac 下使用 Pycharm 时只需按住快捷键 <code>Command + ,</code> 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：<span id="more"></span> <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/request-install.png"></p>
-<h3 id="获取过程使用的方法">获取过程使用的方法</h3>
-<ul>
-<li><code>requests.get(url, params=None, **kwargs)</code><br> <code>url</code> 是请求的链接，<code>params</code> 是发送请求时参数，<code>kwargs</code> 是可选参数。</li>
-</ul>
-<h3 id="获取过程">获取过程</h3>
-<p>为了保持连接的持久性不能直接使用 requests 发送请求，而需要利用 Session 对象。具体获取代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">session = requests.session()</span><br><span class="line">ss = session.get(<span class="string">&quot;http://www.zhuixinfan.com/member.php?mod=register&quot;</span>)</span><br><span class="line">result = ss.text</span><br><span class="line"><span class="comment">#获取参数</span></span><br><span class="line">params = re.findall(<span class="string">&quot;&lt;input.*(?:name=\&quot;formhash\&quot;|name=\&quot;sechash\&quot;).*\&gt;&quot;</span>, result)</span><br><span class="line">params = <span class="built_in">list</span>(<span class="built_in">set</span>(params))</span><br><span class="line">sechash = re.sub(<span class="string">&quot;.*value=\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, params[<span class="number">1</span>])</span><br><span class="line">sechash = re.sub(<span class="string">&quot;\&quot;.*&quot;</span>, <span class="string">&quot;&quot;</span>, sechash)</span><br><span class="line"><span class="comment">#更新验证码</span></span><br><span class="line">actually_url = <span class="string">&quot;http://www.zhuixinfan.com/misc.php?mod=seccode&amp;action=update&amp;idhash=&quot;</span> + sechash</span><br><span class="line">htm = session.get(actually_url)</span><br><span class="line"><span class="comment">#获取图片链接</span></span><br><span class="line">update_url = re.findall(<span class="string">r&quot;\bsrc=\S*&quot;</span>, htm.text)</span><br><span class="line">update = re.sub(<span class="string">&quot;src=\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, update_url[<span class="number">0</span>])</span><br><span class="line">update = re.sub(<span class="string">&quot;\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, update)</span><br><span class="line"><span class="comment">#下载图片</span></span><br><span class="line">headers = &#123;</span><br><span class="line">            <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;www.zhuixinfan.com&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;http://www.zhuixinfan.com/member.php?mod=register&#x27;</span></span><br><span class="line">           &#125;</span><br><span class="line">url = <span class="string">&quot;http://www.zhuixinfan.com/&quot;</span> + update</span><br><span class="line">result = session.get(url, headers=headers)</span><br><span class="line">im = Image.<span class="built_in">open</span>(BytesIO(result.content))</span><br><span class="line">im.show()</span><br></pre></td></tr></table></figure>
-<p>获取过程中首先向站点发送请求，从返回的网页信息中利用正则表达式获取 <code>sechash</code> 参数，之后利用所得到的 <code>sechash</code> 向站点发送更新验证码的请求并从返回的信息中获取验证码图片的 url，最后从站点下载图片利用 <code>Image.open()</code> 显示图片。</p>
-<hr>
-<h2 id="参考资料">参考资料</h2>
-<p><span class="exturl" data-url="aHR0cDovL2RvY3MucHl0aG9uLXJlcXVlc3RzLm9yZy96aF9DTi9sYXRlc3QvaW5kZXguaHRtbA==">Requests: 让 HTTP 服务人类<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Archived</category>
-      </categories>
-      <tags>
-        <tag>Python Library</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -2446,7 +2384,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -2493,7 +2431,7 @@
         <category>Archived</category>
       </categories>
       <tags>
-        <tag>Android View</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -2842,7 +2780,6 @@ f(x)=x
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Custom View</tag>
       </tags>
   </entry>
   <entry>
@@ -2941,10 +2878,10 @@ f(x)=x
 </ol>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>Archived</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -2996,10 +2933,51 @@ f(x)=x
 </ol>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>Archived</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 下 json 模块</title>
+    <url>/posts/1aa5044d.html</url>
+    <content><![CDATA[<p>Python 下的 json 模块主要有 4 个函数：<span id="more"></span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#dict 转成 str </span></span><br><span class="line">json.dump()</span><br><span class="line"><span class="comment">#将 json 数据保存到文件</span></span><br><span class="line">json.dumps()</span><br><span class="line"><span class="comment">#str 转成 dict </span></span><br><span class="line">json.load()</span><br><span class="line"><span class="comment">#从文件中读取 json 数据</span></span><br><span class="line">json.loads()</span><br></pre></td></tr></table></figure>
+<p>将 Json 数据写入文件：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  data_result_file = <span class="string">&quot;data_result.json&quot;</span></span><br><span class="line">  <span class="keyword">with</span> <span class="built_in">open</span>(data_result_file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">      data_json = json.loads(results.data)</span><br><span class="line">      json.dump(data_json, f, indent=<span class="number">4</span>)</span><br><span class="line"><span class="keyword">except</span> IOError:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;文件不存在&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>由于 <code>json.dump()</code> 产生的是 <code>str</code> 对象，不是 <code>bytes</code> 对象，所以写入时文件权限不能设置为 <code>wb</code>，否则会出现 <code>TypeError: a bytes-like object is required, not ‘str'</code>。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 requests 获取 Discuz 论坛验证码</title>
+    <url>/posts/b2073700.html</url>
+    <content><![CDATA[<h2 id="requests-库的安装">requests 库的安装</h2>
+<p>Mac 下使用 Pycharm 时只需按住快捷键 <code>Command + ,</code> 选择 Project→Project Interpreter 点击 + 号后搜索 requests 进行安装即可：<span id="more"></span> <img src="https://raw.githubusercontent.com/ikroal/blog-images/master/request-install.png"></p>
+<h3 id="获取过程使用的方法">获取过程使用的方法</h3>
+<ul>
+<li><code>requests.get(url, params=None, **kwargs)</code><br> <code>url</code> 是请求的链接，<code>params</code> 是发送请求时参数，<code>kwargs</code> 是可选参数。</li>
+</ul>
+<h3 id="获取过程">获取过程</h3>
+<p>为了保持连接的持久性不能直接使用 requests 发送请求，而需要利用 Session 对象。具体获取代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">session = requests.session()</span><br><span class="line">ss = session.get(<span class="string">&quot;http://www.zhuixinfan.com/member.php?mod=register&quot;</span>)</span><br><span class="line">result = ss.text</span><br><span class="line"><span class="comment">#获取参数</span></span><br><span class="line">params = re.findall(<span class="string">&quot;&lt;input.*(?:name=\&quot;formhash\&quot;|name=\&quot;sechash\&quot;).*\&gt;&quot;</span>, result)</span><br><span class="line">params = <span class="built_in">list</span>(<span class="built_in">set</span>(params))</span><br><span class="line">sechash = re.sub(<span class="string">&quot;.*value=\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, params[<span class="number">1</span>])</span><br><span class="line">sechash = re.sub(<span class="string">&quot;\&quot;.*&quot;</span>, <span class="string">&quot;&quot;</span>, sechash)</span><br><span class="line"><span class="comment">#更新验证码</span></span><br><span class="line">actually_url = <span class="string">&quot;http://www.zhuixinfan.com/misc.php?mod=seccode&amp;action=update&amp;idhash=&quot;</span> + sechash</span><br><span class="line">htm = session.get(actually_url)</span><br><span class="line"><span class="comment">#获取图片链接</span></span><br><span class="line">update_url = re.findall(<span class="string">r&quot;\bsrc=\S*&quot;</span>, htm.text)</span><br><span class="line">update = re.sub(<span class="string">&quot;src=\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, update_url[<span class="number">0</span>])</span><br><span class="line">update = re.sub(<span class="string">&quot;\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, update)</span><br><span class="line"><span class="comment">#下载图片</span></span><br><span class="line">headers = &#123;</span><br><span class="line">            <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;www.zhuixinfan.com&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;http://www.zhuixinfan.com/member.php?mod=register&#x27;</span></span><br><span class="line">           &#125;</span><br><span class="line">url = <span class="string">&quot;http://www.zhuixinfan.com/&quot;</span> + update</span><br><span class="line">result = session.get(url, headers=headers)</span><br><span class="line">im = Image.<span class="built_in">open</span>(BytesIO(result.content))</span><br><span class="line">im.show()</span><br></pre></td></tr></table></figure>
+<p>获取过程中首先向站点发送请求，从返回的网页信息中利用正则表达式获取 <code>sechash</code> 参数，之后利用所得到的 <code>sechash</code> 向站点发送更新验证码的请求并从返回的信息中获取验证码图片的 url，最后从站点下载图片利用 <code>Image.open()</code> 显示图片。</p>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<p><span class="exturl" data-url="aHR0cDovL2RvY3MucHl0aG9uLXJlcXVlc3RzLm9yZy96aF9DTi9sYXRlc3QvaW5kZXguaHRtbA==">Requests: 让 HTTP 服务人类<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Archived</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -3284,11 +3262,10 @@ Override的主要作用是：
 </ul>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>Archived</category>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>注解</tag>
       </tags>
   </entry>
   <entry>
@@ -3428,10 +3405,10 @@ Override的主要作用是：
 </ol>
 ]]></content>
       <categories>
-        <category>Giraph</category>
+        <category>BigData</category>
       </categories>
       <tags>
-        <tag>SourceCode Analysis</tag>
+        <tag>Giraph</tag>
       </tags>
   </entry>
   <entry>
@@ -3504,15 +3481,15 @@ Override的主要作用是：
 <ul>
 <li><p>并发编程基础：涉及线程的创建与使用，还有线程状态的转换</p></li>
 <li><p>线程的管理：这一部分的内容主要是线程池，需要理解线程池的作用，并掌握线程池的使用，以及各项参数的含义</p>
-<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzNTYwNjIzMTYxMzUy">线程池的使用🔗<i class="fa fa-external-link-alt"></i></span></p></li>
+<p><strong>推荐阅读</strong>：<span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzNTYwNjIzMTYxMzUy">线程池的使用🔗<i class="fa fa-external-link-alt"></i></span></p></li>
 <li><p>线程的安全性：并发访问共享变量会带来安全问题，即程序的预期结果可能会与实际结果不一致。该问题是否出现与三种特性相关，即原子性、可见性和有序性。这一块的内容基本围绕这三种特性展开，复习重点在理解这三种特性为什么会导致安全性问题，以及相应的解决方案是什么？</p>
-<p>推荐阅读：</p>
+<p><strong>推荐阅读：</strong></p>
 <ol type="1">
 <li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81ODg1NTU5OQ==">Java并发之原子性、有序性、可见性<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9pa3JvYWwubm90aW9uLnNpdGUvZTU0YjcxNjU0NDU4NDVjNGIwYTQ5NmUzM2NiY2VjNjI=">对有序性的一些理解<i class="fa fa-external-link-alt"></i></span></li>
 </ol></li>
 <li><p>由保证安全性而带来的性能问题：保证线程安全性的一个方法是加锁，但加锁会影响程序的性能，所以这块的内容主要围绕着如何降低锁对程序的性能影响展开。这块的复习重点在弄清楚优化性能的各种方案，并了解各种锁之间的区别。</p>
-<p>推荐阅读：<span class="exturl" data-url="aHR0cHM6Ly90ZWNoLm1laXR1YW4uY29tLzIwMTgvMTEvMTUvamF2YS1sb2NrLmh0bWw=">不可不说的Java“锁”事<i class="fa fa-external-link-alt"></i></span></p></li>
+<p><strong>推荐阅读：</strong><span class="exturl" data-url="aHR0cHM6Ly90ZWNoLm1laXR1YW4uY29tLzIwMTgvMTEvMTUvamF2YS1sb2NrLmh0bWw=">不可不说的Java“锁”事<i class="fa fa-external-link-alt"></i></span></p></li>
 <li><p>线程之间的协同：主要是一些工具类，明白这些工具类的区别就可以。</p></li>
 </ul>
 <p>上述内容介绍的是涉及Java的并发编程，但对于其它语言而言，一些框架性的内容也是适用的。例如，其它语言也会面临线程的管理以及安全性问题，并且与安全性相关的因素也会涉及原子性等。<strong>因此，我个人觉得并发编程这块的内容在复习其它编程语言时是可以借鉴的。</strong></p></li>
@@ -3726,7 +3703,7 @@ Override的主要作用是：
         <category>Thinking</category>
       </categories>
       <tags>
-        <tag>summary</tag>
+        <tag>Summary</tag>
       </tags>
   </entry>
 </search>
